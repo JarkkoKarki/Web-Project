@@ -1,12 +1,12 @@
 ### 1. Clone the Repository
 ```sh
-git clone https://github.com/JarkkoKarki/Web-projekti.git
+git clone https://github.com/JarkkoKarki/Web-Project.git
 ```
 
 ### 2. Navigate to the Project Directory
 
 ```sh
-cd Web-projekti
+cd Web-Project
 ```
 
 ### 3. Install Dependencies
