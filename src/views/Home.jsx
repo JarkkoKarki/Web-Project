@@ -1,0 +1,86 @@
+import React from 'react';
+import About from './About';
+
+const Home = () => {
+  return (
+    <>
+     <section
+          className="relative bg-cover bg-center h-[90vh] flex items-center justify-center text-center"
+          style={{
+            backgroundImage:
+              "url('src/assets/images/top-view-lula-kebab-with-onion-herbs-grilled-vegetables-wooden-board.jpg')",
+          }}
+        >
+          <div className="bg-[#101211] bg-opacity-60 p-10 rounded-lg">
+            <p className="text-yellow-500 italic mb-2">
+              welcome to our delicious restaurant
+            </p>
+            <h2 className="text-5xl text-yellow-400 font-bold tracking-wider">
+              BEST FAMOUS DISHES
+            </h2>
+            <p className="text-white mt-4 text-sm max-w-lg mx-auto">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
+              quasi ipsum qui aliquam ut quibusdam veniam. Voluptatibus ducimus,
+              qui optio deserunt exercitationem pariatur consequuntur sit, at
+              similique debitis hic nesciunt!
+            </p>
+            <a
+              href="#about-us"
+              className="mt-6 px-6 py-2 border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition inline-block"
+            >
+              LEARN MORE
+            </a>
+          </div>
+        </section>
+          <About />
+        {/* Menu Section */}
+      <section id="menu" class="py-20 bg-[#101211]">
+        <h3 class="text-center text-3xl font-bold text-white mb-12">
+          TRENDING MEALS
+        </h3>
+        <div
+          class="flex justify-center items-start gap-10 px-6 max-w-6xl mx-auto"
+        >
+          <div class="w-1/2 space-y-6">
+            <div class="flex justify-between border-b border-gray-700 pb-2">
+              <p>KEBAB CLASSIC</p>
+              <p>$25</p>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-2">
+              <p>SUPER KEBAB</p>
+              <p>$32</p>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-2">
+              <p>KINGSIZE KEBAB</p>
+              <p>$45</p>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-2">
+              <p>VEGGIE MIX</p>
+              <p>$23</p>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-2">
+              <p>SPICY SPECIAL</p>
+              <p>$27</p>
+            </div>
+            <div class="flex justify-between border-b border-gray-700 pb-2">
+              <p>CHEFS SPECIAL</p>
+              <p>$48</p>
+            </div>
+            <a
+              href="./assets/htmls/menu.html"
+              class="mt-8 px-6 py-2 border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition inline-block"
+            >
+              VIEW MORE
+            </a>
+          </div>
+          <img
+            src="https://placehold.co/560x370"
+            class="w-1/2 object-cover rounded-lg shadow-lg"
+          />
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Home;
