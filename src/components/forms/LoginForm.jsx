@@ -1,10 +1,9 @@
-// import {useAuthentication} from '../hooks/apiHooks';
+import {useAuthentication} from '../hooks/apiHooks';
 import {useNavigate} from 'react-router';
 import useForm from '../hooks/formHooks';
 
-
 const LoginForm = () => {
-  // const {postLogin} = useAuthentication();
+  const {postLogin} = useAuthentication();
   const navigate = useNavigate();
 
   const initValues = {
@@ -16,7 +15,7 @@ const LoginForm = () => {
     console.log('login funktiota kutsuttu');
     console.log(inputs);
     // TODO: add login functionalities here
-    // await postLogin(inputs);
+    await postLogin(inputs);
     navigate('/');
   };
 
