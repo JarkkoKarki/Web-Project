@@ -7,7 +7,6 @@ import Menu from './views/Menu';
 import About from './views/About';
 import Login from './views/Login';
 import Reservation from './views/Reservation';
-import Register from './views/Register';
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
         </Route>
       </Routes>
