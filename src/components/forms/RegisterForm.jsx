@@ -1,8 +1,8 @@
-import { useUser } from "../hooks/apiHooks";
+import { useUserContext } from "../hooks/contextHooks";
 import useForm from "../hooks/formHooks";
 
 const RegisterForm = () => {
-  const {postUser} = useUser();
+  const {handleRegister} = useUserContext();
 
   const initValues = {
     name: '',
@@ -14,7 +14,11 @@ const RegisterForm = () => {
   };
 
   const doRegister = async () => {
-    await postUser(inputs);
+    try {
+      await handleRegister(inputs);
+    } catch (e) {
+      alert(e.message);
+    }
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(
