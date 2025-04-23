@@ -1,11 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
+  const {t} = useTranslation();
+
   return (
   <section id="about-us" className="py-20 text-center bg-[#0f1110]">
           <p className="text-yellow-500 italic">special moments</p>
           <h3 className="text-4xl font-bold text-white tracking-wide mb-12">
-            ABOUT US
+            {t('aboutPage.about-us')}
           </h3>
           <div className="flex justify-center items-center space-x-6 px-6 max-w-6xl mx-auto">
             <img

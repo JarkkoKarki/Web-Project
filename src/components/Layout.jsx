@@ -26,6 +26,7 @@ const Layout = () => {
             </li>
           </ul>
         </nav>
+        <div></div>
         <div className="flex items-center space-x-4">
           <img
             src="src\assets\images\icons8-search-50.png"

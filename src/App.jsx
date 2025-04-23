@@ -8,8 +8,17 @@ import About from './views/About';
 import Login from './views/Login';
 import Reservation from './views/Reservation';
 import Register from './views/Register';
+import "./assets/i18n";
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 function App() {
+  const { i18n} = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(navigator.language);
+  }, [])
+
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
