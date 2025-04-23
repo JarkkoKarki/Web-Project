@@ -7,10 +7,11 @@ import Menu from './views/Menu';
 import About from './views/About';
 import Login from './views/Login';
 import Reservation from './views/Reservation';
-import Register from './views/Register';
+import RegisterForm from './components/forms/RegisterForm';
 import "./assets/i18n";
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
+
 
 function App() {
   const { i18n} = useTranslation();
@@ -27,7 +28,6 @@ function App() {
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
         </Route>
       </Routes>

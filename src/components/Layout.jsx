@@ -1,4 +1,4 @@
-import {Link, Outlet} from 'react-router';
+import { Link, Outlet } from 'react-router';
 
 const Layout = () => {
   return (
@@ -16,13 +16,19 @@ const Layout = () => {
               </Link>
             </li>
             <li>
-              <Link to="/menu" className="hover:text-yellow-500">Menu</Link>
+              <Link to="/menu" className="hover:text-yellow-500">
+                Menu
+              </Link>
             </li>
             <li>
-              <Link to="/reservation" className="hover:text-yellow-500">Reservation</Link>
+              <Link to="/reservation" className="hover:text-yellow-500">
+                Reservation
+              </Link>
             </li>
             <li>
-              <Link to="/about" className="hover:text-yellow-500">About Us</Link>
+              <Link to="/about" className="hover:text-yellow-500">
+                About Us
+              </Link>
             </li>
           </ul>
         </nav>
