@@ -34,10 +34,10 @@ const UserProvider = ({children}) => {
     try {
 
       const token = localStorage.getItem('token');
+      console.log(token, " handleAutologin");
 
       if (token) {
         const userResponse = await getUserByToken(token);
-
         setUser(userResponse.user);
         console.log('location', location);
         navigate(location.pathname);
