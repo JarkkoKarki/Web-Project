@@ -1,8 +1,10 @@
 import {useCallback} from 'react';
 import { fetchData } from '../../utils/fetchData';
+import { url } from '../../utils/variables';
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
+
     const fetchOptions = {
       method: 'POST',
       headers: {
@@ -10,11 +12,9 @@ const useAuthentication = () => {
       },
       body: JSON.stringify(inputs),
     };
-    const loginResult = await fetchData("login.jne",
+    const loginResult = await fetchData(url + "/auth/login",
       fetchOptions,
     );
-
-    console.log('loginResult', loginResult.token);
 
     window.localStorage.setItem('token', loginResult.token);
 
@@ -33,7 +33,7 @@ const useUser = () => {
       },
       body: JSON.stringify(inputs),
     };
-    return await fetchData("users/jne",
+    return await fetchData(url + "/users" ,
       fetchOptions,
     );
   };
@@ -45,8 +45,7 @@ const useUser = () => {
       },
     };
 
-    const userResult = await fetchData(
-      import.meta.env.VITE_AUTH_API + '/users/token',
+    const userResult = await fetchData(url + '/auth/me',
       fetchOptions,
     );
 
