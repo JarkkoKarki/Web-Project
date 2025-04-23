@@ -12,9 +12,6 @@ const LoginForm = () => {
   };
 
   const doLogin = async () => {
-    console.log('login funktiota kutsuttu');
-    console.log(inputs);
-    // TODO: add login functionalities here
     await postLogin(inputs);
     navigate('/');
   };
@@ -24,7 +21,6 @@ const LoginForm = () => {
     initValues,
   );
 
-  console.log(inputs);
   return (
     <>
       <h2 className="mb-6 text-2xl font-bold">Login</h2>
