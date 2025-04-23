@@ -67,7 +67,7 @@ const Layout = () => {
 
         </div>
       </header>
-      <main>
+      <main className='p-8'>
         <Outlet />
       </main>
       <footer className="text-center py-8 bg-[#0d0f0e] border-t border-gray-800 text-sm text-gray-500">
