@@ -14,11 +14,7 @@ const RegisterForm = () => {
   };
 
   const doRegister = async () => {
-    console.log('Register funktiota kutsuttu');
-    console.log(inputs);
-    // TODO: add Register functionalities here
-    const userResult = await postUser(inputs);
-    console.log(userResult);
+    await postUser(inputs);
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(
@@ -26,7 +22,6 @@ const RegisterForm = () => {
     initValues,
   );
 
-  console.log(inputs);
   return (
     <>
       <h2 className="mb-6 text-2xl font-bold">Register</h2>
@@ -72,7 +67,7 @@ const RegisterForm = () => {
           <label htmlFor="registerpassword" className="block text-left mb-2 font-bold text-lg">Password</label>
           <input
             onChange={handleInputChange}
-            autoComplete="new-password" // Updated for registration
+            autoComplete="new-password"
             type="password"
             id="registerpassword"
             name="password"
