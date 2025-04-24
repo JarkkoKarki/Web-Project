@@ -12,6 +12,7 @@ export const UserInformation = () => {
   const profileInfo = [
     { label: t('profilePage.name'), value: 'John Doe' },
     { label: t('profilePage.username'), value: 'Johnny' },
+    { label: t('profilePage.password'), value: ''},
     { label: t('profilePage.email'), value: 'Johnny@test.com' },
     { label: t('profilePage.address'), value: 'gloverstreet203' },
     { label: t('profilePage.phone-number'), value: '0443452340' },
