@@ -1,4 +1,4 @@
-import {createContext} from 'react';
+import {createContext, useCallback} from 'react';
 import {useAuthentication, useUser} from '../components/hooks/apiHooks';
 import {useNavigate, useLocation} from 'react-router';
 import useLocalStorage from '../components/hooks/useLocalStorage';
@@ -16,7 +16,7 @@ const UserProvider = ({children}) => {
   });
 
   const updateUser = (updatedUser) => {
-    setUser(updatedUser)
+    setUser(updatedUser);
   };
 
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
@@ -24,7 +24,6 @@ const UserProvider = ({children}) => {
   const {getUserByToken, postUser} = useUser();
   const navigate = useNavigate();
   const location = useLocation();
-
 
   const handleLogin = async (credentials) => {
     const loginResult = await postLogin(credentials);
@@ -34,21 +33,19 @@ const UserProvider = ({children}) => {
     navigate('/');
   };
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     try {
       localStorage.removeItem('token');
       setUser(null);
       setIsLoggedIn(false);
       navigate('/');
-
     } catch (e) {
       console.log(e.message);
     }
-  };
+  }, [navigate]);
 
-  const handleAutoLogin = async () => {
+  const handleAutoLogin = useCallback(async () => {
     try {
-
       const token = localStorage.getItem('token');
       if (token) {
         const userResponse = await getUserByToken(token);
@@ -56,18 +53,29 @@ const UserProvider = ({children}) => {
         setIsLoggedIn(true);
         // console.log('location', location);
         navigate(location.pathname);
+
+        if (location.pathname !== '/') {
+          navigate(location.pathname);
+        }
       }
     } catch (e) {
       handleLogout();
       console.log(e.message);
     }
-  };
+  }, [
+    setIsLoggedIn,
+    setUser,
+    getUserByToken,
+    navigate,
+    location.pathname,
+    handleLogout,
+  ]);
 
   const handleRegister = async (registrationData) => {
     try {
       const registerResult = await postUser(registrationData);
-      console.log("Todoo juttui");
-      console.log("handleRegister kutsuttu", registerResult);
+      console.log('Todoo juttui');
+      console.log('handleRegister kutsuttu', registerResult);
 
       navigate('/');
     } catch (e) {
@@ -77,7 +85,15 @@ const UserProvider = ({children}) => {
 
   return (
     <UserContext.Provider
-      value={{user, updateUser, isLoggedIn, handleLogin, handleLogout, handleAutoLogin, handleRegister}}
+      value={{
+        user,
+        updateUser,
+        isLoggedIn,
+        handleLogin,
+        handleLogout,
+        handleAutoLogin,
+        handleRegister,
+      }}
     >
       {children}
     </UserContext.Provider>
