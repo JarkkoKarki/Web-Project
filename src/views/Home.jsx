@@ -30,7 +30,7 @@ const Home = () => {
               href="#about-us"
               className="mt-6 px-6 py-2 border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition inline-block"
             >
-              LEARN MORE
+              {t("homePage.learn-more")}
             </a>
           </div>
         </section>
@@ -38,7 +38,7 @@ const Home = () => {
         {/* Menu Section */}
       <section id="menu" className="py-20 bg-[#101211]">
         <h3 className="text-center text-3xl font-bold text-white mb-12">
-          TRENDING MEALS
+        {t("homePage.trending-meals")}
         </h3>
         <div
           className="flex justify-center items-start gap-10 px-6 max-w-6xl mx-auto"
@@ -72,7 +72,7 @@ const Home = () => {
               href="./assets/htmls/menu.html"
               className="mt-8 px-6 py-2 border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black transition inline-block"
             >
-              VIEW MORE
+              {t("homePage.view-more")}
             </a>
           </div>
           <img
