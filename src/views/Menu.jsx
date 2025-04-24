@@ -5,8 +5,6 @@ import MenuRow from '../components/MenuRow';
 const Menu = () => {
   const menuArray = useMenu();
 
-  console.log(menuArray, "menuarray");
-
   return (<>
     <section
         id="chefs-favourites"
