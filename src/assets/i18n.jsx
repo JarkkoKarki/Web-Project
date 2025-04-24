@@ -16,25 +16,38 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translations: {
+
+        header: {
+          "home" : "Home",
+          "menu" : "Menu",
+          "reservation" : "Reservation",
+          "about" : "About Us",
+          "sign-in" : "Sign in",
+          "sign-out" : "Sign Out",
+        },
+
+        footer: {
+          "footer" : "2025 Kebula. All rights reserved.",
+        },
+
         homePage: {
-          "welcome-message": 'welcome to our delicious restaurant',
-          "slogan": 'BEST FAMOUS DISHES'
+          "welcome-message": 'Welcome to our delicious restaurant',
+          "slogan": 'Best Famous Dishes',
+          "learn-more": "Learn More",
+          "trending-meals": "Trending Meals",
+          "view-more": "View More",
         },
         aboutPage: {
-          "about-us": 'ABOUT US'
+          "special-moments": "special Moments",
+          "about-us": 'About Us',
+          "taste-perception": "Taste Perception",
+          "trad-modern": "Traditional & Modern",
+          "read-more" : "READ MORE",
         },
-        menuPage: {
-
-        },
-        loginPage: {
-
-        },
-        registerPage: {
-
-        },
-        reservationPage: {
-
-        },
+        menuPage: {},
+        loginPage: {},
+        registerPage: {},
+        reservationPage: {},
         profilePage: {
           "profile": 'Profile',
           "profile-picture": 'Profile Picture',
@@ -47,32 +60,43 @@ i18n.use(initReactI18next).init({
           "phone-number": 'Phone Number',
           "view": 'View',
           "change": 'Change',
-
         },
       }
-
     },
     fi: {
       translations: {
+
+        header: {
+          "home" : "Koti",
+          "menu" : "Menu",
+          "reservation" : "Varaaminen",
+          "about" : "Meistä",
+          "sign-in" : "Kirjaudu Sisään",
+          "sign-out" : "Kirjaudu Ulos",
+        },
+
+        footer: {
+          "footer" : "2025 Kebula. Kaikki oikeudet pidätetään",
+        },
+
         homePage: {
-          "welcome-message": 'tervetuloa meidän herkulliseen ravintolaan',
-          "slogan": 'KUULUISAT PARHAAT RUOAT'
+          "welcome-message": 'Tervetuloa herkulliseen ravintolaamme',
+          "slogan": 'Parhaat Kuuluisat Ruoat',
+          "learn-more": "Lisätietoja",
+          "trending-meals": "Trendaavat Ruoat",
+          "view-more": "Näytä Lisää",
         },
         aboutPage: {
-          "about-us": 'MEISTÄ'
+          "special-moments": "erityiset Hetket",
+          "about-us": 'Meistä',
+          "taste-perception": "Makuvaikutelma",
+          "trad-modern": "Perinteinen & Moderni",
+          "read-more" : "LUE LISÄÄ",
         },
-        menuPage: {
-
-        },
-        loginPage: {
-
-        },
-        registerPage: {
-
-        },
-        reservationPage: {
-
-        },
+        menuPage: {},
+        loginPage: {},
+        registerPage: {},
+        reservationPage: {},
         profilePage: {
           "profile": 'Profiili',
           "profile-picture": 'Profiilikuva',
@@ -85,10 +109,8 @@ i18n.use(initReactI18next).init({
           "phone-number": 'Puhelinnumero',
           "view": 'Näytä',
           "change": 'Vaihda',
-
         },
       }
-
     }
   }
 });
