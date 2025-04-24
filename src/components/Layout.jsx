@@ -1,12 +1,17 @@
 import { useEffect } from 'react';
-import { Link, Outlet } from 'react-router';
+import { useLanguageContext } from '../contexts/LanguageContext';
 import { useUserContext } from './hooks/contextHooks';
+import { Link, Outlet } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const Layout = () => {
-  const {user, handleAutoLogin} = useUserContext();
+  const { language, changeLanguage } = useLanguageContext();
+  const { user, handleAutoLogin } = useUserContext();
+  const {t} = useTranslation();
+
   useEffect(() => {
     handleAutoLogin();
-  }, []);
+  }, [handleAutoLogin]);
 
   return (
     <div className="bg-[#0d0f0e] text-white font-sans">
@@ -19,59 +24,86 @@ const Layout = () => {
           <ul className="flex space-x-8 text-sm text-white tracking-wider underline underline-offset-4">
             <li>
               <Link to="/" className="hover:text-yellow-500">
-                Home
+                {t('header.home')}
               </Link>
             </li>
             <li>
               <Link to="/menu" className="hover:text-yellow-500">
-                Menu
+              {t('header.menu')}
               </Link>
             </li>
             <li>
               <Link to="/reservation" className="hover:text-yellow-500">
-                Reservation
+              {t('header.reservation')}
               </Link>
             </li>
             <li>
               <Link to="/about" className="hover:text-yellow-500">
-                About Us
+              {t('header.about')}
               </Link>
             </li>
           </ul>
         </nav>
+
         <div className="flex items-center space-x-4">
+          {/* Language Switcher */}
+          <div className="flex space-x-2">
+            {language === 'fi' ? (
+              <button className="text-yellow-500 font-bold">Suomi</button>
+            ) : (
+              <button
+                onClick={() => changeLanguage('fi')}
+                className="hover:text-yellow-500 cursor-pointer"
+              >
+                Suomi
+              </button>
+            )}
+            <span>|</span>
+            {language === 'en' ? (
+              <button className="text-yellow-500 font-bold">English</button>
+            ) : (
+              <button
+                onClick={() => changeLanguage('en')}
+                className="hover:text-yellow-500 cursor-pointer"
+              >
+                English
+              </button>
+            )}
+          </div>
+
           <img
-            src="src\assets\images\icons8-search-50.png"
+            src="src/assets/images/icons8-search-50.png"
             alt="Search"
-            className="w-6 h-6 cursor-pointer"/>
+            className="w-6 h-6 cursor-pointer"
+          />
 
-           {!user ?
-
+          {!user ? (
             <>
               <Link
-              to="/login"
-              className="border border-yellow-500 px-4 py-1 rounded-sm text-sm hover:bg-yellow-500 hover:text-black transition">
-              Sign In
+                to="/login"
+                className="border border-yellow-500 px-4 py-1 rounded-sm text-sm hover:bg-yellow-500 hover:text-black transition"
+              >
+                {t('header.sign-in')}
               </Link>
             </>
-          :
+          ) : (
             <>
               <Link to="/profile">Profile</Link>
               <Link
-              to="/logout"
-              className="border border-yellow-500 px-4 py-1 rounded-sm text-sm hover:bg-yellow-500 hover:text-black transition">
-              Sign Out
+                to="/logout"
+                className="border border-yellow-500 px-4 py-1 rounded-sm text-sm hover:bg-yellow-500 hover:text-black transition"
+              >
+                {t('header.sign-out')}
               </Link>
             </>
-          }
-
+          )}
         </div>
       </header>
-      <main className='p-8'>
+      <main className="p-8">
         <Outlet />
       </main>
       <footer className="text-center py-8 bg-[#0d0f0e] border-t border-gray-800 text-sm text-gray-500">
-        &copy; 2025 Kebula. All rights reserved.
+        &copy; {t('footer.footer')}
       </footer>
     </div>
   );
