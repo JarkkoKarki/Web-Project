@@ -47,6 +47,7 @@ i18n.use(initReactI18next).init({
           "phone-number": 'Phone Number',
           "view": 'View',
           "change": 'Change',
+          "delete-user": 'Delete User',
 
         },
       }
@@ -85,6 +86,7 @@ i18n.use(initReactI18next).init({
           "phone-number": 'Puhelinnumero',
           "view": 'Näytä',
           "change": 'Vaihda',
+          "delete-user": 'Poista käyttäjä',
 
         },
       }

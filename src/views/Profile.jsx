@@ -12,7 +12,11 @@ const Profile = () => {
       <ProfilePicture />
       <UserInformation />
       </section>
-      </div>
+      <section>
+        <button className='mt-6 px-6 py-2 border border-red-500 text-red-500 hover:bg-red-500 hover:text-black transition inline-block cursor-pointer'>
+        {t("profilePage.delete-user")}</button>
+      </section>
+    </div>
   )
 }
 
