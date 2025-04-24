@@ -24,7 +24,7 @@ export const UserInformation = () => {
       {profileInfo.map((info, index) => (
         <div
           key={index}
-          className='w-full text-xl bg-[#101211] rounded border-[#000000] p-2 cursor-pointer hover:bg-[#1c1e24] hover:border-[#000000] border-2 flex justify-between'
+          className='w-full text-xl bg-[#101211] rounded border-[#000000] p-2 cursor-pointer hover:bg-[#1c1e24] hover:border-[#000000] border-1 flex justify-between'
           onClick={() => clickHandler(info.label)}
         >
           <span>{info.label}</span>
