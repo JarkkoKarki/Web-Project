@@ -1,10 +1,11 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next';
 import ProfilePicture from '../components/ProfilePicture';
 import UserInformation from '../components/UserInformation';
 
 const Profile = () => {
   const {t} = useTranslation();
+
+
   return (
     <div className='flex flex-col items-center justify-center bg-[#0d0f0e] text-white font-sans'>
       <h2 className='mb-12 text-3xl font-bold'>{t("profilePage.profile")}</h2>

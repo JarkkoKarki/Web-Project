@@ -1,5 +1,5 @@
-import i18n from 'i18next'
-import  {initReactI18next} from 'react-i18next'
+import i18n from 'i18next';
+import {initReactI18next} from 'react-i18next';
 
 // HOW TO USE: Use the useTranslation hook in your components
 //
@@ -13,6 +13,7 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
   defaultNS: 'translations',
   // TODO: Translate components (& Add more languages)
+  // prettier-ignore
   resources: {
     en: {
       translations: {
@@ -48,6 +49,24 @@ i18n.use(initReactI18next).init({
           "view": 'View',
           "change": 'Change',
           "delete-user": 'Delete User',
+          "save": 'Save',
+          "cancel": 'Cancel',
+          "all-fields-required": 'All fields are required',
+          "current-password": 'Current Password',
+          "new-password": 'New Password',
+          "confirm-password": 'Confirm Password',
+          "change-password": 'Change Password',
+          "passwords-do-not-match": 'Passwords do not match',
+          "delete-user-confirmation": 'Are you sure you want to delete your account? This action cannot be undone.',
+          "delete-user-success": 'User deleted successfully',
+          "change-name": 'Change First and Last Name',
+          "name-length-error": 'Name must be at least 2 characters long',
+          "first-name": 'First Name',
+          "last-name": 'Last Name',
+          "change-username": 'Change Username',
+          "change-email": 'Change Email',
+          "change-address": 'Change Address',
+          "change-phone": 'Change Phone Number',
 
         },
       }
@@ -87,12 +106,30 @@ i18n.use(initReactI18next).init({
           "view": 'Näytä',
           "change": 'Vaihda',
           "delete-user": 'Poista käyttäjä',
+          "save": 'Tallenna',
+          "cancel": 'Peruuta',
+          "all-fields-required": 'Kaikki kentät ovat pakollisia',
+          "current-password": 'Nykyinen salasana',
+          "new-password": 'Uusi salasana',
+          "confirm-password": 'Vahvista salasana',
+          "change-password": 'Vaihda salasana',
+          "passwords-do-not-match": 'Salasanat eivät täsmää',
+          "delete-user-confirmation": 'Oletko varma, että haluat poistaa tilisi? Tätä toimintoa ei voi peruuttaa.',
+          "delete-user-success": 'Käyttäjä poistettu onnistuneesti',
+          "change-name": 'Vaihda etu- ja sukunimi',
+          "name-length-error": 'Nimen on oltava vähintään 2 merkkiä pitkä',
+          "first-name": 'Etunimi',
+          "last-name": 'Sukunimi',
+          "change-username": 'Vaihda käyttäjätunnus',
+          "change-email": 'Vaihda sähköposti',
+          "change-address": 'Vaihda osoite',
+          "change-phone": 'Vaihda puhelinnumero',
 
         },
       }
 
     }
-  }
+  },
 });
 
-export default i18n
+export default i18n;

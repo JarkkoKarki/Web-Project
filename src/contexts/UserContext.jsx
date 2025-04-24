@@ -1,11 +1,25 @@
-import {createContext, useState} from 'react';
+import {createContext} from 'react';
 import {useAuthentication, useUser} from '../components/hooks/apiHooks';
 import {useNavigate, useLocation} from 'react-router';
+import useLocalStorage from '../components/hooks/useLocalStorage';
 
 const UserContext = createContext(null);
 
 const UserProvider = ({children}) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useLocalStorage('user', {
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    address: '',
+    phoneNumber: '',
+  });
+
+  const updateUser = (updatedUser) => {
+    setUser(updatedUser)
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
   const {postLogin} = useAuthentication();
   const {getUserByToken, postUser} = useUser();
   const navigate = useNavigate();
@@ -16,6 +30,7 @@ const UserProvider = ({children}) => {
     const loginResult = await postLogin(credentials);
     localStorage.setItem('token', loginResult.token);
     setUser(loginResult.user);
+    setIsLoggedIn(true);
     navigate('/');
   };
 
@@ -23,6 +38,7 @@ const UserProvider = ({children}) => {
     try {
       localStorage.removeItem('token');
       setUser(null);
+      setIsLoggedIn(false);
       navigate('/');
 
     } catch (e) {
@@ -37,6 +53,7 @@ const UserProvider = ({children}) => {
       if (token) {
         const userResponse = await getUserByToken(token);
         setUser(userResponse);
+        setIsLoggedIn(true);
         // console.log('location', location);
         navigate(location.pathname);
       }
@@ -60,7 +77,7 @@ const UserProvider = ({children}) => {
 
   return (
     <UserContext.Provider
-      value={{user, handleLogin, handleLogout, handleAutoLogin, handleRegister}}
+      value={{user, updateUser, isLoggedIn, handleLogin, handleLogout, handleAutoLogin, handleRegister}}
     >
       {children}
     </UserContext.Provider>
