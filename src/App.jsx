@@ -12,6 +12,7 @@ import { UserProvider } from './contexts/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './views/Profile';
 import Logout from './views/Logout';
+import WorkHub from './views/WorkHub';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 
@@ -28,6 +29,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/workhub/*"
+              element={
+                <ProtectedRoute>
+                  <WorkHub />
                 </ProtectedRoute>
               }
             />
