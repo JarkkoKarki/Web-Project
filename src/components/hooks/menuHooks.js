@@ -8,13 +8,14 @@ const useMenu = () => {
   const getMenu = async () => {
     try {
       const mediaData = await fetchData(url + "/menu");
-      const favorites = mediaData["everyone's favorite"]
+      const favorites = mediaData[1].items
 
       const transformedFavorites = favorites.map(item => ({
         src: rootUrl + item.filename,
         name: item.name,
         price: item.price
       }));
+
 
       setMenuArray(transformedFavorites)
 
