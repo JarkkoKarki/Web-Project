@@ -34,7 +34,10 @@ const UserProvider = ({children}) => {
       if (token) {
         const userResponse = await getUserByToken(token);
         setUser(userResponse);
-        navigate(location.pathname);
+
+        if (location.pathname !== '/') {
+          navigate(location.pathname);
+        }
       }
     } catch (e) {
       handleLogout();

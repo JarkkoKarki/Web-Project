@@ -11,7 +11,7 @@ const Layout = () => {
 
   useEffect(() => {
     handleAutoLogin();
-  }, [handleAutoLogin]);
+  }, []);
 
   return (
     <div className="bg-[#0d0f0e] text-white font-sans">
