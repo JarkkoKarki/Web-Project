@@ -1,6 +1,12 @@
 import React from 'react';
+import useMenu from '../components/hooks/menuHooks';
+import MenuRow from '../components/MenuRow';
 
 const Menu = () => {
+  const menuArray = useMenu();
+
+  console.log(menuArray, "menuarray");
+
   return (<>
     <section
         id="chefs-favourites"
@@ -12,53 +18,14 @@ const Menu = () => {
           CHEFS FAVOURITES
         </h2>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <li className="bg-[#1a1a1a] p-4 rounded-lg shadow-lg">
-            <img src="https://placehold.co/400x250" className="rounded-md mb-4" />
-            <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold">KEBAB CLASSIC</p>
-              <span className="text-yellow-500 font-bold">$25</span>
-            </div>
-          </li>
 
-          <li className="bg-[#1a1a1a] p-4 rounded-lg shadow-lg">
-            <img src="https://placehold.co/400x250" className="rounded-md mb-4" />
-            <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold">SUPER KEBAB</p>
-              <span className="text-yellow-500 font-bold">$32</span>
-            </div>
-          </li>
+          {menuArray.map((item) => (
+            <MenuRow
+              key={item.src}
+              item={item}
+            />
+          ))}
 
-          <li className="bg-[#1a1a1a] p-4 rounded-lg shadow-lg">
-            <img src="https://placehold.co/400x250" className="rounded-md mb-4" />
-            <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold">KINGSIZE KEBAB</p>
-              <span className="text-yellow-500 font-bold">$45</span>
-            </div>
-          </li>
-
-          <li className="bg-[#1a1a1a] p-4 rounded-lg shadow-lg">
-            <img src="https://placehold.co/400x250" className="rounded-md mb-4" />
-            <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold">VEGGIE MIX</p>
-              <span className="text-yellow-500 font-bold">$23</span>
-            </div>
-          </li>
-
-          <li className="bg-[#1a1a1a] p-4 rounded-lg shadow-lg">
-            <img src="https://placehold.co/400x250" className="rounded-md mb-4" />
-            <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold">SPICY SPECIAL</p>
-              <span className="text-yellow-500 font-bold">$27</span>
-            </div>
-          </li>
-
-          <li className="bg-[#1a1a1a] p-4 rounded-lg shadow-lg">
-            <img src="https://placehold.co/400x250" className="rounded-md mb-4" />
-            <div className="flex justify-between items-center">
-              <p className="text-lg font-semibold">CHEF'S SPECIAL</p>
-              <span className="text-yellow-500 font-bold">$48</span>
-            </div>
-          </li>
         </ul>
       </section>
       <section id="menu" className="max-w-6xl mx-auto bg-[#101211]">
