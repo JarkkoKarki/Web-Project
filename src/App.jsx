@@ -8,23 +8,18 @@ import About from './views/About';
 import Login from './views/Login';
 import Reservation from './views/Reservation';
 import "./assets/i18n";
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 import { UserProvider } from './contexts/UserContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './views/Profile';
 import Logout from './views/Logout';
+import { LanguageProvider } from './contexts/LanguageContext';
 
 
 function App() {
-  const { i18n} = useTranslation();
-
-  useEffect(() => {
-    i18n.changeLanguage(navigator.language);
-  }, [])
 
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <LanguageProvider>
       <UserProvider>
         <Routes>
           <Route element={<Layout />}>
@@ -45,6 +40,7 @@ function App() {
           </Route>
       </Routes>
       </UserProvider>
+      </LanguageProvider>
     </BrowserRouter>
   );
 }
