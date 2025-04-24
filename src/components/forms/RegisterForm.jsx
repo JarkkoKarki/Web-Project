@@ -15,7 +15,15 @@ const RegisterForm = () => {
 
   const doRegister = async () => {
     try {
-      await handleRegister(inputs);
+      const [firstName, lastName] = inputs.name.split(' ', 2);
+      const registrationData = {
+        ...inputs,
+        firstName: firstName || '',
+        lastName: lastName || '',
+      };
+      delete registrationData.name;
+      console.log('regData', registrationData);
+      await handleRegister(registrationData);
     } catch (e) {
       alert(e.message);
     }
