@@ -1,4 +1,4 @@
-import {createContext, useState} from 'react';
+import {createContext, useState, useCallback} from 'react';
 import {useAuthentication, useUser} from '../components/hooks/apiHooks';
 import {useNavigate, useLocation} from 'react-router';
 
@@ -11,7 +11,6 @@ const UserProvider = ({children}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   const handleLogin = async (credentials) => {
     const loginResult = await postLogin(credentials);
     localStorage.setItem('token', loginResult.token);
@@ -19,32 +18,29 @@ const UserProvider = ({children}) => {
     navigate('/');
   };
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     try {
       localStorage.removeItem('token');
       setUser(null);
       navigate('/');
-
     } catch (e) {
       console.log(e.message);
     }
-  };
+  }, [navigate]);
 
-  const handleAutoLogin = async () => {
+  const handleAutoLogin = useCallback(async () => {
     try {
-
       const token = localStorage.getItem('token');
       if (token) {
         const userResponse = await getUserByToken(token);
         setUser(userResponse);
-        // console.log('location', location);
         navigate(location.pathname);
       }
     } catch (e) {
       handleLogout();
       console.log(e.message);
     }
-  };
+  }, [getUserByToken, navigate, location.pathname, handleLogout]);
 
   const handleRegister = async (registrationData) => {
     try {
