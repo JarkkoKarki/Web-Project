@@ -51,7 +51,7 @@ export const UserInformation = () => {
     {
       label: t('profilePage.name'),
       field: 'name',
-      value: `${user.firstName} ${user.lastName}`,
+      value: `${user.firstName || ''} ${user.lastName || ''}`,
     },
     {label: t('profilePage.username'), field: 'username', value: user.username},
     {label: t('profilePage.password'), field: 'password', value: '**********'},
