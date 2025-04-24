@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import useMenu from '../components/hooks/menuHooks';
 import MenuRow from '../components/MenuRow';
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
 const Menu = () => {
   const menuArray = useMenu();
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true, containScroll: "keepSnaps" }, // Ensure only one slide is visible
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.reInit(); // Reinitialize Embla when needed
+    }
+  }, [emblaApi]);
+
+
 
   return (<>
     <section
@@ -15,16 +29,16 @@ const Menu = () => {
         >
           CHEFS FAVOURITES
         </h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-          {menuArray.map((item) => (
-            <MenuRow
-              key={item.src}
-              item={item}
-            />
-          ))}
+        {/* Carousel Menu itemeille */}
+        <div className="embla overflow-hidden" ref={emblaRef}>
+          <div className="embla__container flex">
+            {menuArray.map((item) => (
+              <MenuRow key={item.src} item={item} />
+            ))}
+          </div>
+        </div>
 
-        </ul>
       </section>
       <section id="menu" className="max-w-6xl mx-auto bg-[#101211]">
         <h2
