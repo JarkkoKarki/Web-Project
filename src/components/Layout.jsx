@@ -72,7 +72,7 @@ const Layout = () => {
           </div>
 
           <img
-            src="src\assets\images\icons8-search-50.png"
+            src="/icons8-search-50.png"
             alt="Search"
             className="w-6 h-6 cursor-pointer"
           />
@@ -92,7 +92,12 @@ const Layout = () => {
 
               {user && (user.role === 'employee' || user.role === 'admin') && (
                 <>
-                  <Link to="/workhub">Workhub</Link>
+                  <Link
+                    to="/workhub"
+                    className="border border-yellow-500 px-4 py-1 rounded-sm text-sm hover:bg-yellow-500 hover:text-black transition"
+                  >
+                    {t('header.workhub')}
+                  </Link>
                 </>
               )}
 

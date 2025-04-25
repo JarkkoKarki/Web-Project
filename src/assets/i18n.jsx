@@ -25,6 +25,7 @@ i18n.use(initReactI18next).init({
           "about" : "About Us",
           "sign-in" : "Sign in",
           "sign-out" : "Sign Out",
+          'workhub': 'Workhub'
         },
 
         footer: {
@@ -94,6 +95,7 @@ i18n.use(initReactI18next).init({
           "about" : "Meistä",
           "sign-in" : "Kirjaudu Sisään",
           "sign-out" : "Kirjaudu Ulos",
+          "workhub":"Työtila",
         },
 
         footer: {
