@@ -1,13 +1,13 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {MapContent} from './Map.jsx';
+import {Map} from './Map.jsx';
 
 const About = () => {
   const {t} = useTranslation();
 
   return (
     <>
-      <MapContent />
+      <Map />
       <section id="about-us" className="bg-[#0f1110] py-20 text-center">
         <p className="text-yellow-500 italic">
           {t('aboutPage.special-moments')}
