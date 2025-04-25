@@ -7,16 +7,20 @@ const UserContext = createContext(null);
 
 const UserProvider = ({children}) => {
   const [user, setUser] = useLocalStorage('user', {
-    firstName: '',
-    lastName: '',
+    id: '',
+    first_name: '',
+    last_name: '',
     username: '',
     email: '',
     address: '',
-    phoneNumber: '',
+    phone: '',
   });
 
   const updateUser = (updatedUser) => {
-    setUser(updatedUser);
+    setUser((prevUser) => ({
+      ...prevUser,
+      ...updatedUser,
+    }));
   };
 
   const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
@@ -28,6 +32,7 @@ const UserProvider = ({children}) => {
   const handleLogin = async (credentials) => {
     const loginResult = await postLogin(credentials);
     localStorage.setItem('token', loginResult.token);
+    console.log('login result', loginResult);
     setUser(loginResult.user);
     setIsLoggedIn(true);
     navigate('/');

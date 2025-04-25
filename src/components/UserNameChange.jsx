@@ -5,8 +5,8 @@ import SaveCancelButtons from './SaveCancelButtons';
 export const UserNameChange = ({onSave, onCancel}) => {
   const {t} = useTranslation();
   const [names, setNames] = useState({
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
   });
   const [invalidFields, setInvalidFields] = useState([]);
 
@@ -20,13 +20,13 @@ export const UserNameChange = ({onSave, onCancel}) => {
 
   const handleSave = () => {
     const missingFields = Object.keys(names).filter((key) => !names[key]);
-    if (names.firstName.length < 2) {
-      setInvalidFields(['firstName']);
+    if (names.first_name.length < 2) {
+      setInvalidFields(['first_name']);
       alert(t('profilePage.name-length-error'));
       return;
     }
-    if (names.lastName.length < 2) {
-      setInvalidFields(['lastName']);
+    if (names.last_name.length < 2) {
+      setInvalidFields(['last_name']);
       alert(t('profilePage.name-length-error'));
       return;
     }
@@ -39,8 +39,8 @@ export const UserNameChange = ({onSave, onCancel}) => {
   };
 
   const nameFields = [
-    {name: 'firstName', placeholder: t('profilePage.first-name')},
-    {name: 'lastName', placeholder: t('profilePage.last-name')},
+    {name: 'first_name', placeholder: t('profilePage.first-name')},
+    {name: 'last_name', placeholder: t('profilePage.last-name')},
   ];
 
   return (

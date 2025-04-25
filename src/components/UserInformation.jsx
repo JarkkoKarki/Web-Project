@@ -4,18 +4,21 @@ import {UserContext} from '../contexts/UserContext';
 import {PasswordUpdate} from './PasswordUpdate';
 import SaveCancelButtons from './SaveCancelButtons';
 import {UserNameChange} from './UserNameChange';
+import {useUpdateUser} from './hooks/apiHooks';
 
 export const UserInformation = () => {
   const {t} = useTranslation();
 
   const {user, updateUser} = useContext(UserContext);
+  console.log('User object:', user);
   const [editingField, setEditingField] = useState(null);
   const [temp, setTemp] = useState('');
+  const updateUserApi = useUpdateUser();
 
   const clickHandler = (field) => {
     setEditingField(field);
     if (field === 'name') {
-      setTemp({firstName: user.firstName, lastName: user.lastName});
+      setTemp({first_name: user.first_name, last_name: user.last_name});
     } else if (field === 'password') {
       setTemp({currentPassword: '', newPassword: '', confirmPassword: ''});
     } else {
@@ -24,26 +27,50 @@ export const UserInformation = () => {
     console.log(`${field} clicked`);
   };
 
-  const handleSave = () => {
-    if (editingField === 'name') {
-      updateUser({
+  const handleSave = async () => {
+    try {
+      let updatedUser;
+      if (editingField === 'name') {
+        updatedUser = {
+          first_name: temp.first_name,
+          last_name: temp.last_name,
+        };
+      } else if (editingField === 'password') {
+        updatedUser = {
+          password: temp.newPassword,
+        };
+        console.log('Password changed:', temp);
+      } else {
+        updatedUser = {
+          [editingField]: temp,
+        };
+      }
+
+      const response = await updateUserApi({
+        id: user.id,
         ...user,
-        firstName: temp.firstName,
-        lastName: temp.lastName,
+        ...updatedUser,
       });
-    } else if (editingField === 'password') {
-      // API
-      console.log('Password changed:', temp);
-    } else {
-      updateUser({
-        ...user,
-        [editingField]: temp,
-      });
+      console.log('response:', response);
+
+      if (response) {
+        console.log('User updated:', response);
+        updateUser({
+          ...user,
+          ...updatedUser,
+        });
+      } else {
+        console.error('Failed to update user');
+      }
+
+      setEditingField(null);
+    } catch (error) {
+      console.error('Error updating user:', error);
     }
-    setEditingField(null);
   };
 
   const handleCancel = () => {
+    console.log('id:', user.id);
     setEditingField(null);
   };
 
@@ -51,7 +78,7 @@ export const UserInformation = () => {
     {
       label: t('profilePage.name'),
       field: 'name',
-      value: `${user.firstName || ''} ${user.lastName || ''}`,
+      value: `${user.first_name || ''} ${user.last_name || ''}`,
     },
     {label: t('profilePage.username'), field: 'username', value: user.username},
     {label: t('profilePage.password'), field: 'password', value: '**********'},
@@ -89,8 +116,8 @@ export const UserInformation = () => {
                     console.log('Name updated:', nameData);
                     updateUser({
                       ...user,
-                      firstName: nameData.firstName,
-                      lastName: nameData.lastName,
+                      first_name: nameData.first_name,
+                      last_name: nameData.last_name,
                     });
                     // API/Context
                     setEditingField(null);

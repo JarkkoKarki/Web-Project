@@ -1,10 +1,9 @@
 import {useCallback} from 'react';
-import { fetchData } from '../../utils/fetchData';
-import { url } from '../../utils/variables';
+import {fetchData} from '../../utils/fetchData';
+import {url} from '../../utils/variables';
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
-
     const fetchOptions = {
       method: 'POST',
       headers: {
@@ -12,9 +11,7 @@ const useAuthentication = () => {
       },
       body: JSON.stringify(inputs),
     };
-    const loginResult = await fetchData(url + "/auth/login",
-      fetchOptions,
-    );
+    const loginResult = await fetchData(url + '/auth/login', fetchOptions);
 
     window.localStorage.setItem('token', loginResult.token);
 
@@ -33,9 +30,7 @@ const useUser = () => {
       },
       body: JSON.stringify(inputs),
     };
-    return await fetchData(url + "/users" ,
-      fetchOptions,
-    );
+    return await fetchData(url + '/users', fetchOptions);
   };
 
   const getUserByToken = useCallback(async (token) => {
@@ -45,9 +40,7 @@ const useUser = () => {
       },
     };
 
-    const userResult = await fetchData(url + '/auth/me',
-      fetchOptions,
-    );
+    const userResult = await fetchData(url + '/auth/me', fetchOptions);
 
     console.log('userResult', userResult);
 
@@ -57,4 +50,25 @@ const useUser = () => {
   return {getUserByToken, postUser};
 };
 
-export { useAuthentication, useUser};
+const useUpdateUser = () => {
+  const updateUser = useCallback(async (inputs) => {
+    if (!inputs || !inputs.id) {
+      throw new Error('Invalid inputs: ID is required');
+    }
+
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer: ' + window.localStorage.getItem('token'),
+      },
+      body: JSON.stringify(inputs),
+    };
+
+    return await fetchData(url + '/users/' + inputs.id, fetchOptions);
+  }, []);
+
+  return updateUser;
+};
+
+export {useAuthentication, useUser, useUpdateUser};
