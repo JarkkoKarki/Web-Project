@@ -35,7 +35,7 @@ function App() {
             <Route
               path="/workhub/*"
               element={
-                <ProtectedRoute>
+                <ProtectedRoute roles={['admin', 'employee']}>
                   <WorkHub />
                 </ProtectedRoute>
               }
