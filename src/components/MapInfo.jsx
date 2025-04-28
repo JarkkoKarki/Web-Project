@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react';
 
-// Modal component to display Route Info
 function Modal({routeData, onClose}) {
   const formatTime = (time) => {
     const date = new Date(time);
     return date.toLocaleString();
   };
 
-  // Check if routeData and edges are defined and not empty
   if (!routeData || !routeData.edges) {
     return <div>Loading route data...</div>;
   }
@@ -97,7 +95,7 @@ function MapInfo({position, destination}) {
       fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-          setRouteData(data); // Set the route data to state
+          setRouteData(data);
           setLoading(false);
         })
         .catch((error) => {
