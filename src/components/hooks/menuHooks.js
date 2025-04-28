@@ -10,6 +10,7 @@ const useMenu = () => {
     try {
       const mediaData = await fetchData(url + '/menu/products');
       setFullMenuArray(mediaData);
+      console.log(mediaData);
       const favorites = mediaData.filter((item) =>
         item.categories.includes("everyone's favorite"),
       );
@@ -76,8 +77,13 @@ const useMenu = () => {
     return await fetchData(`${url}/menu/${id}`, fetchOptions);
   };
 
-
-  return {menuArray, postMenuItem, fullMenuArray, deleteMenuItem, updateMenuItem};
+  return {
+    menuArray,
+    postMenuItem,
+    fullMenuArray,
+    deleteMenuItem,
+    updateMenuItem,
+  };
 };
 
 export default useMenu;
