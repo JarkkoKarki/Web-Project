@@ -81,8 +81,27 @@ i18n.use(initReactI18next).init({
           "change-email": 'Change Email',
           "change-address": 'Change Address',
           "change-phone": 'Change Phone Number',
-
         },
+        workhubHeader: {
+          'workhub': 'Workhub',
+          'manage-menu': 'Manage Menu',
+          'orders': 'Orders'
+        },
+        manageMenu:  {
+          'menu-item-name': 'Name',
+          'menu-item-description': 'Description',
+          'menu-item-price': 'Price',
+          'menu-item-categories':'Categories',
+          'menu-item-diets': 'Diets',
+          'menu-item-file': 'Picture',
+          'menu-item-submit': 'Add',
+          'menu-item-button': 'Upload File',
+          "all-fields-required": 'All fields are required',
+          'file-field-required':  'Please select a file!',
+          'add-menu-title': 'Add Menu item',
+          'menu-item-delete': 'Delete',
+          'menu-item-modify': 'Change'
+        }
       }
     },
     fi: {
@@ -153,6 +172,26 @@ i18n.use(initReactI18next).init({
           "change-phone": 'Vaihda puhelinnumero',
 
         },
+        workhubHeader: {
+          'workhub': 'Työtila',
+          'manage-menu': 'Muokkaa  menua',
+          'orders': 'Tilaukset'
+        },
+        manageMenu: {
+          'menu-item-name': 'Nimi',
+          'menu-item-description': 'Kuvaus',
+          'menu-item-price': 'Hinta',
+          'menu-item-categories':'Kategoriat',
+          'menu-item-diets': 'Allergeenit',
+          'menu-item-file': 'Kuva',
+          'menu-item-submit': 'Lisää',
+          'menu-item-button': 'Lisää kuva',
+          "all-fields-required": 'Kaikki kentät pitää täyttää',
+          'file-field-required':  'Kuvan lisääminen on pakollinen',
+          'add-menu-title': 'Lisää Ruoka',
+          'menu-item-delete': 'Poista',
+          'menu-item-modify': 'Muuta'
+        }
       }
     }
   },

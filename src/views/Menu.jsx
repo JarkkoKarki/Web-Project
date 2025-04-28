@@ -5,7 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 
 const Menu = () => {
-  const menuArray = useMenu();
+  const {menuArray} = useMenu();
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, containScroll: "keepSnaps" }, // Ensure only one slide is visible
     [Autoplay({ delay: 3000, stopOnInteraction: false })]
