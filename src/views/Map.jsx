@@ -7,6 +7,7 @@ import {useRoute} from '../components/hooks/routeHooks';
 import locationIconUrl from '../assets/icons/location.svg';
 import destinationIconUrl from '../assets/icons/destination.svg';
 import carIconUrl from '../assets/icons/car.svg';
+import MapInfo from '../components/MapInfo';
 
 const locationIcon = new L.Icon({
   iconUrl: locationIconUrl,
@@ -117,10 +118,12 @@ export function Map() {
         const ratio = elapsed / duration;
         const lat = p1.lat + (p2.lat - p1.lat) * ratio;
         const lng = p1.lng + (p2.lng - p1.lng) * ratio;
-        carMarkerRef.current.setLatLng([lat, lng]);
+        if (carMarkerRef.current) {
+          carMarkerRef.current.setLatLng([lat, lng]);
+        }
         requestAnimationFrame(animate);
       } else {
-        carMarkerRef.current.setLatLng(p2);
+        carMarkerRef.current?.setLatLng(p2);
         index = nextIndex;
         nextIndex = (nextIndex + 1) % latlngs.length;
         startTime = null;
@@ -133,34 +136,39 @@ export function Map() {
   }, [routesCoordinates]);
 
   return position ? (
-    <MapContainer
-      center={position}
-      zoom={12}
-      style={{height: '400px', width: '100%'}}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; OpenStreetMap contributors"
-      />
-      <Marker position={position} icon={locationIcon} />
-      <SetViewOnLocation position={position} />
+    <>
+      <MapContainer
+        className="z-0"
+        center={position}
+        zoom={12}
+        style={{height: '400px', width: '100%', zIndex: '1'}}
+      >
+        <TileLayer
+          className="z-0"
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; OpenStreetMap contributors"
+        />
+        <Marker position={position} icon={locationIcon} />
+        <SetViewOnLocation position={position} />
 
-      {routesCoordinates.length > 0 ? (
-        <>
-          <Polyline positions={routesCoordinates[0]} color="red" />
-          <Marker position={destination} icon={destinationIcon} />
-          <Marker
-            position={routesCoordinates[0][0]}
-            icon={carIcon}
-            ref={carMarkerRef}
-          />
-        </>
-      ) : loading ? (
-        <p>Loading route...</p>
-      ) : error ? (
-        <p>Error: {error.message}</p>
-      ) : null}
-    </MapContainer>
+        {routesCoordinates.length > 0 ? (
+          <>
+            <Polyline positions={routesCoordinates[0]} color="red" />
+            <Marker position={destination} icon={destinationIcon} />
+            <Marker
+              position={routesCoordinates[0][0]}
+              icon={carIcon}
+              ref={carMarkerRef}
+            />
+          </>
+        ) : loading ? (
+          <p>Loading route...</p>
+        ) : error ? (
+          <p>Error: {error.message}</p>
+        ) : null}
+      </MapContainer>
+      <MapInfo position={position} destination={destination} />
+    </>
   ) : (
     <p>Loading map...</p>
   );
