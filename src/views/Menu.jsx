@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import useMenu from '../components/hooks/menuHooks';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -12,7 +12,13 @@ const Menu = () => {
     [Autoplay({delay: 3000, stopOnInteraction: false})],
   );
 
-  console.log(menuArray);
+  // työnalla :)
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (item) => {
+    setCart((prevCart) => [...prevCart, item]);
+    console.log(`${item.name} added to cart!`);
+  };
 
   useEffect(() => {
     if (emblaApi) {
@@ -51,7 +57,7 @@ const Menu = () => {
             <ul className="space-y-6">
               <li>
                 {fullMenuArray.map((item) => (
-                  <MenuItem key={item.name} item={item} />
+                  <MenuItem key={item.name} item={item} addToCart={addToCart} />
                 ))}
               </li>
             </ul>
