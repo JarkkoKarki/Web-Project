@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {MapContainer, TileLayer, Marker, Polyline, useMap} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -6,6 +6,7 @@ import {useRoute} from '../components/hooks/routeHooks';
 
 import locationIconUrl from '../assets/icons/location.svg';
 import destinationIconUrl from '../assets/icons/destination.svg';
+import carIconUrl from '../assets/icons/car.svg';
 
 const locationIcon = new L.Icon({
   iconUrl: locationIconUrl,
@@ -17,6 +18,12 @@ const destinationIcon = new L.Icon({
   iconUrl: destinationIconUrl,
   iconSize: [32, 32],
   iconAnchor: [16, 32],
+});
+
+const carIcon = new L.Icon({
+  iconUrl: carIconUrl,
+  iconSize: [32, 32],
+  iconAnchor: [16, 16],
 });
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -42,6 +49,8 @@ export function Map() {
   const [apiUrl, setApiUrl] = useState(null);
   const destination = [60.2055, 24.6559];
 
+  const carMarkerRef = useRef(null);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -59,18 +68,10 @@ export function Map() {
   }, []);
 
   const {route, loading, error} = useRoute(apiUrl);
-  if (loading) {
-    return <p>Loading route...</p>;
-  }
 
-  if (error) {
-    return <p>Error fetching route: {error.message}</p>;
-  }
   const routesCoordinates = [];
-
   if (route && Array.isArray(route)) {
     const firstGroup = route[0];
-
     if (Array.isArray(firstGroup)) {
       const groupCoordinates = [];
 
@@ -90,6 +91,47 @@ export function Map() {
     }
   }
 
+  useEffect(() => {
+    if (!routesCoordinates.length || !carMarkerRef.current) return;
+
+    const latlngs = routesCoordinates[0].map(([lat, lng]) =>
+      L.latLng(lat, lng),
+    );
+    if (!latlngs.length) return;
+
+    let index = 0;
+    let nextIndex = 1;
+    let startTime = null;
+    const speed = 100;
+
+    function animate(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+
+      const p1 = latlngs[index];
+      const p2 = latlngs[nextIndex];
+      const distance = p1.distanceTo(p2);
+      const duration = (distance / speed) * 1000;
+
+      if (elapsed < duration) {
+        const ratio = elapsed / duration;
+        const lat = p1.lat + (p2.lat - p1.lat) * ratio;
+        const lng = p1.lng + (p2.lng - p1.lng) * ratio;
+        carMarkerRef.current.setLatLng([lat, lng]);
+        requestAnimationFrame(animate);
+      } else {
+        carMarkerRef.current.setLatLng(p2);
+        index = nextIndex;
+        nextIndex = (nextIndex + 1) % latlngs.length;
+        startTime = null;
+        requestAnimationFrame(animate);
+      }
+    }
+
+    carMarkerRef.current.setLatLng(latlngs[0]);
+    requestAnimationFrame(animate);
+  }, [routesCoordinates]);
+
   return position ? (
     <MapContainer
       center={position}
@@ -103,12 +145,21 @@ export function Map() {
       <Marker position={position} icon={locationIcon} />
       <SetViewOnLocation position={position} />
 
-      {routesCoordinates.length > 0 && (
+      {routesCoordinates.length > 0 ? (
         <>
           <Polyline positions={routesCoordinates[0]} color="red" />
           <Marker position={destination} icon={destinationIcon} />
+          <Marker
+            position={routesCoordinates[0][0]}
+            icon={carIcon}
+            ref={carMarkerRef}
+          />
         </>
-      )}
+      ) : loading ? (
+        <p>Loading route...</p>
+      ) : error ? (
+        <p>Error: {error.message}</p>
+      ) : null}
     </MapContainer>
   ) : (
     <p>Loading map...</p>
