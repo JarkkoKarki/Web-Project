@@ -3,7 +3,6 @@ import {toUpper} from 'lodash';
 const MenuItem = ({item, addToCart}) => {
   return (
     <div className="menu-item flex items-center justify-between border-b-1 border-b-gray-800">
-      {/* Box containing name, description, and price */}
       <div className="flex flex-col">
         <h4 className="text-lg font-bold">{toUpper(item.name)}</h4>
         <p className="text-sm text-gray-500">{item.description}</p>
