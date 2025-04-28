@@ -4,6 +4,21 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import {useRoute} from '../components/hooks/routeHooks';
 
+import locationIconUrl from '../assets/icons/location.svg';
+import destinationIconUrl from '../assets/icons/destination.svg';
+
+const locationIcon = new L.Icon({
+  iconUrl: locationIconUrl,
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
+
+const destinationIcon = new L.Icon({
+  iconUrl: destinationIconUrl,
+  iconSize: [32, 32],
+  iconAnchor: [16, 32],
+});
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -51,23 +66,30 @@ export function Map() {
   if (error) {
     return <p>Error fetching route: {error.message}</p>;
   }
-  const coordinates = [];
+  const routesCoordinates = [];
 
   if (route && Array.isArray(route)) {
-    route.forEach((legGroup) => {
-      if (Array.isArray(legGroup) && legGroup.length > 0) {
-        const leg = legGroup[0];
+    const firstGroup = route[0];
 
+    if (Array.isArray(firstGroup)) {
+      const groupCoordinates = [];
+
+      firstGroup.forEach((leg) => {
         if (leg.decodedPoints && Array.isArray(leg.decodedPoints)) {
           leg.decodedPoints.forEach((point) => {
             if (Array.isArray(point) && point.length === 2) {
-              coordinates.push([point[0], point[1]]);
+              groupCoordinates.push([point[0], point[1]]);
             }
           });
         }
+      });
+
+      if (groupCoordinates.length > 0) {
+        routesCoordinates.push(groupCoordinates);
       }
-    });
+    }
   }
+
   return position ? (
     <MapContainer
       center={position}
@@ -76,17 +98,15 @@ export function Map() {
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+        attribution="&copy; OpenStreetMap contributors"
       />
-
-      <Marker position={position} />
+      <Marker position={position} icon={locationIcon} />
       <SetViewOnLocation position={position} />
 
-      {coordinates.length > 0 && (
+      {routesCoordinates.length > 0 && (
         <>
-          {/*  */}
-          <Marker position={coordinates[coordinates.length - 1]} />
-          <Polyline positions={coordinates} color="red" />
+          <Polyline positions={routesCoordinates[0]} color="red" />
+          <Marker position={destination} icon={destinationIcon} />
         </>
       )}
     </MapContainer>
