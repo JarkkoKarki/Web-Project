@@ -38,9 +38,13 @@ const Menu = () => {
 
         {/* Carousel Menu itemeille */}
         <div className="embla overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex">
+          <div className="embla__container flex gap-5">
             {menuArray.map((item) => (
-              <MenuCarouselItem key={item.src} item={item} />
+              <MenuCarouselItem
+                key={item.src}
+                item={item}
+                className="mx-auto w-3/4"
+              />
             ))}
           </div>
         </div>
@@ -61,6 +65,7 @@ const Menu = () => {
                     key={item.name}
                     item={item}
                     addToCart={handleAddToCart}
+                    className="mx-auto w-3/4"
                   />
                 ))}
               </li>
@@ -74,7 +79,11 @@ const Menu = () => {
             <ul className="space-y-6">
               <li>
                 {fullMenuArray.map((item) => (
-                  <MenuItem key={item.name} item={item} />
+                  <MenuItem
+                    key={item.name}
+                    item={item}
+                    className="mx-auto w-3/4"
+                  />
                 ))}
               </li>
             </ul>

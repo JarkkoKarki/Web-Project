@@ -2,15 +2,17 @@ const MenuCarouselItem = (props) => {
   const {item} = props;
 
   return (
-    <div className="embla__slide mx-auto w-full max-w-md flex-shrink-0 rounded-lg bg-[#1a1a1a] p-4 shadow-lg">
+    <div className="embla__slide mx-auto w-full max-w-xs flex-shrink-0 rounded bg-[#1a1a1a] p-1 shadow-md">
       <img
         src={item.src}
         alt={item.name}
-        className="mb-4 h-auto w-full rounded-md"
+        className="mb-1 h-auto w-full rounded"
       />
       <div className="flex items-center justify-between">
-        <p className="text-lg font-semibold">{item.name}</p>
-        <span className="font-bold text-yellow-500">{item.price} €</span>
+        <p className="text-base font-medium">{item.name}</p>
+        <span className="text-base font-semibold text-yellow-400">
+          {item.price} €
+        </span>
       </div>
     </div>
   );
