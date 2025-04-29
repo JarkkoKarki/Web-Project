@@ -1,14 +1,23 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {useLanguageContext} from '../contexts/LanguageContext';
 import {useUserContext} from './hooks/contextHooks';
+import {useShoppingCart} from '../contexts/ShoppingCartContext';
 import {Link, Outlet} from 'react-router';
 import {useTranslation} from 'react-i18next';
 import {logoUrl} from '../utils/variables';
+import ShoppingCartElement from './ShoppingCartElement';
 
 const Layout = () => {
   const {language, changeLanguage} = useLanguageContext();
   const {user, handleAutoLogin} = useUserContext();
+  // eslint-disable-next-line no-unused-vars
+  const {cartItems} = useShoppingCart();
   const {t} = useTranslation();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   useEffect(() => {
     handleAutoLogin();
@@ -115,6 +124,28 @@ const Layout = () => {
       <main className="p-8">
         <Outlet />
       </main>
+
+      {/* Shopping Cart Button */}
+      <button
+        onClick={toggleCart}
+        className="fixed right-4 bottom-4 cursor-pointer rounded-full bg-yellow-500 p-4 text-black shadow-lg transition hover:bg-yellow-600"
+      >
+        🛒
+      </button>
+
+      {/* Shopping Cart Sidebar */}
+      {isCartOpen && (
+        <div className="fixed top-20 right-0 h-full w-64 bg-gray-800 p-4 text-white shadow-lg">
+          <button
+            onClick={toggleCart}
+            className="cursor-pointer rounded-full bg-red-500 p-2 text-white hover:bg-red-600"
+          >
+            Close
+          </button>
+          <ShoppingCartElement />
+        </div>
+      )}
+
       <footer className="border-t border-gray-800 bg-[#0d0f0e] py-8 text-center text-sm text-gray-500">
         &copy; {t('footer.footer')}
       </footer>
