@@ -32,13 +32,15 @@ const useMenu = () => {
   }, []);
 
   const postMenuItem = async (file, inputs, token) => {
+    console.log(inputs.diets)
     const formData = new FormData();
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
     formData.append('price', inputs.price);
     formData.append('categories', inputs.categories);
-    formData.append('diets', inputs.diets);
     formData.append('file', file);
+    inputs.diets.forEach((diet) => formData.append('diets[]', diet));
+
     const fetchOptions = {
       method: 'POST',
       headers: {

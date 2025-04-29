@@ -19,9 +19,26 @@ const useForm = (callback, initState) => {
     }));
   };
 
+  const handleCheckboxChange = (event) => {
+    const { name, value, checked } = event.target;
+    const dietId = parseInt(value); // real DB id, not index
+
+    setInputs((prev) => {
+      const updatedArray = checked
+        ? [...prev[name], dietId]
+        : prev[name].filter((id) => id !== dietId);
+
+      return {
+        ...prev,
+        [name]: updatedArray,
+      };
+    });
+  };
+
   return {
     handleSubmit,
     handleInputChange,
+    handleCheckboxChange,
     inputs,
   };
 };
