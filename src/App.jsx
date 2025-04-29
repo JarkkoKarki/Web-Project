@@ -15,52 +15,55 @@ import Logout from './views/Logout';
 import WorkHub from './views/WorkHub';
 import {LanguageProvider} from './contexts/LanguageContext';
 import {ToastContainer} from 'react-toastify';
+import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
 
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <LanguageProvider>
-        {/* ToastContainer for global toast notifications */}
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-        <UserProvider>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/workhub/*"
-                element={
-                  <ProtectedRoute roles={['admin', 'employee']}>
-                    <WorkHub />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/menu" element={<Menu />} />
-              <Route path="/reservation" element={<Reservation />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/" element={<Home />} />
-            </Route>
-          </Routes>
-        </UserProvider>
+        <ShoppingCartProvider>
+          {/* ToastContainer for global toast notifications */}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          <UserProvider>
+            <Routes>
+              <Route element={<Layout />}>
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/workhub/*"
+                  element={
+                    <ProtectedRoute roles={['admin', 'employee']}>
+                      <WorkHub />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/reservation" element={<Reservation />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/" element={<Home />} />
+              </Route>
+            </Routes>
+          </UserProvider>
+        </ShoppingCartProvider>
       </LanguageProvider>
     </BrowserRouter>
   );

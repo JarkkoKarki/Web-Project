@@ -7,7 +7,7 @@ const MenuItem = ({item, addToCart}) => {
     if (addToCart) {
       addToCart(item);
       toast.success(`${item.name} added to cart!`, {
-        position: 'top-right',
+        position: 'top-left',
         autoClose: 2000,
       });
     }

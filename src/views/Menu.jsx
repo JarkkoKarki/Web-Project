@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import useMenu from '../components/hooks/menuHooks';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import MenuCarouselItem from '../components/MenuCarouselItem';
 import MenuItem from '../components/MenuRowItem';
+import {useShoppingCart} from '../contexts/ShoppingCartContext';
 
 const Menu = () => {
   const {menuArray, fullMenuArray} = useMenu();
@@ -12,11 +13,10 @@ const Menu = () => {
     [Autoplay({delay: 3000, stopOnInteraction: false})],
   );
 
-  // työnalla :)
-  const [cart, setCart] = useState([]);
+  const {addItemToCart} = useShoppingCart();
 
-  const addToCart = (item) => {
-    setCart((prevCart) => [...prevCart, item]);
+  const handleAddToCart = (item) => {
+    addItemToCart(item);
     console.log(`${item.name} added to cart!`);
   };
 
@@ -57,7 +57,11 @@ const Menu = () => {
             <ul className="space-y-6">
               <li>
                 {fullMenuArray.map((item) => (
-                  <MenuItem key={item.name} item={item} addToCart={addToCart} />
+                  <MenuItem
+                    key={item.name}
+                    item={item}
+                    addToCart={handleAddToCart}
+                  />
                 ))}
               </li>
             </ul>
