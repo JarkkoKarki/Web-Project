@@ -31,7 +31,7 @@ const useMenu = () => {
     getMenu();
   }, []);
 
-  const postMenuItem = async (file, inputs) => {
+  const postMenuItem = async (file, inputs, token) => {
     const formData = new FormData();
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
@@ -41,6 +41,9 @@ const useMenu = () => {
     formData.append('file', file);
     const fetchOptions = {
       method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
       mode: 'cors',
       body: formData,
     };
@@ -60,7 +63,7 @@ const useMenu = () => {
     }
   };
 
-  const updateMenuItem = async (file, inputs, id) => {
+  const updateMenuItem = async (file, inputs, id, token) => {
     const formData = new FormData();
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
@@ -70,6 +73,9 @@ const useMenu = () => {
     formData.append('file', file);
     const fetchOptions = {
       method: 'PUT',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
       mode: 'cors',
       body: formData,
     };

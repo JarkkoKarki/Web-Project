@@ -19,17 +19,17 @@ i18n.use(initReactI18next).init({
       translations: {
 
         header: {
-          "home" : "Home",
-          "menu" : "Menu",
-          "reservation" : "Reservation",
-          "about" : "About Us",
-          "sign-in" : "Sign in",
-          "sign-out" : "Sign Out",
+          "home": "Home",
+          "menu": "Menu",
+          "reservation": "Reservation",
+          "about": "About Us",
+          "sign-in": "Sign in",
+          "sign-out": "Sign Out",
           'workhub': 'Workhub'
         },
 
         footer: {
-          "footer" : "2025 Kebula. All rights reserved.",
+          "footer": "2025 Kebula. All rights reserved.",
         },
 
         homePage: {
@@ -44,7 +44,7 @@ i18n.use(initReactI18next).init({
           "about-us": 'About Us',
           "taste-perception": "Taste Perception",
           "trad-modern": "Traditional & Modern",
-          "read-more" : "READ MORE",
+          "read-more": "READ MORE",
         },
         menuPage: {},
         loginPage: {},
@@ -68,8 +68,7 @@ i18n.use(initReactI18next).init({
           "special-requests-placeholder": "Any special requests? (Optional)",
           "reserve-now": "Reserve Now",
           "confirmation-message": "Your reservation is confirmed! We look forward to seeing you."
-        }
-      },
+        },
         profilePage: {
           "profile": 'Profile',
           "profile-picture": 'Profile Picture',
@@ -107,38 +106,38 @@ i18n.use(initReactI18next).init({
           'manage-menu': 'Manage Menu',
           'orders': 'Orders'
         },
-        manageMenu:  {
+        manageMenu: {
           'menu-item-name': 'Name',
           'menu-item-description': 'Description',
           'menu-item-price': 'Price',
-          'menu-item-categories':'Categories',
+          'menu-item-categories': 'Categories',
           'menu-item-diets': 'Diets',
           'menu-item-file': 'Picture',
           'menu-item-submit': 'Add',
           'menu-item-button': 'Upload File',
           "all-fields-required": 'All fields are required',
-          'file-field-required':  'Please select a file!',
+          'file-field-required': 'Please select a file!',
           'add-menu-title': 'Add Menu item',
           'menu-item-delete': 'Delete',
           'menu-item-modify': 'Change'
         }
-
+      }
     },
     fi: {
       translations: {
 
         header: {
-          "home" : "Koti",
-          "menu" : "Menu",
-          "reservation" : "Varaaminen",
-          "about" : "Meistä",
-          "sign-in" : "Kirjaudu Sisään",
-          "sign-out" : "Kirjaudu Ulos",
-          "workhub":"Työtila",
+          "home": "Koti",
+          "menu": "Menu",
+          "reservation": "Varaaminen",
+          "about": "Meistä",
+          "sign-in": "Kirjaudu Sisään",
+          "sign-out": "Kirjaudu Ulos",
+          "workhub": "Työtila",
         },
 
         footer: {
-          "footer" : "2025 Kebula. Kaikki oikeudet pidätetään",
+          "footer": "2025 Kebula. Kaikki oikeudet pidätetään",
         },
 
         homePage: {
@@ -153,7 +152,7 @@ i18n.use(initReactI18next).init({
           "about-us": 'Meistä',
           "taste-perception": "Makuvaikutelma",
           "trad-modern": "Perinteinen & Moderni",
-          "read-more" : "LUE LISÄÄ",
+          "read-more": "LUE LISÄÄ",
         },
         menuPage: {},
         loginPage: {},
@@ -220,13 +219,13 @@ i18n.use(initReactI18next).init({
           'menu-item-name': 'Nimi',
           'menu-item-description': 'Kuvaus',
           'menu-item-price': 'Hinta',
-          'menu-item-categories':'Kategoriat',
+          'menu-item-categories': 'Kategoriat',
           'menu-item-diets': 'Allergeenit',
           'menu-item-file': 'Kuva',
           'menu-item-submit': 'Lisää',
           'menu-item-button': 'Lisää kuva',
           "all-fields-required": 'Kaikki kentät pitää täyttää',
-          'file-field-required':  'Kuvan lisääminen on pakollinen',
+          'file-field-required': 'Kuvan lisääminen on pakollinen',
           'add-menu-title': 'Lisää Ruoka',
           'menu-item-delete': 'Poista',
           'menu-item-modify': 'Muuta'

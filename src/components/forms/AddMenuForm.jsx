@@ -29,8 +29,8 @@ const AddMenuForm = () => {
         alert(t('manageMenu.file-field-required'));
         return;
       }
-
-      const menuResult = await postMenuItem(file, inputs);
+      const token = localStorage.getItem('token');
+      const menuResult = await postMenuItem(file, inputs, token);
       console.log('menuresult', menuResult);
     } catch (e) {
       console.log(e.message);
