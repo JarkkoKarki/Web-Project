@@ -28,7 +28,7 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
         alert(t(  'manageMenu.all-fields-required'));
         return;
       }
-      console.log(inputs)
+
       const token = localStorage.getItem('token');
       const menuResult = await updateMenuItem(file, inputs, item.id, token);
       console.log('menuresult', menuResult);

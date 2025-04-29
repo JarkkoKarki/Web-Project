@@ -32,13 +32,14 @@ const useMenu = () => {
   }, []);
 
   const postMenuItem = async (file, inputs, token) => {
-    console.log(inputs.diets)
     const formData = new FormData();
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
     formData.append('price', inputs.price);
-    formData.append('categories', inputs.categories);
     formData.append('file', file);
+    inputs.categories.forEach((category) =>
+      formData.append('categories[]', category),
+    );
     inputs.diets.forEach((diet) => formData.append('diets[]', diet));
 
     const fetchOptions = {
@@ -53,11 +54,14 @@ const useMenu = () => {
     return await fetchData(url + '/menu', fetchOptions);
   };
 
-  const deleteMenuItem = async (id) => {
+  const deleteMenuItem = async (id, token) => {
     try {
       const fetchOptions = {
         method: 'DELETE',
         mode: 'cors',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
       };
       return await fetchData(`${url}/menu/${id}`, fetchOptions);
     } catch (e) {
