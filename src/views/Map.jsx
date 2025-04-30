@@ -35,13 +35,16 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
 });
 
-function SetViewOnLocation({position}) {
+function FitMapToRoute({coordinates}) {
   const map = useMap();
+
   useEffect(() => {
-    if (position) {
-      map.setView(position, 13);
+    if (coordinates && coordinates.length > 0) {
+      const bounds = L.latLngBounds(coordinates);
+      map.fitBounds(bounds, {padding: [50, 50]});
     }
-  }, [map, position]);
+  }, [map, coordinates]);
+
   return null;
 }
 
@@ -49,7 +52,6 @@ export function Map() {
   const [position, setPosition] = useState(null);
   const [apiUrl, setApiUrl] = useState(null);
   const destination = [60.2055, 24.6559];
-
   const carMarkerRef = useRef(null);
 
   useEffect(() => {
@@ -57,7 +59,6 @@ export function Map() {
       (pos) => {
         const origin = [pos.coords.latitude, pos.coords.longitude];
         setPosition(origin);
-
         const base = 'http://10.120.32.87/app/api/route/legs/';
         const fullUrl = `${base}${origin[0]}/${origin[1]}/${destination[0]}/${destination[1]}`;
         setApiUrl(fullUrl);
@@ -137,36 +138,48 @@ export function Map() {
 
   return position ? (
     <>
-      <MapContainer
-        className="z-0"
-        center={position}
-        zoom={12}
-        style={{height: '400px', width: '100%', zIndex: '1'}}
-      >
-        <TileLayer
-          className="z-0"
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; OpenStreetMap contributors"
-        />
-        <Marker position={position} icon={locationIcon} />
-        <SetViewOnLocation position={position} />
+      <div className="flex flex-row justify-center align-middle">
+        <MapContainer
+          className="m-4.5 rounded-2xl border-5 border-amber-300 shadow-lg shadow-amber-500"
+          center={position}
+          zoom={12}
+          scrollWheelZoom={false}
+          dragging={false}
+          doubleClickZoom={false}
+          touchZoom={false}
+          zoomControl={false}
+          style={{
+            height: '400px',
+            width: '70%',
+            zIndex: '1',
+            opacity: 0.6,
+            pointerEvents: 'none',
+          }}
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="&copy; OpenStreetMap contributors"
+          />
+          <Marker position={position} icon={locationIcon} />
 
-        {routesCoordinates.length > 0 ? (
-          <>
-            <Polyline positions={routesCoordinates[0]} color="red" />
-            <Marker position={destination} icon={destinationIcon} />
-            <Marker
-              position={routesCoordinates[0][0]}
-              icon={carIcon}
-              ref={carMarkerRef}
-            />
-          </>
-        ) : loading ? (
-          <p>Loading route...</p>
-        ) : error ? (
-          <p>Error: {error.message}</p>
-        ) : null}
-      </MapContainer>
+          {routesCoordinates.length > 0 ? (
+            <>
+              <Polyline positions={routesCoordinates[0]} color="red" />
+              <Marker position={destination} icon={destinationIcon} />
+              <Marker
+                position={routesCoordinates[0][0]}
+                icon={carIcon}
+                ref={carMarkerRef}
+              />
+              <FitMapToRoute coordinates={routesCoordinates[0]} />
+            </>
+          ) : loading ? (
+            <p>Loading route...</p>
+          ) : error ? (
+            <p>Error: {error.message}</p>
+          ) : null}
+        </MapContainer>
+      </div>
       <MapInfo position={position} destination={destination} />
     </>
   ) : (
