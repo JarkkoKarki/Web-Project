@@ -7,6 +7,8 @@ export const DeleteUserButton = ({userId}) => {
   const {deleteUser} = useUser();
   const navigate = useNavigate();
 
+  // DOENS'T WORK BECAUSE OF THE BACKEND REQUIRING ADMIN PRIVILEGES(?)
+
   const handleClick = async () => {
     try {
       console.log('id', userId);
