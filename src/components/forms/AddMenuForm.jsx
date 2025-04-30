@@ -3,10 +3,11 @@ import useForm from '../hooks/formHooks.js';
 import useMenu from '../hooks/menuHooks.js';
 import {useTranslation} from 'react-i18next';
 
-const AddMenuForm = () => {
+const AddMenuForm = ({onSuccess}) => {
   const {t} = useTranslation();
   const [file, setFile] = useState(null);
   const {postMenuItem} = useMenu();
+
   const dietOptions = [
     {id: 1, label: 'A - Animal-based'},
     {id: 2, label: 'G - Gluten-free'},
@@ -56,6 +57,8 @@ const AddMenuForm = () => {
       const token = localStorage.getItem('token');
       const menuResult = await postMenuItem(file, inputs, token);
       console.log('menuresult', menuResult);
+      alert('Menu item added successfully');
+      onSuccess();
     } catch (e) {
       console.log(e.message);
     }
@@ -79,7 +82,7 @@ const AddMenuForm = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="mx-auto w-full max-w-5xl rounded-lg border border-[#2a2c2b] bg-[#0d0f0e] p-8 shadow-lg"
+        className="mx-auto w-full max-w-5xl rounded-lg border border-[#2a2c2b] bg-[#0d0f0e] p-5 shadow-lg"
       >
 
         <div className="flex flex-col md:flex-row gap-8 mb-6">
@@ -154,7 +157,7 @@ const AddMenuForm = () => {
 
 
         <div className="mb-6 border-b border-gray-600 pb-4">
-          <h3 className="text-lg font-semibold text-yellow-400 mb-2 underline">
+          <h3 className="text-lg font-semibold text-yellow-400 mb-2 ">
             {t('manageMenu.menu-item-categories')}
           </h3>
           <div className="flex flex-wrap gap-4">
@@ -169,7 +172,6 @@ const AddMenuForm = () => {
                   value={category.id}
                   checked={inputs.categories.includes(category.id)}
                   onChange={handleCheckboxChange}
-                  className="accent-yellow-500"
                 />
                 {category.label}
               </label>
@@ -179,7 +181,7 @@ const AddMenuForm = () => {
 
 
         <div className="mb-6 border-b border-gray-600 pb-4">
-          <h3 className="text-lg font-semibold text-yellow-400 mb-2 underline">
+          <h3 className="text-lg font-semibold text-yellow-400 mb-2 ">
             {t('manageMenu.menu-item-diets')}
           </h3>
           <div className="flex flex-wrap gap-4">
@@ -194,7 +196,6 @@ const AddMenuForm = () => {
                   value={diet.id}
                   checked={inputs.diets.includes(diet.id)}
                   onChange={handleCheckboxChange}
-                  className="accent-yellow-500"
                 />
                 {diet.label}
               </label>

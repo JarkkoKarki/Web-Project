@@ -1,41 +1,95 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, {useState} from 'react';
+import {useTranslation} from 'react-i18next';
 import useMenu from '../hooks/menuHooks.js';
-import { rootUrl } from '../../utils/variables.js';
+import {rootUrl} from '../../utils/variables.js';
+import {useNavigate} from 'react-router';
 
-const ModifyMenuForm = ({ item, setSelectedItem }) => {
-  const { t } = useTranslation();
-  const { updateMenuItem, deleteMenuItem} = useMenu();
+const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
+  const {t} = useTranslation();
+  const {updateMenuItem, deleteMenuItem} = useMenu();
   const [file, setFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(rootUrl + item.filename);
+
+  const mapLabelsToIds = (labels, options) => {
+    return options
+      .filter((option) => labels.includes(option.label))
+      .map((option) => option.id);
+  };
+
+  const dietOptions = [
+    {id: 1, label: 'A - Animal-based'},
+    {id: 2, label: 'G - Gluten-free'},
+    {id: 3, label: 'ILM - Induction low-carb method'},
+    {id: 4, label: 'L - Lactose-free'},
+    {id: 5, label: 'M - Mediterranean'},
+    {id: 6, label: 'Veg - Vegetarian'},
+    {id: 7, label: 'VS - Vegan and soy-free'},
+  ];
+
+  const categoryOptions = [
+    {id: 1, label: 'starter'},
+    {id: 2, label: 'main course'},
+    {id: 3, label: 'dessert'},
+    {id: 4, label: 'sides'},
+    {id: 5, label: 'favorites'},
+    {id: 6, label: 'fields of vegan'},
+    {id: 7, label: 'special offer'},
+    {id: 8, label: 'drinks'},
+  ];
 
   const [inputs, setInputs] = useState({
     name: item.name,
     description: item.description,
     price: item.price,
     filename: item.filename,
-    categories: [item.categories],
-    diets: [item.diets],
+    categories: Array.isArray(item.categories)
+      ? typeof item.categories[0] === 'string'
+        ? mapLabelsToIds(item.categories, categoryOptions)
+        : item.categories
+      : [],
+    diets: Array.isArray(item.diets)
+      ? typeof item.diets[0] === 'string'
+        ? mapLabelsToIds(item.diets, dietOptions)
+        : item.diets
+      : [],
   });
 
   const handleBack = () => {
     setSelectedItem(null);
   };
 
+  const handleCheckboxChange = (e, type) => {
+    const value = parseInt(e.target.value, 10);
+    setInputs((prevInputs) => {
+      const currentArray = prevInputs[type];
+      const newArray = currentArray.includes(value)
+        ? currentArray.filter((v) => v !== value)
+        : [...currentArray, value];
+      return {
+        ...prevInputs,
+        [type]: newArray,
+      };
+    });
+  };
+
   const doModifyMenuItem = async () => {
     try {
-      if (!inputs.name.trim() || !inputs.description.trim() || !inputs.price.trim()) {
-        alert(t(  'manageMenu.all-fields-required'));
+      if (
+        !inputs.name.trim() ||
+        !inputs.description.trim() ||
+        !inputs.price.trim()
+      ) {
+        alert(t('manageMenu.all-fields-required'));
         return;
       }
 
       const token = localStorage.getItem('token');
       const menuResult = await updateMenuItem(file, inputs, item.id, token);
       console.log('menuresult', menuResult);
+      alert('Item Modified successfully');
       setSelectedItem(null);
+      onSuccess();
     } catch (e) {
       console.log(e.message);
-
     }
   };
 
@@ -46,13 +100,14 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
       console.log('Menuresult', menuResult);
       setSelectedItem(null);
       alert('Item Deleted successfully');
+      onSuccess();
     } catch (e) {
       console.log(e.message);
     }
   };
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setInputs((prevInputs) => ({
       ...prevInputs,
       [name]: value,
@@ -60,23 +115,9 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
   };
 
   const handleFileChange = (evt) => {
-    if (evt.target.files && evt.target.files[0]) {
-      const newFile = evt.target.files[0];
-      setFile(newFile);
-
-      if (previewUrl && previewUrl.startsWith('blob:')) {
-        URL.revokeObjectURL(previewUrl);
-      }
-
-
-      const newPreviewUrl = URL.createObjectURL(newFile);
-      setPreviewUrl(newPreviewUrl);
-
-
-      setInputs((prevInputs) => ({
-        ...prevInputs,
-        filename: newFile.name,
-      }));
+    if (evt.target.files) {
+      console.log(evt.target.files[0]);
+      setFile(evt.target.files[0]);
     }
   };
 
@@ -84,7 +125,7 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
     <div className="p-8">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="mx-auto flex w-full max-w-5xl items-start rounded-lg border border-[#2a2c2b] bg-[#0d0f0e] p-8 shadow-lg relative"
+        className="mx-auto flex w-full max-w-5xl flex-col items-start rounded-lg border border-[#2a2c2b] bg-[#0d0f0e] p-5 shadow-lg"
       >
         <button
           onClick={handleBack}
@@ -92,8 +133,8 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
         >
           X
         </button>
-        <div className="flex w-full gap-8">
-          <div className="flex flex-shrink-0 flex-col items-center">
+        <div className="flex w-full flex-row gap-8">
+          <div className="flex flex-col items-center">
             <label htmlFor="file" className="mb-2 text-sm text-gray-300">
               {t('manageMenu.menu-item-file')}
             </label>
@@ -115,19 +156,20 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
             </label>
 
             <img
-              src={previewUrl}
+              src={file ? URL.createObjectURL(file) : rootUrl + item.filename}
               alt="preview"
-              className="h-[200px] w-[300px] rounded border border-gray-600 object-cover"
+              className="h-[200px] w-[200px] max-w-full rounded border border-gray-600 object-cover"
             />
           </div>
 
-          <div className="flex flex-grow flex-col gap-4">
+          <div className="flex flex-grow flex-col gap-4 pt-23">
             <input
               name="name"
               type="text"
               id="name"
               value={inputs.name}
               onChange={handleInputChange}
+              placeholder={t('manageMenu.menu-item-name')}
               className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
             />
 
@@ -150,45 +192,69 @@ const ModifyMenuForm = ({ item, setSelectedItem }) => {
               placeholder={t('manageMenu.menu-item-price')}
               className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
             />
-
-            <input
-              name="categories"
-              type="text"
-              id="categories"
-              value={inputs.categories}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-categories')}
-              className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-            />
-
-            <input
-              name="diets"
-              type="text"
-              id="diets"
-              value={inputs.diets}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-diets')}
-              className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
-            />
-
-            <div className="mt-4 flex justify-between gap-4">
-              <button
-                type="button"
-                onClick={doDeleteMenuItem}
-                className="cursor-pointer rounded-sm border border-red-500 bg-red-500 px-4 py-2 text-white transition hover:bg-red-600"
-              >
-                {t('manageMenu.menu-item-delete')}
-              </button>
-
-              <button
-                type="button"
-                onClick={doModifyMenuItem}
-                className="cursor-pointer rounded-sm border border-green-500 bg-green-500 px-4 py-2 text-white transition hover:bg-green-600"
-              >
-                {t('manageMenu.menu-item-modify')}
-              </button>
-            </div>
           </div>
+        </div>
+
+        <div className="mt-6 w-full">
+          <h3 className="mb-2 text-lg font-semibold text-yellow-400">
+            {t('manageMenu.menu-item-categories')}
+          </h3>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {categoryOptions.map((category) => (
+              <label
+                key={category.id}
+                className="flex items-center gap-2 text-white"
+              >
+                <input
+                  type="checkbox"
+                  value={category.id}
+                  checked={inputs.categories.includes(category.id)}
+                  onChange={(e) => handleCheckboxChange(e, 'categories')}
+                />
+                {category.label}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 w-full">
+          <h3 className="mb-2 text-lg font-semibold text-yellow-400">
+            {t('manageMenu.menu-item-diets')}
+          </h3>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {dietOptions.map((diet) => (
+              <label
+                key={diet.id}
+                className="flex items-center gap-2 text-white"
+              >
+                <input
+                  type="checkbox"
+                  value={diet.id}
+                  checked={inputs.diets.includes(diet.id)}
+                  onChange={(e) => handleCheckboxChange(e, 'diets')}
+                />
+                {diet.label}
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex w-full justify-between">
+          <button
+            type="button"
+            onClick={doDeleteMenuItem}
+            className="cursor-pointer rounded-sm border border-red-500 bg-red-500 px-4 py-2 text-white transition hover:bg-red-600"
+          >
+            {t('manageMenu.menu-item-delete')}
+          </button>
+
+          <button
+            type="button"
+            onClick={doModifyMenuItem}
+            className="cursor-pointer rounded-sm border border-green-500 bg-green-500 px-4 py-2 text-white transition hover:bg-green-600"
+          >
+            {t('manageMenu.menu-item-modify')}
+          </button>
         </div>
       </form>
     </div>

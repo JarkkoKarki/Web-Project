@@ -6,11 +6,13 @@ const WorkHubLayout = () => {
   const {t} = useTranslation();
 
   return (
-    <div className="flex bg-[#0d0f0e] text-white font-sans">
-      <aside className="bg-[#0d0f0e] text-white w-64 min-h-screen border-r border-gray-800 flex flex-col items-center gap-4">
-        <h1 className="border border-yellow-500 px-10 p-2 text-xl font-bold text-white">{t('workhubHeader.workhub')}</h1>
+    <div className="flex bg-[#0d0f0e] font-sans text-white">
+      <aside className="flex min-h-screen w-64 flex-col items-center gap-4 border-r border-gray-800 bg-[#0d0f0e] text-white">
+        <h1 className="border border-yellow-500 p-2 px-10 text-xl font-bold text-white">
+          {t('workhubHeader.workhub')}
+        </h1>
         <nav>
-          <ul className="flex flex-col items-center gap-4 text-sm text-white tracking-wider underline underline-offset-4">
+          <ul className="flex flex-col items-center gap-4 text-sm tracking-wider text-white underline underline-offset-4">
             <li>
               <Link to="manage-menu" className="hover:text-yellow-500">
                 {t('workhubHeader.manage-menu')}

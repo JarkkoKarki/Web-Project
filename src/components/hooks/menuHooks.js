@@ -74,9 +74,14 @@ const useMenu = () => {
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
     formData.append('price', inputs.price);
-    formData.append('categories', inputs.categories);
-    formData.append('diets', inputs.diets);
     formData.append('file', file);
+
+    inputs.categories.forEach((category) =>
+      formData.append('categories[]', category),
+    );
+
+    inputs.diets.forEach((diet) => formData.append('diets[]', diet));
+
     const fetchOptions = {
       method: 'PUT',
       headers: {
@@ -91,6 +96,7 @@ const useMenu = () => {
 
   return {
     menuArray,
+    getMenu,
     postMenuItem,
     fullMenuArray,
     deleteMenuItem,
