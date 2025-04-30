@@ -10,6 +10,7 @@ const useMenu = () => {
     try {
       const mediaData = await fetchData(url + '/menu/products');
       setFullMenuArray(mediaData);
+      console.log(mediaData);
       const favorites = mediaData.filter((item) =>
         item.categories.includes("everyone's favorite"),
       );
@@ -30,16 +31,22 @@ const useMenu = () => {
     getMenu();
   }, []);
 
-  const postMenuItem = async (file, inputs) => {
+  const postMenuItem = async (file, inputs, token) => {
     const formData = new FormData();
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
     formData.append('price', inputs.price);
-    formData.append('categories', inputs.categories);
-    formData.append('diets', inputs.diets);
     formData.append('file', file);
+    inputs.categories.forEach((category) =>
+      formData.append('categories[]', category),
+    );
+    inputs.diets.forEach((diet) => formData.append('diets[]', diet));
+
     const fetchOptions = {
       method: 'POST',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
       mode: 'cors',
       body: formData,
     };
@@ -47,11 +54,14 @@ const useMenu = () => {
     return await fetchData(url + '/menu', fetchOptions);
   };
 
-  const deleteMenuItem = async (id) => {
+  const deleteMenuItem = async (id, token) => {
     try {
       const fetchOptions = {
         method: 'DELETE',
         mode: 'cors',
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
       };
       return await fetchData(`${url}/menu/${id}`, fetchOptions);
     } catch (e) {
@@ -59,7 +69,7 @@ const useMenu = () => {
     }
   };
 
-  const updateMenuItem = async (file, inputs, id) => {
+  const updateMenuItem = async (file, inputs, id, token) => {
     const formData = new FormData();
     formData.append('name', inputs.name);
     formData.append('description', inputs.description);
@@ -69,6 +79,9 @@ const useMenu = () => {
     formData.append('file', file);
     const fetchOptions = {
       method: 'PUT',
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
       mode: 'cors',
       body: formData,
     };
@@ -76,8 +89,13 @@ const useMenu = () => {
     return await fetchData(`${url}/menu/${id}`, fetchOptions);
   };
 
-
-  return {menuArray, postMenuItem, fullMenuArray, deleteMenuItem, updateMenuItem};
+  return {
+    menuArray,
+    postMenuItem,
+    fullMenuArray,
+    deleteMenuItem,
+    updateMenuItem,
+  };
 };
 
 export default useMenu;

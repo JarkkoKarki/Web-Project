@@ -1,142 +1,96 @@
-import React, { useEffect} from 'react';
+import React, {useEffect} from 'react';
 import useMenu from '../components/hooks/menuHooks';
-import MenuRow from '../components/MenuRow';
-import useEmblaCarousel from 'embla-carousel-react'
-import Autoplay from 'embla-carousel-autoplay'
+import useEmblaCarousel from 'embla-carousel-react';
+import Autoplay from 'embla-carousel-autoplay';
+import MenuCarouselItem from '../components/MenuCarouselItem';
+import MenuItem from '../components/MenuRowItem';
+import {useShoppingCart} from '../contexts/ShoppingCartContext';
 
 const Menu = () => {
-  const {menuArray} = useMenu();
+  const {menuArray, fullMenuArray} = useMenu();
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, containScroll: "keepSnaps" }, // Ensure only one slide is visible
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    {loop: true, containScroll: 'keepSnaps'},
+    [Autoplay({delay: 3000, stopOnInteraction: false})],
   );
+
+  const {addItemToCart} = useShoppingCart();
+
+  const handleAddToCart = (item) => {
+    addItemToCart(item);
+    console.log(`${item.name} added to cart!`);
+  };
 
   useEffect(() => {
     if (emblaApi) {
-      emblaApi.reInit(); // Reinitialize Embla when needed
+      emblaApi.reInit();
     }
   }, [emblaApi]);
 
-
-
-  return (<>
-    <section
+  return (
+    <>
+      <section
         id="chefs-favourites"
-        className="max-w-6xl mx-auto bg-[#101211] py-12"
+        className="mx-auto max-w-6xl bg-[#101211] py-12"
       >
-        <h2
-          className="text-center text-4xl font-bold text-yellow-400 tracking-wider mb-12"
-        >
+        <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400">
           CHEFS FAVOURITES
         </h2>
 
         {/* Carousel Menu itemeille */}
         <div className="embla overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex">
+          <div className="embla__container flex gap-5">
             {menuArray.map((item) => (
-              <MenuRow key={item.src} item={item} />
+              <MenuCarouselItem
+                key={item.src}
+                item={item}
+                className="mx-auto w-3/4"
+              />
             ))}
           </div>
         </div>
-
       </section>
-      <section id="menu" className="max-w-6xl mx-auto bg-[#101211]">
-        <h2
-          className="text-center text-4xl font-bold text-yellow-400 tracking-wider mb-12 underline underline-offset-4"
-        >
+      <section id="menu" className="mx-auto max-w-6xl bg-[#101211]">
+        <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400 underline underline-offset-4">
           MENU
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           <div>
-            <h3
-              className="text-center text-2xl font-bold text-yellow-400 tracking-wider mb-6"
-            >
+            <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
               MEALS
             </h3>
             <ul className="space-y-6">
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>KEBAB CLASSIC</p>
-                <p>$25</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>SUPER KEBAB</p>
-                <p>$32</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>KINGSIZE KEBAB</p>
-                <p>$45</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>VEGGIE MIX</p>
-                <p>$23</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>SPICY SPECIAL</p>
-                <p>$27</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>CHEF'S SPECIAL</p>
-                <p>$48</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>GRILLED VEGGIE MIX</p>
-                <p>$35</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>KEBAB BURGER</p>
-                <p>$30</p>
+              <li>
+                {fullMenuArray.map((item) => (
+                  <MenuItem
+                    key={item.name}
+                    item={item}
+                    addToCart={handleAddToCart}
+                    className="mx-auto w-3/4"
+                  />
+                ))}
               </li>
             </ul>
           </div>
 
-
           <div>
-            <h3
-              className="text-center text-2xl font-bold text-yellow-400 tracking-wider mb-6"
-            >
+            <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
               APPETIZERS AND DESSERTS
             </h3>
             <ul className="space-y-6">
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$25</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$38</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$45</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$22</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$28</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$32</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$30</p>
-              </li>
-              <li className="flex justify-between border-b border-gray-700 pb-2">
-                <p>PLACEHOLDER</p>
-                <p>$40</p>
+              <li>
+                {fullMenuArray.map((item) => (
+                  <MenuItem
+                    key={item.name}
+                    item={item}
+                    className="mx-auto w-3/4"
+                  />
+                ))}
               </li>
             </ul>
           </div>
         </div>
       </section>
-
-      </>
-
+    </>
   );
 };
 
