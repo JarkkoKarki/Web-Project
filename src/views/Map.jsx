@@ -152,7 +152,7 @@ export function Map() {
             height: '400px',
             width: '70%',
             zIndex: '1',
-            opacity: 0.6,
+            opacity: 0.75,
             pointerEvents: 'none',
           }}
         >
