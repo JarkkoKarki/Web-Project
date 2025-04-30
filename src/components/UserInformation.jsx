@@ -5,12 +5,12 @@ import {PasswordUpdate} from './PasswordUpdate';
 import SaveCancelButtons from './SaveCancelButtons';
 import {UserNameChange} from './UserNameChange';
 import {useUpdateUser} from './hooks/apiHooks';
+import DeleteUserButton from './DeleteUserButton';
 
 export const UserInformation = () => {
   const {t} = useTranslation();
 
   const {user, updateUser} = useContext(UserContext);
-  console.log('User object:', user);
   const [editingField, setEditingField] = useState(null);
   const [temp, setTemp] = useState('');
   const updateUserApi = useUpdateUser();
@@ -157,6 +157,7 @@ export const UserInformation = () => {
           ) : null}
         </div>
       ))}
+      <DeleteUserButton userId={user.id} />
     </div>
   );
 };

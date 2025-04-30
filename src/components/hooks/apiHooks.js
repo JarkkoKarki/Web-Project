@@ -36,18 +36,31 @@ const useUser = () => {
   const getUserByToken = useCallback(async (token) => {
     const fetchOptions = {
       headers: {
-        Authorization: 'Bearer: ' + token,
+        Authorization: 'Bearer ' + token,
       },
     };
 
     const userResult = await fetchData(url + '/auth/me', fetchOptions);
 
-    console.log('userResult', userResult);
+    // console.log('userResult', userResult);
 
     return userResult;
   }, []);
 
-  return {getUserByToken, postUser};
+  const deleteUser = useCallback(async (userId) => {
+    console.log(window.localStorage.getItem('token'));
+    const fetchOptions = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      },
+    };
+
+    return await fetchData(url + '/users/' + userId, fetchOptions);
+  }, []);
+
+  return {getUserByToken, postUser, deleteUser};
 };
 
 const useUpdateUser = () => {
@@ -60,7 +73,7 @@ const useUpdateUser = () => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: 'Bearer: ' + window.localStorage.getItem('token'),
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
       },
       body: JSON.stringify(inputs),
     };

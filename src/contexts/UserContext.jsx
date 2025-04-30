@@ -53,8 +53,8 @@ const UserProvider = ({children}) => {
     try {
       const token = localStorage.getItem('token');
       if (token) {
-        const userResponse = await getUserByToken(token);
-        setUser(userResponse);
+        await getUserByToken(token);
+        // setUser(userResponse);
         setIsLoggedIn(true);
         // console.log('location', location);
         navigate(location.pathname);
@@ -69,7 +69,6 @@ const UserProvider = ({children}) => {
     }
   }, [
     setIsLoggedIn,
-    setUser,
     getUserByToken,
     navigate,
     location.pathname,
