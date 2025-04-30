@@ -42,8 +42,6 @@ const useUser = () => {
 
     const userResult = await fetchData(url + '/auth/me', fetchOptions);
 
-    // console.log('userResult', userResult);
-
     return userResult;
   }, []);
 
