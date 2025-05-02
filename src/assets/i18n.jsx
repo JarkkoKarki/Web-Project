@@ -49,7 +49,16 @@ i18n.use(initReactI18next).init({
           "trad-modern": "Traditional & Modern",
           "read-more": "READ MORE",
         },
-        menuPage: {},
+        menuPage: {
+          "chefs-favorites":"CHEFS FAVOURITES",
+          "menu":"MENU",
+          "meals":"MEALS",
+          "sides":"SIDES",
+          "drinks":"DRINKS",
+          "starters":"STARTERS",
+          "add-to-cart-prompt": "added to cart!",
+          "add-to-cart": "Add to Cart"
+        },
         loginPage: {},
         registerPage: {},
         reservationPage: {
@@ -161,7 +170,16 @@ i18n.use(initReactI18next).init({
           "trad-modern": "Perinteinen & Moderni",
           "read-more": "LUE LISÄÄ",
         },
-        menuPage: {},
+        menuPage: {
+          "chefs-favorites": "KOKIN SUOSIKIT",
+          "menu": "RUOKALISTA",
+          "meals": "ATERIAT",
+          "sides": "LISUKKEET",
+          "drinks": "JUOMAT",
+          "starters": "ALKURUOAT",
+          "add-to-cart-prompt": "lisätty ostoskoriin!",
+          "add-to-cart": "Lisää ostoskoriin"
+        },
         loginPage: {},
         registerPage: {},
         reservationPage: {
