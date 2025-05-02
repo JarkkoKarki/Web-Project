@@ -6,7 +6,7 @@ import MenuItem from '../components/MenuRowItem';
 
 const Home = () => {
   const {t} = useTranslation();
-  const {fullMenuArray} = useMenu();
+  const {menuArray} = useMenu();
   return (
     <>
       <section
@@ -30,7 +30,7 @@ const Home = () => {
             similique debitis hic nesciunt!
           </p>
           <a
-            href="#about-us"
+            href="/about"
             className="mt-6 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
           >
             {t('homePage.learn-more')}
@@ -47,13 +47,13 @@ const Home = () => {
           <div className="w-1/2 space-y-6">
             <ul className="space-y-6">
               <li>
-                {fullMenuArray.map((item) => (
+                {menuArray.map((item) => (
                   <MenuItem key={item.name} item={item} />
                 ))}
               </li>
             </ul>
             <a
-              href="./assets/htmls/menu.html"
+              href="/menu"
               className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
             >
               {t('homePage.view-more')}
