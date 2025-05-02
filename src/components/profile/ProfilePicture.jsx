@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import DefaultImage from '../../assets/images/default-avatar.jpg';
 import {useUserContext} from '../hooks/contextHooks';
 import {useUpdateUser} from '../hooks/apiHooks';
+import SaveCancelButtons from '../SaveCancelButtons';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();
@@ -10,6 +11,7 @@ export const ProfilePicture = () => {
   const {updateProfilePicture} = useUpdateUser();
   const [avatar, setAvatar] = useState(user?.filename || DefaultImage);
   const fileUploadRef = useRef();
+  const [showButtons, setShowButtons] = useState(false);
 
   const handleImgUpload = async (e) => {
     e.preventDefault();
@@ -23,10 +25,10 @@ export const ProfilePicture = () => {
       return;
     }
     setAvatar(cachedURL);
+    setShowButtons(true);
   };
 
   const saveImg = async () => {
-    // TODO: implement save image functionality
     const uploadedFile = fileUploadRef.current.files[0];
     if (!uploadedFile || !user.id) {
       return;
@@ -47,6 +49,7 @@ export const ProfilePicture = () => {
           filename: uploadedFile,
         });
         setAvatar(cachedURL);
+        setShowButtons(false);
       }
     } catch (error) {
       console.error('Error updating user:', error);
@@ -61,6 +64,13 @@ export const ProfilePicture = () => {
     }
     const cachedURL = URL.createObjectURL(uploadedFile);
     window.open(cachedURL, '_blank');
+  };
+
+  const cancelImgUpload = () => {
+    setAvatar(user?.filename || DefaultImage);
+    fileUploadRef.current.value = null;
+    setShowButtons(false);
+    console.log('ref:', fileUploadRef.current.value);
   };
 
   return (
@@ -100,14 +110,8 @@ export const ProfilePicture = () => {
         </form>
       </div>
       <div>
-        {avatar !== DefaultImage && (
-          <button
-            type="button"
-            onClick={saveImg}
-            className="mt-6 cursor-pointer border border-green-500 px-6 py-2 text-green-600 transition hover:bg-green-500 hover:text-black"
-          >
-            {t('profilePage.save-img')}
-          </button>
+        {showButtons && (
+          <SaveCancelButtons onSave={saveImg} onCancel={cancelImgUpload} />
         )}
       </div>
     </div>
