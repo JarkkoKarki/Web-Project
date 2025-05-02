@@ -1,10 +1,10 @@
 import React, {useContext, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {UserContext} from '../contexts/UserContext';
+import {UserContext} from '../../contexts/UserContext';
 import {PasswordUpdate} from './PasswordUpdate';
-import SaveCancelButtons from './SaveCancelButtons';
-import {UserNameChange} from './UserNameChange';
-import {useUpdateUser} from './hooks/apiHooks';
+import SaveCancelButtons from '../SaveCancelButtons';
+import {UserNameChange} from '../UserNameChange';
+import {useUpdateUser} from '../hooks/apiHooks';
 import DeleteUserButton from './DeleteUserButton';
 
 export const UserInformation = () => {

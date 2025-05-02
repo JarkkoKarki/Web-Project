@@ -1,19 +1,21 @@
 import {useTranslation} from 'react-i18next';
-import {useUser} from './hooks/apiHooks';
+import {useUser} from '../hooks/apiHooks';
 import {useNavigate} from 'react-router';
+import {useUserContext} from '../hooks/contextHooks';
 
 export const DeleteUserButton = ({userId}) => {
   const {t} = useTranslation();
   const {deleteUser} = useUser();
   const navigate = useNavigate();
-
-  // DOENS'T WORK BECAUSE OF THE BACKEND REQUIRING ADMIN PRIVILEGES(?)
+  const {handleLogout} = useUserContext();
 
   const handleClick = async () => {
     try {
       console.log('id', userId);
       if (confirm(t('profilePage.delete-user-confirmation'))) {
         await deleteUser(userId);
+        handleLogout();
+
         console.log('User deleted successfully');
         navigate('/');
       }
