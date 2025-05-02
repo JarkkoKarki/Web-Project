@@ -104,4 +104,18 @@ const useUpdateUser = () => {
   return {putUser, updateProfilePicture};
 };
 
-export {useAuthentication, useUser, useUpdateUser};
+const useOrders = () => {
+  const getOrdersByUserId = useCallback(async () => {
+    const fetchOptions = {
+      headers: {
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      },
+    };
+
+    return await fetchData(url + '/orders/myorders/', fetchOptions);
+  }, []);
+
+  return {getOrdersByUserId};
+};
+
+export {useAuthentication, useUser, useUpdateUser, useOrders};
