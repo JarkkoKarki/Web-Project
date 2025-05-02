@@ -4,7 +4,6 @@ import {useUserContext} from '../hooks/contextHooks';
 import {useUpdateUser} from '../hooks/apiHooks';
 import SaveCancelButtons from '../SaveCancelButtons';
 import {rootUrl} from '../../utils/variables';
-import {root} from 'postcss';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();
@@ -37,10 +36,8 @@ export const ProfilePicture = () => {
 
     try {
       const response = await updateProfilePicture(uploadedFile, user.id, user);
-      console.log('response:', response);
 
       if (response) {
-        console.log(user);
         updateUser({
           ...user,
           filename: response.filename,
@@ -54,14 +51,18 @@ export const ProfilePicture = () => {
     }
   };
 
-  // Subject to change(?)
   const viewImg = () => {
-    const uploadedFile = fileUploadRef.current.files[0];
-    if (!uploadedFile) {
+    if (!user?.filename) {
+      console.error('No filename available to view the image.');
       return;
     }
-    const cachedURL = URL.createObjectURL(uploadedFile);
-    window.open(cachedURL, '_blank');
+
+    const imageUrl = rootUrl + user.filename;
+
+    const newWindow = window.open(imageUrl, '_blank', 'noopener,noreferrer');
+    if (!newWindow) {
+      console.error('Failed to open the image in a new tab.');
+    }
   };
 
   const cancelImgUpload = () => {
