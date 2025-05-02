@@ -6,17 +6,35 @@ const ShoppingCartElement = () => {
   const {cartItems, addItemToCart, removeItemFromCart} = useShoppingCart();
 
   const calculateTotalPrice = () => {
-    if (cartItems.length !== 0) {
-      let total = 0;
-      cartItems.forEach((item) => {
-        total += toNumber(item.price) * toNumber(item.quantity); // vähän tuli hakattuu päätä ku jostai syyst noi on stringei
-      });
-      console.log(total, ' Total hinta');
-      return total;
-    }
+    return cartItems.reduce((total, item) => {
+      return total + toNumber(item.price) * toNumber(item.quantity);
+    }, 0);
   };
 
-  console.log(cartItems, ' cartItems');
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch(
+        'http://10.120.32.87/app/api/payment/create-checkout-session',
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            productIds: cartItems.map((item) => item.id),
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('No checkout URL returned.');
+      }
+    } catch (err) {
+      console.error('Checkout failed:', err);
+    }
+  };
 
   return (
     <div className="shopping-cart-drawer">
@@ -59,6 +77,12 @@ const ShoppingCartElement = () => {
           <div className="mt-4 text-right font-bold">
             Total: ${calculateTotalPrice()}
           </div>
+          <button
+            onClick={handleCheckout}
+            className="mt-4 w-full rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+          >
+            Buy now
+          </button>
         </>
       )}
     </div>
