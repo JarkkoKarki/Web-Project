@@ -1,15 +1,15 @@
 import React, {useState, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import DefaultImage from '../../assets/images/default-avatar.jpg';
 import {useUserContext} from '../hooks/contextHooks';
 import {useUpdateUser} from '../hooks/apiHooks';
 import SaveCancelButtons from '../SaveCancelButtons';
+import {rootUrl} from '../../utils/variables';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();
   const {user, updateUser} = useUserContext();
   const {updateProfilePicture} = useUpdateUser();
-  const [avatar, setAvatar] = useState(user?.filename || DefaultImage);
+  const [avatar, setAvatar] = useState(rootUrl + user?.filename);
   const fileUploadRef = useRef();
   const [showButtons, setShowButtons] = useState(false);
 
@@ -33,22 +33,19 @@ export const ProfilePicture = () => {
     if (!uploadedFile || !user.id) {
       return;
     }
-    console.log('file:', uploadedFile);
-    console.log('user id:', user.id);
-    console.log('user:', user);
 
     try {
       const response = await updateProfilePicture(uploadedFile, user.id, user);
       console.log('response:', response);
 
       if (response) {
-        const cachedURL = URL.createObjectURL(uploadedFile);
-
+        console.log(user);
         updateUser({
           ...user,
-          filename: uploadedFile,
+          filename: response.filename,
         });
-        setAvatar(cachedURL);
+        setAvatar(rootUrl + response.filename);
+        fileUploadRef.current.value = null;
         setShowButtons(false);
       }
     } catch (error) {
@@ -67,10 +64,9 @@ export const ProfilePicture = () => {
   };
 
   const cancelImgUpload = () => {
-    setAvatar(user?.filename || DefaultImage);
+    setAvatar(avatar);
     fileUploadRef.current.value = null;
     setShowButtons(false);
-    console.log('ref:', fileUploadRef.current.value);
   };
 
   return (
@@ -79,7 +75,7 @@ export const ProfilePicture = () => {
         {t('profilePage.profile-picture')}
       </h3>
       <img
-        src={avatar}
+        src={avatar || rootUrl + user?.filename}
         alt="Profile"
         className="h-[300px] w-[300px] rounded-lg object-cover p-2 shadow-lg"
       />
