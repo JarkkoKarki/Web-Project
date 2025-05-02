@@ -1,13 +1,17 @@
 import React, {useState, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-// import {useUpdateUser} from './hooks/apiHooks';
 import DefaultImage from '../../assets/images/default-avatar.jpg';
+import {useUserContext} from '../hooks/contextHooks';
+import {useUpdateUser} from '../hooks/apiHooks';
+import SaveCancelButtons from '../SaveCancelButtons';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();
-  // const updateUserApi = useUpdateUser();
-  const [avatar, setAvatar] = useState(DefaultImage);
+  const {user, updateUser} = useUserContext();
+  const {updateProfilePicture} = useUpdateUser();
+  const [avatar, setAvatar] = useState(user?.filename || DefaultImage);
   const fileUploadRef = useRef();
+  const [showButtons, setShowButtons] = useState(false);
 
   const handleImgUpload = async (e) => {
     e.preventDefault();
@@ -21,11 +25,35 @@ export const ProfilePicture = () => {
       return;
     }
     setAvatar(cachedURL);
+    setShowButtons(true);
   };
 
   const saveImg = async () => {
-    // TODO: implement save image functionality
-    console.log('img', fileUploadRef.current.files[0]);
+    const uploadedFile = fileUploadRef.current.files[0];
+    if (!uploadedFile || !user.id) {
+      return;
+    }
+    console.log('file:', uploadedFile);
+    console.log('user id:', user.id);
+    console.log('user:', user);
+
+    try {
+      const response = await updateProfilePicture(uploadedFile, user.id, user);
+      console.log('response:', response);
+
+      if (response) {
+        const cachedURL = URL.createObjectURL(uploadedFile);
+
+        updateUser({
+          ...user,
+          filename: uploadedFile,
+        });
+        setAvatar(cachedURL);
+        setShowButtons(false);
+      }
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
   };
 
   // Subject to change(?)
@@ -36,6 +64,13 @@ export const ProfilePicture = () => {
     }
     const cachedURL = URL.createObjectURL(uploadedFile);
     window.open(cachedURL, '_blank');
+  };
+
+  const cancelImgUpload = () => {
+    setAvatar(user?.filename || DefaultImage);
+    fileUploadRef.current.value = null;
+    setShowButtons(false);
+    console.log('ref:', fileUploadRef.current.value);
   };
 
   return (
@@ -75,14 +110,8 @@ export const ProfilePicture = () => {
         </form>
       </div>
       <div>
-        {avatar !== DefaultImage && (
-          <button
-            type="button"
-            onClick={saveImg}
-            className="mt-6 cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
-          >
-            {t('profilePage.save-img')}
-          </button>
+        {showButtons && (
+          <SaveCancelButtons onSave={saveImg} onCancel={cancelImgUpload} />
         )}
       </div>
     </div>

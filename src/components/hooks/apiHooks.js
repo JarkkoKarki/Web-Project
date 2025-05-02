@@ -79,7 +79,29 @@ const useUpdateUser = () => {
     return await fetchData(url + '/users/' + inputs.id, fetchOptions);
   }, []);
 
-  return updateUser;
+  const updateProfilePicture = useCallback(async (file, id, user) => {
+    if (!file || !user) {
+      throw new Error('Invalid inputs: file and user are required');
+    }
+
+    const formData = new FormData();
+    formData.append('profilePicture', file);
+    formData.append('id', id);
+    formData.append('user', JSON.stringify(user));
+
+    const fetchOptions = {
+      method: 'PUT',
+      headers: {
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      },
+      mode: 'cors',
+      body: formData,
+    };
+
+    return await fetchData(url + '/users/' + id, fetchOptions);
+  }, []);
+
+  return {updateUser, updateProfilePicture};
 };
 
 export {useAuthentication, useUser, useUpdateUser};

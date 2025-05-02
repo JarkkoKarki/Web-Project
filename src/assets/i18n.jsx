@@ -100,6 +100,7 @@ i18n.use(initReactI18next).init({
           "change-email": 'Change Email',
           "change-address": 'Change Address',
           "change-phone": 'Change Phone Number',
+          "save-img": 'Save Image',
         },
         workhubHeader: {
           'workhub': 'Workhub',
@@ -208,6 +209,7 @@ i18n.use(initReactI18next).init({
           "change-email": 'Vaihda sähköposti',
           "change-address": 'Vaihda osoite',
           "change-phone": 'Vaihda puhelinnumero',
+          "save-img": 'Tallenna kuva',
 
         },
         workhubHeader: {
