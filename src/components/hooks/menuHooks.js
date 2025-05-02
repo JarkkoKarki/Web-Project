@@ -3,25 +3,38 @@ import {rootUrl, url} from '../../utils/variables';
 import {fetchData} from '../../utils/fetchData';
 
 const useMenu = () => {
-  const [menuArray, setMenuArray] = useState([]);
+  const [favoritesMenuArray, setFavoritesMenuArray] = useState([]);
   const [fullMenuArray, setFullMenuArray] = useState([]);
 
   const getMenu = async () => {
     try {
       const mediaData = await fetchData(url + '/menu/products');
-      setFullMenuArray(mediaData);
-      console.log(mediaData);
+
+      console.log(mediaData, ' mediadata debug');
       const favorites = mediaData.filter((item) =>
         item.categories.includes("everyone's favorite"),
       );
 
       const transformedFavorites = favorites.map((item) => ({
-        src: rootUrl + item.filename,
+        id: item.id,
         name: item.name,
+        description: item.description,
+        diets: item.diets,
+        src: rootUrl + item.filename,
         price: item.price,
       }));
 
-      setMenuArray(transformedFavorites);
+      const transformedMenu = mediaData.map((item) => ({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        diets: item.diets,
+        src: rootUrl + item.filename,
+        price: item.price,
+      }));
+      console.log(transformedMenu, ' TESTI');
+      setFullMenuArray(transformedMenu);
+      setFavoritesMenuArray(transformedFavorites);
     } catch (error) {
       console.error('error', error);
     }
@@ -95,7 +108,7 @@ const useMenu = () => {
   };
 
   return {
-    menuArray,
+    favoritesMenuArray,
     getMenu,
     postMenuItem,
     fullMenuArray,

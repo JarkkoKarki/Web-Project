@@ -7,7 +7,7 @@ import MenuItem from '../components/MenuRowItem';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
 
 const Menu = () => {
-  const {menuArray, fullMenuArray} = useMenu();
+  const {favoritesMenuArray, fullMenuArray} = useMenu();
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {loop: true, containScroll: 'keepSnaps'},
     [Autoplay({delay: 3000, stopOnInteraction: false})],
@@ -17,7 +17,7 @@ const Menu = () => {
 
   const handleAddToCart = (item) => {
     addItemToCart(item);
-    console.log(`${item.name} added to cart!`);
+    console.log(`${item.name} added to cart! ID: ${item.id}`);
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Menu = () => {
         {/* Carousel Menu itemeille */}
         <div className="embla overflow-hidden" ref={emblaRef}>
           <div className="embla__container flex gap-5">
-            {menuArray.map((item) => (
+            {favoritesMenuArray.map((item) => (
               <MenuCarouselItem
                 key={item.src}
                 item={item}
