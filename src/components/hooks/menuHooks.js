@@ -3,25 +3,24 @@ import {rootUrl, url} from '../../utils/variables';
 import {fetchData} from '../../utils/fetchData';
 
 const useMenu = () => {
-  const [menuArray, setMenuArray] = useState([]);
+  const [favoritesMenuArray, setFavoritesMenuArray] = useState([]);
   const [fullMenuArray, setFullMenuArray] = useState([]);
 
   const getMenu = async () => {
     try {
       const mediaData = await fetchData(url + '/menu/products');
-      setFullMenuArray(mediaData);
-      console.log(mediaData);
-      const favorites = mediaData.filter((item) =>
-        item.categories.includes("everyone's favorite"),
-      );
 
-      const transformedFavorites = favorites.map((item) => ({
+      // lisätään src atribuutti objektiin, jotta helpompi myöhemmin hakea kuva
+      const transformedMenu = mediaData.map((item) => ({
+        ...item,
         src: rootUrl + item.filename,
-        name: item.name,
-        price: item.price,
       }));
 
-      setMenuArray(transformedFavorites);
+      const favorites = transformedMenu.filter((item) =>
+        item.categories.includes("everyone's favorite"),
+      );
+      setFullMenuArray(transformedMenu);
+      setFavoritesMenuArray(favorites);
     } catch (error) {
       console.error('error', error);
     }
@@ -95,7 +94,7 @@ const useMenu = () => {
   };
 
   return {
-    menuArray,
+    favoritesMenuArray,
     getMenu,
     postMenuItem,
     fullMenuArray,

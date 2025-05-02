@@ -6,7 +6,7 @@ import MenuItem from '../components/MenuRowItem';
 
 const Home = () => {
   const {t} = useTranslation();
-  const {menuArray} = useMenu();
+  const {favoritesMenuArray} = useMenu();
   return (
     <>
       <section
@@ -47,7 +47,7 @@ const Home = () => {
           <div className="w-1/2 space-y-6">
             <ul className="space-y-6">
               <li>
-                {menuArray.map((item) => (
+                {favoritesMenuArray.map((item) => (
                   <MenuItem key={item.name} item={item} />
                 ))}
               </li>
