@@ -14,6 +14,7 @@ const UserProvider = ({children}) => {
     email: '',
     address: '',
     phone: '',
+    filename: '',
   });
 
   const updateUser = (updatedUser) => {
