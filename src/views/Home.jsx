@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import About from './About';
 import {useTranslation} from 'react-i18next';
 import useMenu from '../components/hooks/menuHooks';
@@ -7,6 +7,18 @@ import MenuItem from '../components/MenuRowItem';
 const Home = () => {
   const {t} = useTranslation();
   const {favoritesMenuArray} = useMenu();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % favoritesMenuArray.length,
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [favoritesMenuArray]);
+
   return (
     <>
       <section
@@ -60,8 +72,12 @@ const Home = () => {
             </a>
           </div>
           <img
-            src="https://placehold.co/560x370"
-            className="w-1/2 rounded-lg object-cover shadow-lg"
+            src={
+              favoritesMenuArray[currentImageIndex]?.src ||
+              'https://placehold.co/560x370'
+            }
+            alt={favoritesMenuArray[currentImageIndex]?.name || 'Placeholder'}
+            className="h-[370px] w-[560px] rounded-lg object-cover shadow-lg"
           />
         </div>
       </section>

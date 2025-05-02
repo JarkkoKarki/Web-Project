@@ -7,7 +7,6 @@ const About = () => {
 
   return (
     <>
-      <Map />
       <section id="about-us" className="bg-[#0f1110] py-20 text-center">
         <p className="text-yellow-500 italic">
           {t('aboutPage.special-moments')}
@@ -17,8 +16,8 @@ const About = () => {
         </h3>
         <div className="mx-auto flex max-w-6xl items-center justify-center space-x-6 px-6">
           <img
-            src="https://placehold.co/370x250"
-            className="w-1/3 rounded-lg object-cover shadow-lg"
+            src="src\assets\images\finedining.png"
+            className="h-[250px] w-[370px] rounded-lg object-cover shadow-lg"
             alt="About Us"
           />
           <div className="w-1/3 text-left">
@@ -39,12 +38,13 @@ const About = () => {
             </button>
           </div>
           <img
-            src="https://placehold.co/370x250"
-            className="w-1/3 rounded-lg object-cover shadow-lg"
+            src="src\assets\images\finedining2.png"
+            className="h-[250px] w-[370px] rounded-lg object-cover shadow-lg"
             alt="About Us"
           />
         </div>
       </section>
+      <Map />
     </>
   );
 };
