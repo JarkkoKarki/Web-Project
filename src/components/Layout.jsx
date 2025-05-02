@@ -6,6 +6,7 @@ import {Link, Outlet, useLocation} from 'react-router';
 import {useTranslation} from 'react-i18next';
 import {logoUrl} from '../utils/variables';
 import ShoppingCartElement from './ShoppingCartElement';
+import {Search} from './Search';
 
 const Layout = () => {
   const {language, changeLanguage} = useLanguageContext();
@@ -82,11 +83,7 @@ const Layout = () => {
             )}
           </div>
 
-          <img
-            src="/icons8-search-50.png"
-            alt="Search"
-            className="h-6 w-6 cursor-pointer"
-          />
+          <Search />
 
           {!user ? (
             <>
@@ -99,7 +96,7 @@ const Layout = () => {
             </>
           ) : (
             <>
-              <Link to="/profile">Profile</Link>
+              <Link to="/profile">{t('header.profile')}</Link>
 
               {user && (user.role === 'employee' || user.role === 'admin') && (
                 <>
