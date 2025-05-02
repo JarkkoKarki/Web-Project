@@ -13,7 +13,7 @@ export const UserInformation = () => {
   const {user, updateUser} = useContext(UserContext);
   const [editingField, setEditingField] = useState(null);
   const [temp, setTemp] = useState('');
-  const updateUserApi = useUpdateUser();
+  const {putUser} = useUpdateUser();
 
   const clickHandler = (field) => {
     setEditingField(field);
@@ -46,7 +46,7 @@ export const UserInformation = () => {
         };
       }
 
-      const response = await updateUserApi({
+      const response = await putUser({
         id: user.id,
         ...user,
         ...updatedUser,
