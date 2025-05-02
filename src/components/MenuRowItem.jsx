@@ -13,8 +13,6 @@ const MenuItem = ({item, addToCart}) => {
     }
   };
 
-  console.log(item, ' source');
-
   return (
     <div className="menu-item flex items-center justify-between rounded-md border-b-1 border-b-gray-800 bg-gray-900 p-4">
       <div className="flex h-full flex-col justify-between">
