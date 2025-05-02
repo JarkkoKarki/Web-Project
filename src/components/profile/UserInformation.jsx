@@ -104,7 +104,6 @@ export const UserInformation = () => {
               <PasswordUpdate
                 onSave={(passwordData) => {
                   console.log('Password updated:', passwordData);
-                  // API/Context
                   setEditingField(null);
                 }}
                 onCancel={handleCancel}
@@ -119,7 +118,6 @@ export const UserInformation = () => {
                       first_name: nameData.first_name,
                       last_name: nameData.last_name,
                     });
-                    // API/Context
                     setEditingField(null);
                   }}
                   onCancel={handleCancel}
@@ -157,7 +155,6 @@ export const UserInformation = () => {
           ) : null}
         </div>
       ))}
-      <DeleteUserButton userId={user.id} />
     </div>
   );
 };

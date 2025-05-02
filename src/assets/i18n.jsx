@@ -96,6 +96,7 @@ i18n.use(initReactI18next).init({
           "change-address": 'Change Address',
           "change-phone": 'Change Phone Number',
           "save-img": 'Save Image',
+          "order-history": 'Order History',
         },
         workhubHeader: {
           'workhub': 'Workhub',
@@ -116,6 +117,17 @@ i18n.use(initReactI18next).init({
           'add-menu-title': 'Add Menu item',
           'menu-item-delete': 'Delete',
           'menu-item-modify': 'Change'
+        },
+        orders: {
+          'title': 'Orders',
+          'id': 'ID',
+          'date': 'Date',
+          'status': 'Status',
+          'total': 'Total',
+          'view': 'View',
+          'delete': 'Delete',
+          'view-more': 'View More',
+          'view-less': 'View Less',
         }
       }
     },
@@ -201,6 +213,11 @@ i18n.use(initReactI18next).init({
           "change-address": 'Vaihda osoite',
           "change-phone": 'Vaihda puhelinnumero',
           "save-img": 'Tallenna kuva',
+          "order-history": 'Tilaukset',
+          "order-id": 'ID',
+          "order-date": 'Päivämäärä',
+          "order-status": 'Tila',
+          "order-total": 'Yhteensä',
 
         },
         workhubHeader: {
@@ -222,6 +239,17 @@ i18n.use(initReactI18next).init({
           'add-menu-title': 'Lisää Ruoka',
           'menu-item-delete': 'Poista',
           'menu-item-modify': 'Muuta'
+        },
+        orders: {
+          'title': 'Tilaukset',
+          'id': 'ID',
+          'date': 'Päivämäärä',
+          'status': 'Tila',
+          'total': 'Yhteensä',
+          'view': 'Näytä',
+          'delete': 'Poista',
+          'view-more': 'Näytä lisää',
+          'view-less': 'Näytä vähemmän',
         }
       }
     }
