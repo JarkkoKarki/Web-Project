@@ -25,7 +25,10 @@ i18n.use(initReactI18next).init({
           "about": "About Us",
           "sign-in": "Sign in",
           "sign-out": "Sign Out",
-          'workhub': 'Workhub'
+          'workhub': 'Workhub',
+          'search': 'Search',
+          'profile': 'Profile',
+          'search-placeholder': 'Search...',
         },
 
         footer: {
@@ -135,6 +138,9 @@ i18n.use(initReactI18next).init({
           "sign-in": "Kirjaudu Sisään",
           "sign-out": "Kirjaudu Ulos",
           "workhub": "Työtila",
+          "search": "Haku",
+          "profile": "Käyttäjätili",
+          "search-placeholder": "Hae...",
         },
 
         footer: {

@@ -1,15 +1,15 @@
 import React, {useState, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import DefaultImage from '../../assets/images/default-avatar.jpg';
 import {useUserContext} from '../hooks/contextHooks';
 import {useUpdateUser} from '../hooks/apiHooks';
 import SaveCancelButtons from '../SaveCancelButtons';
+import {rootUrl} from '../../utils/variables';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();
   const {user, updateUser} = useUserContext();
   const {updateProfilePicture} = useUpdateUser();
-  const [avatar, setAvatar] = useState(user?.filename || DefaultImage);
+  const [avatar, setAvatar] = useState(rootUrl + user?.filename);
   const fileUploadRef = useRef();
   const [showButtons, setShowButtons] = useState(false);
 
@@ -33,22 +33,17 @@ export const ProfilePicture = () => {
     if (!uploadedFile || !user.id) {
       return;
     }
-    console.log('file:', uploadedFile);
-    console.log('user id:', user.id);
-    console.log('user:', user);
 
     try {
       const response = await updateProfilePicture(uploadedFile, user.id, user);
-      console.log('response:', response);
 
       if (response) {
-        const cachedURL = URL.createObjectURL(uploadedFile);
-
         updateUser({
           ...user,
-          filename: uploadedFile,
+          filename: response.filename,
         });
-        setAvatar(cachedURL);
+        setAvatar(rootUrl + response.filename);
+        fileUploadRef.current.value = null;
         setShowButtons(false);
       }
     } catch (error) {
@@ -56,21 +51,24 @@ export const ProfilePicture = () => {
     }
   };
 
-  // Subject to change(?)
   const viewImg = () => {
-    const uploadedFile = fileUploadRef.current.files[0];
-    if (!uploadedFile) {
+    if (!user?.filename) {
+      console.error('No filename available to view the image.');
       return;
     }
-    const cachedURL = URL.createObjectURL(uploadedFile);
-    window.open(cachedURL, '_blank');
+
+    const imageUrl = rootUrl + user.filename;
+
+    const newWindow = window.open(imageUrl, '_blank', 'noopener,noreferrer');
+    if (!newWindow) {
+      console.error('Failed to open the image in a new tab.');
+    }
   };
 
   const cancelImgUpload = () => {
-    setAvatar(user?.filename || DefaultImage);
+    setAvatar(rootUrl + user?.filename);
     fileUploadRef.current.value = null;
     setShowButtons(false);
-    console.log('ref:', fileUploadRef.current.value);
   };
 
   return (
@@ -79,7 +77,7 @@ export const ProfilePicture = () => {
         {t('profilePage.profile-picture')}
       </h3>
       <img
-        src={avatar}
+        src={avatar || rootUrl + user?.filename}
         alt="Profile"
         className="h-[300px] w-[300px] rounded-lg object-cover p-2 shadow-lg"
       />

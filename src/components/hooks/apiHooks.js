@@ -62,7 +62,7 @@ const useUser = () => {
 };
 
 const useUpdateUser = () => {
-  const updateUser = useCallback(async (inputs) => {
+  const putUser = useCallback(async (inputs) => {
     if (!inputs || !inputs.id) {
       throw new Error('Invalid inputs: ID is required');
     }
@@ -101,7 +101,7 @@ const useUpdateUser = () => {
     return await fetchData(url + '/users/' + id, fetchOptions);
   }, []);
 
-  return {updateUser, updateProfilePicture};
+  return {putUser, updateProfilePicture};
 };
 
 export {useAuthentication, useUser, useUpdateUser};
