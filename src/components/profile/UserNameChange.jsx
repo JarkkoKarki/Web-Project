@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import SaveCancelButtons from './SaveCancelButtons';
+import SaveCancelButtons from '../SaveCancelButtons';
 
 export const UserNameChange = ({onSave, onCancel}) => {
   const {t} = useTranslation();

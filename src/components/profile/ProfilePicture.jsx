@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
 // import {useUpdateUser} from './hooks/apiHooks';
-import DefaultImage from '../assets/images/default-avatar.jpg';
+import DefaultImage from '../../assets/images/default-avatar.jpg';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();

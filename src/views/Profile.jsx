@@ -1,7 +1,7 @@
 import {useTranslation} from 'react-i18next';
-import ProfilePicture from '../components/ProfilePicture';
-import UserInformation from '../components/UserInformation';
-import DeleteUserButton from '../components/DeleteUserButton';
+import ProfilePicture from '../components/profile/ProfilePicture';
+import UserInformation from '../components/profile/UserInformation';
+import DeleteUserButton from '../components/profile/DeleteUserButton';
 
 const Profile = () => {
   const {t} = useTranslation();
