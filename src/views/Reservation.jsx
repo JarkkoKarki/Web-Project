@@ -1,133 +1,57 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 
 const Reservation = () => {
   const {t} = useTranslation();
+  const [peopleCount, setPeopleCount] = useState(1);
+  const [processCount, setProcessCount] = useState(1);
 
   return (
-    <div className="px-8 py-12">
-      <h2 className="mb-6 text-center text-3xl font-bold">
-        {t('reservationPage.book-table')}
-      </h2>
-      <form
-        action="#"
-        method="POST"
-        className="mx-auto max-w-lg space-y-4 rounded-lg bg-[#1a1c1b] p-6 shadow-lg"
-      >
-        <div>
-          <label htmlFor="date" className="mb-2 block text-sm font-medium">
-            {t('reservationPage.date')}
-          </label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            className="w-full rounded border border-gray-700 bg-[#0d0f0e] p-2 text-white"
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="time" className="mb-2 block text-sm font-medium">
-            {t('reservationPage.time')}
-          </label>
-          <input
-            type="time"
-            id="time"
-            name="time"
-            className="w-full rounded border border-gray-700 bg-[#0d0f0e] p-2 text-white"
-            required
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="party-size"
-            className="mb-2 block text-sm font-medium"
-          >
-            {t('reservationPage.table-size')}
-          </label>
-          <select
-            id="party-size"
-            name="party-size"
-            className="w-full rounded border border-gray-700 bg-[#0d0f0e] p-2 text-white"
-            required
-          >
-            <option value="2-seater">
-              {t('reservationPage.table-2-seater')}
-            </option>
-            <option value="4-seater">
-              {t('reservationPage.table-4-seater')}
-            </option>
-            <option value="6-seater">
-              {t('reservationPage.table-6-seater')}
-            </option>
-            <option value="8-seater">
-              {t('reservationPage.table-8-seater')}
-            </option>
-            <option value="10-seater">
-              {t('reservationPage.table-10-seater')}
-            </option>
-            <option value="large">{t('reservationPage.table-large')}</option>
-          </select>
-        </div>
-
-        <div>
-          <label htmlFor="name" className="mb-2 block text-sm font-medium">
-            {t('reservationPage.name')}
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            className="w-full rounded border border-gray-700 bg-[#0d0f0e] p-2 text-white"
-            placeholder={t('reservationPage.name-placeholder')}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="phone" className="mb-2 block text-sm font-medium">
-            {t('reservationPage.phone-number')}
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            className="w-full rounded border border-gray-700 bg-[#0d0f0e] p-2 text-white"
-            placeholder={t('reservationPage.phone-placeholder')}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="requests" className="mb-2 block text-sm font-medium">
-            {t('reservationPage.special-requests')}
-          </label>
-          <textarea
-            id="requests"
-            name="requests"
-            rows="3"
-            className="w-full rounded border border-gray-700 bg-[#0d0f0e] p-2 text-white"
-            placeholder={t('reservationPage.special-requests-placeholder')}
-          ></textarea>
-        </div>
-
-        <div>
+    <div
+      className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{backgroundImage: "url('src/assets/images/2147772080.jpg')"}}
+    >
+      <div className="relative w-11/12 max-w-md rounded-lg bg-gray-900 p-8 shadow-2xl">
+        <p className="absolute top-2 left-2 text-sm font-semibold text-gray-300">
+          {processCount}/3
+        </p>
+        <h2 className="mb-6 bg-yellow-400 bg-clip-text text-center text-4xl font-extrabold text-transparent">
+          {t('reservationPage.book-table')}
+        </h2>
+        <p className="mb-4 text-center text-lg text-gray-300">
+          How many of you are there?
+        </p>
+        <div className="mb-6 flex items-center justify-center">
           <button
-            type="submit"
-            className="w-full rounded bg-yellow-500 py-2 font-medium text-black transition hover:bg-yellow-600"
+            className="transform rounded-l bg-red-500 px-4 py-2 text-white transition-transform hover:scale-105 hover:bg-red-600"
+            onClick={() => setPeopleCount((prev) => Math.max(prev - 1, 0))}
           >
-            {t('reservationPage.reserve-now')}
+            -
+          </button>
+          <span className="rounded bg-gray-700 px-6 py-2 text-2xl font-semibold text-white">
+            {peopleCount}
+          </span>
+          <button
+            className="transform rounded-r bg-green-500 px-4 py-2 text-white transition-transform hover:scale-105 hover:bg-green-600"
+            onClick={() => setPeopleCount((prev) => prev + 1)}
+          >
+            +
           </button>
         </div>
-      </form>
-
-      <div
-        id="confirmation-message"
-        className="mt-6 hidden text-center font-medium text-green-500"
-      >
-        {t('reservationPage.confirmation-message')}
+        <div className="flex items-center justify-center">
+          <button
+            className="transform rounded bg-yellow-400 px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
+            onClick={() => {
+              if (peopleCount === 0) {
+                alert('Please select at least one person.');
+              } else {
+                console.log('Proceeding to the next step');
+              }
+            }}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
