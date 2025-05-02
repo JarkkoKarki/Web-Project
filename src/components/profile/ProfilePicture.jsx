@@ -4,6 +4,7 @@ import {useUserContext} from '../hooks/contextHooks';
 import {useUpdateUser} from '../hooks/apiHooks';
 import SaveCancelButtons from '../SaveCancelButtons';
 import {rootUrl} from '../../utils/variables';
+import {root} from 'postcss';
 
 export const ProfilePicture = () => {
   const {t} = useTranslation();
@@ -64,7 +65,7 @@ export const ProfilePicture = () => {
   };
 
   const cancelImgUpload = () => {
-    setAvatar(avatar);
+    setAvatar(rootUrl + user?.filename);
     fileUploadRef.current.value = null;
     setShowButtons(false);
   };
