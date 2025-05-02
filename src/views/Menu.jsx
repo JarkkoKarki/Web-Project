@@ -53,40 +53,85 @@ const Menu = () => {
         <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400 underline underline-offset-4">
           MENU
         </h2>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-          <div>
-            <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-              MEALS
-            </h3>
-            <ul className="space-y-6">
-              <li>
-                {fullMenuArray.map((item) => (
-                  <MenuItem
-                    key={item.name}
-                    item={item}
-                    addToCart={handleAddToCart}
-                    className="mx-auto w-3/4"
-                  />
-                ))}
-              </li>
-            </ul>
+        <div className="flex flex-col gap-10 md:flex-row">
+          {/* First Grid */}
+          <div className="grid flex-1 auto-rows-auto gap-10">
+            <div>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                MEALS
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('main course'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem
+                        item={item}
+                        addToCart={handleAddToCart}
+                        className="mx-auto w-3/4"
+                      />
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                SIDES
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('sides'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem
+                        item={item}
+                        addToCart={handleAddToCart}
+                        className="mx-auto w-3/4"
+                      />
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
 
-          <div>
-            <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-              APPETIZERS AND DESSERTS
-            </h3>
-            <ul className="space-y-6">
-              <li>
-                {fullMenuArray.map((item) => (
-                  <MenuItem
-                    key={item.name}
-                    item={item}
-                    className="mx-auto w-3/4"
-                  />
-                ))}
-              </li>
-            </ul>
+          {/* Second Grid */}
+          <div className="grid flex-1 auto-rows-auto gap-10">
+            <div>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                DRINKS
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('drinks'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem
+                        item={item}
+                        addToCart={handleAddToCart}
+                        className="mx-auto w-3/4"
+                      />
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                PLACEHOLDER
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('placeholder'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem
+                        item={item}
+                        addToCart={handleAddToCart}
+                        className="mx-auto w-3/4"
+                      />
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
