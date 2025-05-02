@@ -10,31 +10,17 @@ const useMenu = () => {
     try {
       const mediaData = await fetchData(url + '/menu/products');
 
-      console.log(mediaData, ' mediadata debug');
-      const favorites = mediaData.filter((item) =>
+      // lisätään src atribuutti objektiin, jotta helpompi myöhemmin hakea kuva
+      const transformedMenu = mediaData.map((item) => ({
+        ...item,
+        src: rootUrl + item.filename,
+      }));
+
+      const favorites = transformedMenu.filter((item) =>
         item.categories.includes("everyone's favorite"),
       );
-
-      const transformedFavorites = favorites.map((item) => ({
-        id: item.id,
-        name: item.name,
-        description: item.description,
-        diets: item.diets,
-        src: rootUrl + item.filename,
-        price: item.price,
-      }));
-
-      const transformedMenu = mediaData.map((item) => ({
-        id: item.id,
-        name: item.name,
-        description: item.description,
-        diets: item.diets,
-        src: rootUrl + item.filename,
-        price: item.price,
-      }));
-      console.log(transformedMenu, ' TESTI');
       setFullMenuArray(transformedMenu);
-      setFavoritesMenuArray(transformedFavorites);
+      setFavoritesMenuArray(favorites);
     } catch (error) {
       console.error('error', error);
     }
