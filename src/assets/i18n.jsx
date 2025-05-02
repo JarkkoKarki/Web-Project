@@ -63,23 +63,6 @@ i18n.use(initReactI18next).init({
         registerPage: {},
         reservationPage: {
           "book-table": "Book a Table",
-          "date": "Date",
-          "time": "Time",
-          "table-size": "Table Size",
-          "table-2-seater": "2-Seater Table",
-          "table-4-seater": "4-Seater Table",
-          "table-6-seater": "6-Seater Table",
-          "table-8-seater": "8-Seater Table",
-          "table-10-seater": "10-Seater Table",
-          "table-large": "Large Table (12+ Seats)",
-          "name": "Name",
-          "name-placeholder": "Your Name",
-          "phone-number": "Phone Number",
-          "phone-placeholder": "Your Phone Number",
-          "special-requests": "Special Requests",
-          "special-requests-placeholder": "Any special requests? (Optional)",
-          "reserve-now": "Reserve Now",
-          "confirmation-message": "Your reservation is confirmed! We look forward to seeing you."
         },
         profilePage: {
           "profile": 'Profile',
@@ -184,23 +167,7 @@ i18n.use(initReactI18next).init({
         registerPage: {},
         reservationPage: {
           "book-table": "Varaa pöytä",
-          "date": "Päivämäärä",
-          "time": "Aika",
-          "table-size": "Pöydän koko",
-          "table-2-seater": "2-hengen pöytä",
-          "table-4-seater": "4-hengen pöytä",
-          "table-6-seater": "6-hengen pöytä",
-          "table-8-seater": "8-hengen pöytä",
-          "table-10-seater": "10-hengen pöytä",
-          "table-large": "Iso pöytä (12+ henkilöä)",
-          "name": "Nimi",
-          "name-placeholder": "Sinun nimesi",
-          "phone-number": "Puhelinnumero",
-          "phone-placeholder": "Sinun puhelinnumerosi",
-          "special-requests": "Erityistoiveet",
-          "special-requests-placeholder": "Onko erityistoiveita? (Valinnainen)",
-          "reserve-now": "Varaa nyt",
-          "confirmation-message": "Varaus on vahvistettu! Odotamme innolla tapaamistasi."
+
         },
         profilePage: {
           "profile": 'Profiili',
