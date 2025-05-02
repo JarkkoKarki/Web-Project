@@ -1,8 +1,10 @@
-import { useUserContext } from "../hooks/contextHooks";
-import useForm from "../hooks/formHooks";
+import {useNavigate} from 'react-router';
+import {useUserContext} from '../hooks/contextHooks';
+import useForm from '../hooks/formHooks';
 
 const RegisterForm = () => {
   const {handleRegister} = useUserContext();
+  const navigate = useNavigate();
 
   const initValues = {
     name: '',
@@ -24,6 +26,7 @@ const RegisterForm = () => {
       delete registrationData.name;
       console.log('regData', registrationData);
       await handleRegister(registrationData);
+      navigate('/login');
     } catch (e) {
       alert(e.message);
     }
@@ -38,21 +41,31 @@ const RegisterForm = () => {
     <>
       <h2 className="mb-6 text-2xl font-bold">Register</h2>
       <form onSubmit={handleSubmit}>
-
         <div>
-          <label htmlFor="registername" className="block text-left mb-2 font-bold text-lg">Full Name</label>
+          <label
+            htmlFor="registername"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Full Name
+          </label>
           <input
-              onChange={handleInputChange}
-              autoComplete="name"
-              type="text"
-              id="registername"
-              name="name"
-              placeholder="Your full name"
-              className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-lg"/>
+            onChange={handleInputChange}
+            autoComplete="name"
+            type="text"
+            id="registername"
+            name="name"
+            placeholder="Your full name"
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
         </div>
 
         <div>
-          <label htmlFor="registerusername" className="block text-left mb-2 font-bold text-lg">Username</label>
+          <label
+            htmlFor="registerusername"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Username
+          </label>
           <input
             onChange={handleInputChange}
             autoComplete="username"
@@ -60,11 +73,17 @@ const RegisterForm = () => {
             id="registerusername"
             name="username"
             placeholder="Choose a username"
-            className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-lg"/>
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
         </div>
 
         <div>
-          <label htmlFor="registeremail" className="block text-left mb-2 font-bold text-lg">Email</label>
+          <label
+            htmlFor="registeremail"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Email
+          </label>
           <input
             onChange={handleInputChange}
             autoComplete="email"
@@ -72,11 +91,17 @@ const RegisterForm = () => {
             id="registeremail"
             name="email"
             placeholder="you@example.com"
-            className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-lg"/>
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
         </div>
 
         <div>
-          <label htmlFor="registerpassword" className="block text-left mb-2 font-bold text-lg">Password</label>
+          <label
+            htmlFor="registerpassword"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Password
+          </label>
           <input
             onChange={handleInputChange}
             autoComplete="new-password"
@@ -84,11 +109,17 @@ const RegisterForm = () => {
             id="registerpassword"
             name="password"
             placeholder="Enter password"
-            className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-lg"/>
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
         </div>
 
         <div>
-          <label htmlFor="confirmpassword" className="block text-left mb-2 font-bold text-lg">Confirm Password</label>
+          <label
+            htmlFor="confirmpassword"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Confirm Password
+          </label>
           <input
             onChange={handleInputChange}
             autoComplete="new-password"
@@ -96,11 +127,17 @@ const RegisterForm = () => {
             id="confirmpassword"
             name="confirmpassword"
             placeholder="Re-enter password"
-            className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-lg"/>
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
         </div>
 
         <div>
-          <label htmlFor="address" className="block text-left mb-2 font-bold text-lg">Address</label>
+          <label
+            htmlFor="address"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Address
+          </label>
           <input
             onChange={handleInputChange}
             autoComplete="street-address"
@@ -108,11 +145,16 @@ const RegisterForm = () => {
             id="address"
             name="address"
             placeholder="Your address"
-            className="w-full p-3 mb-5 border border-gray-300 rounded-lg text-lg"/>
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
         </div>
 
-        <button type="submit" className="w-full p-3 bg-gray-400 text-white rounded-lg text-lg font-bold mt-4 hover:bg-gray-500">Register</button>
-
+        <button
+          type="submit"
+          className="mt-4 w-full rounded-lg bg-gray-400 p-3 text-lg font-bold text-white hover:bg-gray-500"
+        >
+          Register
+        </button>
       </form>
     </>
   );

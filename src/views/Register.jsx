@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import LoginForm from '../components/forms/LoginForm';
-import RegisterForm from '../components/forms/RegisterForm';
 import {useNavigate} from 'react-router';
+import RegisterForm from '../components/forms/RegisterForm';
+import LoginForm from '../components/forms/LoginForm';
 
-const Login = () => {
-  const [formToggle, setFormToggle] = useState(true);
+const Register = () => {
+  const [formToggle, setFormToggle] = useState(false);
   const navigate = useNavigate();
 
   const clickHandler = () => {
@@ -34,4 +34,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

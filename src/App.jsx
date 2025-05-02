@@ -16,6 +16,7 @@ import WorkHub from './views/WorkHub';
 import {LanguageProvider} from './contexts/LanguageContext';
 import {ToastContainer} from 'react-toastify';
 import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
+import Register from './views/Register';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
                 <Route path="/reservation" element={<Reservation />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/registration" element={<Register />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/" element={<Home />} />
               </Route>
