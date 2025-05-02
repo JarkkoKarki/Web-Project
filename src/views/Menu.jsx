@@ -5,8 +5,10 @@ import Autoplay from 'embla-carousel-autoplay';
 import MenuCarouselItem from '../components/MenuCarouselItem';
 import MenuItem from '../components/MenuRowItem';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
+import {useTranslation} from 'react-i18next';
 
 const Menu = () => {
+  const {t} = useTranslation();
   const {favoritesMenuArray, fullMenuArray} = useMenu();
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {loop: true, containScroll: 'keepSnaps'},
@@ -33,12 +35,12 @@ const Menu = () => {
         className="mx-auto max-w-6xl bg-[#101211] py-12"
       >
         <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400">
-          CHEFS FAVOURITES
+          {t('menuPage.chefs-favorites')}
         </h2>
 
         {/* Carousel Menu itemeille */}
         <div className="embla overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex gap-5">
+          <div className="embla__container flex">
             {favoritesMenuArray.map((item) => (
               <MenuCarouselItem
                 key={item.src}
@@ -51,14 +53,14 @@ const Menu = () => {
       </section>
       <section id="menu" className="mx-auto max-w-6xl bg-[#101211]">
         <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400 underline underline-offset-4">
-          MENU
+          {t('menuPage.menu')}
         </h2>
         <div className="flex flex-col gap-10 md:flex-row">
           {/* First Grid */}
           <div className="grid flex-1 auto-rows-auto gap-10">
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                MEALS
+                {t('menuPage.meals')}
               </h3>
               <ul className="space-y-6">
                 {fullMenuArray
@@ -76,7 +78,7 @@ const Menu = () => {
             </div>
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                SIDES
+                {t('menuPage.sides')}
               </h3>
               <ul className="space-y-6">
                 {fullMenuArray
@@ -98,7 +100,7 @@ const Menu = () => {
           <div className="grid flex-1 auto-rows-auto gap-10">
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                DRINKS
+                {t('menuPage.drinks')}
               </h3>
               <ul className="space-y-6">
                 {fullMenuArray
@@ -116,7 +118,7 @@ const Menu = () => {
             </div>
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                STARTERS
+                {t('menuPage.starters')}
               </h3>
               <ul className="space-y-6">
                 {fullMenuArray

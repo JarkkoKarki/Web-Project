@@ -1,14 +1,16 @@
 import {toUpper} from 'lodash';
+import {useTranslation} from 'react-i18next';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const MenuItem = ({item, addToCart}) => {
+  const {t} = useTranslation();
   const handleAddToCart = () => {
     if (addToCart) {
       addToCart(item);
-      toast.success(`${item.name} added to cart!`, {
+      toast.success(`${item.name} ${t('menuPage.add-to-cart-prompt')}`, {
         position: 'top-left',
-        autoClose: 2000,
+        autoClose: 1000,
       });
     }
   };
@@ -32,7 +34,7 @@ const MenuItem = ({item, addToCart}) => {
             className="ml-4 cursor-pointer rounded bg-yellow-400 px-2 py-1 text-sm text-black hover:bg-emerald-600"
             onClick={handleAddToCart}
           >
-            Add to Cart
+            {t('menuPage.add-to-cart')}
           </button>
         )}
       </div>
