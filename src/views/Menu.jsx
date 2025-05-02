@@ -116,11 +116,11 @@ const Menu = () => {
             </div>
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                PLACEHOLDER
+                STARTERS
               </h3>
               <ul className="space-y-6">
                 {fullMenuArray
-                  .filter((item) => item.categories.includes('placeholder'))
+                  .filter((item) => item.categories.includes('starter'))
                   .map((item) => (
                     <li key={item.name}>
                       <MenuItem
