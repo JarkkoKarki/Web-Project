@@ -20,20 +20,21 @@ const MenuItem = ({item, addToCart}) => {
         <p className="mt-2 text-sm text-gray-400">{item.description}</p>
         <p className="mt-auto font-bold text-yellow-400">${item.price}</p>
       </div>
-      <img
-        className="ml-4 h-20 w-20 rounded-md object-cover"
-        src={item.src}
-        alt={item.name}
-      />
-
-      {addToCart && (
-        <button
-          className="ml-4 cursor-pointer rounded bg-yellow-400 px-2 py-1 text-sm text-black hover:bg-emerald-600"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </button>
-      )}
+      <div className="ml-4 flex items-center">
+        <img
+          className="h-20 w-20 rounded-md object-cover"
+          src={item.src}
+          alt={item.name}
+        />
+        {addToCart && (
+          <button
+            className="ml-4 cursor-pointer rounded bg-yellow-400 px-2 py-1 text-sm text-black hover:bg-emerald-600"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
+        )}
+      </div>
     </div>
   );
 };

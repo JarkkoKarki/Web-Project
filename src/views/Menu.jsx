@@ -17,7 +17,7 @@ const Menu = () => {
 
   const handleAddToCart = (item) => {
     addItemToCart(item);
-    console.log(`${item.name} added to cart!`);
+    console.log(`${item.name} added to cart! ID: ${item.id}`);
   };
 
   useEffect(() => {
