@@ -71,6 +71,7 @@ const Reservation = () => {
                   selectedDate: formatDate(selectedDate),
                   selectedTime: formatTime(selectedTime),
                 });
+                alert('Tungettu consoliin infot');
               }
             }}
           >
