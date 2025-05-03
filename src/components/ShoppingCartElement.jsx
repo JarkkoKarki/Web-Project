@@ -1,9 +1,11 @@
 import React from 'react';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
 import {toNumber} from 'lodash';
+import {useTranslation} from 'react-i18next';
 
 const ShoppingCartElement = () => {
   const {cartItems, addItemToCart, removeItemFromCart} = useShoppingCart();
+  const {t} = useTranslation();
 
   const calculateTotalPrice = () => {
     return cartItems.reduce((total, item) => {
@@ -39,10 +41,12 @@ const ShoppingCartElement = () => {
   return (
     <div className="shopping-cart-drawer">
       <h2 className="mb-4 text-center text-2xl font-bold text-yellow-500">
-        Shopping Cart
+        {t('shoppingCart.shopping-cart')}
       </h2>
       {cartItems.length === 0 ? (
-        <p className="text-center text-gray-400">Your cart is empty.</p>
+        <p className="text-center text-gray-400">
+          {t('shoppingCart.empty-cart')}
+        </p>
       ) : (
         <>
           <ul className="max-h-[300px] space-y-2 overflow-y-auto px-4">
@@ -64,26 +68,26 @@ const ShoppingCartElement = () => {
                     onClick={() => addItemToCart(item)}
                     className="rounded bg-green-500 px-3 py-1 text-sm font-semibold text-white shadow-md hover:bg-green-600"
                   >
-                    Add
+                    {t('shoppingCart.add')}
                   </button>
                   <button
                     onClick={() => removeItemFromCart(item.id)}
                     className="rounded bg-red-500 px-3 py-1 text-sm font-semibold text-white shadow-md hover:bg-red-600"
                   >
-                    Remove
+                    {t('shoppingCart.remove')}
                   </button>
                 </div>
               </li>
             ))}
           </ul>
           <div className="mt-6 px-4 text-right text-lg font-bold text-yellow-500">
-            Total: {calculateTotalPrice()}€
+            {t('shoppingCart.total')} {calculateTotalPrice()}€
           </div>
           <button
             onClick={handleCheckout}
             className="mx-4 mt-6 w-[calc(100%-2rem)] rounded bg-yellow-500 px-4 py-2 text-sm font-semibold text-black shadow-lg transition hover:bg-yellow-600"
           >
-            Buy now
+            {t('shoppingCart.order-now')}
           </button>
         </>
       )}
