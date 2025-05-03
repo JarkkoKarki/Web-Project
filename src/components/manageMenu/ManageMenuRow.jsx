@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WorkHubMenuRow = ({item, onClick}) => {
+const ManageMenuRow = ({item, onClick}) => {
   return (
     <tr
       onClick={() => onClick(item)}
@@ -13,4 +13,4 @@ const WorkHubMenuRow = ({item, onClick}) => {
   );
 };
 
-export default WorkHubMenuRow;
+export default ManageMenuRow;

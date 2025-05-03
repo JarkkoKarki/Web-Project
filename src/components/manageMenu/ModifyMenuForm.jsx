@@ -2,12 +2,15 @@ import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import useMenu from '../hooks/menuHooks.js';
 import {rootUrl} from '../../utils/variables.js';
-import {useNavigate} from 'react-router';
+import MenuCheckbox from './MenuCheckbox.jsx';
+import MenuInput from './MenuInput.jsx';
+import FileUpload from './FileUpload.jsx';
 
 const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   const {t} = useTranslation();
   const {updateMenuItem, deleteMenuItem} = useMenu();
   const [file, setFile] = useState(null);
+
 
   const mapLabelsToIds = (labels, options) => {
     return options
@@ -81,7 +84,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
         alert(t('manageMenu.all-fields-required'));
         return;
       }
-
+      console.log(file)
       const token = localStorage.getItem('token');
       const menuResult = await updateMenuItem(file, inputs, item.id, token);
       console.log('menuresult', menuResult);
@@ -134,110 +137,53 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
           X
         </button>
         <div className="flex w-full flex-row gap-8">
-          <div className="flex flex-col items-center">
-            <label htmlFor="file" className="mb-2 text-sm text-gray-300">
-              {t('manageMenu.menu-item-file')}
-            </label>
-
-            <input
-              name="file"
-              type="file"
-              id="file"
-              accept="image/*, video/*"
-              onChange={handleFileChange}
-              className="hidden"
-            />
-
-            <label
-              htmlFor="file"
-              className="mb-4 cursor-pointer rounded border border-yellow-500 px-4 py-2 font-semibold transition hover:bg-yellow-500 hover:text-black"
-            >
-              {file ? file.name : t('manageMenu.menu-item-button')}
-            </label>
-
-            <img
-              src={file ? URL.createObjectURL(file) : rootUrl + item.filename}
-              alt="preview"
-              className="h-[200px] w-[200px] max-w-full rounded border border-gray-600 object-cover"
-            />
-          </div>
+          <FileUpload
+            file={file}
+            onFileChange={handleFileChange}
+            filename={item.filename}
+            rootUrl={rootUrl}
+            label={t('manageMenu.menu-item-button')}
+          />
 
           <div className="flex flex-grow flex-col gap-4 pt-23">
-            <input
+            <MenuInput
               name="name"
-              type="text"
-              id="name"
               value={inputs.name}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-name')}
-              className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
             />
 
-            <input
+            <MenuInput
               name="description"
-              type="text"
-              id="description"
               value={inputs.description}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-description')}
-              className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
             />
-
-            <input
+            <MenuInput
               name="price"
-              type="text"
-              id="price"
               value={inputs.price}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-price')}
-              className="w-full rounded border border-[#2a2c2b] bg-[#101211] px-4 py-2 text-lg text-white focus:ring-2 focus:ring-yellow-500 focus:outline-none"
+              type="text"
             />
           </div>
         </div>
 
-        <div className="mt-6 w-full">
-          <h3 className="mb-2 text-lg font-semibold text-yellow-400">
-            {t('manageMenu.menu-item-categories')}
-          </h3>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {categoryOptions.map((category) => (
-              <label
-                key={category.id}
-                className="flex items-center gap-2 text-white"
-              >
-                <input
-                  type="checkbox"
-                  value={category.id}
-                  checked={inputs.categories.includes(category.id)}
-                  onChange={(e) => handleCheckboxChange(e, 'categories')}
-                />
-                {category.label}
-              </label>
-            ))}
-          </div>
-        </div>
+        <MenuCheckbox
+          title={t('manageMenu.menu-item-categories')}
+          name="categories"
+          options={categoryOptions}
+          selectedValues={inputs.categories}
+          onChange={handleCheckboxChange}
+        />
 
-        <div className="mt-6 w-full">
-          <h3 className="mb-2 text-lg font-semibold text-yellow-400">
-            {t('manageMenu.menu-item-diets')}
-          </h3>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {dietOptions.map((diet) => (
-              <label
-                key={diet.id}
-                className="flex items-center gap-2 text-white"
-              >
-                <input
-                  type="checkbox"
-                  value={diet.id}
-                  checked={inputs.diets.includes(diet.id)}
-                  onChange={(e) => handleCheckboxChange(e, 'diets')}
-                />
-                {diet.label}
-              </label>
-            ))}
-          </div>
-        </div>
+        <MenuCheckbox
+          title={t('manageMenu.menu-item-diets')}
+          name="diets"
+          options={dietOptions}
+          selectedValues={inputs.diets}
+          onChange={handleCheckboxChange}
+        />
 
         <div className="mt-8 flex w-full justify-between">
           <button

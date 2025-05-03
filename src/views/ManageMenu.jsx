@@ -1,8 +1,8 @@
-import AddMenuForm from '../components/forms/AddMenuForm.jsx';
+import AddMenuForm from '../components/manageMenu/AddMenuForm.jsx';
 import useMenu from '../components/hooks/menuHooks.js';
-import WorkHubMenuRow from '../components/WorkHubMenuRow.jsx';
+import ManageMenuRow from '../components/manageMenu/ManageMenuRow.jsx';
 import {useTranslation} from 'react-i18next';
-import ModifyMenuForm from '../components/forms/ModifyMenuForm.jsx';
+import ModifyMenuForm from '../components/manageMenu/ModifyMenuForm.jsx';
 import {useState} from 'react';
 
 const ManageMenu = () => {
@@ -45,7 +45,7 @@ const ManageMenu = () => {
               </thead>
               <tbody>
                 {fullMenuArray.map((item) => (
-                  <WorkHubMenuRow
+                  <ManageMenuRow
                     key={item.id}
                     item={item}
                     onClick={handleClick}
