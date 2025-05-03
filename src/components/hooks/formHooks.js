@@ -35,11 +35,16 @@ const useForm = (callback, initState) => {
     });
   };
 
+  const resetForm = () => {
+    setInputs(initState);
+  };
+
   return {
     handleSubmit,
     handleInputChange,
     handleCheckboxChange,
     inputs,
+    resetForm
   };
 };
 

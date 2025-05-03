@@ -36,10 +36,12 @@ const useMenu = () => {
     formData.append('description', inputs.description);
     formData.append('price', inputs.price);
     formData.append('file', file);
+
     inputs.categories.forEach((category) =>
       formData.append('categories[]', category),
     );
-    inputs.diets.forEach((diet) => formData.append('diets[]', diet));
+    inputs.diets.forEach((diet) =>
+      formData.append('diets[]', diet));
 
     const fetchOptions = {
       method: 'POST',
@@ -79,7 +81,8 @@ const useMenu = () => {
       formData.append('categories[]', category),
     );
 
-    inputs.diets.forEach((diet) => formData.append('diets[]', diet));
+    inputs.diets.forEach((diet) =>
+      formData.append('diets[]', diet));
 
     const fetchOptions = {
       method: 'PUT',
