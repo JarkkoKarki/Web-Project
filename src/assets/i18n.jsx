@@ -145,7 +145,15 @@ i18n.use(initReactI18next).init({
           'delete': 'Delete',
           'view-more': 'View More',
           'view-less': 'View Less',
-        }
+        },
+        shoppingCart: {
+          "shopping-cart": "Shopping Cart",
+          "empty-cart": "Your cart is empty.",
+          "add": "Add",
+          "remove": "Remove",
+          "total": "Total:",
+          "order-now": "Place order",
+        },
       }
     },
     fi: {
@@ -283,7 +291,15 @@ i18n.use(initReactI18next).init({
           'delete': 'Poista',
           'view-more': 'Näytä lisää',
           'view-less': 'Näytä vähemmän',
-        }
+        },
+        shoppingCart: {
+          "shopping-cart": "Ostoskori",
+          "empty-cart": "Tyhjää täynnä",
+          "add": "Lisää",
+          "remove": "Poista",
+          "total": "Summa:",
+          "order-now": "Tilaamaan",
+        },
       }
     }
   },
