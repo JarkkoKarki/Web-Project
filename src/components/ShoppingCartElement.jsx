@@ -38,35 +38,37 @@ const ShoppingCartElement = () => {
 
   return (
     <div className="shopping-cart-drawer">
-      <h2 className="mb-4 text-xl font-bold">Shopping Cart</h2>
+      <h2 className="mb-4 text-center text-2xl font-bold text-yellow-500">
+        Shopping Cart
+      </h2>
       {cartItems.length === 0 ? (
-        <p className="text-gray-500">Your cart is empty.</p>
+        <p className="text-center text-gray-400">Your cart is empty.</p>
       ) : (
         <>
-          <ul className="space-y-4">
+          <ul className="max-h-[300px] space-y-2 overflow-y-auto px-4">
             {cartItems.map((item, index) => (
               <li
                 key={`${item.id}-${index}`}
-                className="flex flex-wrap items-center justify-between gap-2 border-b pt-4 pb-4"
+                className="flex items-center justify-between rounded-lg bg-gray-700 p-4 shadow-md"
               >
-                <span className="max-w-[150px] truncate font-medium">
-                  {item.name}
-                </span>
-                <span className="text-amber-300">{item.price}</span>
-                <span className="text-zinc-500">x</span>
-                <span className="text-gray-50">{item.quantity}</span>
-                <span>|</span>
+                <div className="flex flex-col space-y-1">
+                  <span className="max-w-[120px] truncate font-medium text-white">
+                    {item.name}
+                  </span>
+                  <span className="font-semibold text-amber-300">
+                    {item.price}€ x {item.quantity}
+                  </span>
+                </div>
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => addItemToCart(item)}
-                    className="cursor-pointer font-semibold text-green-500 hover:text-green-700"
+                    className="rounded bg-green-500 px-3 py-1 text-sm font-semibold text-white shadow-md hover:bg-green-600"
                   >
                     Add
                   </button>
-                  <span>|</span>
                   <button
                     onClick={() => removeItemFromCart(item.id)}
-                    className="cursor-pointer text-red-500 hover:text-red-700"
+                    className="rounded bg-red-500 px-3 py-1 text-sm font-semibold text-white shadow-md hover:bg-red-600"
                   >
                     Remove
                   </button>
@@ -74,12 +76,12 @@ const ShoppingCartElement = () => {
               </li>
             ))}
           </ul>
-          <div className="mt-4 text-right font-bold">
-            Total: ${calculateTotalPrice()}
+          <div className="mt-6 px-4 text-right text-lg font-bold text-yellow-500">
+            Total: {calculateTotalPrice()}€
           </div>
           <button
             onClick={handleCheckout}
-            className="mt-4 w-full rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+            className="mx-4 mt-6 w-[calc(100%-2rem)] rounded bg-yellow-500 px-4 py-2 text-sm font-semibold text-black shadow-lg transition hover:bg-yellow-600"
           >
             Buy now
           </button>
