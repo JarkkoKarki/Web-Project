@@ -10,7 +10,7 @@ const useMenu = () => {
 
   const getMenu = async () => {
     try {
-      const lang = t('menuUrl.menuUrl');
+      const lang = t('languageUrl.url');
       const mediaData = await fetchData(url + '/menu/products/'+lang);
 
       // lisätään src atribuutti objektiin, jotta helpompi myöhemmin hakea kuva

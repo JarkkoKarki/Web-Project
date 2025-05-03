@@ -1,6 +1,7 @@
 import {useCallback} from 'react';
 import {fetchData} from '../../utils/fetchData';
 import {url} from '../../utils/variables';
+import {useTranslation} from 'react-i18next';
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
@@ -105,6 +106,8 @@ const useUpdateUser = () => {
 };
 
 const useOrders = () => {
+  const {t} = useTranslation();
+  const lang = t('menuUrl.menuUrl')
   const getOrdersByUserId = useCallback(async () => {
     const fetchOptions = {
       headers: {
@@ -112,7 +115,7 @@ const useOrders = () => {
       },
     };
 
-    return await fetchData(url + '/orders/myorders/', fetchOptions);
+    return await fetchData(url + '/orders/myorders/' + lang, fetchOptions);
   }, []);
 
   return {getOrdersByUserId};

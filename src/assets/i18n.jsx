@@ -18,8 +18,8 @@ i18n.use(initReactI18next).init({
     en: {
       translations: {
 
-        menuUrl: {
-          "menuUrl": "en"
+        languageUrl: {
+          "url": "en"
         },
 
         header: {
@@ -163,8 +163,8 @@ i18n.use(initReactI18next).init({
     fi: {
       translations: {
 
-        menuUrl: {
-          "menuUrl": "fi"
+        languageUrl: {
+          "url": "fi"
         },
 
         header: {
