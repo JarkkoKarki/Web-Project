@@ -59,7 +59,7 @@ const Home = () => {
           <div className="w-1/2 space-y-6">
             <ul className="space-y-6">
               <li>
-                {favoritesMenuArray.map((item) => (
+                {favoritesMenuArray.slice(0, 3).map((item) => (
                   <MenuItem key={item.name} item={item} />
                 ))}
               </li>
