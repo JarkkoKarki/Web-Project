@@ -40,8 +40,10 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   ];
 
   const [inputs, setInputs] = useState({
-    name: item.name,
-    description: item.description,
+    name_fi: item.name_fi,
+    name_en: item.name_en,
+    desc_fi: item.desc_fi,
+    desc_en: item.desc_en,
     price: item.price,
     filename: item.filename,
     categories: Array.isArray(item.categories)
@@ -77,8 +79,10 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   const doModifyMenuItem = async () => {
     try {
       if (
-        !inputs.name.trim() ||
-        !inputs.description.trim() ||
+        !inputs.name_fi.trim() ||
+        !inputs.name_en.trim() ||
+        !inputs.desc_fi.trim() ||
+        !inputs.desc_en.trim() ||
         !inputs.price.trim()
       ) {
         alert(t('manageMenu.all-fields-required'));
@@ -147,15 +151,29 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
 
           <div className="flex flex-grow flex-col gap-4 pt-23">
             <MenuInput
-              name="name"
-              value={inputs.name}
+              name="name_fi"
+              value={inputs.name_fi}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-name')}
             />
 
             <MenuInput
-              name="description"
-              value={inputs.description}
+              name="name_en"
+              value={inputs.name_en}
+              onChange={handleInputChange}
+              placeholder={t('manageMenu.menu-item-name')}
+            />
+
+            <MenuInput
+              name="desc_fi"
+              value={inputs.desc_fi}
+              onChange={handleInputChange}
+              placeholder={t('manageMenu.menu-item-description')}
+            />
+
+            <MenuInput
+              name="desc_en"
+              value={inputs.desc_en}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-description')}
             />
