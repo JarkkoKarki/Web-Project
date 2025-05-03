@@ -2,12 +2,18 @@ import {toUpper} from 'lodash';
 import {useTranslation} from 'react-i18next';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {useShoppingCart} from '../contexts/ShoppingCartContext';
+import {useUserContext} from './hooks/contextHooks';
 
-const MenuItem = ({item, addToCart}) => {
+const MenuItem = ({item}) => {
   const {t} = useTranslation();
+  const {addItemToCart} = useShoppingCart();
+  const {user} = useUserContext();
+
   const handleAddToCart = () => {
-    if (addToCart) {
-      addToCart(item);
+    if (addItemToCart) {
+      addItemToCart(item);
+      console.log(`${item.name} added to cart! ID: ${item.id}`);
       toast.success(`${item.name} ${t('menuPage.add-to-cart-prompt')}`, {
         position: 'top-left',
         autoClose: 1000,
@@ -29,13 +35,16 @@ const MenuItem = ({item, addToCart}) => {
           src={item.src}
           alt={item.name}
         />
-        {addToCart && (
+
+        {addItemToCart && user && location.pathname !== '/' ? (
           <button
             className="ml-4 cursor-pointer rounded bg-yellow-400 px-2 py-1 text-sm text-black hover:bg-emerald-600"
             onClick={handleAddToCart}
           >
             {t('menuPage.add-to-cart')}
           </button>
+        ) : (
+          ''
         )}
       </div>
     </div>

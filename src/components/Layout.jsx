@@ -1,29 +1,23 @@
-import {useEffect, useState} from 'react';
-import {useLanguageContext} from '../contexts/LanguageContext';
+import {useEffect} from 'react';
 import {useUserContext} from './hooks/contextHooks';
 import {Link, Outlet, useLocation} from 'react-router';
 import {useTranslation} from 'react-i18next';
 import {logoUrl} from '../utils/variables';
 import ShoppingCartElement from './ShoppingCartElement';
 import {Search} from './Search';
+import LanguageChange from './LanguageChange';
 
 const Layout = () => {
   const {t} = useTranslation();
-  const {language, changeLanguage} = useLanguageContext();
   const {user, handleAutoLogin} = useUserContext();
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
-
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
 
   useEffect(() => {
     handleAutoLogin();
   }, []);
 
   return (
-    <div className="bg-[#0d0f0e] font-sans text-white">
+    <div className="bg-[#0d0f0e] text-white">
       <header className="flex items-center justify-between border-b border-gray-800 bg-[#0d0f0e] px-8 py-4">
         <div className="flex items-center space-x-3">
           <img src={logoUrl} alt="Logo" className="h-8 w-8" />
@@ -55,55 +49,30 @@ const Layout = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          {/* Language Switcher */}
-          <div className="flex space-x-2">
-            {language === 'fi' ? (
-              <button className="font-bold text-yellow-500">Suomi</button>
-            ) : (
-              <button
-                onClick={() => changeLanguage('fi')}
-                className="cursor-pointer hover:text-yellow-500"
-              >
-                Suomi
-              </button>
-            )}
-            <span>|</span>
-            {language === 'en' ? (
-              <button className="font-bold text-yellow-500">English</button>
-            ) : (
-              <button
-                onClick={() => changeLanguage('en')}
-                className="cursor-pointer hover:text-yellow-500"
-              >
-                English
-              </button>
-            )}
-          </div>
+          {/* KIELET */}
+          <LanguageChange />
 
+          {/* HAKU */}
           <Search />
 
           {!user ? (
-            <>
-              <Link
-                to="/login"
-                className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
-              >
-                {t('header.sign-in')}
-              </Link>
-            </>
+            <Link
+              to="/login"
+              className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+            >
+              {t('header.sign-in')}
+            </Link>
           ) : (
             <>
               <Link to="/profile">{t('header.profile')}</Link>
 
               {user && (user.role === 'employee' || user.role === 'admin') && (
-                <>
-                  <Link
-                    to="/workhub"
-                    className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
-                  >
-                    {t('header.workhub')}
-                  </Link>
-                </>
+                <Link
+                  to="/workhub"
+                  className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                >
+                  {t('header.workhub')}
+                </Link>
               )}
 
               <Link
@@ -119,31 +88,12 @@ const Layout = () => {
       <main className="p-8">
         <Outlet />
       </main>
+
+      {/* KAIKKI OSTOKORIIN LIITTYVÄ, -> näkyy vaan noissa osotteissa + vain jos on kirjautunut */}
       {user && (
         <>
-          {/* Shopping Cart Button */}
-          {(location.pathname === '/' ||
-            location.pathname === '/menu' ||
-            location.pathname === '/about') && (
-            <button
-              onClick={toggleCart}
-              className="fixed right-4 bottom-4 cursor-pointer rounded-full bg-yellow-500 p-4 text-black shadow-lg transition hover:bg-yellow-600"
-            >
-              🛒
-            </button>
-          )}
-
-          {/* Shopping Cart Sidebar */}
-          {isCartOpen && (
-            <div className="bottom-20% fixed top-20 right-10 z-999 h-auto w-100 bg-gray-800 p-4 text-white shadow-lg">
-              <button
-                onClick={toggleCart}
-                className="cursor-pointer rounded-full bg-red-500 p-2 text-white hover:bg-red-600"
-              >
-                Close
-              </button>
-              <ShoppingCartElement />
-            </div>
+          {['/', '/menu', '/about'].includes(location.pathname) && (
+            <ShoppingCartElement />
           )}
         </>
       )}

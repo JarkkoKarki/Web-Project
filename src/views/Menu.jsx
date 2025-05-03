@@ -4,7 +4,6 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import MenuCarouselItem from '../components/MenuCarouselItem';
 import MenuItem from '../components/MenuRowItem';
-import {useShoppingCart} from '../contexts/ShoppingCartContext';
 import {useTranslation} from 'react-i18next';
 
 const Menu = () => {
@@ -14,13 +13,6 @@ const Menu = () => {
     {loop: true, containScroll: 'keepSnaps'},
     [Autoplay({delay: 3000, stopOnInteraction: false})],
   );
-
-  const {addItemToCart} = useShoppingCart();
-
-  const handleAddToCart = (item) => {
-    addItemToCart(item);
-    console.log(`${item.name} added to cart! ID: ${item.id}`);
-  };
 
   useEffect(() => {
     if (emblaApi) {
@@ -67,11 +59,7 @@ const Menu = () => {
                   .filter((item) => item.categories.includes('main course'))
                   .map((item) => (
                     <li key={item.name}>
-                      <MenuItem
-                        item={item}
-                        addToCart={handleAddToCart}
-                        className="mx-auto w-3/4"
-                      />
+                      <MenuItem item={item} />
                     </li>
                   ))}
               </ul>
@@ -85,11 +73,7 @@ const Menu = () => {
                   .filter((item) => item.categories.includes('sides'))
                   .map((item) => (
                     <li key={item.name}>
-                      <MenuItem
-                        item={item}
-                        addToCart={handleAddToCart}
-                        className="mx-auto w-3/4"
-                      />
+                      <MenuItem item={item} />
                     </li>
                   ))}
               </ul>
@@ -107,11 +91,7 @@ const Menu = () => {
                   .filter((item) => item.categories.includes('drinks'))
                   .map((item) => (
                     <li key={item.name}>
-                      <MenuItem
-                        item={item}
-                        addToCart={handleAddToCart}
-                        className="mx-auto w-3/4"
-                      />
+                      <MenuItem item={item} />
                     </li>
                   ))}
               </ul>
@@ -125,11 +105,7 @@ const Menu = () => {
                   .filter((item) => item.categories.includes('starter'))
                   .map((item) => (
                     <li key={item.name}>
-                      <MenuItem
-                        item={item}
-                        addToCart={handleAddToCart}
-                        className="mx-auto w-3/4"
-                      />
+                      <MenuItem item={item} />
                     </li>
                   ))}
               </ul>

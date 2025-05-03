@@ -157,6 +157,7 @@ i18n.use(initReactI18next).init({
           "remove": "Remove",
           "total": "Total:",
           "order-now": "Place order",
+          "close": "Close",
         },
       }
     },
@@ -176,7 +177,7 @@ i18n.use(initReactI18next).init({
           "sign-out": "Kirjaudu Ulos",
           "workhub": "Työtila",
           "search": "Haku",
-          "profile": "Käyttäjätili",
+          "profile": "Profiili",
           "search-placeholder": "Hae...",
         },
 
@@ -307,6 +308,7 @@ i18n.use(initReactI18next).init({
           "remove": "Poista",
           "total": "Summa:",
           "order-now": "Tilaamaan",
+          "close": "Sulje",
         },
       }
     }

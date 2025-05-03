@@ -1,6 +1,4 @@
-const MenuCarouselItem = (props) => {
-  const {item} = props;
-
+const MenuCarouselItem = ({item}) => {
   return (
     <div className="embla__slide mx-auto w-full max-w-xs flex-shrink-0 rounded bg-[#1a1a1a] p-1 shadow-md">
       <img

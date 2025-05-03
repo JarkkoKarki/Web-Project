@@ -1,10 +1,10 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, {createContext, useState, useContext} from 'react';
 import i18n from 'i18next';
 
 const LanguageContext = createContext();
 
-export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(i18n.language || 'en');
+export const LanguageProvider = ({children}) => {
+  const [language, setLanguage] = useState(i18n.language);
 
   const changeLanguage = (lang) => {
     setLanguage(lang);
@@ -12,7 +12,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ language, changeLanguage }}>
+    <LanguageContext.Provider value={{language, changeLanguage}}>
       {children}
     </LanguageContext.Provider>
   );
