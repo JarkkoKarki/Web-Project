@@ -8,7 +8,7 @@ const useMenu = () => {
 
   const getMenu = async () => {
     try {
-      const mediaData = await fetchData(url + '/menu/products');
+      const mediaData = await fetchData(url + '/menu/products/en');
 
       // lisätään src atribuutti objektiin, jotta helpompi myöhemmin hakea kuva
       const transformedMenu = mediaData.map((item) => ({
