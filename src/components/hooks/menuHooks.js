@@ -1,14 +1,17 @@
 import {useEffect, useState} from 'react';
 import {rootUrl, url} from '../../utils/variables';
 import {fetchData} from '../../utils/fetchData';
+import {useTranslation} from 'react-i18next';
 
 const useMenu = () => {
   const [favoritesMenuArray, setFavoritesMenuArray] = useState([]);
   const [fullMenuArray, setFullMenuArray] = useState([]);
+  const {t} = useTranslation();
 
   const getMenu = async () => {
     try {
-      const mediaData = await fetchData(url + '/menu/products/en');
+      const lang = t('menuUrl.menuUrl');
+      const mediaData = await fetchData(url + '/menu/products/'+lang);
 
       // lisätään src atribuutti objektiin, jotta helpompi myöhemmin hakea kuva
       const transformedMenu = mediaData.map((item) => ({
