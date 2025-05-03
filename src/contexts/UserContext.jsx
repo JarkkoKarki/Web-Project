@@ -1,21 +1,11 @@
-import {createContext, useCallback} from 'react';
+import {createContext, useState} from 'react';
 import {useAuthentication, useUser} from '../components/hooks/apiHooks';
 import {useNavigate, useLocation} from 'react-router';
-import useLocalStorage from '../components/hooks/useLocalStorage';
 
 const UserContext = createContext(null);
 
 const UserProvider = ({children}) => {
-  const [user, setUser] = useLocalStorage('user', {
-    id: '',
-    first_name: '',
-    last_name: '',
-    username: '',
-    email: '',
-    address: '',
-    phone: '',
-    filename: '',
-  });
+  const [user, setUser] = useState(null);
 
   const updateUser = (updatedUser) => {
     setUser((prevUser) => ({
@@ -24,7 +14,6 @@ const UserProvider = ({children}) => {
     }));
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useLocalStorage('isLoggedIn', false);
   const {postLogin} = useAuthentication();
   const {getUserByToken, postUser} = useUser();
   const navigate = useNavigate();
@@ -35,28 +24,25 @@ const UserProvider = ({children}) => {
     localStorage.setItem('token', loginResult.token);
     console.log('login result', loginResult);
     setUser(loginResult.user);
-    setIsLoggedIn(true);
     navigate('/');
   };
 
-  const handleLogout = useCallback(() => {
-    try {
-      localStorage.removeItem('token');
-      setUser(null);
-      setIsLoggedIn(false);
-      navigate('/');
-    } catch (e) {
-      console.log(e.message);
-    }
-  }, [navigate]);
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/');
+  };
 
-  const handleAutoLogin = useCallback(async () => {
+  const handleAutoLogin = async () => {
     try {
       const token = localStorage.getItem('token');
+
       if (token) {
-        await getUserByToken(token);
-        // setUser(userResponse);
-        setIsLoggedIn(true);
+        console.log(token, ' TOKENI');
+        const userResponse = await getUserByToken(token);
+        console.log('------------USER OBJEKTI---------', userResponse);
+        console.log('ID: ', userResponse.user_id);
+        setUser(userResponse);
         // console.log('location', location);
         navigate(location.pathname);
 
@@ -68,13 +54,7 @@ const UserProvider = ({children}) => {
       handleLogout();
       console.log(e.message);
     }
-  }, [
-    setIsLoggedIn,
-    getUserByToken,
-    navigate,
-    location.pathname,
-    handleLogout,
-  ]);
+  };
 
   const handleRegister = async (registrationData) => {
     try {
@@ -93,7 +73,6 @@ const UserProvider = ({children}) => {
       value={{
         user,
         updateUser,
-        isLoggedIn,
         handleLogin,
         handleLogout,
         handleAutoLogin,

@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useLanguageContext} from '../contexts/LanguageContext';
 import {useUserContext} from './hooks/contextHooks';
-import {useShoppingCart} from '../contexts/ShoppingCartContext';
 import {Link, Outlet, useLocation} from 'react-router';
 import {useTranslation} from 'react-i18next';
 import {logoUrl} from '../utils/variables';
@@ -9,11 +8,9 @@ import ShoppingCartElement from './ShoppingCartElement';
 import {Search} from './Search';
 
 const Layout = () => {
+  const {t} = useTranslation();
   const {language, changeLanguage} = useLanguageContext();
   const {user, handleAutoLogin} = useUserContext();
-  // eslint-disable-next-line no-unused-vars
-  const {cartItems} = useShoppingCart();
-  const {t} = useTranslation();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const location = useLocation();
 
