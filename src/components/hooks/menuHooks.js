@@ -35,8 +35,10 @@ const useMenu = () => {
 
   const postMenuItem = async (file, inputs, token) => {
     const formData = new FormData();
-    formData.append('name', inputs.name);
-    formData.append('description', inputs.description);
+    formData.append('name_fi', inputs.name_fi);
+    formData.append('name_en', inputs.name_en);
+    formData.append('desc_fi', inputs.desc_fi);
+    formData.append('desc_en', inputs.desc_en);
     formData.append('price', inputs.price);
     formData.append('file', file);
 
@@ -75,8 +77,10 @@ const useMenu = () => {
 
   const updateMenuItem = async (file, inputs, id, token) => {
     const formData = new FormData();
-    formData.append('name', inputs.name);
-    formData.append('description', inputs.description);
+    formData.append('name_fi', inputs.name_fi);
+    formData.append('name_en', inputs.name_en);
+    formData.append('desc_fi', inputs.desc_fi);
+    formData.append('desc_en', inputs.desc_en);
     formData.append('price', inputs.price);
     formData.append('file', file);
 

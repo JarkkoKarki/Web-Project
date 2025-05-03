@@ -33,8 +33,10 @@ const AddMenuForm = ({onSuccess}) => {
   ];
 
   const initValues = {
-    name: '',
-    description: '',
+    name_fi: '',
+    name_en: '',
+    desc_fi: '',
+    desc_en: '',
     price: '',
     filename: '',
     categories: [],
@@ -45,8 +47,10 @@ const AddMenuForm = ({onSuccess}) => {
     console.log(inputs);
     try {
       if (
-        !inputs.name.trim() ||
-        !inputs.description.trim() ||
+        !inputs.name_fi.trim() ||
+        !inputs.name_en.trim() ||
+        !inputs.desc_fi.trim() ||
+        !inputs.desc_en.trim() ||
         !inputs.price.trim()
       ) {
         alert(t('manageMenu.all-fields-required'));
@@ -57,6 +61,7 @@ const AddMenuForm = ({onSuccess}) => {
         alert(t('manageMenu.file-field-required'));
         return;
       }
+      console.log(file)
       const token = localStorage.getItem('token');
       const menuResult = await postMenuItem(file, inputs, token);
       console.log('menuresult', menuResult);
@@ -100,14 +105,26 @@ const AddMenuForm = ({onSuccess}) => {
 
           <div className="w-full md:w-2/3 flex flex-col gap-7 pt-23">
             <MenuInput
-              name="name"
-              value={inputs.name}
+              name="name_fi"
+              value={inputs.name_fi}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-name')}
             />
             <MenuInput
-              name="description"
-              value={inputs.description}
+              name="name_en"
+              value={inputs.name_en}
+              onChange={handleInputChange}
+              placeholder={t('manageMenu.menu-item-name')}
+            />
+            <MenuInput
+              name="desc_fi"
+              value={inputs.desc_fi}
+              onChange={handleInputChange}
+              placeholder={t('manageMenu.menu-item-description')}
+            />
+            <MenuInput
+              name="desc_en"
+              value={inputs.desc_en}
               onChange={handleInputChange}
               placeholder={t('manageMenu.menu-item-description')}
             />
