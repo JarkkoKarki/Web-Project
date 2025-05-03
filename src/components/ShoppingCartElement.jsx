@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
 import {toNumber} from 'lodash';
 import {useTranslation} from 'react-i18next';
+import {url} from '../utils/variables';
 
 const ShoppingCartElement = () => {
   const {t} = useTranslation();
@@ -21,9 +22,10 @@ const ShoppingCartElement = () => {
 
   // luodaan uusi objekti, missä products sisältää id:t ja summa
   const mapCartItemsToPayload = () => {
-    const products = cartItems.flatMap((item) =>
-      Array(toNumber(item.quantity)).fill(item.id),
-    );
+    const products = cartItems.map((item) => ({
+      id: item.id,
+      quantity: toNumber(item.quantity),
+    }));
     const total_price = calculateTotalPrice();
 
     return {products, total_price};
@@ -32,18 +34,15 @@ const ShoppingCartElement = () => {
   const handleCheckout = async () => {
     try {
       const payload = mapCartItemsToPayload();
+      console.log(payload);
 
-      const response = await fetch(
-        'http://10.120.32.87/app/api/payment/create-checkout-session',
-        {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({
-            // TODO: käyttää suoraan payload objektia backendille stripee varte
-            productIds: payload.products, // käytetään uutta payload objektia
-          }),
-        },
-      );
+      const response = await fetch(url + '/payment/create-checkout-session', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          products: payload.products, // Send products with id and quantity
+        }),
+      });
 
       const data = await response.json();
 
@@ -56,7 +55,6 @@ const ShoppingCartElement = () => {
       console.error('Checkout failed:', err);
     }
   };
-  console.log(cartItems);
 
   return (
     <>
