@@ -13,15 +13,28 @@ const ShoppingCartElement = () => {
     }, 0);
   };
 
+  // luodaan uusi objekti, missä products sisältää id:t ja summa
+  const mapCartItemsToPayload = () => {
+    const products = cartItems.flatMap((item) =>
+      Array(toNumber(item.quantity)).fill(item.id),
+    );
+    const total_price = calculateTotalPrice();
+
+    return {products, total_price};
+  };
+
   const handleCheckout = async () => {
     try {
+      const payload = mapCartItemsToPayload();
+
       const response = await fetch(
         'http://10.120.32.87/app/api/payment/create-checkout-session',
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
-            productIds: cartItems.map((item) => item.id),
+            // TODO: käyttää suoraan payload objektia backendille stripee varte
+            productIds: payload.products, // käytetään uutta payload objektia
           }),
         },
       );
