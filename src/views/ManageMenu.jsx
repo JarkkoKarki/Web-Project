@@ -23,7 +23,7 @@ const ManageMenu = () => {
       <div>
         <AddMenuForm onSuccess={getMenuBothLanguages} />
         <h1 className="mb-4 text-center text-3xl font-semibold text-yellow-500">
-          Modify or Delete Menu Items
+          {t('manageMenu.modify-menu-title')}
         </h1>
         {selectedItem ? (
           <ModifyMenuForm
@@ -37,10 +37,10 @@ const ManageMenu = () => {
               <thead>
               <tr>
                 <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                  {t('manageMenu.menu-item-name')}
+                  {t('manageMenu.menu-td-name')}
                 </th>
                 <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                  {t('manageMenu.menu-item-description')}
+                  {t('manageMenu.menu-td-desc')}
                 </th>
                 <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
                   {t('manageMenu.menu-item-price')}
