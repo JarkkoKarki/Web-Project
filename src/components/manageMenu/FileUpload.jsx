@@ -6,8 +6,6 @@ const FileUpload = ({
   filename = '',
   placeholder = 'https://placehold.co/300x200?text=Choose+image',
   label = 'Choose File',
-  width = 300,
-  height = 200,
   rootUrl = '',
 }) => {
 
@@ -42,7 +40,7 @@ const FileUpload = ({
       <img
         src={previewSrc}
         alt="preview"
-        className={`h-[${height}px] w-[${width}px] max-w-full rounded border border-gray-600 object-cover`}
+        className={`h-[200px] w-[200px] max-w-full rounded border border-gray-600 object-cover`}
       />
     </div>
   );

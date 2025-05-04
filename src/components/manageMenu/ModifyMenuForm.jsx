@@ -3,14 +3,13 @@ import {useTranslation} from 'react-i18next';
 import useMenu from '../hooks/menuHooks.js';
 import {rootUrl} from '../../utils/variables.js';
 import MenuCheckbox from './MenuCheckbox.jsx';
-import MenuInput from './MenuInput.jsx';
 import FileUpload from './FileUpload.jsx';
+import MenuInputGroup from './MenuInputGroup.jsx';
 
 const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   const {t} = useTranslation();
-  const {updateMenuItem, deleteMenuItem} = useMenu();
   const [file, setFile] = useState(null);
-
+  const {updateMenuItem, deleteMenuItem} = useMenu();
 
   const mapLabelsToIds = (labels, options) => {
     return options
@@ -46,16 +45,8 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
     desc_en: item.desc_en,
     price: item.price,
     filename: item.filename,
-    categories: Array.isArray(item.categories)
-      ? typeof item.categories[0] === 'string'
-        ? mapLabelsToIds(item.categories, categoryOptions)
-        : item.categories
-      : [],
-    diets: Array.isArray(item.diets)
-      ? typeof item.diets[0] === 'string'
-        ? mapLabelsToIds(item.diets, dietOptions)
-        : item.diets
-      : [],
+    categories: mapLabelsToIds(item.categories, categoryOptions),
+    diets: mapLabelsToIds(item.diets, dietOptions),
   });
 
   const handleBack = () => {
@@ -78,17 +69,15 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
 
   const doModifyMenuItem = async () => {
     try {
-      if (
-        !inputs.name_fi.trim() ||
+      if (!inputs.name_fi.trim() ||
         !inputs.name_en.trim() ||
         !inputs.desc_fi.trim() ||
         !inputs.desc_en.trim() ||
-        !inputs.price.trim()
-      ) {
+        !inputs.price.trim()) {
         alert(t('manageMenu.all-fields-required'));
         return;
       }
-      console.log(file)
+      console.log(file);
       const token = localStorage.getItem('token');
       const menuResult = await updateMenuItem(file, inputs, item.id, token);
       console.log('menuresult', menuResult);
@@ -136,7 +125,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
       >
         <button
           onClick={handleBack}
-          className="mb-4 cursor-pointer rounded border border-yellow-500 px-4 py-2 font-semibold transition hover:bg-yellow-500 hover:text-black"
+          className="mb-4 cursor-pointer rounded border border-yellow-500 px-4 py-2 font-semibold transition hover:bg-yellow-500 hover:text-black self-start"
         >
           X
         </button>
@@ -149,44 +138,14 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
             label={t('manageMenu.menu-item-button')}
           />
 
-          <div className="flex flex-grow flex-col gap-4 pt-23">
-            <MenuInput
-              name="name_fi"
-              value={inputs.name_fi}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-name')}
-            />
-
-            <MenuInput
-              name="name_en"
-              value={inputs.name_en}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-name')}
-            />
-
-            <MenuInput
-              name="desc_fi"
-              value={inputs.desc_fi}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-description')}
-            />
-
-            <MenuInput
-              name="desc_en"
-              value={inputs.desc_en}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-description')}
-            />
-            <MenuInput
-              name="price"
-              value={inputs.price}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-price')}
-              type="text"
+          <div className="flex flex-grow flex-col gap-4 ">
+            <MenuInputGroup
+              inputs={inputs}
+              handleInputChange={handleInputChange}
+              t={t}
             />
           </div>
         </div>
-
         <MenuCheckbox
           title={t('manageMenu.menu-item-categories')}
           name="categories"
