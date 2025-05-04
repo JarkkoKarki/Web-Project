@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {formatDate, formatTime} from '../../utils/formatters';
+import {useTranslation} from 'react-i18next';
 
 const ContactInfo = ({
-  t,
   user,
   prefilled,
   peopleCount,
@@ -15,7 +15,7 @@ const ContactInfo = ({
   const [phone, setPhone] = useState(prefilled ? user.phone : '');
   const [email, setEmail] = useState(prefilled ? user.email : '');
   const [comments, setComments] = useState('');
-
+  const {t} = useTranslation();
   const handleSubmit = () => {
     if (user) {
       console.log({

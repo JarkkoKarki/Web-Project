@@ -1,8 +1,10 @@
 import React from 'react';
 import {formatDate, formatTime} from '../../utils/formatters';
 import ContactInfo from './ContactInfo';
+import {useTranslation} from 'react-i18next';
 
-const FinalForm = ({t, peopleCount, selectedDate, selectedTime, user}) => {
+const FinalForm = ({peopleCount, selectedDate, selectedTime, user}) => {
+  const {t} = useTranslation();
   return (
     <>
       <h2 className="mb-6 bg-yellow-400 bg-clip-text text-center text-4xl font-extrabold text-transparent">
@@ -36,7 +38,6 @@ const FinalForm = ({t, peopleCount, selectedDate, selectedTime, user}) => {
         </div>
       </div>
       <ContactInfo
-        t={t}
         peopleCount={peopleCount}
         selectedTime={selectedTime}
         selectedDate={selectedDate}

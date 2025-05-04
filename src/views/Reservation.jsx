@@ -26,28 +26,24 @@ const Reservation = () => {
       <div className="relative w-10/12 max-w-lg rounded-xl border border-gray-700 bg-gray-800 p-10 shadow-xl">
         {currentStep === 1 && (
           <BookTable
-            t={t}
             peopleCount={peopleCount}
             setPeopleCount={setPeopleCount}
           />
         )}
         {currentStep === 2 && (
           <PickDate
-            t={t}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
         )}
         {currentStep === 3 && (
           <PickTime
-            t={t}
             selectedTime={selectedTime}
             setSelectedTime={setSelectedTime}
           />
         )}
         {currentStep === 4 && (
           <FinalForm
-            t={t}
             peopleCount={peopleCount}
             selectedDate={selectedDate}
             selectedTime={selectedTime}
