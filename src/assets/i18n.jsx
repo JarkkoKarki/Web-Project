@@ -84,6 +84,15 @@ i18n.use(initReactI18next).init({
           "no-date-selected": "No date selected",
           "no-time-selected": "No time selected",
           "confirm": "Send Request",
+          "contact-info-title": "Contact Information",
+          "name-label": "Name*",
+          "name-placeholder": "Name",
+          "phone-label": "Phone*",
+          "phone-placeholder": "Phone",
+          "email-label": "Email*",
+          "email-placeholder": "Email",
+          "comments-label": "Is there anything we should know before you arrive?",
+          "comments-placeholder": "Write your comments here..."
         },
         profilePage: {
           "profile": 'Profile',
@@ -230,6 +239,15 @@ i18n.use(initReactI18next).init({
           "no-date-selected": "Päivämäärää ei valittu",
           "no-time-selected": "Aikaa ei valittu",
           "confirm": "Lähetä Varauspyyntö",
+          "contact-info-title": "Yhteystiedot",
+          "name-label": "Nimi*",
+          "name-placeholder": "Nimi",
+          "phone-label": "Puhelin*",
+          "phone-placeholder": "Puhelin",
+          "email-label": "Sähköposti*",
+          "email-placeholder": "Sähköposti",
+          "comments-label": "Onko jotain, mitä meidän pitäisi tietää ennen kuin tulet?",
+          "comments-placeholder": "Kirjoita kommenttisi tähän..."
         },
         profilePage: {
           "profile": 'Profiili',

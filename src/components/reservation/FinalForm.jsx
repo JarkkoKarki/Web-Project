@@ -1,10 +1,8 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
 import {formatDate, formatTime} from '../../utils/formatters';
+import ContactInfo from './ContactInfo';
 
-const FinalForm = ({peopleCount, selectedDate, selectedTime}) => {
-  const {t} = useTranslation();
-
+const FinalForm = ({t, peopleCount, selectedDate, selectedTime, user}) => {
   return (
     <>
       <h2 className="mb-6 bg-yellow-400 bg-clip-text text-center text-4xl font-extrabold text-transparent">
@@ -37,6 +35,14 @@ const FinalForm = ({peopleCount, selectedDate, selectedTime}) => {
             : t('reservationPage.no-time-selected')}
         </div>
       </div>
+      <ContactInfo
+        t={t}
+        peopleCount={peopleCount}
+        selectedTime={selectedTime}
+        selectedDate={selectedDate}
+        user={user}
+        prefilled={!!user}
+      />
     </>
   );
 };
