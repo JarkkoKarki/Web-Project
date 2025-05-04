@@ -4,10 +4,11 @@ import BookTable from '../components/reservation/BookTable';
 import PickDate from '../components/reservation/PickDate';
 import PickTime from '../components/reservation/PickTime';
 import FinalForm from '../components/reservation/FinalForm';
-import {formatDate, formatTime} from '../utils/formatters';
+import {useUserContext} from '../components/hooks/contextHooks';
 
 const Reservation = () => {
   const {t} = useTranslation();
+  const {user} = useUserContext();
   const [peopleCount, setPeopleCount] = useState(1);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -25,27 +26,32 @@ const Reservation = () => {
       <div className="relative w-10/12 max-w-lg rounded-xl border border-gray-700 bg-gray-800 p-10 shadow-xl">
         {currentStep === 1 && (
           <BookTable
+            t={t}
             peopleCount={peopleCount}
             setPeopleCount={setPeopleCount}
           />
         )}
         {currentStep === 2 && (
           <PickDate
+            t={t}
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
         )}
         {currentStep === 3 && (
           <PickTime
+            t={t}
             selectedTime={selectedTime}
             setSelectedTime={setSelectedTime}
           />
         )}
         {currentStep === 4 && (
           <FinalForm
+            t={t}
             peopleCount={peopleCount}
             selectedDate={selectedDate}
             selectedTime={selectedTime}
+            user={user}
           />
         )}
         <div className="flex justify-center space-x-4">
@@ -65,19 +71,11 @@ const Reservation = () => {
             onClick={() => {
               if (currentStep < 4) {
                 setCurrentStep((prev) => prev + 1);
-              } else {
-                console.log('VARAUS: ', {
-                  peopleCount,
-                  selectedDate: formatDate(selectedDate),
-                  selectedTime: formatTime(selectedTime),
-                });
-                alert('Tungettu consoliin infot');
               }
             }}
+            hidden={currentStep === 4}
           >
-            {currentStep < 4
-              ? t('reservationPage.next')
-              : t('reservationPage.confirm')}
+            {t('reservationPage.next')}
           </button>
         </div>
       </div>

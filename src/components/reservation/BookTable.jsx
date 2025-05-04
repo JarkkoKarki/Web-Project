@@ -1,9 +1,6 @@
 import React from 'react';
-import {useTranslation} from 'react-i18next';
 
-const BookTable = ({peopleCount, setPeopleCount}) => {
-  const {t} = useTranslation();
-
+const BookTable = ({t, peopleCount, setPeopleCount}) => {
   return (
     <>
       <p className="absolute top-2 left-2 text-sm font-semibold text-gray-300">
