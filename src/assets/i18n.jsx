@@ -130,8 +130,10 @@ i18n.use(initReactI18next).init({
           'orders': 'Orders'
         },
         manageMenu: {
-          'menu-item-name': 'Name',
-          'menu-item-description': 'Description',
+          'add-menu-name-fi': 'Name in finnish',
+          'add-menu-name-en': 'Name in english',
+          'add-menu-desc-fi': 'Description in finnish',
+          'add-menu-desc-en': 'Description in english',
           'menu-item-price': 'Price',
           'menu-item-categories': 'Categories',
           'menu-item-diets': 'Diets',
@@ -142,7 +144,10 @@ i18n.use(initReactI18next).init({
           'file-field-required': 'Please select a file!',
           'add-menu-title': 'Add Menu item',
           'menu-item-delete': 'Delete',
-          'menu-item-modify': 'Change'
+          'menu-item-modify': 'Change',
+          'menu-name-fi': 'In Finnish',
+          'menu-name-en': 'In English',
+          'menu-price': 'Price',
         },
         orders: {
           'title': 'Orders',
@@ -287,8 +292,10 @@ i18n.use(initReactI18next).init({
           'orders': 'Tilaukset'
         },
         manageMenu: {
-          'menu-item-name': 'Nimi',
-          'menu-item-description': 'Kuvaus',
+          'add-menu-name-fi': 'Nimi Suomeksi',
+          'add-menu-name-en': 'Nimi Englanniksi',
+          'add-menu-desc-fi': 'Kuvaus Suomeksi',
+          'add-menu-desc-en': 'Kuvaus Englanniksi',
           'menu-item-price': 'Hinta',
           'menu-item-categories': 'Kategoriat',
           'menu-item-diets': 'Allergeenit',
@@ -299,7 +306,11 @@ i18n.use(initReactI18next).init({
           'file-field-required': 'Kuvan lisääminen on pakollinen',
           'add-menu-title': 'Lisää Ruoka',
           'menu-item-delete': 'Poista',
-          'menu-item-modify': 'Muuta'
+          'menu-item-modify': 'Muuta',
+          'menu-name-fi': 'Suomeksi',
+          'menu-name-en': 'Englanniksi',
+          'menu-price': 'Hinta',
+
         },
         orders: {
           'title': 'Tilaukset',

@@ -5,6 +5,7 @@ import {useTranslation} from 'react-i18next';
 import MenuInput from './MenuInput.jsx';
 import MenuCheckbox from './MenuCheckbox.jsx';
 import FileUpload from './FileUpload.jsx';
+import MenuInputGroup from './MenuInputGroup.jsx';
 
 const AddMenuForm = ({onSuccess}) => {
   const {t} = useTranslation();
@@ -103,37 +104,11 @@ const AddMenuForm = ({onSuccess}) => {
            label={t('manageMenu.menu-item-button')}
          />
 
-          <div className="w-full md:w-2/3 flex flex-col gap-7 pt-23">
-            <MenuInput
-              name="name_fi"
-              value={inputs.name_fi}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-name')}
-            />
-            <MenuInput
-              name="name_en"
-              value={inputs.name_en}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-name')}
-            />
-            <MenuInput
-              name="desc_fi"
-              value={inputs.desc_fi}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-description')}
-            />
-            <MenuInput
-              name="desc_en"
-              value={inputs.desc_en}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-description')}
-            />
-            <MenuInput
-              name="price"
-              value={inputs.price}
-              onChange={handleInputChange}
-              placeholder={t('manageMenu.menu-item-price')}
-              type="text"
+          <div className="w-full md:w-2/3 flex flex-col gap-2 ">
+            <MenuInputGroup
+              inputs={inputs}
+              handleInputChange={handleInputChange}
+              t={t}
             />
           </div>
         </div>
