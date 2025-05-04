@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
 import {toNumber} from 'lodash';
 import {useTranslation} from 'react-i18next';
+
 import {url} from '../utils/variables';
+import {UserContext} from '../contexts/UserContext';
 
 const ShoppingCartElement = () => {
   const {t} = useTranslation();
+  const {user} = useContext(UserContext);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const {cartItems, addItemToCart, removeItemFromCart} = useShoppingCart();
@@ -22,32 +25,50 @@ const ShoppingCartElement = () => {
 
   // luodaan uusi objekti, missä products sisältää id:t ja summa
   const mapCartItemsToPayload = () => {
-    const products = cartItems.map((item) => ({
-      id: item.id,
-      quantity: toNumber(item.quantity),
-    }));
+    const products = cartItems.map((item) => {
+      console.log(item);
+      return {
+        id: item.id,
+        quantity: toNumber(item.quantity),
+      };
+    });
     const total_price = calculateTotalPrice();
-
     return {products, total_price};
   };
 
   const handleCheckout = async () => {
+    if (!user || !user.user_id || !user.username || !user.address) {
+      alert('User information is incomplete');
+      return;
+    }
     try {
       const payload = mapCartItemsToPayload();
-      console.log(payload);
+      console.log('Payload:', payload);
 
       const response = await fetch(url + '/payment/create-checkout-session', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-          products: payload.products, // Send products with id and quantity
+          products: payload.products,
+          user: {
+            user_id: user.user_id,
+            username: user.username,
+            address: user.address,
+          },
         }),
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        throw new Error('Payment session creation failed');
+      }
+
       const data = await response.json();
+      console.log('Stripe Response Data:', data);
 
       if (data.url) {
-        window.location.href = data.url;
+        window.location.href = data.url; // Redirect to checkout URL
       } else {
         console.error('No checkout URL returned.');
       }

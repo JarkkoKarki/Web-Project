@@ -15,6 +15,7 @@ const useAuthentication = () => {
     const loginResult = await fetchData(url + '/auth/login', fetchOptions);
 
     window.localStorage.setItem('token', loginResult.token);
+    window.localStorage.setItem('user_id', loginResult.user.id);
 
     return loginResult;
   };
@@ -107,7 +108,7 @@ const useUpdateUser = () => {
 
 const useOrders = () => {
   const {t} = useTranslation();
-  const lang = t('menuUrl.menuUrl')
+  const lang = t('menuUrl.menuUrl');
   const getOrdersByUserId = useCallback(async () => {
     const fetchOptions = {
       headers: {

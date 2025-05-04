@@ -19,6 +19,7 @@ import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
 import Register from './views/Register';
 import PaymentSuccess from './views/PaymentSuccess';
 import PaymentCancel from './views/PaymentCancel';
+import ViewOrder from './views/ViewOrder';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <UserProvider>
             <Routes>
               <Route element={<Layout />}>
+                <Route path="/order/view" element={<ViewOrder />} />
                 <Route path="/payment/success" element={<PaymentSuccess />} />
                 <Route path="/payment/cancel" element={<PaymentCancel />} />
                 <Route
