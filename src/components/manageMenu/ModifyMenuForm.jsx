@@ -44,7 +44,6 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
     desc_fi: item.desc_fi,
     desc_en: item.desc_en,
     price: item.price,
-    filename: item.filename,
     categories: mapLabelsToIds(item.categories, categoryOptions),
     diets: mapLabelsToIds(item.diets, dietOptions),
   });
@@ -111,10 +110,12 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   };
 
   const handleFileChange = (evt) => {
-    if (evt.target.files) {
-      console.log(evt.target.files[0]);
+    if (evt.target.files[0]) {
+      console.log("new file", evt.target.files[0]);
       setFile(evt.target.files[0]);
-    }
+    }else {
+        console.log("No file selected");
+      }
   };
 
   return (
@@ -131,6 +132,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
         </button>
         <div className="flex w-full flex-row gap-8">
           <FileUpload
+            id="modifyFile"
             file={file}
             onFileChange={handleFileChange}
             filename={item.filename}

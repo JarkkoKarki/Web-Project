@@ -62,7 +62,6 @@ const AddMenuForm = ({onSuccess}) => {
         alert(t('manageMenu.file-field-required'));
         return;
       }
-      console.log(file)
       const token = localStorage.getItem('token');
       const menuResult = await postMenuItem(file, inputs, token);
       console.log('menuresult', menuResult);
@@ -98,6 +97,7 @@ const AddMenuForm = ({onSuccess}) => {
 
         <div className="flex flex-col md:flex-row gap-8 mb-6">
          <FileUpload
+           id="addFile"
            file={file}
            onFileChange={handleFileChange}
            placeholder="https://placehold.co/300x200?text=Choose+image"
