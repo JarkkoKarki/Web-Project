@@ -37,6 +37,7 @@ const ShoppingCartElement = () => {
   };
 
   const handleCheckout = async () => {
+    console.log(user, ' user');
     if (!user || !user.id || !user.username || !user.address) {
       alert('User information is incomplete');
       return;
@@ -51,7 +52,7 @@ const ShoppingCartElement = () => {
         body: JSON.stringify({
           products: payload.products,
           user: {
-            user_id: user.user_id,
+            user_id: user.id,
             username: user.username,
             address: user.address,
           },
