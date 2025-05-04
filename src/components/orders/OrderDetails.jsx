@@ -1,6 +1,6 @@
 import {useTranslation} from 'react-i18next';
 
-export const OrderDetails = ({order, user, onClose}) => {
+export const OrderDetails = ({order, user, orderAgain, onClose}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
   const {first_name, last_name, address, email, phone} = user;
@@ -66,7 +66,10 @@ export const OrderDetails = ({order, user, onClose}) => {
         </div>
       </div>
       <section className="mt-4 flex w-full justify-end space-x-3 pr-4">
-        <button className="inline-block cursor-pointer border border-green-500 px-6 py-2 text-green-500 transition hover:bg-green-500 hover:text-black">
+        <button
+          onClick={orderAgain}
+          className="inline-block cursor-pointer border border-green-500 px-6 py-2 text-green-500 transition hover:bg-green-500 hover:text-black"
+        >
           {t('orders.order-again')}
         </button>
         <button
