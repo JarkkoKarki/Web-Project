@@ -17,6 +17,8 @@ import {LanguageProvider} from './contexts/LanguageContext';
 import {ToastContainer} from 'react-toastify';
 import {ShoppingCartProvider} from './contexts/ShoppingCartContext';
 import Register from './views/Register';
+import PaymentSuccess from './views/PaymentSuccess';
+import PaymentCancel from './views/PaymentCancel';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
           <UserProvider>
             <Routes>
               <Route element={<Layout />}>
+                <Route path="/payment/success" element={<PaymentSuccess />} />
+                <Route path="/payment/cancel" element={<PaymentCancel />} />
                 <Route
                   path="/profile"
                   element={
