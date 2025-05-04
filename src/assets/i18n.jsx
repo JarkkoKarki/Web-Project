@@ -151,14 +151,25 @@ i18n.use(initReactI18next).init({
         },
         orders: {
           'title': 'Orders',
-          'id': 'ID',
-          'date': 'Date',
-          'status': 'Status',
-          'total': 'Total',
+          'id': 'ID:',
+          'date': 'Date:',
+          'status': 'Status:',
+          'total': 'Total:',
+          'price-per-product': 'Price:',
+          'your-products': 'Your Products:',
           'view': 'View',
           'delete': 'Delete',
+          'address': 'Address',
           'view-more': 'View More',
           'view-less': 'View Less',
+          'show-more': 'Show More',
+          'order-again': 'Order Again',
+          'close': 'Close',
+          'personal-info': 'Personal Information',
+          'name': 'Name',
+          'email': 'Email',
+          'phone': 'Phone',
+          'undefined': 'Not specified',
         },
         shoppingCart: {
           "shopping-cart": "Shopping Cart",
@@ -170,6 +181,9 @@ i18n.use(initReactI18next).init({
           "close": "Close",
           "clear-cart": "Empty Cart"
         },
+        menuUrl: {
+          "menuUrl": "en",
+        }
       }
     },
     fi: {
@@ -314,14 +328,25 @@ i18n.use(initReactI18next).init({
         },
         orders: {
           'title': 'Tilaukset',
-          'id': 'ID',
-          'date': 'Päivämäärä',
-          'status': 'Tila',
-          'total': 'Yhteensä',
+          'id': 'ID:',
+          'date': 'Päivämäärä:',
+          'status': 'Tila:',
+          'total': 'Yhteensä:',
+          'price-per-product': 'Hinta:',
+          'your-products': 'Ostoksesi:',
           'view': 'Näytä',
           'delete': 'Poista',
           'view-more': 'Näytä lisää',
           'view-less': 'Näytä vähemmän',
+          'show-more': 'Näytä lisää',
+          'order-again': 'Tilaa uudelleen',
+          'close': 'Sulje',
+          'personal-info': 'Henkilökohtaiset tiedot',
+          'name': 'Nimi',
+          'email': 'Sähköposti',
+          'phone': 'Puhelin',
+          'address': 'Osoite',
+          'undefined': 'Ei määritetty',
         },
         shoppingCart: {
           "shopping-cart": "Ostoskori",
@@ -333,6 +358,9 @@ i18n.use(initReactI18next).init({
           "close": "Sulje",
           "clear-cart": "Tyhjennä ostoskori"
         },
+        menuUrl: {
+          "menuUrl": "fi",
+        }
       }
     }
   },
