@@ -167,6 +167,7 @@ i18n.use(initReactI18next).init({
           "total": "Total:",
           "order-now": "Place order",
           "close": "Close",
+          "clear-cart": "Empty Cart"
         },
       }
     },
@@ -327,6 +328,7 @@ i18n.use(initReactI18next).init({
           "total": "Summa:",
           "order-now": "Tilaamaan",
           "close": "Sulje",
+          "clear-cart": "Tyhjennä ostoskori"
         },
       }
     }

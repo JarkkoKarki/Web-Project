@@ -11,7 +11,8 @@ const ShoppingCartElement = () => {
   const {user} = useContext(UserContext);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const {cartItems, addItemToCart, removeItemFromCart} = useShoppingCart();
+  const {cartItems, addItemToCart, removeItemFromCart, clearCart} =
+    useShoppingCart();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
@@ -147,6 +148,12 @@ const ShoppingCartElement = () => {
                   className="mx-4 mt-6 w-[calc(100%-2rem)] rounded bg-yellow-500 px-4 py-2 text-sm font-semibold text-black shadow-lg transition hover:bg-yellow-600"
                 >
                   {t('shoppingCart.order-now')}
+                </button>
+                <button
+                  onClick={clearCart}
+                  className="mx-4 mt-6 w-[calc(100%-2rem)] rounded bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-lg transition hover:bg-red-600"
+                >
+                  {t('shoppingCart.clear-cart')}
                 </button>
               </>
             )}

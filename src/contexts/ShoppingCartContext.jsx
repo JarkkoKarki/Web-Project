@@ -44,9 +44,14 @@ export const ShoppingCartProvider = ({children}) => {
     });
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+    console.log('clearCart kutsuttu');
+  };
+
   return (
     <ShoppingCartContext.Provider
-      value={{cartItems, addItemToCart, removeItemFromCart}}
+      value={{cartItems, addItemToCart, removeItemFromCart, clearCart}}
     >
       {children}
     </ShoppingCartContext.Provider>
