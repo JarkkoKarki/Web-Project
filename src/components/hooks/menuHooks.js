@@ -1,20 +1,20 @@
 import {useEffect, useState} from 'react';
 import {rootUrl, url} from '../../utils/variables';
 import {fetchData} from '../../utils/fetchData';
-import {useTranslation} from 'react-i18next';
+import i18n from 'i18next';
 
 const useMenu = () => {
   const [favoritesMenuArray, setFavoritesMenuArray] = useState([]);
   const [fullMenuArray, setFullMenuArray] = useState([]);
-  const {t} = useTranslation();
+  const [menuArray, setMenuArray] = useState([]);
 
   const getMenu = async () => {
     try {
-      const lang = t('languageUrl.url');
-      const mediaData = await fetchData(url + '/menu/products/'+lang);
+      const lang = i18n.language;
+      const menuData = await fetchData(url + '/menu/products/'+lang);
 
       // lisätään src atribuutti objektiin, jotta helpompi myöhemmin hakea kuva
-      const transformedMenu = mediaData.map((item) => ({
+      const transformedMenu = menuData.map((item) => ({
         ...item,
         src: rootUrl + item.filename,
       }));
@@ -29,9 +29,19 @@ const useMenu = () => {
     }
   };
 
+  const getMenuBothLanguages = async () => {
+    try {
+      const data = await fetchData(url + '/menu');
+      setMenuArray(data);
+    } catch (error) {
+      console.error('error', error);
+    }
+  };
+
+
   useEffect(() => {
     getMenu();
-  }, []);
+  }, [i18n.language]);
 
   const postMenuItem = async (file, inputs, token) => {
     const formData = new FormData();
@@ -110,6 +120,8 @@ const useMenu = () => {
     fullMenuArray,
     deleteMenuItem,
     updateMenuItem,
+    getMenuBothLanguages,
+    menuArray
   };
 };
 
