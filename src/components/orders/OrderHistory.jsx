@@ -4,6 +4,7 @@ import {useOrders} from '../hooks/apiHooks';
 import {useUserContext} from '../hooks/contextHooks';
 import {OrderRow} from './OrderRow';
 import OrderDetails from './OrderDetails';
+import {url} from '../../utils/variables';
 
 export const OrderHistory = () => {
   const {t} = useTranslation();
@@ -27,6 +28,57 @@ export const OrderHistory = () => {
     setSelectedOrder(order);
   };
 
+  // Taken from ShoppingCartElement
+  // We shall see if this is the best place for this function
+  // could probably made into a hook
+  // or moved to the apiHooks
+  const orderAgain = async (order) => {
+    try {
+      console.log(user, ' user');
+      if (!user || !user.id || !user.username || !user.address) {
+        alert('User information is incomplete');
+        return;
+      }
+
+      const payload = {
+        products: order.products.map((product) => ({
+          id: product.product_id,
+          quantity: product.quantity,
+        })),
+        user: {
+          user_id: user.id,
+          username: user.username,
+          address: user.address,
+        },
+      };
+
+      console.log('payload:', payload);
+
+      const response = await fetch(url + '/payment/create-checkout-session', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+        throw new Error('Payment session creation failed');
+      }
+
+      const data = await response.json();
+      console.log('Stripe Response Data:', data);
+
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        console.error('No checkout URL returned.');
+      }
+    } catch (error) {
+      console.error('Error reordering:', error);
+    }
+  };
+
   const handleClose = () => {
     setSelectedOrder(null);
   };
@@ -40,13 +92,16 @@ export const OrderHistory = () => {
 
   const displayedOrders = showAll ? orders : orders.slice(0, 5);
 
-  console.log('orders: ', orders);
-
   return (
     <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
       <h2 className="mb-4 text-2xl font-bold">{t('orders.title')}</h2>
       {selectedOrder ? (
-        <OrderDetails order={selectedOrder} user={user} onClose={handleClose} />
+        <OrderDetails
+          order={selectedOrder}
+          user={user}
+          orderAgain={() => orderAgain(selectedOrder)}
+          onClose={handleClose}
+        />
       ) : (
         displayedOrders.map((order, index) => (
           <OrderRow
