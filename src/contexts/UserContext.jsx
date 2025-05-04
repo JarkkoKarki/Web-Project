@@ -41,8 +41,7 @@ const UserProvider = ({children}) => {
         console.log(token, ' TOKENI');
         const userResponse = await getUserByToken(token);
         console.log('------------USER OBJEKTI---------', userResponse);
-        console.log('ID: ', userResponse.user_id);
-        localStorage.setItem('user_id', userResponse.user_id);
+        localStorage.setItem('user_id', userResponse.id);
         setUser(userResponse);
         // console.log('location', location);
         navigate(location.pathname);

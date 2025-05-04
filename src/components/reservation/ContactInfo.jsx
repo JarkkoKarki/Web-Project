@@ -16,7 +16,7 @@ const ContactInfo = ({
   const [email, setEmail] = useState(prefilled ? user.email : '');
   const [comments, setComments] = useState('');
 
-  const handleSubmit = (user) => {
+  const handleSubmit = () => {
     if (user) {
       console.log({
         user_id: user.id,
