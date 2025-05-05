@@ -88,7 +88,7 @@ export const OrderForm = () => {
             type="submit"
             className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
           >
-            Go to Checkout
+            {t('ordersForm.checkout')}
           </button>
         </form>
       </section>
