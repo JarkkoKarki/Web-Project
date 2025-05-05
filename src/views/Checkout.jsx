@@ -1,3 +1,4 @@
+import {useLocation} from 'react-router';
 import {OrderForm} from '../components/forms/OrderForm';
 import {OrderedItems} from '../components/orders/OrderedItems';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
@@ -5,7 +6,13 @@ import {calculateTotalPrice} from '../utils/cartUtils';
 
 export const Checkout = () => {
   const {cartItems} = useShoppingCart();
-  const totalPrice = calculateTotalPrice(cartItems);
+  const location = useLocation();
+  const selectedOrder = location.state?.order;
+
+  const items = selectedOrder?.products || cartItems;
+  const totalPrice = selectedOrder
+    ? selectedOrder.totalPrice
+    : calculateTotalPrice(cartItems);
 
   return (
     <div
@@ -14,9 +21,7 @@ export const Checkout = () => {
     >
       <div className="flex w-2/5 flex-col rounded-2xl bg-[#0d0f0e] p-4 text-center text-black shadow-md">
         <div className="flex flex-1 justify-center px-10">
-          <OrderedItems
-            order={{products: cartItems, total_price: totalPrice}}
-          />
+          <OrderedItems order={{products: items, total_price: totalPrice}} />
         </div>
         <div className="flex flex-1 justify-center px-10">
           <OrderForm items={cartItems} />

@@ -6,7 +6,6 @@ import {url} from '../../utils/variables';
 
 export const useCheckout = () => {
   const {user} = useContext(UserContext);
-  console.log('user checkout', user);
 
   const handleCheckout = async (cartItems, inputs = {}) => {
     if (!user || !user.id || !user.username) {
