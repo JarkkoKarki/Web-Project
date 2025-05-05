@@ -236,7 +236,8 @@ i18n.use(initReactI18next).init({
           'titlew': 'Update Order Status',
           'paragraph': 'Update status for order #',
           'cancel': 'Cancel',
-          'save': 'Save'
+          'save': 'Save',
+          'additional-info': 'Additional Information',
         },
         ordersForm: {
           'your-order': 'Your Order',

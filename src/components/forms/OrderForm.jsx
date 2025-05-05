@@ -20,7 +20,6 @@ export const OrderForm = ({items}) => {
       additional_info: '',
     },
   );
-  console.log('inputs: ', inputs);
 
   return (
     <>

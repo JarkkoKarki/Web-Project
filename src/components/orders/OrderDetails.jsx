@@ -2,8 +2,18 @@ import {useTranslation} from 'react-i18next';
 
 export const OrderDetails = ({order, user, orderAgain, onClose}) => {
   const {t} = useTranslation();
-  const {products, orderDate, status, totalPrice, orderId} = order;
-  const {first_name, last_name, address, email, phone} = user;
+  const {
+    products,
+    orderDate,
+    status,
+    totalPrice,
+    orderId,
+    additionalInfo,
+    email,
+    phone,
+    address,
+  } = order;
+  const {first_name, last_name} = user;
   const formattedTime = new Date(orderDate)
     .toLocaleTimeString('fi-FI', {
       hour: '2-digit',
@@ -42,6 +52,11 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
             <p>{`${t('orders.address')}: ${address ?? t('orders.undefined')}`}</p>
             <p>{`${t('orders.email')}: ${email ?? t('orders.undefined')}`}</p>
             <p>{`${t('orders.phone')}: ${phone ?? t('orders.undefined')}`}</p>
+            <p>
+              {`${t('orders.additional-info')}:`}
+              <br />
+              {additionalInfo ?? t('orders.undefined')}
+            </p>
           </section>
           <section className="flex flex-1 flex-col space-y-1 px-6 py-4">
             <ul className="m-0">
