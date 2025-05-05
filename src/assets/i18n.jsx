@@ -57,7 +57,8 @@ i18n.use(initReactI18next).init({
           "drinks":"DRINKS",
           "starters":"STARTERS",
           "add-to-cart-prompt": "added to cart!",
-          "add-to-cart": "Add to Cart"
+          "add-to-cart": "Add to Cart",
+          "diets": "Diets: "
         },
         loginPage: {},
         registerPage: {},
@@ -271,7 +272,8 @@ i18n.use(initReactI18next).init({
           "drinks": "JUOMAT",
           "starters": "ALKURUOAT",
           "add-to-cart-prompt": "lisätty ostoskoriin!",
-          "add-to-cart": "Lisää ostoskoriin"
+          "add-to-cart": "Lisää ostoskoriin",
+          "diets": "Allergeenit: "
         },
         loginPage: {},
         registerPage: {},
