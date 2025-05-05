@@ -5,6 +5,9 @@ import {useTranslation} from 'react-i18next';
 import {logoUrl, rootUrl} from '../utils/variables';
 import ShoppingCartElement from './ShoppingCartElement';
 import LanguageChange from './LanguageChange';
+import facebookIcon from '../assets/images/facebook.svg';
+import instagramIcon from '../assets/images/instagram.svg';
+import tiktokIcon from '../assets/images/tiktok.svg';
 
 const Layout = () => {
   const {t} = useTranslation();
@@ -94,6 +97,11 @@ const Layout = () => {
         </div>
       </header>
       <main className="flex-grow p-4">
+        <div className="absolute bottom-25 left-10 z-10 flex space-x-2">
+          <img src={facebookIcon} alt="Facebook" className="h-12 w-12" />
+          <img src={instagramIcon} alt="Instagram" className="h-12 w-12" />
+          <img src={tiktokIcon} alt="TikTok" className="h-12 w-12" />
+        </div>
         <Outlet />
       </main>
 
