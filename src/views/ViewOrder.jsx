@@ -88,7 +88,7 @@ const ViewOrder = () => {
             </li>
           ))}
         </ul>
-        <div className="mt-12 flex justify-center align-top">
+        <div className="mt-12">
           <OrderHistory />
         </div>
       </div>

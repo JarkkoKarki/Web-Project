@@ -90,11 +90,14 @@ export const OrderHistory = () => {
     }
   }, [user?.id]);
 
-  const displayedOrders = showAll ? orders : orders.slice(0, 5);
+  const displayedOrders = showAll
+    ? orders.slice().reverse()
+    : orders.slice().reverse().slice(0, 5);
 
   return (
     <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
       <h2 className="mb-4 text-2xl font-bold">{t('orders.title')}</h2>
+      <h3 className="self-start pl-1">{t('orders.latest-order')}</h3>
       {selectedOrder ? (
         <OrderDetails
           order={selectedOrder}
