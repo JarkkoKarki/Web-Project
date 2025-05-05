@@ -90,7 +90,9 @@ export const OrderHistory = () => {
     }
   }, [user?.id]);
 
-  const displayedOrders = showAll ? orders : orders.slice(0, 5);
+  const displayedOrders = showAll
+    ? orders.slice().reverse()
+    : orders.slice().reverse().slice(0, 5);
 
   return (
     <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
@@ -103,14 +105,24 @@ export const OrderHistory = () => {
           onClose={handleClose}
         />
       ) : (
-        displayedOrders.map((order, index) => (
-          <OrderRow
-            key={index}
-            item={order}
-            index={index}
-            onClick={() => handleOrderClick(order)}
-          />
-        ))
+        <div
+          className={`w-full ${
+            orders.length > 10 ? 'max-h-[500px] overflow-y-auto' : ''
+          }`}
+        >
+          {displayedOrders.map((order, index) => (
+            <div key={index}>
+              {index === 0 && (
+                <h3 className="self-start pl-1">{t('orders.latest-order')}</h3>
+              )}
+              <OrderRow
+                item={order}
+                index={index}
+                onClick={() => handleOrderClick(order)}
+              />
+            </div>
+          ))}
+        </div>
       )}
       {!selectedOrder && orders.length > 5 && (
         <button

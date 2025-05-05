@@ -1,16 +1,8 @@
 import {useTranslation} from 'react-i18next';
 
-export const OrderDetails = ({order, user, orderAgain, onClose}) => {
+export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
-  const {first_name, last_name, address, email, phone} = user;
-  const formattedTime = new Date(orderDate)
-    .toLocaleTimeString('fi-FI', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    })
-    .replace(/\./g, ':');
 
   return (
     <>
@@ -21,9 +13,6 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
           </h2>
           <h3>
             {t('orders.date')} {new Date(orderDate).toLocaleDateString('fi-FI')}
-          </h3>
-          <h3>
-            {t('orders.time')} {formattedTime}
           </h3>
           <div className="ml-auto flex flex-row items-center space-x-1.5">
             <h3>{t('orders.status')}</h3>
@@ -38,10 +27,7 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
             <h3 className="font-bold underline underline-offset-4">
               {t('orders.personal-info')}
             </h3>
-            <p>{`${t('orders.name')}: ${first_name ?? t('orders.undefined')} ${last_name ?? t('orders.undefined')}`}</p>
-            <p>{`${t('orders.address')}: ${address ?? t('orders.undefined')}`}</p>
-            <p>{`${t('orders.email')}: ${email ?? t('orders.undefined')}`}</p>
-            <p>{`${t('orders.phone')}: ${phone ?? t('orders.undefined')}`}</p>
+            <p>{`${t('orders.address')}: ${order.address ?? t('orders.undefined')}`}</p>
           </section>
           <section className="flex flex-1 flex-col space-y-1 px-6 py-4">
             <ul className="m-0">
@@ -77,10 +63,10 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
       </div>
       <section className="mt-4 flex w-full justify-end space-x-3 pr-4">
         <button
-          onClick={orderAgain}
-          className="inline-block cursor-pointer border border-green-500 px-6 py-2 text-green-500 transition hover:bg-green-500 hover:text-black"
+          onClick={onManageOrder}
+          className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
         >
-          {t('orders.order-again')}
+          Manage Order
         </button>
         <button
           onClick={onClose}
@@ -93,4 +79,4 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
   );
 };
 
-export default OrderDetails;
+export default OrderDetailsWorkhub;

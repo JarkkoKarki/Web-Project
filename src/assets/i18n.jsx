@@ -173,6 +173,8 @@ i18n.use(initReactI18next).init({
           'email': 'Email',
           'phone': 'Phone',
           'undefined': 'Not specified',
+          'latest-order': 'Latest Order',
+          'time': 'Time:',
         },
         ordersForm: {
           'your-order': 'Your Order',
@@ -222,7 +224,7 @@ i18n.use(initReactI18next).init({
 
         header: {
           "home": "Koti",
-          "menu": "Menu",
+          "menu": "Ruokalista",
           "reservation": "Varaaminen",
           "about": "Meistä",
           "sign-in": "Kirjaudu Sisään",
@@ -381,6 +383,8 @@ i18n.use(initReactI18next).init({
           'phone': 'Puhelin',
           'address': 'Osoite',
           'undefined': 'Ei määritetty',
+          'latest-order': 'Viimeisin tilaus',
+          'time': 'Aika:',
         },
         ordersForm: {
           'your-order': 'Tilauksesi',
