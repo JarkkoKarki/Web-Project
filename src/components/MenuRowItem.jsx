@@ -26,7 +26,12 @@ const MenuItem = ({item}) => {
       <div className="flex h-full flex-col justify-between">
         <h4 className="text-lg font-bold text-white">{toUpper(item.name)}</h4>
         <p className="mt-2 text-sm text-gray-400">{item.description}</p>
-        <p className="mt-2 text-sm text-gray-400">{item.diets} </p>
+        <div className="flex items-center space-x-2 py-2">
+          <p className="text-sm font-medium">{t('menuPage.diets')}</p>
+          <p className="text-sm text-gray-400">
+            {Array.isArray(item.diets) ? item.diets.join(', ') : item.diets}
+          </p>
+        </div>
         <p className="mt-auto font-bold text-yellow-400">${item.price}</p>
       </div>
       <div className="ml-4 flex items-center">
