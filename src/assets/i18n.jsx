@@ -290,7 +290,7 @@ i18n.use(initReactI18next).init({
           'view-more': 'Näytä Lisää'
         },
         aboutPage: {
-          'special-moments': 'erityiset Hetket',
+          'special-moments': 'Erityiset Hetket',
           'about-us': 'Meistä',
           'taste-perception': 'Makuvaikutelma',
           'trad-modern': 'Perinteinen & Moderni',
