@@ -12,8 +12,6 @@ export const OrderForm = () => {
       console.log('Form submitted:', inputs);
     },
     {
-      firstName: user?.first_name || '',
-      lastName: user?.last_name || '',
       address: user?.address || '',
       email: user?.email || '',
       phone: user?.phone || '',
@@ -27,33 +25,10 @@ export const OrderForm = () => {
           {t('ordersForm.information')}
         </h2>
         <form
-          className="flex flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white"
+          className="flex w-full flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white"
           onSubmit={(e) => handleSubmit(e)} // Pass inputs to handleSubmit
         >
-          <label htmlFor="name" className="mb-2 block text-sm font-bold">
-            {t('ordersForm.name')}
-          </label>
-          <div className="mb-4 flex flex-row items-center justify-between space-x-4">
-            <input
-              onChange={handleInputChange}
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={inputs.firstName} // Bind to inputs state
-              placeholder={t('ordersForm.firstName-input')}
-              className="w-full rounded border border-gray-300 px-4 py-2"
-            />
-            <input
-              onChange={handleInputChange}
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={inputs.lastName} // Bind to inputs state
-              placeholder={t('ordersForm.lastName-input')}
-              className="w-full rounded border border-gray-300 px-4 py-2"
-            />
-          </div>
-          <div className="mb-4">
+          <div className="mb-4 w-[80%]">
             <label htmlFor="address" className="mb-2 block text-sm font-bold">
               {t('ordersForm.address')}
             </label>
@@ -64,10 +39,10 @@ export const OrderForm = () => {
               name="address"
               value={inputs.address} // Bind to inputs state
               placeholder={t('ordersForm.address-input')}
-              className="w-full rounded border border-gray-300 px-4 py-2"
+              className="w-full rounded border border-gray-300 px-6 py-2 text-center"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 w-[80%]">
             <label htmlFor="email" className="mb-2 block text-sm font-bold">
               {t('ordersForm.email')}
             </label>
@@ -78,10 +53,10 @@ export const OrderForm = () => {
               name="email"
               value={inputs.email} // Bind to inputs state
               placeholder={t('ordersForm.email-input')}
-              className="w-full rounded border border-gray-300 px-4 py-2"
+              className="w-full rounded border border-gray-300 px-6 py-2 text-center"
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-4 w-[80%]">
             <label htmlFor="phone" className="mb-2 block text-sm font-bold">
               {t('ordersForm.phone')}
             </label>
@@ -92,7 +67,21 @@ export const OrderForm = () => {
               name="phone"
               value={inputs.phone} // Bind to inputs state
               placeholder={t('ordersForm.phone-input')}
-              className="w-full rounded border border-gray-300 px-4 py-2"
+              className="w-full rounded border border-gray-300 px-6 py-2 text-center"
+            />
+          </div>
+          <div className="mb-4 w-[80%]">
+            <label htmlFor="phone" className="mb-2 block text-sm font-bold">
+              {t('ordersForm.additional')}
+            </label>
+            <textarea
+              onChange={handleInputChange}
+              type="text"
+              id="additional"
+              name="additional"
+              value={inputs.additional} // Bind to inputs state
+              placeholder={t('ordersForm.additional-input')}
+              className="w-full rounded border border-gray-300 px-2 py-2 text-wrap"
             />
           </div>
         </form>
