@@ -133,5 +133,32 @@ const useOrders = () => {
 
   return {getOrdersByUserId, getAllOrders};
 };
+export const updateOrderStatus = async (orderId, newStatus, token) => {
+  try {
+    const response = await fetch(
+      `http://10.120.32.87/app/api/orders/${orderId}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({status: newStatus}),
+      },
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to update order status');
+    }
+
+    console.log('Order updated:', data);
+    return data;
+  } catch (error) {
+    console.error('Error updating order status:', error);
+    throw error;
+  }
+};
 
 export {useAuthentication, useUser, useUpdateUser, useOrders};

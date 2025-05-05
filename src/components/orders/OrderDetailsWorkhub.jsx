@@ -1,8 +1,9 @@
 import {useTranslation} from 'react-i18next';
 
-export const OrderDetailsWorkhub = ({order, onClose}) => {
+export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
+  console.log(totalPrice);
 
   return (
     <>
@@ -16,7 +17,25 @@ export const OrderDetailsWorkhub = ({order, onClose}) => {
           </h3>
           <div className="ml-auto flex flex-row items-center space-x-1.5">
             <h3>{t('orders.status')}</h3>
-            <h3 className={status === 'pending' ? 'text-yellow-500' : ''}>
+            <h3
+              className={
+                status === 'pending'
+                  ? 'text-yellow-500'
+                  : status === 'confirmed'
+                    ? 'text-green-500'
+                    : status === 'preparing'
+                      ? 'text-amber-800'
+                      : status === 'ready'
+                        ? 'text-green-200'
+                        : status === 'out-for-delivery'
+                          ? 'text-fuchsia-400'
+                          : status === 'completed'
+                            ? 'text-green-500'
+                            : status === 'cancelled'
+                              ? 'text-red-500'
+                              : ''
+              }
+            >
               {status}
             </h3>
           </div>
@@ -52,16 +71,16 @@ export const OrderDetailsWorkhub = ({order, onClose}) => {
                 </li>
               ))}
             </ul>
-            <div className="mt-auto flex flex-col space-y-1 border-t border-gray-700 pt-2">
-              <h3 className="ml-auto font-bold underline underline-offset-4">
-                {t('orders.total')}
-              </h3>
-              <h3 className="ml-auto">{`${totalPrice}€`}</h3>
-            </div>
           </section>
         </div>
       </div>
       <section className="mt-4 flex w-full justify-end space-x-3 pr-4">
+        <button
+          onClick={onManageOrder}
+          className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+        >
+          Manage Order
+        </button>
         <button
           onClick={onClose}
           className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
