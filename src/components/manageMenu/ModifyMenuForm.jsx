@@ -18,24 +18,24 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   };
 
   const dietOptions = [
-    {id: 1, label: 'A - Animal-based'},
-    {id: 2, label: 'G - Gluten-free'},
-    {id: 3, label: 'ILM - Induction low-carb method'},
-    {id: 4, label: 'L - Lactose-free'},
-    {id: 5, label: 'M - Mediterranean'},
-    {id: 6, label: 'Veg - Vegetarian'},
-    {id: 7, label: 'VS - Vegan and soy-free'},
+    {id: 1, labelKey: 'dietOptions.animal_based'},
+    {id: 2, labelKey: 'dietOptions.gluten_free'},
+    {id: 3, labelKey: 'dietOptions.induction_low_carb'},
+    {id: 4, labelKey: 'dietOptions.lactose_free'},
+    {id: 5, labelKey: 'dietOptions.mediterranean'},
+    {id: 6, labelKey: 'dietOptions.vegetarian'},
+    {id: 7, labelKey: 'dietOptions.vegan_soy_free'},
   ];
 
   const categoryOptions = [
-    {id: 1, label: 'starter'},
-    {id: 2, label: 'main course'},
-    {id: 3, label: 'dessert'},
-    {id: 4, label: 'sides'},
-    {id: 5, label: 'favorites'},
-    {id: 6, label: 'fields of vegan'},
-    {id: 7, label: 'special offer'},
-    {id: 8, label: 'drinks'},
+    {id: 1, labelKey: 'categoryOptions.starter'},
+    {id: 2, labelKey: 'categoryOptions.main_course'},
+    {id: 3, labelKey: 'categoryOptions.dessert'},
+    {id: 4, labelKey: 'categoryOptions.sides'},
+    {id: 5, labelKey: 'categoryOptions.favorites'},
+    {id: 6, labelKey: 'categoryOptions.fields_of_vegan'},
+    {id: 7, labelKey: 'categoryOptions.special_offer'},
+    {id: 8, labelKey: 'categoryOptions.drinks'},
   ];
 
   const [inputs, setInputs] = useState({
@@ -151,7 +151,9 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
         <MenuCheckbox
           title={t('manageMenu.menu-item-categories')}
           name="categories"
-          options={categoryOptions}
+          options={categoryOptions.map(option => ({
+            ...option, label: t(option.labelKey)
+          }))}
           selectedValues={inputs.categories}
           onChange={handleCheckboxChange}
         />
@@ -159,7 +161,9 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
         <MenuCheckbox
           title={t('manageMenu.menu-item-diets')}
           name="diets"
-          options={dietOptions}
+          options={dietOptions.map(option => ({
+            ...option, label: t(option.labelKey)
+          }))}
           selectedValues={inputs.diets}
           onChange={handleCheckboxChange}
         />
