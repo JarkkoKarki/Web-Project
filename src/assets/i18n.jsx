@@ -185,6 +185,7 @@ i18n.use(initReactI18next).init({
           'address-input': 'Enter your address',
           'email-input': 'Enter your email',
           'phone-input': 'Enter your phone number',
+          'checkout': 'Checkout',
         },
         shoppingCart: {
           "shopping-cart": "Shopping Cart",
@@ -377,6 +378,7 @@ i18n.use(initReactI18next).init({
           'address-input': 'Kirjoita osoitteesi',
           'email-input': 'Kirjoita sähköpostisi',
           'phone-input': 'Kirjoita puhelinnumerosi',
+          'checkout': 'Maksamaan',
         },
         shoppingCart: {
           "shopping-cart": "Ostoskori",
