@@ -27,7 +27,7 @@ export const OrderRow = ({item, index, onClick}) => {
   return (
     <div
       className="mb-6 flex w-[800px] flex-col items-center justify-center space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-white hover:bg-[#1c1e24]"
-      onClick={onClick} // Trigger the click handler
+      onClick={onClick}
       title={t('orders.show-more')}
     >
       <div className="flex w-full cursor-pointer flex-row items-center">
@@ -53,7 +53,25 @@ export const OrderRow = ({item, index, onClick}) => {
           </div>
           <div className="flex flex-row items-center space-x-1.5">
             <h3>{t('orders.status')}</h3>
-            <h3 className={status === 'pending' ? 'text-yellow-500' : ''}>
+            <h3
+              className={
+                status === 'pending'
+                  ? 'text-yellow-500'
+                  : status === 'confirmed'
+                    ? 'text-green-500'
+                    : status === 'preparing'
+                      ? 'text-amber-800'
+                      : status === 'ready'
+                        ? 'text-green-200'
+                        : status === 'out-for-delivery'
+                          ? 'text-fuchsia-400'
+                          : status === 'completed'
+                            ? 'text-green-500'
+                            : status === 'cancelled'
+                              ? 'text-red-500'
+                              : ''
+              }
+            >
               {status}
             </h3>
           </div>

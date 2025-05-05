@@ -107,7 +107,27 @@ export const OrderHistoryWorkhub = () => {
               'completed',
               'cancelled',
             ].map((status) => (
-              <option key={status} value={status}>
+              <option
+                key={status}
+                value={status}
+                className={
+                  status === 'pending'
+                    ? 'text-yellow-500'
+                    : status === 'confirmed'
+                      ? 'text-green-500'
+                      : status === 'preparing'
+                        ? 'text-amber-800'
+                        : status === 'ready'
+                          ? 'text-green-200'
+                          : status === 'out-for-delivery'
+                            ? 'text-fuchsia-400'
+                            : status === 'completed'
+                              ? 'text-green-500'
+                              : status === 'cancelled'
+                                ? 'text-red-500'
+                                : ''
+                }
+              >
                 {status.charAt(0).toUpperCase() +
                   status.slice(1).replace(/-/g, ' ')}
               </option>
