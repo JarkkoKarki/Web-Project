@@ -34,7 +34,7 @@ export const OrderRow = ({item, index, onClick}) => {
         <section className="w-[60px] border-r-2 border-black p-4 text-center">
           <h2>{index + 1 + '.'}</h2>
         </section>
-        <section className="flex flex-row items-start justify-start">
+        <section className="flex w-[100px] flex-row items-start justify-start">
           <h3 className="px-4">{isToday ? formattedTime : formattedDate}</h3>
         </section>
         <section className="flex flex-col items-center px-8">
