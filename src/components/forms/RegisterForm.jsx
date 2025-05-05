@@ -13,17 +13,22 @@ const RegisterForm = () => {
     password: '',
     confirmpassword: '',
     address: '',
+    first_name: '',
+    last_name: '',
+    phone: '',
   };
 
   const doRegister = async () => {
     try {
-      const [firstName, lastName] = inputs.name.split(' ', 2);
       const registrationData = {
-        ...inputs,
-        firstName: firstName || '',
-        lastName: lastName || '',
+        username: inputs.username,
+        email: inputs.email,
+        password: inputs.password,
+        address: inputs.address,
+        first_name: inputs.first_name,
+        last_name: inputs.last_name,
+        phone: inputs.phone,
       };
-      delete registrationData.name;
       console.log('regData', registrationData);
       await handleRegister(registrationData);
       navigate('/login');
@@ -43,18 +48,36 @@ const RegisterForm = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label
-            htmlFor="registername"
+            htmlFor="registerfirstname"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Full Name
+            First Name
           </label>
           <input
             onChange={handleInputChange}
-            autoComplete="name"
+            autoComplete="given-name"
             type="text"
-            id="registername"
-            name="name"
-            placeholder="Your full name"
+            id="registerfirstname"
+            name="first_name"
+            placeholder="Your first name"
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="registerlastname"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Last Name
+          </label>
+          <input
+            onChange={handleInputChange}
+            autoComplete="family-name"
+            type="text"
+            id="registerlastname"
+            name="last_name"
+            placeholder="Your last name"
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -145,6 +168,24 @@ const RegisterForm = () => {
             id="address"
             name="address"
             placeholder="Your address"
+            className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="phone"
+            className="mb-2 block text-left text-lg font-bold"
+          >
+            Phone Number
+          </label>
+          <input
+            onChange={handleInputChange}
+            autoComplete="tel"
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Your phone number"
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
