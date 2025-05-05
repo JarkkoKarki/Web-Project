@@ -1,8 +1,10 @@
 import {useEffect, useState} from 'react';
 import {fetchData} from '../utils/fetchData';
 import {OrderHistory} from '../components/orders/OrderHistory';
+import {useTranslation} from 'react-i18next';
 
 const ViewOrder = () => {
+  const {t} = useTranslation();
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -50,27 +52,35 @@ const ViewOrder = () => {
     fetchOrder();
   }, [sessionId]);
 
-  if (loading) return <div className="p-4 text-white">Loading order...</div>;
+  if (loading)
+    return <div className="p-4 text-white">{t('payment.pay-loading')}</div>;
 
-  if (error) return <div className="p-4 text-red-500">Error: {error}</div>;
+  if (error)
+    return (
+      <div className="p-4 text-red-500">
+        {t('payment.pay-error-view')}
+        {error}
+      </div>
+    );
 
-  if (!order) return <div className="p-4 text-red-500">Order not found.</div>;
+  if (!order)
+    return <div className="p-4 text-red-500">{t('payment.order-nfound')}</div>;
 
   return (
     <>
       <div className="flex h-2/3 min-h-screen flex-col items-center justify-center bg-[#0f1110] p-4 text-center">
-        <h2 className="mb-4 text-xl font-bold">Your Order</h2>
+        <h2 className="mb-4 text-xl font-bold">{t('payment.your-order')}</h2>
         <p>
-          <strong>Order ID:</strong> {order.orderId}
+          <strong>{t('payment.order-id')}</strong> {order.orderId}
         </p>
         <p>
-          <strong>Session:</strong> {sessionId}
+          <strong>{t('payment.session')}</strong> {sessionId}
         </p>
         <p>
-          <strong>Status:</strong> {order.status}
+          <strong>{t('payment.status')}</strong> {order.status}
         </p>
 
-        <h3 className="mt-4 font-semibold">Items:</h3>
+        <h3 className="mt-4 font-semibold">{t('payment.items')}</h3>
         <ul className="list-disc pl-6">
           {order.products.map((product, i) => (
             <li key={i}>

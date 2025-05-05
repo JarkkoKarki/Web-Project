@@ -199,6 +199,21 @@ i18n.use(initReactI18next).init({
         },
         menuUrl: {
           "menuUrl": "en",
+        },
+        payment: {
+          "view-order": "View Order",
+          "thank-you": "Thank you for your purchase.",
+          "pay-succ": "Payment Successful!",
+          "pay-cancel": "Payment Canceled",
+          "pay-error": "Your payment was not completed.",
+          "pay-loading": "Loading order...",
+          "pay-error-view": "Error: ",
+          "order-nfound": "Order not found.",
+          "your-order": "Your Order",
+          "order-id": "Order ID:",
+          "session": "Session:",
+          "status": "Status:",
+          "items": "Items:",
         }
       }
     },
@@ -392,6 +407,21 @@ i18n.use(initReactI18next).init({
         },
         menuUrl: {
           "menuUrl": "fi",
+        },
+        payment: {
+          "view-order": "Näytä tilaus",
+          "thank-you": "Kiitos tilauksesta",
+          "pay-succ": "Tilaus hyväksytty",
+          "pay-cancel": "Tilaus Keskeytetty",
+          "pay-error": "Maksutapahtuma keskeytetty",
+          "pay-loading": "Ladataan tilausta...",
+          "pay-error-view": "Virhe: ",
+          "order-nfound": "Tilausta ei löytynyt.",
+          "your-order": "Tilauksesi",
+          "order-id": "Tilausnumero:",
+          "session": "Tapahtuma:",
+          "status": "Tila:",
+          "items": "Tuotteet:",
         }
       }
     }
