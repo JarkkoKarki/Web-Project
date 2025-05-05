@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {fetchData} from '../utils/fetchData';
+import {OrderHistory} from '../components/orders/OrderHistory';
 
 const ViewOrder = () => {
   const [order, setOrder] = useState(null);
@@ -56,27 +57,32 @@ const ViewOrder = () => {
   if (!order) return <div className="p-4 text-red-500">Order not found.</div>;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#0f1110] p-4 text-center">
-      <h2 className="mb-4 text-xl font-bold">Your Order</h2>
-      <p>
-        <strong>Order ID:</strong> {order.orderId}
-      </p>
-      <p>
-        <strong>Session:</strong> {sessionId}
-      </p>
-      <p>
-        <strong>Status:</strong> {order.status}
-      </p>
+    <>
+      <div className="flex h-2/3 min-h-screen flex-col items-center justify-center bg-[#0f1110] p-4 text-center">
+        <h2 className="mb-4 text-xl font-bold">Your Order</h2>
+        <p>
+          <strong>Order ID:</strong> {order.orderId}
+        </p>
+        <p>
+          <strong>Session:</strong> {sessionId}
+        </p>
+        <p>
+          <strong>Status:</strong> {order.status}
+        </p>
 
-      <h3 className="mt-4 font-semibold">Items:</h3>
-      <ul className="list-disc pl-6">
-        {order.products.map((product, i) => (
-          <li key={i}>
-            {product.name} — ${product.price} × {product.quantity}
-          </li>
-        ))}
-      </ul>
-    </div>
+        <h3 className="mt-4 font-semibold">Items:</h3>
+        <ul className="list-disc pl-6">
+          {order.products.map((product, i) => (
+            <li key={i}>
+              {product.name} — ${product.price} × {product.quantity}
+            </li>
+          ))}
+        </ul>
+        <div className="mt-12 flex justify-center align-top">
+          <OrderHistory />
+        </div>
+      </div>
+    </>
   );
 };
 
