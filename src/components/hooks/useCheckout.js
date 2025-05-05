@@ -6,16 +6,27 @@ import {url} from '../../utils/variables';
 
 export const useCheckout = () => {
   const {user} = useContext(UserContext);
+  console.log('user checkout', user);
 
-  const handleCheckout = async (cartItems) => {
-    if (!user || !user.id || !user.username || !user.address) {
+  const handleCheckout = async (cartItems, inputs = {}) => {
+    if (!user || !user.id || !user.username) {
       alert('User information is incomplete');
       return;
     }
 
     try {
       const payload = mapCartItemsToPayload(cartItems);
-      console.log('Payload:', payload);
+      console.log('Payload:', {
+        products: payload.products,
+        user: {
+          user_id: user.id,
+          username: user.username,
+          address: inputs.address || user.address,
+          email: inputs.email || user.email,
+          phone: inputs.phone || user.phone,
+          additional_info: inputs.additional || '',
+        },
+      });
 
       const response = await fetch(url + '/payment/create-checkout-session', {
         method: 'POST',
@@ -25,7 +36,10 @@ export const useCheckout = () => {
           user: {
             user_id: user.id,
             username: user.username,
-            address: user.address,
+            address: inputs.address || user.address,
+            email: inputs.email || user.email,
+            phone: inputs.phone || user.phone,
+            additional_info: inputs.additional_info || '',
           },
         }),
       });

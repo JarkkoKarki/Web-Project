@@ -38,7 +38,7 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
             <h3 className="font-bold underline underline-offset-4">
               {t('orders.personal-info')}
             </h3>
-            <p>{`${t('orders.name')}: ${first_name ?? t('orders.undefined')} ${last_name ?? t('orders.undefined')}`}</p>
+            <p>{`${t('orders.name')}: ${first_name ?? t('orders.undefined')} ${last_name ?? ''}`}</p>
             <p>{`${t('orders.address')}: ${address ?? t('orders.undefined')}`}</p>
             <p>{`${t('orders.email')}: ${email ?? t('orders.undefined')}`}</p>
             <p>{`${t('orders.phone')}: ${phone ?? t('orders.undefined')}`}</p>

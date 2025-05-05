@@ -6,12 +6,12 @@ export const OrderedItems = ({order}) => {
   return (
     <>
       <div className="flex flex-col bg-[#0d0f0e] text-white">
-        <h2 className="mb-12 text-3xl font-bold">{t('ordersForm.order')}</h2>
-        <div className="mx-2 mb-2 flex flex-col items-center bg-[#0d0f0e] font-sans text-white">
+        <h2 className="mb-6 text-3xl font-bold">{t('ordersForm.order')}</h2>
+        <div className="mx-2 mb-4 grid grid-cols-2 justify-items-center gap-4 bg-[#0d0f0e] font-sans text-white">
           {order?.products?.map((product, index) => (
             <div
               key={index}
-              className="mb-2 w-full rounded border border-gray-700 p-2 text-center"
+              className="rounded border border-gray-700 p-2 text-center"
             >
               <p className="font-medium">{`${product.name}`}</p>
               <div className="flex w-full flex-row items-center justify-center space-x-2">
@@ -20,6 +20,10 @@ export const OrderedItems = ({order}) => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mb-6 flex flex-row items-center space-x-2 self-center text-white">
+          <h3 className="text-2xl">{t('ordersForm.total-price')}</h3>
+          <h3 className="text-2xl">{order.total_price}€</h3>
         </div>
       </div>
     </>
