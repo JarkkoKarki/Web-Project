@@ -31,7 +31,7 @@ export const OrderRow = ({item, index, onClick}) => {
       title={t('orders.show-more')}
     >
       <div className="flex w-full cursor-pointer flex-row items-center">
-        <section className="border-r-2 border-black p-4 text-center">
+        <section className="w-[60px] border-r-2 border-black p-4 text-center">
           <h2>{index + 1 + '.'}</h2>
         </section>
         <section className="flex flex-row items-start justify-start">
