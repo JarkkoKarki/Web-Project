@@ -18,7 +18,7 @@ export const UserInformation = () => {
   const clickHandler = (field) => {
     setEditingField(field);
     if (field === 'name') {
-      setTemp({first_name: user.first_name, last_name: user.last_name});
+      setTemp({first_name: user.first_name || '', last_name: user.last_name || ''});
     } else if (field === 'password') {
       setTemp({currentPassword: '', newPassword: '', confirmPassword: ''});
     } else {
@@ -32,35 +32,44 @@ export const UserInformation = () => {
       let updatedUser;
       if (editingField === 'name') {
         updatedUser = {
+          ...user, // Include the complete user object
           first_name: temp.first_name,
           last_name: temp.last_name,
         };
       } else if (editingField === 'password') {
         updatedUser = {
+          ...user, // Include the complete user object
           password: temp.newPassword,
         };
         console.log('Password changed:', temp);
       } else {
         updatedUser = {
+          ...user, // Include the complete user object
           [editingField]: temp,
         };
       }
 
-      const response = await putUser({
-        id: user.id,
-        ...user,
-        ...updatedUser,
-      });
+      const response = await putUser(updatedUser);
       console.log('response:', response);
 
       if (response) {
         console.log('User updated:', response);
-        updateUser({
-          ...user,
-          ...updatedUser,
-        });
+        
+        // Update the user context with the changed fields
+        if (editingField === 'name') {
+          updateUser({
+            first_name: temp.first_name,
+            last_name: temp.last_name,
+          });
+        } else if (editingField === 'password') {
+          // No need to update the user state for password changes
+        } else {
+          updateUser({
+            [editingField]: temp,
+          });
+        }
 
-        // TALLENNETAAN UUSI TOKENI KUN OLLAAN MUUTETTU ASIOITA
+        // Always save the JWT token after successful updates
         if (response.token) {
           localStorage.setItem('token', response.token);
           console.log('JWT token updated in localStorage');
@@ -78,6 +87,42 @@ export const UserInformation = () => {
   const handleCancel = () => {
     console.log('id:', user.id);
     setEditingField(null);
+  };
+
+  const handleNameUpdate = async (userData) => {
+    try {
+      const response = await putUser(userData);
+      if (response) {
+        // Update only the changed name fields in the user context
+        updateUser({
+          first_name: userData.first_name,
+          last_name: userData.last_name,
+        });
+        
+        // Always save the JWT token after successful updates
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          console.log('JWT token updated in localStorage after name update');
+        }
+      }
+      setEditingField(null);
+    } catch (error) {
+      console.error('Error updating name:', error);
+    }
+  };
+
+  const handlePasswordUpdate = async (userData) => {
+    try {
+      const response = await putUser(userData);
+      // Always save the JWT token after successful updates
+      if (response && response.token) {
+        localStorage.setItem('token', response.token);
+        console.log('JWT token updated in localStorage after password update');
+      }
+      setEditingField(null);
+    } catch (error) {
+      console.error('Error updating password:', error);
+    }
   };
 
   const profileInfo = [
@@ -108,24 +153,13 @@ export const UserInformation = () => {
           {editingField === info.field ? (
             info.field === 'password' ? (
               <PasswordUpdate
-                onSave={(passwordData) => {
-                  console.log('Password updated:', passwordData);
-                  setEditingField(null);
-                }}
+                onSave={handlePasswordUpdate}
                 onCancel={handleCancel}
               />
             ) : info.field === 'name' ? (
               <div className="flex flex-col space-y-2">
                 <UserNameChange
-                  onSave={(nameData) => {
-                    console.log('Name updated:', nameData);
-                    updateUser({
-                      ...user,
-                      first_name: nameData.first_name,
-                      last_name: nameData.last_name,
-                    });
-                    setEditingField(null);
-                  }}
+                  onSave={handleNameUpdate}
                   onCancel={handleCancel}
                 />
               </div>
