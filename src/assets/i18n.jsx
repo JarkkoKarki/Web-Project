@@ -224,7 +224,7 @@ i18n.use(initReactI18next).init({
 
         header: {
           "home": "Koti",
-          "menu": "Menu",
+          "menu": "Ruokalista",
           "reservation": "Varaaminen",
           "about": "Meistä",
           "sign-in": "Kirjaudu Sisään",
