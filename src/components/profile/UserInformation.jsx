@@ -59,6 +59,12 @@ export const UserInformation = () => {
           ...user,
           ...updatedUser,
         });
+
+        // TALLENNETAAN UUSI TOKENI KUN OLLAAN MUUTETTU ASIOITA
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          console.log('JWT token updated in localStorage');
+        }
       } else {
         console.error('Failed to update user');
       }
