@@ -64,6 +64,8 @@ i18n.use(initReactI18next).init({
           'login': 'Login',
           'username': 'Username',
           'password': 'Password',
+          'not-user': 'Not a user yet?',
+          'ready-user': 'Already have an account?',
         },
         registerPage: {
           'register': 'Register',
@@ -334,6 +336,8 @@ i18n.use(initReactI18next).init({
             'login': 'Kirjaudu',
             'username': 'Käyttäjänimi',
             'password': 'Salasana',
+            'not-user': 'Eikö ole käyttäjää?',
+            'ready-user': 'Oletko jo käyttäjä?',
         },
         registerPage: {
           'register': 'Rekisteröidy',
