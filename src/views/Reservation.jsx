@@ -65,6 +65,14 @@ const Reservation = () => {
           <button
             className="transform rounded bg-yellow-400 px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
             onClick={() => {
+              if (currentStep === 2 && !selectedDate) {
+                alert(t('reservationPage.selectDateError'));
+                return;
+              }
+              if (peopleCount > 12) {
+                alert(t('reservationPage.maxPeopleWarning'));
+                return;
+              }
               if (currentStep < 4) {
                 setCurrentStep((prev) => prev + 1);
               }

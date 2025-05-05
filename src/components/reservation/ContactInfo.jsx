@@ -16,7 +16,13 @@ const ContactInfo = ({
   const [email, setEmail] = useState(prefilled ? user.email : '');
   const [comments, setComments] = useState('');
   const {t} = useTranslation();
-  const handleSubmit = () => {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!name || !phone || !email) {
+      alert(t('reservationPage.emptyFieldsError'));
+      return;
+    }
     if (user) {
       console.log({
         user_id: user.id,
