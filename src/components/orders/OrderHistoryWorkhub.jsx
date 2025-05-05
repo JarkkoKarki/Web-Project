@@ -5,6 +5,7 @@ import {useUserContext} from '../hooks/contextHooks';
 import {OrderRow} from './OrderRow';
 import OrderDetailsWorkhub from './OrderDetailsWorkhub';
 import Modal from './Modal';
+import i18n from 'i18next';
 
 export const OrderHistoryWorkhub = () => {
   const {t} = useTranslation();
@@ -47,7 +48,7 @@ export const OrderHistoryWorkhub = () => {
     if (user) {
       fetchOrders();
     }
-  }, [user?.id]);
+  }, [user?.id, i18n.language]);
 
   const displayedOrders = showAll ? orders : orders.slice(0, 5);
 
@@ -81,14 +82,15 @@ export const OrderHistoryWorkhub = () => {
       )}
       {isManageModalOpen && (
         <Modal isOpen={isManageModalOpen} onClose={closeManageModal}>
-          <h2 className="mb-4 text-xl font-bold">Update Order Status</h2>
+          <h2 className="mb-4 text-xl font-bold">{t('orders.titlew')}</h2>
           <p className="mb-2">
-            Update status for order #{selectedOrder?.orderId}
+            {t('orders.paragraph')}
+            {selectedOrder?.orderId}
           </p>
           <div>
-            <p>Order: </p>
+            <p>{t('orders.id')}</p>
             {selectedOrder?.orderId}
-            <p>Status: </p>
+            <p>{t('orders.status')}</p>
             {selectedOrder?.status}
           </div>
           <select
@@ -135,12 +137,6 @@ export const OrderHistoryWorkhub = () => {
           </select>
           <div className="mt-4 flex justify-end space-x-2">
             <button
-              className="border px-4 py-2 text-black"
-              onClick={closeManageModal}
-            >
-              Cancel
-            </button>
-            <button
               className="bg-yellow-500 px-4 py-2 font-bold text-black"
               onClick={async () => {
                 const token = localStorage.getItem('token');
@@ -164,7 +160,13 @@ export const OrderHistoryWorkhub = () => {
                 }
               }}
             >
-              Save
+              {t('orders.save')}
+            </button>
+            <button
+              className="border bg-[#2b2e2c81] px-4 py-2 text-black"
+              onClick={closeManageModal}
+            >
+              {t('orders.cancel')}
             </button>
           </div>
         </Modal>

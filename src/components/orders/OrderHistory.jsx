@@ -5,6 +5,7 @@ import {useUserContext} from '../hooks/contextHooks';
 import {OrderRow} from './OrderRow';
 import OrderDetails from './OrderDetails';
 import {url} from '../../utils/variables';
+import i18n from 'i18next';
 
 export const OrderHistory = () => {
   const {t} = useTranslation();
@@ -88,11 +89,12 @@ export const OrderHistory = () => {
     if (user) {
       fetchOrders();
     }
-  }, [user?.id]);
+  }, [user?.id, i18n.language]);
 
   const displayedOrders = showAll
     ? orders.slice().reverse()
     : orders.slice().reverse().slice(0, 5);
+
 
   return (
     <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
