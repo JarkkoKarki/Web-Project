@@ -81,14 +81,15 @@ export const OrderHistoryWorkhub = () => {
       )}
       {isManageModalOpen && (
         <Modal isOpen={isManageModalOpen} onClose={closeManageModal}>
-          <h2 className="mb-4 text-xl font-bold">Update Order Status</h2>
+          <h2 className="mb-4 text-xl font-bold">{t('orders.titlew')}</h2>
           <p className="mb-2">
-            Update status for order #{selectedOrder?.orderId}
+            {t('orders.paragraph')}
+            {selectedOrder?.orderId}
           </p>
           <div>
-            <p>Order: </p>
+            <p>{t('orders.id')}</p>
             {selectedOrder?.orderId}
-            <p>Status: </p>
+            <p>{t('orders.status')}</p>
             {selectedOrder?.status}
           </div>
           <select
@@ -138,7 +139,7 @@ export const OrderHistoryWorkhub = () => {
               className="border px-4 py-2 text-black"
               onClick={closeManageModal}
             >
-              Cancel
+              {t('orders.cancel')}
             </button>
             <button
               className="bg-yellow-500 px-4 py-2 font-bold text-black"
@@ -164,7 +165,7 @@ export const OrderHistoryWorkhub = () => {
                 }
               }}
             >
-              Save
+              {t('orders.save')}
             </button>
           </div>
         </Modal>

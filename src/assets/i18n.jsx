@@ -175,6 +175,11 @@ i18n.use(initReactI18next).init({
           'undefined': 'Not specified',
           'latest-order': 'Latest Order',
           'time': 'Time:',
+          'manage': 'Manage Order',
+          'titlew': "Update Order Status",
+          'paragraph': "Update status for order #",
+          'cancel': "Cancel",
+          'save': "Save",
         },
         ordersForm: {
           'your-order': 'Your Order',
@@ -387,6 +392,11 @@ i18n.use(initReactI18next).init({
           'undefined': 'Ei määritetty',
           'latest-order': 'Viimeisin tilaus',
           'time': 'Aika:',
+          'manage': 'Muokkaa Tilausta',
+          'titlew': "Päivitä tilauksen tilaa",
+          'paragraph': "Päivitä tila tilaukselle #",
+          'cancel': "Keskeytä",
+          'save': "Tallenna",
         },
         ordersForm: {
           'your-order': 'Tilauksesi',
