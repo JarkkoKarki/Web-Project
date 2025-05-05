@@ -60,7 +60,11 @@ i18n.use(initReactI18next).init({
           'add-to-cart': 'Add to Cart',
           'diets': 'Diets: '
         },
-        loginPage: {},
+        loginPage: {
+          'login': 'Login',
+          'username': 'Username',
+          'password': 'Password',
+        },
         registerPage: {},
         reservationPage: {
           'book-table': 'Book a Table',
@@ -307,7 +311,11 @@ i18n.use(initReactI18next).init({
           'add-to-cart': 'Lisää ostoskoriin',
           'diets': 'Allergeenit: '
         },
-        loginPage: {},
+        loginPage: {
+            'login': 'Kirjaudu',
+            'username': 'Käyttäjänimi',
+            'password': 'Salasana',
+        },
         registerPage: {},
         reservationPage: {
           'book-table': 'Varaa pöytä',
