@@ -43,7 +43,7 @@ const Reservations = () => {
   return (
     <div className="flex w-full flex-wrap justify-center gap-4">
       {reservations.length === 0 ? (
-        <p className="text-center text-gray-400">No reservations found.</p>
+        <p className="text-center text-gray-400">{t('reservations.none')}</p>
       ) : (
         reservations.map((res, index) => (
           <div
@@ -54,17 +54,23 @@ const Reservations = () => {
               {res.name || 'Unnamed'}
             </h3>
             <p>
-              <span className="font-semibold text-gray-300">Date:</span>{' '}
+              <span className="font-semibold text-gray-300">
+                {t('reservations.date')}
+              </span>{' '}
               {res.reservation_date
                 ? new Date(res.reservation_date).toLocaleDateString('fi-FI')
                 : 'Unknown'}
             </p>
             <p>
-              <span className="font-semibold text-gray-300">Time:</span>{' '}
+              <span className="font-semibold text-gray-300">
+                {t('reservations.time')}
+              </span>{' '}
               {res.reservation_time || 'Unknown'}
             </p>
             <p>
-              <span className="font-semibold text-gray-300">People:</span>{' '}
+              <span className="font-semibold text-gray-300">
+                {t('reservations.people')}
+              </span>{' '}
               {res.people_count}
             </p>
             <p className="mt-2 text-sm text-gray-400 italic">
