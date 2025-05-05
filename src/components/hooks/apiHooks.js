@@ -110,6 +110,7 @@ const useUpdateUser = () => {
 const useOrders = () => {
   const {t} = useTranslation();
   const lang = t('menuUrl.menuUrl');
+
   const getOrdersByUserId = useCallback(async () => {
     const fetchOptions = {
       headers: {
@@ -118,9 +119,19 @@ const useOrders = () => {
     };
 
     return await fetchData(url + '/orders/myorders/' + lang, fetchOptions);
+  }, [lang]);
+
+  const getAllOrders = useCallback(async () => {
+    const fetchOptions = {
+      headers: {
+        Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+      },
+    };
+
+    return await fetchData(url + '/orders/' + lang, fetchOptions);
   }, []);
 
-  return {getOrdersByUserId};
+  return {getOrdersByUserId, getAllOrders};
 };
 
 export {useAuthentication, useUser, useUpdateUser, useOrders};
