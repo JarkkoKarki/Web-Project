@@ -1,10 +1,12 @@
 import {useNavigate} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
 import useForm from '../hooks/formHooks';
+import {useTranslation} from 'react-i18next';
 
 const RegisterForm = () => {
   const {handleRegister} = useUserContext();
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const initValues = {
     name: '',
@@ -44,14 +46,14 @@ const RegisterForm = () => {
 
   return (
     <>
-      <h2 className="mb-6 text-2xl font-bold">Register</h2>
+      <h2 className="mb-6 text-2xl font-bold">{t('registerPage.register')}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="registerfirstname"
             className="mb-2 block text-left text-lg font-bold"
           >
-            First Name
+            {t('registerPage.first-name')}
           </label>
           <input
             onChange={handleInputChange}
@@ -59,7 +61,7 @@ const RegisterForm = () => {
             type="text"
             id="registerfirstname"
             name="first_name"
-            placeholder="Your first name"
+            placeholder={t('registerPage.your-f')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -69,7 +71,7 @@ const RegisterForm = () => {
             htmlFor="registerlastname"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Last Name
+            {t('registerPage.last-name')}
           </label>
           <input
             onChange={handleInputChange}
@@ -77,7 +79,7 @@ const RegisterForm = () => {
             type="text"
             id="registerlastname"
             name="last_name"
-            placeholder="Your last name"
+            placeholder={t('registerPage.your-l')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -87,7 +89,7 @@ const RegisterForm = () => {
             htmlFor="registerusername"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Username
+            {t('registerPage.username')}
           </label>
           <input
             onChange={handleInputChange}
@@ -95,7 +97,7 @@ const RegisterForm = () => {
             type="text"
             id="registerusername"
             name="username"
-            placeholder="Choose a username"
+            placeholder={t('registerPage.your-u')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -105,7 +107,7 @@ const RegisterForm = () => {
             htmlFor="registeremail"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Email
+            {t('registerPage.email')}
           </label>
           <input
             onChange={handleInputChange}
@@ -113,7 +115,7 @@ const RegisterForm = () => {
             type="email"
             id="registeremail"
             name="email"
-            placeholder="you@example.com"
+            placeholder={t('registerPage.your-e')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -123,7 +125,7 @@ const RegisterForm = () => {
             htmlFor="registerpassword"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Password
+            {t('registerPage.password')}
           </label>
           <input
             onChange={handleInputChange}
@@ -131,7 +133,7 @@ const RegisterForm = () => {
             type="password"
             id="registerpassword"
             name="password"
-            placeholder="Enter password"
+            placeholder={t('registerPage.your-p')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -141,7 +143,7 @@ const RegisterForm = () => {
             htmlFor="confirmpassword"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Confirm Password
+            {t('registerPage.password-confirm')}
           </label>
           <input
             onChange={handleInputChange}
@@ -149,7 +151,7 @@ const RegisterForm = () => {
             type="password"
             id="confirmpassword"
             name="confirmpassword"
-            placeholder="Re-enter password"
+            placeholder={t('registerPage.your-rp')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -159,7 +161,7 @@ const RegisterForm = () => {
             htmlFor="address"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Address
+            {t('registerPage.address')}
           </label>
           <input
             onChange={handleInputChange}
@@ -167,7 +169,7 @@ const RegisterForm = () => {
             type="text"
             id="address"
             name="address"
-            placeholder="Your address"
+            placeholder={t('registerPage.your-a')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -177,7 +179,7 @@ const RegisterForm = () => {
             htmlFor="phone"
             className="mb-2 block text-left text-lg font-bold"
           >
-            Phone Number
+            {t('registerPage.phone')}
           </label>
           <input
             onChange={handleInputChange}
@@ -185,7 +187,7 @@ const RegisterForm = () => {
             type="tel"
             id="phone"
             name="phone"
-            placeholder="Your phone number"
+            placeholder={t('registerPage.your-phone')}
             className="mb-5 w-full rounded-lg border border-gray-300 p-3 text-lg"
           />
         </div>
@@ -194,7 +196,7 @@ const RegisterForm = () => {
           type="submit"
           className="mt-4 w-full rounded-lg bg-gray-400 p-3 text-lg font-bold text-white hover:bg-gray-500"
         >
-          Register
+          {t('registerPage.register')}
         </button>
       </form>
     </>

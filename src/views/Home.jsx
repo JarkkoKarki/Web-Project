@@ -3,6 +3,9 @@ import About from './About';
 import {useTranslation} from 'react-i18next';
 import useMenu from '../components/hooks/menuHooks';
 import MenuItem from '../components/MenuRowItem';
+import facebookIcon from '../assets/images/facebook.svg';
+import instagramIcon from '../assets/images/instagram.svg';
+import tiktokIcon from '../assets/images/tiktok.svg';
 
 const Home = () => {
   const {t} = useTranslation();
@@ -28,6 +31,11 @@ const Home = () => {
             "url('src/assets/images/top-view-lula-kebab-with-onion-herbs-grilled-vegetables-wooden-board.jpg')",
         }}
       >
+        <div className="absolute bottom-10 left-10 z-10 flex space-x-2">
+          <img src={facebookIcon} alt="Facebook" className="h-12 w-12" />
+          <img src={instagramIcon} alt="Instagram" className="h-12 w-12" />
+          <img src={tiktokIcon} alt="TikTok" className="h-12 w-12" />
+        </div>
         <div className="bg-opacity-60 rounded-lg bg-[#101211] p-10">
           <p className="mb-2 text-yellow-500 italic">
             {t('homePage.welcome-message')}

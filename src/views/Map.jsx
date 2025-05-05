@@ -41,7 +41,7 @@ function FitMapToRoute({coordinates}) {
   useEffect(() => {
     if (coordinates && coordinates.length > 0) {
       const bounds = L.latLngBounds(coordinates);
-      map.fitBounds(bounds, {padding: [50, 50]});
+      map.fitBounds(bounds, {padding: [20, 20]});
     }
   }, [map, coordinates]);
 
