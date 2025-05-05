@@ -90,6 +90,16 @@ i18n.use(initReactI18next).init({
           "comments-label": "Is there anything we should know before you arrive?",
           "comments-placeholder": "Write your comments here..."
         },
+        reservations: {
+          "title": "Your Reservations",
+          "none": "No reservations found.",
+          "date": "Date",
+          "time": "Time",
+          "name": "Name",
+          "people": "People",
+          "phone": "Phone",
+          "comments": "Comments"
+        },
         profilePage: {
           "profile": 'Profile',
           "profile-picture": 'Profile Picture',
@@ -303,6 +313,16 @@ i18n.use(initReactI18next).init({
           "email-placeholder": "Sähköposti",
           "comments-label": "Onko jotain, mitä meidän pitäisi tietää ennen kuin tulet?",
           "comments-placeholder": "Kirjoita kommenttisi tähän..."
+        },
+        reservations: {
+          "title": "Pöytävaraukset",
+          "none": "Pöytävarauksia ei löytynyt.",
+          "date": "Päivä",
+          "time": "Aika",
+          "name": "Nimi",
+          "people": "Henkilöt",
+          "phone": "Puhelinnumero",
+          "comments": "Kommentit"
         },
         profilePage: {
           "profile": 'Profiili',

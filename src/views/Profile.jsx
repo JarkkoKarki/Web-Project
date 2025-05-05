@@ -5,6 +5,7 @@ import DeleteUserButton from '../components/profile/DeleteUserButton';
 import {OrderHistory} from '../components/orders/OrderHistory';
 import {useUserContext} from '../components/hooks/contextHooks';
 import {Link} from 'react-router';
+import Reservations from '../components/reservation/Reservations';
 
 const Profile = () => {
   const {t} = useTranslation();
@@ -19,6 +20,7 @@ const Profile = () => {
       </section>
       <section className="flex w-full flex-row items-center justify-center space-y-10 px-6">
         <OrderHistory />
+        <Reservations></Reservations>
       </section>
       <section className="mt-10 flex h-auto w-full flex-row items-end justify-end space-x-10 px-20 py-10">
         <Link
