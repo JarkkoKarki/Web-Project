@@ -140,7 +140,7 @@ export function Map() {
     <>
       <div className="flex flex-row justify-center align-middle">
         <MapContainer
-          className="m-4.5 rounded-2xl border-5 border-amber-300 shadow-lg shadow-amber-500"
+          className="m-4.5 rounded-2xl border-2 border-amber-300 shadow-2xs shadow-amber-500"
           center={position}
           zoom={12}
           scrollWheelZoom={false}

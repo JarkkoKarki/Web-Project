@@ -12,7 +12,7 @@ function Modal({routeData, onClose}) {
 
   return (
     <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black">
-      <div className="max-h-[80vh] w-1/2 overflow-y-auto rounded-lg bg-neutral-700 p-6 shadow-lg">
+      <div className="max-h-[80vh] w-1/2 overflow-y-auto rounded-lg bg-[#101211] p-6 shadow-lg">
         <button
           onClick={onClose}
           className="rounded-md bg-red-500 px-6 py-2 text-white hover:bg-red-600"
@@ -23,9 +23,12 @@ function Modal({routeData, onClose}) {
           Route Information
         </h2>
 
-        <div className="space-y-4">
+        <div className="space-y-4 border-b border-gray-700">
           {routeData.edges.map((edge, index) => (
-            <div key={index} className="rounded-md bg-gray-400 p-4 shadow-sm">
+            <div
+              key={index}
+              className="rounded-md border border-gray-700 p-4 shadow-sm shadow-gray-300"
+            >
               <h3 className="text-lg font-semibold">Trip #{index + 1}</h3>
               <div className="space-y-2">
                 <div>
