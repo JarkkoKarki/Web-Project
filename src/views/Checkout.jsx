@@ -20,7 +20,7 @@ export const Checkout = () => {
       className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{backgroundImage: "url('src/assets/images/2147772080.jpg')"}}
     >
-      <div className="flex w-2/3 flex-col items-center rounded-2xl bg-[#0d0f0e] p-4 text-center text-black shadow-md">
+      <div className="flex w-2/4 flex-col items-center rounded-2xl bg-[#0d0f0e] p-4 text-center text-black shadow-md">
         <div className="mb-6 flex flex-row space-x-16">
           <OrderForm />
           <OrderedItems order={{products: cartItems}} />
