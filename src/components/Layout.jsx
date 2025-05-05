@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {useUserContext} from './hooks/contextHooks';
 import {Link, Outlet, useLocation} from 'react-router';
 import {useTranslation} from 'react-i18next';
-import {logoUrl} from '../utils/variables';
+import {logoUrl, rootUrl} from '../utils/variables';
 import ShoppingCartElement from './ShoppingCartElement';
 import LanguageChange from './LanguageChange';
 
@@ -10,6 +10,7 @@ const Layout = () => {
   const {t} = useTranslation();
   const {user, handleAutoLogin} = useUserContext();
   const location = useLocation();
+  console.log('user', user);
 
   useEffect(() => {
     handleAutoLogin();
@@ -62,9 +63,15 @@ const Layout = () => {
             <>
               <Link
                 to="/profile"
-                className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                title={t('header.profile')}
+                // className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
               >
-                {t('header.profile')}
+                {/* {t('header.profile')} */}
+                <img
+                  src={rootUrl + user.filename}
+                  alt="Profile"
+                  className="h-10 w-10 rounded-full"
+                />
               </Link>
 
               {user && (user.role === 'employee' || user.role === 'admin') && (
