@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import SaveCancelButtons from '../SaveCancelButtons';
+import {useUserContext} from '../hooks/contextHooks';
+import {useUpdateUser} from '../hooks/apiHooks';
 
 export const PasswordUpdate = ({onSave, onCancel}) => {
   const {t} = useTranslation();
+  const {user} = useUserContext();
+  const {putUser} = useUpdateUser();
   const [passwords, setPasswords] = useState({
     currentPassword: '',
     newPassword: '',
@@ -19,7 +23,7 @@ export const PasswordUpdate = ({onSave, onCancel}) => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const missingFields = Object.keys(passwords).filter(
       (key) => !passwords[key],
     );
@@ -40,7 +44,27 @@ export const PasswordUpdate = ({onSave, onCancel}) => {
       alert(t('profilePage.passwords-do-not-match'));
       return;
     }
-    onSave(passwords);
+
+    try {
+      // Send the complete user object with the new password to the backend
+      const userData = {
+        ...user,
+        password: passwords.newPassword
+      };
+      
+      const response = await putUser(userData);
+      
+      // Save the token immediately after a successful update
+      if (response && response.token) {
+        localStorage.setItem('token', response.token);
+        console.log('JWT token updated in localStorage after password change');
+      }
+      
+      // Pass the response to the parent component's onSave handler
+      onSave(userData);
+    } catch (error) {
+      console.error('Error updating password:', error);
+    }
   };
 
   const passwordFields = [

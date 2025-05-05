@@ -20,10 +20,10 @@ export const ProfilePicture = () => {
 
   const uploadImgDisplay = () => {
     const uploadedFile = fileUploadRef.current.files[0];
-    const cachedURL = URL.createObjectURL(uploadedFile);
     if (!uploadedFile) {
       return;
     }
+    const cachedURL = URL.createObjectURL(uploadedFile);
     setAvatar(cachedURL);
     setShowButtons(true);
   };
@@ -35,19 +35,27 @@ export const ProfilePicture = () => {
     }
 
     try {
+      // Pass the full user object to the updateProfilePicture function
       const response = await updateProfilePicture(uploadedFile, user.id, user);
+      console.log('Response from updateProfilePicture:', response);
 
-      if (response) {
+      if (response && response.user) {
+        // Update only the filename in the user context
         updateUser({
-          ...user,
-          filename: response.filename,
+          filename: response.user.filename,
         });
-        setAvatar(rootUrl + response.filename);
+        setAvatar(rootUrl + response.user.filename); // Ensure avatar state is updated immediately
         fileUploadRef.current.value = null;
         setShowButtons(false);
+        
+        // Update token if provided
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          console.log('JWT token updated in localStorage after profile picture update');
+        }
       }
     } catch (error) {
-      console.error('Error updating user:', error);
+      console.error('Error updating profile picture:', error);
     }
   };
 

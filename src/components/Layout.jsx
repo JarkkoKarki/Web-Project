@@ -17,7 +17,7 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="bg-[#0d0f0e] text-white">
+    <div className="flex min-h-screen flex-col bg-[#0d0f0e] text-white">
       <header className="flex items-center justify-between border-b border-gray-800 bg-[#0d0f0e] px-8 py-4">
         <div className="flex items-center space-x-3">
           <img src={logoUrl} alt="Logo" className="h-8 w-8" />
@@ -93,7 +93,7 @@ const Layout = () => {
           )}
         </div>
       </header>
-      <main className="p-4">
+      <main className="flex-grow p-4">
         <Outlet />
       </main>
 

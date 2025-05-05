@@ -21,10 +21,10 @@ const Register = () => {
       className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{backgroundImage: "url('src/assets/images/2147772080.jpg')"}}
     >
-      <div className="w-full max-w-md rounded-lg bg-gray-100 p-10 text-center text-black shadow-md">
+      <div className="w-full max-w-sm rounded-lg bg-gray-100 p-6 text-center text-black shadow-md">
         {formToggle ? <LoginForm /> : <RegisterForm />}
         <button
-          className="block text-lg font-bold text-blue-500 hover:underline"
+          className="mt-4 block text-lg font-bold text-blue-500 hover:underline"
           onClick={clickHandler}
         >
           {formToggle ? 'Not a user yet?' : 'Already have an account?'}
