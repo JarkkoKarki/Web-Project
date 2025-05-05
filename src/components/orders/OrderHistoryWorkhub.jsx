@@ -3,8 +3,8 @@ import {useTranslation} from 'react-i18next';
 import {useOrders} from '../hooks/apiHooks';
 import {useUserContext} from '../hooks/contextHooks';
 import {OrderRow} from './OrderRow';
-import {url} from '../../utils/variables';
 import OrderDetailsWorkhub from './OrderDetailsWorkhub';
+import Modal from './Modal';
 
 export const OrderHistoryWorkhub = () => {
   const {t} = useTranslation();
@@ -14,6 +14,8 @@ export const OrderHistoryWorkhub = () => {
   const [orders, setOrders] = useState([]);
   const [showAll, setShowAll] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isManageModalOpen, setIsManageModalOpen] = useState(false);
+  const closeManageModal = () => setIsManageModalOpen(false);
 
   const fetchOrders = async () => {
     try {
@@ -36,52 +38,6 @@ export const OrderHistoryWorkhub = () => {
   // We shall see if this is the best place for this function
   // could probably made into a hook
   // or moved to the apiHooks
-  const orderAgain = async (order) => {
-    try {
-      console.log(user, ' user');
-      if (!user || !user.id || !user.username || !user.address) {
-        alert('User information is incomplete');
-        return;
-      }
-
-      const payload = {
-        products: order.products.map((product) => ({
-          id: product.product_id,
-          quantity: product.quantity,
-        })),
-        user: {
-          user_id: user.id,
-          username: user.username,
-          address: user.address,
-        },
-      };
-
-      console.log('payload:', payload);
-
-      const response = await fetch(url + '/payment/create-checkout-session', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error:', errorData);
-        throw new Error('Payment session creation failed');
-      }
-
-      const data = await response.json();
-      console.log('Stripe Response Data:', data);
-
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        console.error('No checkout URL returned.');
-      }
-    } catch (error) {
-      console.error('Error reordering:', error);
-    }
-  };
 
   const handleClose = () => {
     setSelectedOrder(null);
@@ -102,8 +58,8 @@ export const OrderHistoryWorkhub = () => {
         <OrderDetailsWorkhub
           order={selectedOrder}
           user={[]}
-          orderAgain={() => orderAgain(selectedOrder)}
           onClose={handleClose}
+          onManageOrder={() => setIsManageModalOpen(true)}
         />
       ) : (
         displayedOrders.map((order, index) => (
@@ -122,6 +78,33 @@ export const OrderHistoryWorkhub = () => {
         >
           {showAll ? t('orders.view-less') : t('orders.view-more')}
         </button>
+      )}
+      {isManageModalOpen && (
+        <Modal isOpen={isManageModalOpen} onClose={closeManageModal}>
+          <h2 className="mb-4 text-xl font-bold">Update Order Status</h2>
+          <div>
+            <p>Order: </p>
+            {selectedOrder?.orderId}
+            <p>Status: </p>
+            {selectedOrder?.state}
+          </div>
+          <div className="mt-4 flex justify-end space-x-2">
+            <button
+              className="border px-4 py-2 text-black"
+              onClick={closeManageModal}
+            >
+              Cancel
+            </button>
+            <button
+              className="bg-yellow-500 px-4 py-2 font-bold text-black"
+              onClick={() => {
+                closeManageModal();
+              }}
+            >
+              Save
+            </button>
+          </div>
+        </Modal>
       )}
     </div>
   );

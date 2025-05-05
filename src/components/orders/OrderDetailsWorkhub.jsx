@@ -1,6 +1,6 @@
 import {useTranslation} from 'react-i18next';
 
-export const OrderDetailsWorkhub = ({order, onClose}) => {
+export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
 
@@ -62,6 +62,12 @@ export const OrderDetailsWorkhub = ({order, onClose}) => {
         </div>
       </div>
       <section className="mt-4 flex w-full justify-end space-x-3 pr-4">
+        <button
+          onClick={onManageOrder}
+          className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+        >
+          Manage Order
+        </button>
         <button
           onClick={onClose}
           className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
