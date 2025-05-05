@@ -16,17 +16,6 @@ export const useCheckout = () => {
 
     try {
       const payload = mapCartItemsToPayload(cartItems);
-      console.log('Payload:', {
-        products: payload.products,
-        user: {
-          user_id: user.id,
-          username: user.username,
-          address: inputs.address || user.address,
-          email: inputs.email || user.email,
-          phone: inputs.phone || user.phone,
-          additional_info: inputs.additional || '',
-        },
-      });
 
       const response = await fetch(url + '/payment/create-checkout-session', {
         method: 'POST',

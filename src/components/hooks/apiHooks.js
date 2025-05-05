@@ -1,8 +1,6 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback} from 'react';
 import {fetchData} from '../../utils/fetchData';
 import {url} from '../../utils/variables';
-import {useTranslation} from 'react-i18next';
-import i18n from 'i18next';
 import {useLanguageContext} from '../../contexts/LanguageContext.jsx';
 
 const useAuthentication = () => {
@@ -110,7 +108,7 @@ const useUpdateUser = () => {
 };
 
 const useOrders = () => {
-  const { language } = useLanguageContext();
+  const {language} = useLanguageContext();
 
   const getOrdersByUserId = useCallback(async () => {
     const fetchOptions = {
