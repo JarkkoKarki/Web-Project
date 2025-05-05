@@ -6,22 +6,46 @@ import {OrderHistory} from '../components/orders/OrderHistory';
 import {useUserContext} from '../components/hooks/contextHooks';
 import {Link} from 'react-router';
 import Reservations from '../components/reservation/Reservations';
+import {useState} from 'react';
 
 const Profile = () => {
   const {t} = useTranslation();
   const {user} = useUserContext();
-
+  const [activeTab, setActiveTab] = useState('orders');
   return (
     <div className="flex flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white">
       <h2 className="mb-12 text-3xl font-bold">{t('profilePage.profile')}</h2>
+
       <section className="flex h-[500px] w-full flex-row items-center justify-center space-x-20 px-6">
         <ProfilePicture />
         <UserInformation />
       </section>
-      <section className="flex w-full flex-row items-center justify-center space-y-10 px-6">
-        <OrderHistory />
-        <Reservations></Reservations>
+      <section className="my-6 flex space-x-4">
+        <button
+          onClick={() => setActiveTab('orders')}
+          className={`rounded px-6 py-2 ${
+            activeTab === 'orders'
+              ? 'bg-yellow-500 font-bold text-black'
+              : 'border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black'
+          }`}
+        >
+          {t('profilePage.order-history') || 'Order History'}
+        </button>
+        <button
+          onClick={() => setActiveTab('reservations')}
+          className={`rounded px-6 py-2 ${
+            activeTab === 'reservations'
+              ? 'bg-yellow-500 font-bold text-black'
+              : 'border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black'
+          }`}
+        >
+          {t('profilePage.reservations') || 'Reservations'}
+        </button>
       </section>
+      <section className="flex w-full flex-row items-center justify-center px-6">
+        {activeTab === 'orders' ? <OrderHistory /> : <Reservations />}
+      </section>
+
       <section className="mt-10 flex h-auto w-full flex-row items-end justify-end space-x-10 px-20 py-10">
         <Link
           to="/logout"

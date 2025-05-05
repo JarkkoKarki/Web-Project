@@ -41,47 +41,37 @@ const Reservations = () => {
     );
 
   return (
-    <div className="ml-10 flex flex-col text-white">
-      <h3 className="mb-4 text-xl font-bold">
-        {t('reservations.title') || 'Your Reservations'}
-      </h3>
+    <div className="flex w-full flex-wrap justify-center gap-4">
       {reservations.length === 0 ? (
-        <p>{t('reservations.none') || 'No reservations found.'}</p>
+        <p className="text-center text-gray-400">No reservations found.</p>
       ) : (
-        <ul className="space-y-4">
-          {reservations.map((res) => (
-            <li
-              key={res.id}
-              className="rounded border border-gray-700 p-4 shadow"
-            >
-              <p>
-                <strong>{t('reservations.date') || 'Date'}:</strong>{' '}
-                {new Date(res.reservation_date).toLocaleDateString('fi-FI')}
-              </p>
-              <p>
-                <strong>{t('reservations.time') || 'Time'}:</strong>{' '}
-                {res.reservation_time}
-              </p>
-              <p>
-                <strong>{t('reservations.name') || 'Name'}:</strong> {res.name}
-              </p>
-              <p>
-                <strong>{t('reservations.people') || 'People'}:</strong>{' '}
-                {res.people_count}
-              </p>
-              <p>
-                <strong>{t('reservations.phone') || 'Phone'}:</strong>{' '}
-                {res.phone}
-              </p>
-              {res.comments && (
-                <p>
-                  <strong>{t('reservations.comments') || 'Comments'}:</strong>{' '}
-                  {res.comments}
-                </p>
-              )}
-            </li>
-          ))}
-        </ul>
+        reservations.map((res, index) => (
+          <div
+            key={index}
+            className="w-[300px] rounded-lg border border-gray-700 bg-[#1a1c1b] p-4 shadow transition hover:shadow-lg"
+          >
+            <h3 className="mb-2 text-lg font-bold text-yellow-400">
+              {res.name || 'Unnamed'}
+            </h3>
+            <p>
+              <span className="font-semibold text-gray-300">Date:</span>{' '}
+              {res.reservation_date
+                ? new Date(res.reservation_date).toLocaleDateString('fi-FI')
+                : 'Unknown'}
+            </p>
+            <p>
+              <span className="font-semibold text-gray-300">Time:</span>{' '}
+              {res.reservation_time || 'Unknown'}
+            </p>
+            <p>
+              <span className="font-semibold text-gray-300">People:</span>{' '}
+              {res.people_count}
+            </p>
+            <p className="mt-2 text-sm text-gray-400 italic">
+              {res.comments || 'No comments'}
+            </p>
+          </div>
+        ))
       )}
     </div>
   );

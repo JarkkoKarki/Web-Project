@@ -134,6 +134,7 @@ i18n.use(initReactI18next).init({
           "change-phone": 'Change Phone Number',
           "save-img": 'Save Image',
           "order-history": 'Order History',
+          "reservations": "Reservations"
         },
         workhubHeader: {
           'workhub': 'Workhub',
@@ -363,7 +364,7 @@ i18n.use(initReactI18next).init({
           "order-date": 'Päivämäärä',
           "order-status": 'Tila',
           "order-total": 'Yhteensä',
-
+          "reservations": "Pöytävaraukset"
         },
         workhubHeader: {
           'workhub': 'Työtila',
