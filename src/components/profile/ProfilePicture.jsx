@@ -36,13 +36,14 @@ export const ProfilePicture = () => {
 
     try {
       const response = await updateProfilePicture(uploadedFile, user.id, user);
+      console.log('Response from updateProfilePicture:', response);
 
-      if (response) {
+      if (response && response.user) {
         updateUser({
           ...user,
-          filename: response.filename,
+          filename: response.user.filename,
         });
-        setAvatar(rootUrl + response.filename);
+        setAvatar(rootUrl + response.user.filename); // Ensure avatar state is updated immediately
         fileUploadRef.current.value = null;
         setShowButtons(false);
       }
