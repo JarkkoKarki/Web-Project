@@ -136,12 +136,6 @@ export const OrderHistoryWorkhub = () => {
           </select>
           <div className="mt-4 flex justify-end space-x-2">
             <button
-              className="border px-4 py-2 text-black"
-              onClick={closeManageModal}
-            >
-              {t('orders.cancel')}
-            </button>
-            <button
               className="bg-yellow-500 px-4 py-2 font-bold text-black"
               onClick={async () => {
                 const token = localStorage.getItem('token');
@@ -166,6 +160,12 @@ export const OrderHistoryWorkhub = () => {
               }}
             >
               {t('orders.save')}
+            </button>
+            <button
+              className="border bg-[#2b2e2c81] px-4 py-2 text-black"
+              onClick={closeManageModal}
+            >
+              {t('orders.cancel')}
             </button>
           </div>
         </Modal>

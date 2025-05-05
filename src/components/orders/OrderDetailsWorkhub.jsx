@@ -74,7 +74,7 @@ export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
           </section>
         </div>
       </div>
-      <section className="mt-4 flex w-full justify-end space-x-3 pr-4">
+      <section className="mt-4 flex w-full justify-center space-x-3 pr-4">
         <button
           onClick={onManageOrder}
           className="inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
