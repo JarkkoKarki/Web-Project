@@ -19,7 +19,7 @@ const Reservations = () => {
           throw new Error('Failed to fetch reservations');
         }
         const data = await response.json();
-        setReservations(data);
+        setReservations(Array.isArray(data) ? data : []);
       } catch (err) {
         setError(err.message);
       } finally {
