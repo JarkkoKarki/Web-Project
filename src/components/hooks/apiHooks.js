@@ -1,7 +1,9 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {fetchData} from '../../utils/fetchData';
 import {url} from '../../utils/variables';
 import {useTranslation} from 'react-i18next';
+import i18n from 'i18next';
+import {useLanguageContext} from '../../contexts/LanguageContext.jsx';
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
@@ -108,8 +110,7 @@ const useUpdateUser = () => {
 };
 
 const useOrders = () => {
-  const {t} = useTranslation();
-  const lang = t('menuUrl.menuUrl');
+  const { language } = useLanguageContext();
 
   const getOrdersByUserId = useCallback(async () => {
     const fetchOptions = {
@@ -118,8 +119,8 @@ const useOrders = () => {
       },
     };
 
-    return await fetchData(url + '/orders/myorders/' + lang, fetchOptions);
-  }, [lang]);
+    return await fetchData(url + '/orders/myorders/' + language, fetchOptions);
+  }, [language]);
 
   const getAllOrders = useCallback(async () => {
     const fetchOptions = {
@@ -128,8 +129,8 @@ const useOrders = () => {
       },
     };
 
-    return await fetchData(url + '/orders/' + lang, fetchOptions);
-  }, []);
+    return await fetchData(url + '/orders/' + language, fetchOptions);
+  }, [language]);
 
   return {getOrdersByUserId, getAllOrders};
 };

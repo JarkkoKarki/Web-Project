@@ -5,6 +5,7 @@ import {useUserContext} from '../hooks/contextHooks';
 import {OrderRow} from './OrderRow';
 import OrderDetailsWorkhub from './OrderDetailsWorkhub';
 import Modal from './Modal';
+import i18n from 'i18next';
 
 export const OrderHistoryWorkhub = () => {
   const {t} = useTranslation();
@@ -47,7 +48,7 @@ export const OrderHistoryWorkhub = () => {
     if (user) {
       fetchOrders();
     }
-  }, [user?.id]);
+  }, [user?.id, i18n.language]);
 
   const displayedOrders = showAll ? orders : orders.slice(0, 5);
 
