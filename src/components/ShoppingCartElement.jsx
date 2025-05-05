@@ -1,15 +1,12 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {useShoppingCart} from '../contexts/ShoppingCartContext';
-import {toNumber} from 'lodash';
 import {useTranslation} from 'react-i18next';
-
-import {url} from '../utils/variables';
-import {UserContext} from '../contexts/UserContext';
+import {useNavigate} from 'react-router';
+import {calculateTotalPrice, mapCartItemsToPayload} from '../utils/cartUtils';
 
 const ShoppingCartElement = () => {
   const {t} = useTranslation();
-  const {user} = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const {cartItems, addItemToCart, removeItemFromCart, clearCart} =
     useShoppingCart();
@@ -18,65 +15,14 @@ const ShoppingCartElement = () => {
     setIsCartOpen(!isCartOpen);
   };
 
-  const calculateTotalPrice = () => {
-    return cartItems.reduce((total, item) => {
-      return total + toNumber(item.price) * toNumber(item.quantity);
-    }, 0);
-  };
-
-  // luodaan uusi objekti, missä products sisältää id:t ja summa
-  const mapCartItemsToPayload = () => {
-    const products = cartItems.map((item) => {
-      console.log(item);
-      return {
-        id: item.id,
-        quantity: toNumber(item.quantity),
-      };
-    });
-    const total_price = calculateTotalPrice();
-    return {products, total_price};
-  };
-
-  const handleCheckout = async () => {
-    console.log(user, ' user');
-    if (!user || !user.id || !user.username || !user.address) {
-      alert('User information is incomplete');
+  const handleOrderNow = () => {
+    if (cartItems.length === 0) {
+      alert(t('shoppingCart.empty-cart'));
       return;
     }
-    try {
-      const payload = mapCartItemsToPayload();
-      console.log('Payload:', payload);
 
-      const response = await fetch(url + '/payment/create-checkout-session', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          products: payload.products,
-          user: {
-            user_id: user.id,
-            username: user.username,
-            address: user.address,
-          },
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error:', errorData);
-        throw new Error('Payment session creation failed');
-      }
-
-      const data = await response.json();
-      console.log('Stripe Response Data:', data);
-
-      if (data.url) {
-        window.location.href = data.url; // Redirect to checkout URL
-      } else {
-        console.error('No checkout URL returned.');
-      }
-    } catch (err) {
-      console.error('Checkout failed:', err);
-    }
+    const payload = mapCartItemsToPayload(cartItems);
+    navigate('/checkout', {state: {cartPayload: payload}});
   };
 
   return (
@@ -141,10 +87,10 @@ const ShoppingCartElement = () => {
                   ))}
                 </ul>
                 <div className="mt-6 px-4 text-right text-lg font-bold text-yellow-500">
-                  {t('shoppingCart.total')} {calculateTotalPrice()}€
+                  {t('shoppingCart.total')} {calculateTotalPrice(cartItems)}€
                 </div>
                 <button
-                  onClick={handleCheckout}
+                  onClick={handleOrderNow}
                   className="mx-4 mt-6 w-[calc(100%-2rem)] rounded bg-yellow-500 px-4 py-2 text-sm font-semibold text-black shadow-lg transition hover:bg-yellow-600"
                 >
                   {t('shoppingCart.order-now')}

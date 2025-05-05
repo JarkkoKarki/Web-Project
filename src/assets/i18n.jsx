@@ -178,6 +178,7 @@ i18n.use(initReactI18next).init({
         },
         ordersForm: {
           'your-order': 'Your Order',
+          'information': 'Personal Information',
           'name': 'Name:',
           'address': 'Address:',
           'email': 'Email:',
@@ -188,6 +189,7 @@ i18n.use(initReactI18next).init({
           'email-input': 'Enter your email',
           'phone-input': 'Enter your phone number',
           'checkout': 'Checkout',
+          'total-price': 'Total Price:',
         },
         shoppingCart: {
           "shopping-cart": "Shopping Cart",
@@ -388,6 +390,7 @@ i18n.use(initReactI18next).init({
         },
         ordersForm: {
           'your-order': 'Tilauksesi',
+          'information': 'Henkilökohtaiset tiedot',
           'name': 'Nimi:',
           'address': 'Osoite:',
           'email': 'Sähköposti:',
@@ -398,6 +401,7 @@ i18n.use(initReactI18next).init({
           'email-input': 'Kirjoita sähköpostisi',
           'phone-input': 'Kirjoita puhelinnumerosi',
           'checkout': 'Maksamaan',
+          'total-price': 'Yhteensä:',
         },
         shoppingCart: {
           "shopping-cart": "Ostoskori",

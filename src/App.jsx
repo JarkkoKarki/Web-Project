@@ -20,6 +20,7 @@ import Register from './views/Register';
 import PaymentSuccess from './views/PaymentSuccess';
 import PaymentCancel from './views/PaymentCancel';
 import ViewOrder from './views/ViewOrder';
+import {Checkout} from './views/Checkout';
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/reservation" element={<Reservation />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/checkout" element={<Checkout />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Register />} />
                 <Route path="/logout" element={<Logout />} />
