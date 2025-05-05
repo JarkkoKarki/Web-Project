@@ -20,7 +20,7 @@ const Profile = () => {
         <ProfilePicture />
         <UserInformation />
       </section>
-      <section className="my-6 flex space-x-4">
+      <section className="my-6 flex w-full items-center justify-center space-x-4">
         <button
           onClick={() => setActiveTab('orders')}
           className={`rounded px-6 py-2 ${

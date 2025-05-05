@@ -3,9 +3,6 @@ import {useTranslation} from 'react-i18next';
 
 export const OrderedItems = ({order}) => {
   const {t} = useTranslation();
-  order.products.map((product) => {
-    console.log('product: ', product);
-  });
   return (
     <>
       <div className="flex flex-col bg-[#0d0f0e] text-white">

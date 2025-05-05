@@ -31,8 +31,20 @@ export const OrderHistory = () => {
   };
 
   const orderAgain = (order) => {
-    // Navigate to /checkout with the selected order as state
-    navigate('/checkout', {state: {order}});
+    const formattedProducts = order.products.map((product) => ({
+      id: product.product_id,
+      name: product.name,
+      price: product.price,
+      quantity: product.quantity,
+      description: product.description,
+      categories: product.categories || [],
+      diets: product.diets || [],
+      src: product.src || '',
+    }));
+
+    navigate('/checkout', {
+      state: {order: {...order, products: formattedProducts}},
+    });
   };
 
   const handleClose = () => {

@@ -11,8 +11,10 @@ export const useCheckout = () => {
     if (!user || !user.id || !user.username) {
       alert('User information is incomplete');
       return;
+    } else if ((!inputs.address && !inputs.phone) || !inputs.email) {
+      alert('Please fill in all the required fields');
+      return;
     }
-
     try {
       const payload = mapCartItemsToPayload(cartItems);
 

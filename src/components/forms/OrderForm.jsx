@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {useUserContext} from '../hooks/contextHooks';
 import useForm from '../hooks/formHooks';
@@ -9,8 +9,21 @@ export const OrderForm = ({items}) => {
   const {user} = useUserContext();
   const {handleCheckout} = useCheckout();
 
+  const [invalidFields, setInvalidFields] = useState({});
+
   const {inputs, handleInputChange, handleSubmit} = useForm(
     () => {
+      const invalids = {};
+      if (!inputs.address) invalids.address = true;
+      if (!inputs.email) invalids.email = true;
+      if (!inputs.phone) invalids.phone = true;
+
+      if (Object.keys(invalids).length > 0) {
+        setInvalidFields(invalids);
+        return;
+      }
+
+      setInvalidFields({});
       handleCheckout(items, inputs);
     },
     {
@@ -23,7 +36,7 @@ export const OrderForm = ({items}) => {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center bg-[#0d0f0e] text-white">
+      <section className="flex w-[70%] flex-col items-center justify-center bg-[#0d0f0e] text-white">
         <h2 className="mb-8 text-2xl font-bold underline underline-offset-4">
           {t('ordersForm.information')}
         </h2>
@@ -42,7 +55,9 @@ export const OrderForm = ({items}) => {
               name="address"
               value={inputs.address}
               placeholder={t('ordersForm.address-input')}
-              className="w-full rounded border border-gray-300 px-6 py-2 text-center"
+              className={`w-full rounded border px-6 py-2 text-center ${
+                invalidFields.address ? 'border-red-500' : 'border-gray-300'
+              }`}
             />
           </div>
           <div className="mb-4 w-[80%]">
@@ -56,7 +71,9 @@ export const OrderForm = ({items}) => {
               name="email"
               value={inputs.email}
               placeholder={t('ordersForm.email-input')}
-              className="w-full rounded border border-gray-300 px-6 py-2 text-center"
+              className={`w-full rounded border px-6 py-2 text-center ${
+                invalidFields.email ? 'border-red-500' : 'border-gray-300'
+              }`}
             />
           </div>
           <div className="mb-4 w-[80%]">
@@ -70,11 +87,16 @@ export const OrderForm = ({items}) => {
               name="phone"
               value={inputs.phone}
               placeholder={t('ordersForm.phone-input')}
-              className="w-full rounded border border-gray-300 px-6 py-2 text-center"
+              className={`w-full rounded border px-6 py-2 text-center ${
+                invalidFields.phone ? 'border-red-500' : 'border-gray-300'
+              }`}
             />
           </div>
           <div className="mb-4 w-[80%]">
-            <label htmlFor="phone" className="mb-2 block text-sm font-bold">
+            <label
+              htmlFor="additional"
+              className="mb-2 block text-sm font-bold"
+            >
               {t('ordersForm.additional')}
             </label>
             <textarea

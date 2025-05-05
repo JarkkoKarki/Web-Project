@@ -19,12 +19,12 @@ export const Checkout = () => {
       className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{backgroundImage: "url('src/assets/images/2147772080.jpg')"}}
     >
-      <div className="flex w-2/5 flex-col rounded-2xl bg-[#0d0f0e] p-4 text-center text-black shadow-md">
+      <div className="flex w-2/5 flex-col space-y-8 rounded-2xl bg-[#0d0f0e] p-4 text-center text-black shadow-md">
         <div className="flex flex-1 justify-center px-10">
           <OrderedItems order={{products: items, total_price: totalPrice}} />
         </div>
-        <div className="flex flex-1 justify-center px-10">
-          <OrderForm items={cartItems} />
+        <div className="flex w-full flex-1 justify-center px-10">
+          <OrderForm items={items} />
         </div>
       </div>
     </div>
