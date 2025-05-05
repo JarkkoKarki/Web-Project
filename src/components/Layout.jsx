@@ -93,7 +93,7 @@ const Layout = () => {
           )}
         </div>
       </header>
-      <main className="p-8">
+      <main className="p-4">
         <Outlet />
       </main>
 
