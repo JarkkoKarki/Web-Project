@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {formatDate, formatTime} from '../../utils/formatters';
 import {useTranslation} from 'react-i18next';
+import {fetchData} from '../../utils/fetchData';
+import {url} from '../../utils/variables';
+import {format} from 'date-fns';
 
 const ContactInfo = ({
   user,
@@ -17,30 +19,41 @@ const ContactInfo = ({
   const [comments, setComments] = useState('');
   const {t} = useTranslation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !phone || !email) {
       alert(t('reservationPage.emptyFieldsError'));
       return;
     }
+
+    const formattedDate = format(new Date(selectedDate), 'yyyy-MM-dd');
+    const formattedTime = format(new Date(selectedTime), 'HH:mm:ss');
+
+    const reservationData = {
+      name,
+      phone,
+      email,
+      comments,
+      peopleCount,
+      Time: formattedTime,
+      Date: formattedDate,
+    };
     if (user) {
-      console.log({
-        user_id: user.id,
-        comments,
-        peopleCount,
-        Time: formatTime(selectedTime),
-        Date: formatDate(selectedDate),
+      reservationData.user_id = user.id;
+    }
+
+    try {
+      const response = await fetchData(url + '/reservations/reserve', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData),
       });
-    } else {
-      console.log({
-        name,
-        phone,
-        email,
-        comments,
-        peopleCount,
-        Time: formatTime(selectedTime),
-        Date: formatDate(selectedDate),
-      });
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   };
 
