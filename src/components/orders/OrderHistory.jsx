@@ -95,6 +95,7 @@ export const OrderHistory = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
       <h2 className="mb-4 text-2xl font-bold">{t('orders.title')}</h2>
+      <h3 className="self-start pl-1">{t('orders.latest-order')}</h3>
       {selectedOrder ? (
         <OrderDetails
           order={selectedOrder}
@@ -103,14 +104,17 @@ export const OrderHistory = () => {
           onClose={handleClose}
         />
       ) : (
-        displayedOrders.map((order, index) => (
-          <OrderRow
-            key={index}
-            item={order}
-            index={index}
-            onClick={() => handleOrderClick(order)}
-          />
-        ))
+        displayedOrders
+          .slice()
+          .reverse()
+          .map((order, index) => (
+            <OrderRow
+              key={index}
+              item={order}
+              index={index}
+              onClick={() => handleOrderClick(order)}
+            />
+          ))
       )}
       {!selectedOrder && orders.length > 5 && (
         <button

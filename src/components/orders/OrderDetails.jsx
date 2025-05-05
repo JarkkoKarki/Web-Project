@@ -4,6 +4,13 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
   const {first_name, last_name, address, email, phone} = user;
+  const formattedTime = new Date(orderDate)
+    .toLocaleTimeString('fi-FI', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })
+    .replace(/\./g, ':');
 
   return (
     <>
@@ -14,6 +21,9 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
           </h2>
           <h3>
             {t('orders.date')} {new Date(orderDate).toLocaleDateString('fi-FI')}
+          </h3>
+          <h3>
+            {t('orders.time')} {formattedTime}
           </h3>
           <div className="ml-auto flex flex-row items-center space-x-1.5">
             <h3>{t('orders.status')}</h3>
