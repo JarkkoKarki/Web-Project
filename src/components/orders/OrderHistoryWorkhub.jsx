@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {useOrders} from '../hooks/apiHooks';
+import {updateOrderStatus, useOrders} from '../hooks/apiHooks';
 import {useUserContext} from '../hooks/contextHooks';
 import {OrderRow} from './OrderRow';
 import OrderDetailsWorkhub from './OrderDetailsWorkhub';
@@ -82,12 +82,37 @@ export const OrderHistoryWorkhub = () => {
       {isManageModalOpen && (
         <Modal isOpen={isManageModalOpen} onClose={closeManageModal}>
           <h2 className="mb-4 text-xl font-bold">Update Order Status</h2>
+          <p className="mb-2">
+            Update status for order #{selectedOrder?.orderId}
+          </p>
           <div>
             <p>Order: </p>
             {selectedOrder?.orderId}
             <p>Status: </p>
-            {selectedOrder?.state}
+            {selectedOrder?.status}
           </div>
+          <select
+            className="w-full rounded border border-gray-300 bg-[#101211] px-4 py-2 text-white"
+            value={selectedOrder?.status}
+            onChange={(e) =>
+              setSelectedOrder({...selectedOrder, status: e.target.value})
+            }
+          >
+            {[
+              'pending',
+              'confirmed',
+              'preparing',
+              'ready',
+              'out-for-delivery',
+              'completed',
+              'cancelled',
+            ].map((status) => (
+              <option key={status} value={status}>
+                {status.charAt(0).toUpperCase() +
+                  status.slice(1).replace(/-/g, ' ')}
+              </option>
+            ))}
+          </select>
           <div className="mt-4 flex justify-end space-x-2">
             <button
               className="border px-4 py-2 text-black"
@@ -97,8 +122,26 @@ export const OrderHistoryWorkhub = () => {
             </button>
             <button
               className="bg-yellow-500 px-4 py-2 font-bold text-black"
-              onClick={() => {
-                closeManageModal();
+              onClick={async () => {
+                const token = localStorage.getItem('token');
+                const newStatus = selectedOrder.status;
+
+                if (!token) {
+                  console.error('Missing authentication token');
+                  return;
+                }
+
+                try {
+                  await updateOrderStatus(
+                    selectedOrder.orderId,
+                    newStatus,
+                    token,
+                  );
+                  await fetchOrders();
+                  closeManageModal();
+                } catch (error) {
+                  console.error('Failed to update status:', error);
+                }
               }}
             >
               Save

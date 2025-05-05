@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
+  console.log(totalPrice);
 
   return (
     <>
@@ -52,12 +53,6 @@ export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
                 </li>
               ))}
             </ul>
-            <div className="mt-auto flex flex-col space-y-1 border-t border-gray-700 pt-2">
-              <h3 className="ml-auto font-bold underline underline-offset-4">
-                {t('orders.total')}
-              </h3>
-              <h3 className="ml-auto">{`${totalPrice}€`}</h3>
-            </div>
           </section>
         </div>
       </div>
