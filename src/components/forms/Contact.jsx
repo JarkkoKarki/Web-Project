@@ -26,38 +26,37 @@ const Contact = () => {
       alert('Failed to send message: ' + error.message);
     }
   };
-
   return (
-    <div className="mx-auto mt-20 max-w-md rounded-lg bg-gray-100 p-6 shadow-md">
-      <h2 className="mb-6 text-center text-2xl font-bold text-black">
+    <div className="mx-auto mt-20 max-w-md rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md">
+      <h2 className="mb-6 text-center text-2xl font-bold text-white">
         Contact Us
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="mb-1 block font-semibold text-black">Email</label>
+          <label className="mb-1 block font-semibold text-white">Email</label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Your email"
             type="email"
-            className="w-full rounded-lg border border-gray-300 p-3 text-black"
+            className="w-full rounded-lg border border-gray-300 p-3 text-white"
             required
           />
         </div>
 
         <div>
-          <label className="mb-1 block font-semibold text-black">Title</label>
+          <label className="mb-1 block font-semibold text-white">Title</label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Subject"
-            className="w-full rounded-lg border border-gray-300 p-3 text-black"
+            className="w-full rounded-lg border border-gray-300 p-3 text-white"
             required
           />
         </div>
 
         <div>
-          <label className="mb-1 block font-semibold text-black">
+          <label className="mb-1 block font-semibold text-white">
             Description
           </label>
           <textarea
@@ -65,14 +64,14 @@ const Contact = () => {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Message"
             rows="5"
-            className="w-full rounded-lg border border-gray-300 p-3 text-black"
+            className="w-full rounded-lg border border-gray-300 p-3 text-white"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="w-full rounded-lg bg-yellow-500 p-3 font-bold text-black hover:bg-yellow-600"
+          className="w-full rounded-lg bg-yellow-500 p-3 font-bold text-white hover:bg-yellow-600"
         >
           Send
         </button>
