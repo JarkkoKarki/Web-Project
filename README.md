@@ -1,5 +1,4 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/jarkkokarki/web-project-frontend/badge)](https://www.codefactor.io/repository/github/jarkkokarki/web-project-frontend)
-<br>
 [![Page](https://img.shields.io/badge/View-Page-blue)](https://jarkkokarki.github.io/Web-Project-Frontend/)
 
 # 🍽️ Web Project
@@ -10,7 +9,7 @@ This project is part of the Web-Project course. The goal is to create a function
 
 ## 💡 What the Project Does
 
-This project is a comprehensive restaurant management system that allows users to:
+This is a comprehensive restaurant management frontend application that allows users to:
 
 - Order food and make reservations.
 - Non-registered users can also make reservations.
@@ -19,7 +18,7 @@ This project is a comprehensive restaurant management system that allows users t
 
 ## 🤔 Why the Project is Useful
 
-The project simplifies restaurant operations by digitizing key processes such as reservations, menu management, and order handling. It reduces manual effort, minimizes errors, and enhances customer satisfaction by providing a seamless and efficient experience.
+The project simplifies restaurant operations by digitizing key processes such as reservations, menu management, and order handling. It enhances customer satisfaction by providing a seamless and efficient experience.
 
 ## ✨ Application Features
 
@@ -32,52 +31,31 @@ The project simplifies restaurant operations by digitizing key processes such as
 - Payment transaction management (successful and canceled payments)
 - Admin WorkHub view for managing orders, reservations, and user information
 
-## 🔗 Backend Dependency
-
-This frontend application relies on a backend server to function properly. Ensure that the backend is set up and running before using this application. Without the backend, many features such as user authentication, menu management, and order processing will not work.
-
-### ⚙️ Setting Up the Backend
-
-1. Clone the backend repository from the provided link: [backend repository](https://github.com/JarkkoKarki/Web-Project-Backend).
-2. Follow the backend's README instructions to install dependencies and start the server.
-3. Ensure the backend server is running and accessible before starting the frontend.
-
-### 🔧 Connecting the Frontend to the Backend
-
-Make sure the frontend is configured to communicate with the backend server. Update the API base URL in the frontend's configuration file if necessary.
-
 ## 🎥 Demo
 
-To access the demo, you must first connect to the school's VPN and follow these steps:
+To view a local/internal demo (VPN required):
 
 1. Connect to the school's VPN.
-2. Open your browser and navigate to: [https://10.120.32.87/app](https://10.120.32.87/app).
-3. Since the link is not SSL certified, type `thisisunsafe` in your browser to bypass the warning.
+2. Open your browser and go to:
+   [http://10.120.32.87/](http://10.120.32.87/)
 
-### 🌐 Online Demo
+## 🚀 How to Get Started
 
-After completing the above steps, you can experience the application live at: [Web Project Demo](https://jarkkokarki.github.io/Web-Project-Frontend/).
+### 🛠️ Installation
 
-## 🚀 How Users Can Get Started with the Project
+1. Clone or download the project source code.
+2. Ensure you have Node.js and npm installed.
+3. Run `npm install` to install dependencies.
+4. Start the application with `npm run dev`.
+5. Open the local development URL shown in the terminal.
 
-### 🛠️ Installation Instructions
+### 🧪 Testing the App
 
-1. Download the project source code from the GitHub repository.
-2. Install Node.js and npm if they are not already installed.
-3. Run the command `npm install` to install all dependencies.
-4. Start the application using the command `npm run dev`.
-5. Open the displayed URL to access the application.
-
-### 🧪 Instructions for Testing the Application
-
-1. Install the required dependencies using the command `npm install`.
-2. Start the application locally using the command `npm run dev`.
-3. Open a browser and navigate to the displayed URL.
-4. Test the following functionalities:
-   - Register and log in.
-   - Add items to the shopping cart and place an order.
-   - Manage the menu (add, edit, and delete items as an admin).
-   - Make a reservation (as a user or non-user) and check the reservation details.
-   - Change the application language and ensure all texts update correctly.
-   - Verify successful and canceled payment transactions.
-   - Access the WorkHub view as an admin to manage orders, reservations, and user information.
+1. Launch with `npm run dev`.
+2. Open your browser and interact with the app:
+   - Register/login
+   - Add items to cart, place an order
+   - Manage the menu (admin)
+   - Make and view reservations
+   - Switch languages
+   - Review orders and reservations in the WorkHub (admin)
