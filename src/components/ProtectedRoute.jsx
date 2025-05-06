@@ -10,7 +10,11 @@ const ProtectedRoute = ({children, roles}) => {
   }
 
   if (roles && !roles.includes(user.role)) {
-    return <Navigate to="/" />;
+    if (user.role === 'employee') {
+      return <Navigate to="/workhub" />;
+    } else {
+      return <Navigate to="/" />;
+    }
   }
 
   return children;
