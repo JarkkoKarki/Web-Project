@@ -1,10 +1,25 @@
 import {useSearchParams, useNavigate} from 'react-router';
 import {useTranslation} from 'react-i18next';
+import {useShoppingCart} from '../contexts/ShoppingCartContext';
+import {useRef, useEffect} from 'react';
+
 const PaymentSuccess = () => {
   const {t} = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
+  const {clearCart} = useShoppingCart();
+  const hasCleared = useRef(false);
+
+  useEffect(() => {
+    if (sessionId && !hasCleared.current) {
+      console.log('Session ID:', sessionId);
+      localStorage.setItem('sessionId', sessionId);
+      hasCleared.current = true;
+
+      clearCart();
+    }
+  }, []);
 
   if (!sessionId) {
     console.log('Session ID is missing from the URL.');
@@ -23,9 +38,6 @@ const PaymentSuccess = () => {
       </div>
     );
   }
-
-  console.log('Session ID:', sessionId);
-  localStorage.setItem('sessionId', sessionId);
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0f1110] p-4 text-center">

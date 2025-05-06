@@ -210,6 +210,11 @@ i18n.use(initReactI18next).init({
           'role': 'Role',
           'date': 'Date',
           'time': 'Time',
+          'actions': 'Actions',
+          'delete': 'Delete',
+          'deleting': 'Deleting...',
+          'confirmDelete': 'Are you sure you want to delete this user? This action cannot be undone.',
+          'deleteError': 'Failed to delete user. Please try again.'
         },
 
         dietOptions: {
@@ -544,6 +549,11 @@ i18n.use(initReactI18next).init({
           'role': 'Rooli',
           'date': 'Päivämäärä',
           'time': 'Aika',
+          'actions': 'Toiminnot',
+          'delete': 'Poista',
+          'deleting': 'Poistetaan...',
+          'confirmDelete': 'Haluatko varmasti poistaa tämän käyttäjän? Tätä toimintoa ei voi kumota.',
+          'deleteError': 'Käyttäjän poistaminen epäonnistui. Yritä uudelleen.'
         },
 
         dietOptions: {
@@ -567,7 +577,7 @@ i18n.use(initReactI18next).init({
         },
 
         manageReservations: {
-          "reservations": "Asiakkaiden Pöytä Varaukset",
+          "reservations": "Asiakkaiden Pöytävaraukset",
           'people-amount': "Asiakkaiden määrä",
           'table-id': "Pöytä Id",
           'reservation-date': 'Päivämäärä',
