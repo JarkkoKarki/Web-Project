@@ -24,7 +24,6 @@ const ManageUsers = () => {
         },
       };
       const fetchedUsers = await fetchData(url + '/users', fetchOptions);
-      console.log(fetchedUsers);
       setUsers(fetchedUsers);
     } catch (error) {
       console.error('Error fetching users:', error);
