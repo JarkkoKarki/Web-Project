@@ -92,7 +92,7 @@ function MapInfo({position, destination}) {
   useEffect(() => {
     if (isModalOpen) {
       setLoading(true);
-      const baseUrl = url + '/api/route/';
+      const baseUrl = url + '/route/';
       const apiUrl = `${baseUrl}${position[0]}/${position[1]}/${destination[0]}/${destination[1]}`;
       console.log(apiUrl);
 
