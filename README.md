@@ -2,6 +2,7 @@
 
 # Web Project
 
+![alt text](images/homepage.png)
 This project is part of the Web-Project course. The goal is to create a functional restaurant web application that allows users to manage reservations, orders, and menus. The application aims to handle data inconsistencies and errors gracefully while providing a user-friendly interface.
 
 ## What the Project Does
