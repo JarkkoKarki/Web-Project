@@ -4,9 +4,12 @@ import {Map} from './Map.jsx';
 import Contact from '../components/forms/Contact.jsx';
 import finedining from '../assets/images/finedining.png';
 import finedining2 from '../assets/images/finedining2.png';
+import {useLocation} from 'react-router';
 
 const About = () => {
   const {t} = useTranslation();
+  const location = useLocation();
+  const onHomePage = location.pathname === '/';
 
   return (
     <>
@@ -47,8 +50,8 @@ const About = () => {
           />
         </div>
       </section>
-      <Map />
-      <Contact />
+      {!onHomePage && <Map />}
+      {!onHomePage && <Contact />}
     </>
   );
 };
