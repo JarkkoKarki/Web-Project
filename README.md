@@ -1,22 +1,15 @@
 # Web Project
 
-## Team Members
-
-- [Add team members' names here]
-
-## Application Idea and Target Audience
-
-The purpose of the application is to provide users with the ability to manage restaurant reservations, orders, and menus. The target audience includes restaurant owners and employees who want to streamline their daily operations with digital tools.
+This project is part of the Web-Project course. The goal is to create a functional restaurant web application that allows users to manage reservations, orders, and menus. The application aims to handle data inconsistencies and errors gracefully while providing a user-friendly interface.
 
 ## What the Project Does
 
 This project is a comprehensive restaurant management system that allows users to:
 
-- Manage reservations efficiently.
-- Handle menu items, including adding, editing, and deleting them.
-- Process customer orders and maintain order history.
-- Provide a multilingual interface for diverse user bases.
-- Manage payment transactions, including successful and canceled payments.
+- Order food and make reservations.
+- Non-registered users can also make reservations.
+- Admins can add menu items and manage the application through a dedicated WorkHub view.
+- The WorkHub view provides an overview of all orders, reservations, and user information.
 
 ## Why the Project is Useful
 
@@ -26,17 +19,28 @@ The project simplifies restaurant operations by digitizing key processes such as
 
 - User registration and login
 - Menu management (add, edit, delete items)
-- Reservation management
+- Reservation management (available for both users and non-users)
 - Order management and history
 - Shopping cart management
 - Multilingual user interface
 - Payment transaction management (successful and canceled payments)
+- Admin WorkHub view for managing orders, reservations, and user information
+
+## Backend Dependency
+
+This frontend application relies on a backend server to function properly. Ensure that the backend is set up and running before using this application. Without the backend, many features such as user authentication, menu management, and order processing will not work.
+
+### Setting Up the Backend
+
+1. Clone the backend repository from the provided link: [backend repository](https://github.com/JarkkoKarki/Web-Project-Backend).
+2. Follow the backend's README instructions to install dependencies and start the server.
+3. Ensure the backend server is running and accessible before starting the frontend.
+
+### Connecting the Frontend to the Backend
+
+Make sure the frontend is configured to communicate with the backend server. Update the API base URL in the frontend's configuration file if necessary.
 
 ## Demo
-
-The application demo is available in two formats:
-
-### Local Network Demo (Required First Step)
 
 To access the demo, you must first connect to the school's VPN and follow these steps:
 
@@ -56,29 +60,18 @@ After completing the above steps, you can experience the application live at: [W
 2. Install Node.js and npm if they are not already installed.
 3. Run the command `npm install` to install all dependencies.
 4. Start the application using the command `npm run dev`.
-5. Open a browser and navigate to `http://localhost:3000`.
+5. Open the displayed URL to access the application.
 
 ### Instructions for Testing the Application
 
 1. Install the required dependencies using the command `npm install`.
 2. Start the application locally using the command `npm run dev`.
-3. Open a browser and navigate to `http://localhost:3000`.
+3. Open a browser and navigate to the displayed URL.
 4. Test the following functionalities:
    - Register and log in.
    - Add items to the shopping cart and place an order.
-   - Manage the menu (add, edit, and delete items).
-   - Make a reservation and check the reservation details.
+   - Manage the menu (add, edit, and delete items as an admin).
+   - Make a reservation (as a user or non-user) and check the reservation details.
    - Change the application language and ensure all texts update correctly.
    - Verify successful and canceled payment transactions.
-
-## Feedback
-
-Each team will test other teams' applications and provide feedback. Feedback will be given, for example, using Google Forms. The form should include at least the following questions:
-
-1. Was the repository's README.md clear and met the requirements? (1-5)
-2. Did you get a clear understanding of the application's purpose and target audience? (1-5)
-3. Did you easily find everything necessary in the user interface to test the application? (1-5)
-4. Free text.
-5. [Add a custom question here]
-
-Link to the feedback form: [Add Google Forms link here]
+   - Access the WorkHub view as an admin to manage orders, reservations, and user information.
