@@ -22,7 +22,7 @@ const MenuItem = ({item}) => {
 
   return (
     <div className="menu-item flex items-center justify-between rounded-md border-b-1 border-b-gray-800 bg-gray-900 p-4">
-      <div className="flex h-full flex-col justify-between">
+      <div className="flex h-full w-1/2 flex-col flex-wrap justify-between">
         <h4 className="text-lg font-bold text-white">{toUpper(item.name)}</h4>
         <p className="mt-2 text-sm text-gray-400">{item.description}</p>
         <div className="flex items-center space-x-2 py-2">
@@ -33,7 +33,7 @@ const MenuItem = ({item}) => {
         </div>
         <p className="mt-auto font-bold text-yellow-400">${item.price}</p>
       </div>
-      <div className="ml-4 flex items-center">
+      <div className="ml-4 flex flex-col items-center md:flex-row">
         <img
           className="h-20 w-20 rounded-md object-cover"
           src={item.src}
@@ -42,7 +42,7 @@ const MenuItem = ({item}) => {
 
         {addItemToCart && user && location.pathname !== '/' ? (
           <button
-            className="ml-4 cursor-pointer rounded bg-yellow-400 px-2 py-1 text-sm text-black hover:bg-emerald-600"
+            className="mt-2 w-full cursor-pointer self-center rounded bg-yellow-400 px-2 py-1 text-sm text-black hover:bg-emerald-600 md:ml-4 md:w-auto"
             onClick={handleAddToCart}
           >
             {t('menuPage.add-to-cart')}

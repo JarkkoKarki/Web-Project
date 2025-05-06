@@ -87,7 +87,7 @@ const Home = () => {
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-center gap-10 px-6 md:flex-row">
           <div className="w-full items-center justify-center space-y-6 px-8 md:w-1/2 md:px-0">
             <ul className="space-y-6">
-              <li>
+              <li className="flex flex-col flex-wrap space-y-4">
                 {favoritesMenuArray.slice(0, 3).map((item) => (
                   <MenuItem key={item.name} item={item} />
                 ))}
