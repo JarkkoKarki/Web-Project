@@ -56,6 +56,9 @@ i18n.use(initReactI18next).init({
           'sides': 'SIDES',
           'drinks': 'DRINKS',
           'starters': 'STARTERS',
+          'vegan': 'FIELDS OF VEGAN',
+          'dessert': 'DESSERTS',
+          'special-offers': 'SPECIAL OFFERS',
           'add-to-cart-prompt': 'added to cart!',
           'add-to-cart': 'Add to Cart',
           'diets': 'Diets: '
@@ -232,7 +235,7 @@ i18n.use(initReactI18next).init({
           'reservation-date': 'Date',
           'reservation-time': 'Time',
           'filter-date': 'Choose day',
-          'filter-reset': 'Clear day',
+          'filter-reset': 'Clear',
           'phone': 'Phone number',
           'email':  'Email',
 
@@ -379,6 +382,9 @@ i18n.use(initReactI18next).init({
           'sides': 'LISUKKEET',
           'drinks': 'JUOMAT',
           'starters': 'ALKURUOAT',
+          'vegan': 'VEGAN',
+          'dessert': 'JÄLKIRUOAT',
+          'special-offers': 'AlENNUKSET',
           'add-to-cart-prompt': 'lisätty ostoskoriin!',
           'add-to-cart': 'Lisää ostoskoriin',
           'diets': 'Allergeenit: '
@@ -560,7 +566,7 @@ i18n.use(initReactI18next).init({
           'reservation-date': 'Päivämäärä',
           'reservation-time': 'Aika',
           'filter-date': 'Valitse päivä',
-          'filter-reset': 'Tyhjennä päivä',
+          'filter-reset': 'Tyhjennä haku',
           'phone': 'Puhelin numero',
           'email':  'Sähköposti',
         },

@@ -48,6 +48,8 @@ const Menu = () => {
           {t('menuPage.menu')}
         </h2>
         <div className="flex flex-col gap-10 md:flex-row">
+
+
           {/* First Grid */}
           <div className="grid flex-1 auto-rows-auto gap-10">
             <div>
@@ -66,11 +68,24 @@ const Menu = () => {
             </div>
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                {t('menuPage.sides')}
+                {t('menuPage.vegan')}
               </h3>
               <ul className="space-y-6">
                 {fullMenuArray
-                  .filter((item) => item.categories.includes('sides'))
+                  .filter((item) => item.categories.includes('fields of vegan'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem item={item} />
+                    </li>
+                  ))}
+              </ul>
+
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                {t('menuPage.special-offers')}
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('special offer'))
                   .map((item) => (
                     <li key={item.name}>
                       <MenuItem item={item} />
@@ -80,22 +95,10 @@ const Menu = () => {
             </div>
           </div>
 
+
+
           {/* Second Grid */}
           <div className="grid flex-1 auto-rows-auto gap-10">
-            <div>
-              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
-                {t('menuPage.drinks')}
-              </h3>
-              <ul className="space-y-6">
-                {fullMenuArray
-                  .filter((item) => item.categories.includes('drinks'))
-                  .map((item) => (
-                    <li key={item.name}>
-                      <MenuItem item={item} />
-                    </li>
-                  ))}
-              </ul>
-            </div>
             <div>
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
                 {t('menuPage.starters')}
@@ -109,6 +112,44 @@ const Menu = () => {
                     </li>
                   ))}
               </ul>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                {t('menuPage.sides')}
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('sides'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem item={item} />
+                    </li>
+                  ))}
+              </ul>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                {t('menuPage.drinks')}
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('drinks'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem item={item} />
+                    </li>
+                  ))}
+              </ul>
+              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+                {t('menuPage.dessert')}
+              </h3>
+              <ul className="space-y-6">
+                {fullMenuArray
+                  .filter((item) => item.categories.includes('dessert'))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <MenuItem item={item} />
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div>
             </div>
           </div>
         </div>
