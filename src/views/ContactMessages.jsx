@@ -71,17 +71,17 @@ const ContactMessages = () => {
       </h2>
 
       {selectedMessage ? (
-        <div className="rounded-md bg-[#1a1c1b] p-4 shadow-md">
-          <h3 className="text-xl font-semibold">
+        <div className="h-auto w-2xl rounded-md border border-gray-300 bg-[#1a1c1b] p-8 shadow-md">
+          <h3 className="p-4 text-xl font-semibold">
             {t('contactMessages.title')}: {selectedMessage.title}
           </h3>
-          <p>
+          <p className="p-4">
             {t('contactMessages.email')}: {selectedMessage.email}
           </p>
-          <p>
+          <p className="p-4">
             {t('contactMessages.description')}: {selectedMessage.description}
           </p>
-          <p>
+          <p className="p-4">
             {t('contactMessages.date')}:{' '}
             {new Date(selectedMessage.created_at).toLocaleString()}
           </p>
@@ -94,7 +94,7 @@ const ContactMessages = () => {
               {t('contactMessages.delete')}
             </button>
             <button
-              className="bg-[#2b2e2c81] px-4 py-2 text-black"
+              className="bg-[#52555381] px-4 py-2 text-black"
               onClick={() => setSelectedMessage(null)}
             >
               {t('contactMessages.cancel')}
@@ -105,12 +105,12 @@ const ContactMessages = () => {
         displayedMessages.map((msg, index) => (
           <div
             key={msg.contact_id || index}
-            className="mb-4 cursor-pointer rounded-md bg-[#1a1c1b] p-4 shadow-md hover:bg-gray-700"
+            className="mb-4 h-auto w-1/4 cursor-pointer rounded-md bg-[#1a1c1b] p-8 shadow-md hover:bg-gray-700"
             onClick={() => handleMessageClick(msg)}
           >
-            <p>{msg.title}</p>
-            <p>{msg.email}</p>
-            <p>{new Date(msg.created_at).toLocaleString()}</p>
+            <p className="p-1">{msg.title}</p>
+            <p className="p-1">{msg.email}</p>
+            <p className="p-1">{new Date(msg.created_at).toLocaleString()}</p>
           </div>
         ))
       )}
