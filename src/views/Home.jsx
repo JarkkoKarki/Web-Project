@@ -31,19 +31,37 @@ const Home = () => {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
-        <div className="absolute bottom-10 left-10 z-10 flex space-x-2">
-          <img src={facebookIcon} alt="Facebook" className="h-12 w-12" />
-          <img src={instagramIcon} alt="Instagram" className="h-12 w-12" />
-          <img src={tiktokIcon} alt="TikTok" className="h-12 w-12" />
+        {/* Social Media Icons */}
+        <div className="absolute bottom-6 left-6 z-10 flex space-x-2 md:bottom-10 md:left-10">
+          <img
+            src={facebookIcon}
+            alt="Facebook"
+            className="h-8 w-8 rounded bg-yellow-500 md:h-12 md:w-12"
+          />
+          <img
+            src={instagramIcon}
+            alt="Instagram"
+            className="h-8 w-8 rounded bg-yellow-500 md:h-12 md:w-12"
+          />
+          <img
+            src={tiktokIcon}
+            alt="TikTok"
+            className="h-8 w-8 rounded bg-yellow-500 md:h-12 md:w-12"
+          />
+          <h3 className="self-center font-bold text-yellow-500 italic">
+            {t('homePage.follow-us')}
+          </h3>
         </div>
-        <div className="bg-opacity-60 rounded-lg bg-[#101211] p-10">
-          <p className="mb-2 text-yellow-500 italic">
+
+        {/* Welcome Message */}
+        <div className="bg-opacity-60 max-w-lg rounded-lg bg-[#101211] p-6 sm:p-10 md:max-w-xl">
+          <p className="mb-2 text-sm text-yellow-500 italic sm:text-base">
             {t('homePage.welcome-message')}
           </p>
-          <h2 className="text-5xl font-bold tracking-wider text-yellow-400">
+          <h2 className="text-3xl font-bold tracking-wider text-yellow-400 sm:text-5xl">
             {t('homePage.slogan')}
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-sm text-white">
+          <p className="mx-auto mt-4 text-xs text-white sm:text-sm md:text-base">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
             quasi ipsum qui aliquam ut quibusdam veniam. Voluptatibus ducimus,
             qui optio deserunt exercitationem pariatur consequuntur sit, at
@@ -51,20 +69,23 @@ const Home = () => {
           </p>
           <a
             href="/about"
-            className="mt-6 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+            className="mt-6 inline-block border border-yellow-500 px-4 py-2 text-sm text-yellow-500 transition hover:bg-yellow-500 hover:text-black sm:px-6 sm:py-2 sm:text-base"
           >
             {t('homePage.learn-more')}
           </a>
         </div>
       </section>
+
+      {/* About Section */}
       <About />
+
       {/* Menu Section */}
       <section id="menu" className="bg-[#101211] py-20">
         <h3 className="mb-12 text-center text-3xl font-bold text-white">
           {t('homePage.trending-meals')}
         </h3>
-        <div className="mx-auto flex max-w-6xl items-start justify-center gap-10 px-6">
-          <div className="w-1/2 space-y-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-center gap-10 px-6 md:flex-row">
+          <div className="w-full items-center justify-center space-y-6 px-8 md:w-1/2 md:px-0">
             <ul className="space-y-6">
               <li>
                 {favoritesMenuArray.slice(0, 3).map((item) => (
@@ -72,21 +93,28 @@ const Home = () => {
                 ))}
               </li>
             </ul>
-            <a
-              href="/menu"
-              className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
-            >
-              {t('homePage.view-more')}
-            </a>
+            <div className="flex w-full items-center justify-center">
+              <a
+                href="/menu"
+                className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+              >
+                {t('homePage.view-more')}
+              </a>
+            </div>
           </div>
-          <img
-            src={
-              favoritesMenuArray[currentImageIndex]?.src ||
-              'https://placehold.co/560x370'
-            }
-            alt={favoritesMenuArray[currentImageIndex]?.name || 'Placeholder'}
-            className="h-[370px] w-[560px] rounded-lg object-cover shadow-lg"
-          />
+          <div className="flex flex-col">
+            <h3 className="mb-4 text-center font-bold">
+              {favoritesMenuArray[currentImageIndex]?.name}
+            </h3>
+            <img
+              src={
+                favoritesMenuArray[currentImageIndex]?.src ||
+                'https://placehold.co/560x370'
+              }
+              alt={favoritesMenuArray[currentImageIndex]?.name || 'Placeholder'}
+              className="h-[370px] w-[560px] rounded-lg object-cover shadow-lg"
+            />
+          </div>
         </div>
       </section>
     </>

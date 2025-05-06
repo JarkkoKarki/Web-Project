@@ -24,9 +24,9 @@ const Layout = () => {
           <div className="flex space-x-2 md:hidden">
             <LanguageChange />
           </div>
-          <div className="flex justify-center md:justify-start">
-            <img src={kebulaLogo} alt="Logo" className="h-8 w-8 bg-white" />
-            <h1 className="hidden text-xl font-bold text-white md:block">
+          <div className="flex justify-center space-x-1 md:justify-start">
+            <img src={kebulaLogo} alt="Logo" className="h-12 w-12 bg-white" />
+            <h1 className="hidden self-center text-xl font-bold text-white md:block">
               KEBULA
             </h1>
           </div>
