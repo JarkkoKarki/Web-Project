@@ -24,7 +24,8 @@ import {Checkout} from './views/Checkout';
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter>
+      {/* Removed the basename property as it is not needed for root deployment */}
       <LanguageProvider>
         <ShoppingCartProvider>
           {/* ToastContainer for global toast notifications */}
