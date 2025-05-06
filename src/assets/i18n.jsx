@@ -124,7 +124,10 @@ i18n.use(initReactI18next).init({
           "name": "Name",
           "people": "People",
           "phone": "Phone",
-          "comments": "Comments"
+          "comments": "Comments",
+          'deleted-success': 'Reservation deleted successfully',
+          'delete-failed': 'Failed to delete reservation',
+          'cancel': 'Cancel',
         },
         profilePage: {
           "profile": 'Profile',
@@ -432,7 +435,10 @@ i18n.use(initReactI18next).init({
           "name": "Nimi",
           "people": "Henkilöt",
           "phone": "Puhelinnumero",
-          "comments": "Kommentit"
+          "comments": "Kommentit",
+          'deleted-success': 'Pöytävaraus poistettu onnistuneesti',
+          'delete-failed': 'Pöytävarauksen poisto epäonnistui',
+          'cancel': 'Peruuta',
         },
         profilePage: {
           "profile": 'Profiili',
