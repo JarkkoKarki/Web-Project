@@ -39,9 +39,12 @@ const About = () => {
               rerum. Minus itaque recusandae voluptatum repellat repudiandae
               veritatis libero harum consequatur culpa.
             </p>
-            <button className="border border-yellow-500 px-4 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black">
+            <a
+              href="/Web-Project-Frontend/about"
+              className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+            >
               {t('aboutPage.read-more')}
-            </button>
+            </a>
           </div>
           <img
             src={finedining2}
