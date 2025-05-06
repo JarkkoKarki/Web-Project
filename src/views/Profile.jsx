@@ -11,6 +11,7 @@ import {useState} from 'react';
 const Profile = () => {
   const {t} = useTranslation();
   const {user} = useUserContext();
+  console.log(user, ' PROFILE');
   const [activeTab, setActiveTab] = useState('orders');
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white">
