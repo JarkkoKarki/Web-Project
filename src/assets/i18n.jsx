@@ -225,6 +225,14 @@ i18n.use(initReactI18next).init({
           'drinks': 'drinks'
         },
 
+        manageReservations: {
+          "reservations": "Customers Table Reservations",
+          'people-amount': "Customer Amount",
+          'table-id': "Table Id",
+          'reservation-date': 'Date',
+          'reservation-time': 'Time',
+        },
+
         orders: {
           'title': 'Orders',
           'id': 'ID:',
@@ -538,8 +546,16 @@ i18n.use(initReactI18next).init({
           'fields_of_vegan': 'vegaanin alueet',
           'special_offer': 'erikoistarjous',
           'drinks': 'juomat'
-
         },
+
+        manageReservations: {
+          "reservations": "Asiakkaiden Pöytä Varaukset",
+          'people-amount': "Asiakkaiden määrä",
+          'table-id': "Pöytä Id",
+          'reservation-date': 'Päivämäärä',
+          'reservation-time': 'Aika',
+        },
+
         orders: {
           'title': 'Tilaukset',
           'id': 'ID:',
@@ -569,6 +585,7 @@ i18n.use(initReactI18next).init({
           'cancel': 'Keskeytä',
           'save': 'Tallenna'
         },
+
         ordersForm: {
           'your-order': 'Tilauksesi',
           'information': 'Kuljetus tiedot',
