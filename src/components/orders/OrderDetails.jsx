@@ -37,7 +37,25 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
           </h3>
           <div className="ml-auto flex flex-row items-center space-x-1.5">
             <h3>{t('orders.status')}</h3>
-            <h3 className={status === 'pending' ? 'text-yellow-500' : ''}>
+            <h3
+              className={
+                status === 'pending'
+                  ? 'text-yellow-500'
+                  : status === 'confirmed'
+                    ? 'text-green-500'
+                    : status === 'preparing'
+                      ? 'text-amber-800'
+                      : status === 'ready'
+                        ? 'text-green-200'
+                        : status === 'out-for-delivery'
+                          ? 'text-fuchsia-400'
+                          : status === 'completed'
+                            ? 'text-green-500'
+                            : status === 'cancelled'
+                              ? 'text-red-500'
+                              : ''
+              }
+            >
               {status}
             </h3>
           </div>

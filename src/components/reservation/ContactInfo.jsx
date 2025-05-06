@@ -3,6 +3,7 @@ import {useTranslation} from 'react-i18next';
 import {fetchData} from '../../utils/fetchData';
 import {url} from '../../utils/variables';
 import {format} from 'date-fns';
+import {useNavigate} from 'react-router';
 
 const ContactInfo = ({
   user,
@@ -18,6 +19,7 @@ const ContactInfo = ({
   const [email, setEmail] = useState(prefilled ? user.email : '');
   const [comments, setComments] = useState('');
   const {t} = useTranslation();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +52,14 @@ const ContactInfo = ({
         },
         body: JSON.stringify(reservationData),
       });
+
+      if (response.message === 'Reservation created successfully') {
+        if (user) {
+          navigate('/profile', {state: {activeTab: 'reservations'}});
+        } else {
+          alert(t('reservationPage.details-sent-to-email'));
+        }
+      }
 
       console.log(response);
     } catch (error) {
