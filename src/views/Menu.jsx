@@ -29,39 +29,38 @@ const Menu = () => {
 
   return (
     <>
-      <section className="mx-auto mb-8 max-w-4xl rounded-lg bg-[#181a19] px-6 py-8 shadow-md">
-        <h2 className="mb-6 text-center text-3xl font-bold text-yellow-500">
-          {t('menuPage.chefs-special-of-the-day')}
-        </h2>
-        {chefsSpecial ? (
-          <div>
-            {/* Display discounted price only for Chef's Special */}
-            <MenuCarouselItem
-              item={{
-                ...chefsSpecial,
-                price: (parseFloat(chefsSpecial.price) * 0.9).toFixed(2), // Apply 10% discount here
-              }}
-            />
-            <div className="text-center text-xl text-yellow-300">
-              <span className="text-red-500 line-through">
-                {chefsSpecial.price}€
-              </span>{' '}
-              <span>
-                {parseFloat(chefsSpecial.price) * 0.9}€ (
-                {t('menuPage.discounted')})
-              </span>
+      <section className="mt-4 mb-8 flex w-full flex-col items-center justify-center rounded-lg bg-[#181a19] px-6 py-8 shadow-md md:mx-auto md:max-w-4xl">
+        <div className="text-center">
+          <h2 className="mb-6 text-3xl font-bold text-yellow-500">
+            {t('menuPage.chefs-special-of-the-day')}
+          </h2>
+          {chefsSpecial ? (
+            <div>
+              <MenuCarouselItem
+                item={{
+                  ...chefsSpecial,
+                  price: (parseFloat(chefsSpecial.price) * 0.9).toFixed(2),
+                }}
+              />
+              <div className="mt-4 text-xl text-yellow-300">
+                <span className="text-red-500 line-through">
+                  {chefsSpecial.price}€
+                </span>{' '}
+                <span>
+                  {parseFloat(chefsSpecial.price) * 0.9}€ (
+                  {t('menuPage.discounted')})
+                </span>
+              </div>
             </div>
-          </div>
-        ) : (
-          <p className="text-center text-gray-400">
-            {t('menuPage.no-special-today')}
-          </p>
-        )}
+          ) : (
+            <p className="text-gray-400">{t('menuPage.no-special-today')}</p>
+          )}
+        </div>
       </section>
 
       <section
         id="chefs-favourites"
-        className="mx-auto max-w-6xl bg-[#101211] py-12"
+        className="mx-auto max-w-6xl rounded bg-[#101211] p-12"
       >
         <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400">
           {t('menuPage.chefs-favorites')}
@@ -80,14 +79,17 @@ const Menu = () => {
           </div>
         </div>
       </section>
-      <section id="menu" className="mx-auto max-w-6xl bg-[#101211]">
+      <section
+        id="menu"
+        className="mx-auto max-w-6xl rounded bg-[#101211] p-12"
+      >
         <h2 className="mb-12 text-center text-4xl font-bold tracking-wider text-yellow-400 underline underline-offset-4">
           {t('menuPage.menu')}
         </h2>
         <div className="flex flex-col gap-10 md:flex-row">
           {/* First Grid */}
           <div className="grid flex-1 auto-rows-auto gap-10">
-            <div>
+            <div className="flex h-auto flex-col">
               <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
                 {t('menuPage.meals')}
               </h3>
@@ -115,7 +117,7 @@ const Menu = () => {
                   ))}
               </ul>
 
-              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+              <h3 className="mt-4 mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
                 {t('menuPage.special-offers')}
               </h3>
               <ul className="space-y-6">
@@ -169,7 +171,7 @@ const Menu = () => {
                     </li>
                   ))}
               </ul>
-              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+              <h3 className="mt-4 mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
                 {t('menuPage.dessert')}
               </h3>
               <ul className="space-y-6">
