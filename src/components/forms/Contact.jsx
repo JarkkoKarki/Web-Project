@@ -8,10 +8,10 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('user_id');
 
     try {
-      await fetchData('', {
+      await fetchData('http://10.120.32.87/app/api/contact/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
