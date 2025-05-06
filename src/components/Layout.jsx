@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {useUserContext} from './hooks/contextHooks';
 import {Link, Outlet, useLocation} from 'react-router';
 import {useTranslation} from 'react-i18next';
-import {logoUrl, rootUrl} from '../utils/variables';
+import {rootUrl} from '../utils/variables';
 import ShoppingCartElement from './ShoppingCartElement';
 import LanguageChange from './LanguageChange';
 
@@ -20,7 +20,11 @@ const Layout = () => {
     <div className="flex min-h-screen flex-col bg-[#0d0f0e] text-white">
       <header className="flex items-center justify-between border-b border-gray-800 bg-[#0d0f0e] px-8 py-4">
         <div className="flex items-center space-x-3">
-          <img src={logoUrl} alt="Logo" className="h-8 w-8" />
+          <img
+            src="/src/assets/icons/kebula-favicon.svg"
+            alt="Logo"
+            className="h-8 w-8 bg-white"
+          />
           <h1 className="text-xl font-bold text-white">KEBULA</h1>
         </div>
         <nav>

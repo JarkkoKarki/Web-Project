@@ -167,7 +167,10 @@ i18n.use(initReactI18next).init({
         workhubHeader: {
           'workhub': 'Workhub',
           'manage-menu': 'Manage Menu',
-          'orders': 'Orders'
+          'orders': 'Orders',
+          "users": "Users",
+          "reservations": "Reservations",
+          "contact": "Contact Messages",
         },
         manageMenu: {
           'add-menu-name-fi': 'Name in finnish',
@@ -182,6 +185,7 @@ i18n.use(initReactI18next).init({
           'menu-item-button': 'Upload File',
           'all-fields-required': 'All fields are required',
           'file-field-required': 'Please select a file!',
+          'invalid-price': 'Price must be a number',
           'add-menu-title': 'Add Menu item',
           'modify-menu-title': 'Modify or Delete Menu Item',
           'menu-td-name': 'Name',
@@ -191,6 +195,15 @@ i18n.use(initReactI18next).init({
           'menu-name-fi': 'In Finnish',
           'menu-name-en': 'In English',
           'menu-price': 'Price'
+        },
+
+        manageUsers: {
+          'title': 'User Management',
+          'username': 'Username',
+          'email': 'Email',
+          'role': 'Role',
+          'date': 'Date',
+          'time': 'Time',
         },
 
         dietOptions: {
@@ -288,7 +301,20 @@ i18n.use(initReactI18next).init({
           'session': 'Session:',
           'status': 'Status:',
           'items': 'Items:'
-        }
+        },
+        contactMessages: {
+          "submitted-messages": "Submitted Contact Messages",
+          "no-messages-found": "No messages found.",
+          "email": "Email",
+          "title": "Title",
+          "description": "Description",
+          "date": "Date",
+          "action": "Action",
+          "delete": "Delete",
+          "message-deleted": "Message deleted successfully",
+          "failed-to-delete": "Failed to delete message",
+          "cancel": "Cancel",
+        },
       }
     },
     fi: {
@@ -447,7 +473,10 @@ i18n.use(initReactI18next).init({
         workhubHeader: {
           'workhub': 'Työtila',
           'manage-menu': 'Muokkaa menua',
-          'orders': 'Tilaukset'
+          'orders': 'Tilaukset',
+          "users": "Käyttäjät",
+          "reservations": "Varaukset",
+          "contact": "Viestit",
         },
         manageMenu: {
           'add-menu-name-fi': 'Nimi Suomeksi',
@@ -462,6 +491,7 @@ i18n.use(initReactI18next).init({
           'menu-item-button': 'Lisää kuva',
           'all-fields-required': 'Kaikki kentät pitää täyttää',
           'file-field-required': 'Kuvan lisääminen on pakollinen',
+          'invalid-price': 'Hinta täytyy olla numero',
           'add-menu-title': 'Lisää Ateria',
           'modify-menu-title': 'Muokkaa tai Poista Ateria',
           'menu-td-name': 'Nimi',
@@ -474,6 +504,14 @@ i18n.use(initReactI18next).init({
 
         },
 
+        manageUsers: {
+          'title': 'Käyttäjien hallinta',
+          'username': 'Käyttäjätunnus',
+          'email': 'Sähköposti',
+          'role': 'Rooli',
+          'date': 'Päivämäärä',
+          'time': 'Aika',
+        },
 
         dietOptions: {
           'animal_based': 'A - Eläinperäinen',
@@ -569,7 +607,20 @@ i18n.use(initReactI18next).init({
           'session': 'Tapahtuma:',
           'status': 'Tila:',
           'items': 'Tuotteet:'
-        }
+        },
+        contactMessages: {
+          "submitted-messages": "Lähetetyt Yhteydenotot",
+          "no-messages-found": "Viestejä ei löytynyt.",
+          "email": "Sähköposti",
+          "title": "Otsikko",
+          "description": "Viesti",
+          "date": "Aika",
+          "action": "Toiminta",
+          "delete": "Poista",
+          "message-deleted": "Viesti Poistettu Onnistuneesti.",
+          "failed-to-delete": "Virhe Viestin Poistossa.",
+          "cancel": "Keskeytä",
+        },
       }
     }
   },

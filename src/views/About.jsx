@@ -1,6 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Map} from './Map.jsx';
+import Contact from '../components/forms/Contact.jsx';
 
 const About = () => {
   const {t} = useTranslation();
@@ -45,6 +46,7 @@ const About = () => {
         </div>
       </section>
       <Map />
+      <Contact />
     </>
   );
 };
