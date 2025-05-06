@@ -166,7 +166,7 @@ const useReservations = () => {
   const getReservations = async () => {
     try {
       const reservationData = await fetchData(url + '/reservations/');
-      setReservations(reservationData)
+      setReservations(reservationData);
     } catch (error) {
       console.error('Error getting reservations:', error);
       throw error;

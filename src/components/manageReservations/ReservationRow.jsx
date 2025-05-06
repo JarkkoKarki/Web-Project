@@ -8,7 +8,7 @@ const ReservationRow = ({item, onClick}) => {
     >
       <td className="px-6 py-3">{item.table_id}</td>
       <td className="px-6 py-3">{item.people_count}</td>
-      <td className="px-6 py-3">{item.reservation_date}</td>
+      <td>{new Date(item.reservation_date).toLocaleDateString('fi-FI')}</td>
       <td className="px-6 py-3">{item.reservation_time}</td>
     </tr>
   );

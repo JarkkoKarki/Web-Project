@@ -231,6 +231,11 @@ i18n.use(initReactI18next).init({
           'table-id': "Table Id",
           'reservation-date': 'Date',
           'reservation-time': 'Time',
+          'filter-date': 'Choose day',
+          'filter-reset': 'Clear day',
+          'phone': 'Phone number',
+          'email':  'Email',
+
         },
 
         orders: {
@@ -554,6 +559,10 @@ i18n.use(initReactI18next).init({
           'table-id': "Pöytä Id",
           'reservation-date': 'Päivämäärä',
           'reservation-time': 'Aika',
+          'filter-date': 'Valitse päivä',
+          'filter-reset': 'Tyhjennä päivä',
+          'phone': 'Puhelin numero',
+          'email':  'Sähköposti',
         },
 
         orders: {
