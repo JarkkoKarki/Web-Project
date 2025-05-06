@@ -41,7 +41,6 @@ export const useCheckout = () => {
       }
 
       const data = await response.json();
-      console.log('Stripe Response Data:', data);
 
       if (data.url) {
         window.location.href = data.url; // Redirect to checkout URL

@@ -94,7 +94,6 @@ function MapInfo({position, destination}) {
       setLoading(true);
       const baseUrl = url + '/route/';
       const apiUrl = `${baseUrl}${position[0]}/${position[1]}/${destination[0]}/${destination[1]}`;
-      console.log(apiUrl);
 
       fetch(apiUrl)
         .then((response) => response.json())

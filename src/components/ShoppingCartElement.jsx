@@ -69,9 +69,7 @@ const ShoppingCartElement = () => {
                       </div>
                       <div className="flex items-center space-x-2">
                         <button
-                          onClick={() =>
-                            addItemToCart(item) + console.log('asd')
-                          }
+                          onClick={() => addItemToCart(item)}
                           className="rounded bg-green-500 px-3 py-1 text-sm font-semibold text-white shadow-md hover:bg-green-600"
                         >
                           {t('shoppingCart.add')}

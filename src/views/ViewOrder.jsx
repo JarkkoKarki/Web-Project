@@ -21,16 +21,12 @@ const ViewOrder = () => {
 
       try {
         const token = localStorage.getItem('token');
-        console.log('Session ID from URL:', sessionId);
 
         const res = await fetchData(url + `/orders/myorders/en`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('API Response:', res);
-        console.log(sessionId);
-
         // Find the specific order by sessionId
         const matchedOrder = res.find((order) => order.sessionId === sessionId);
 

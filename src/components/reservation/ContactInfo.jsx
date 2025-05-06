@@ -60,10 +60,8 @@ const ContactInfo = ({
           alert(t('reservationPage.details-sent-to-email'));
         }
       }
-
-      console.log(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

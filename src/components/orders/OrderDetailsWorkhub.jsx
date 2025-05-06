@@ -3,7 +3,6 @@ import {useTranslation} from 'react-i18next';
 export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
   const {t} = useTranslation();
   const {products, orderDate, status, totalPrice, orderId} = order;
-  console.log(totalPrice);
 
   return (
     <>

@@ -11,12 +11,10 @@ export const DeleteUserButton = ({userId}) => {
 
   const handleClick = async () => {
     try {
-      console.log('id', userId);
       if (confirm(t('profilePage.delete-user-confirmation'))) {
         await deleteUser(userId);
         handleLogout();
 
-        console.log('User deleted successfully');
         navigate('/');
       }
     } catch (error) {

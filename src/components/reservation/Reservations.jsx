@@ -52,7 +52,6 @@ const Reservations = () => {
       );
     } catch (err) {
       console.error(err);
-      console.log('Reservation deletion failed:', err);
     }
   };
 
@@ -63,8 +62,6 @@ const Reservations = () => {
         {t('error')}: {error}
       </div>
     );
-
-  console.log('reservations:', reservations);
 
   return (
     <div className="flex w-full flex-wrap justify-center gap-4">

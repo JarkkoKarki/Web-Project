@@ -35,7 +35,6 @@ const ContactMessages = () => {
     const loadMessages = async () => {
       try {
         const data = await fetchData(url + '/contact/');
-        console.log('Fetched data:', data);
         setMessages(data);
       } catch (error) {
         console.error('Error fetching contact messages:', error.message);

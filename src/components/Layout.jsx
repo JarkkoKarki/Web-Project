@@ -11,7 +11,6 @@ const Layout = () => {
   const {t} = useTranslation();
   const {user, handleAutoLogin} = useUserContext();
   const location = useLocation();
-  console.log('user', user);
 
   useEffect(() => {
     handleAutoLogin();

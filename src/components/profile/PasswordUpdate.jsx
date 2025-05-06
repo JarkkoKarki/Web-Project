@@ -49,17 +49,16 @@ export const PasswordUpdate = ({onSave, onCancel}) => {
       // Send the complete user object with the new password to the backend
       const userData = {
         ...user,
-        password: passwords.newPassword
+        password: passwords.newPassword,
       };
-      
+
       const response = await putUser(userData);
-      
+
       // Save the token immediately after a successful update
       if (response && response.token) {
         localStorage.setItem('token', response.token);
-        console.log('JWT token updated in localStorage after password change');
       }
-      
+
       // Pass the response to the parent component's onSave handler
       onSave(userData);
     } catch (error) {

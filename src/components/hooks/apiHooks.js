@@ -49,7 +49,6 @@ const useUser = () => {
   }, []);
 
   const deleteUser = useCallback(async (userId) => {
-    console.log(window.localStorage.getItem('token'));
     const fetchOptions = {
       method: 'DELETE',
       headers: {
@@ -149,7 +148,6 @@ export const updateOrderStatus = async (orderId, newStatus, token) => {
       throw new Error(data.message || 'Failed to update order status');
     }
 
-    console.log('Order updated:', data);
     return data;
   } catch (error) {
     console.error('Error updating order status:', error);

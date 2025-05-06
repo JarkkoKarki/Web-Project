@@ -13,7 +13,6 @@ const PaymentSuccess = () => {
 
   useEffect(() => {
     if (sessionId && !hasCleared.current) {
-      console.log('Session ID:', sessionId);
       localStorage.setItem('sessionId', sessionId);
       hasCleared.current = true;
 
@@ -22,7 +21,6 @@ const PaymentSuccess = () => {
   }, []);
 
   if (!sessionId) {
-    console.log('Session ID is missing from the URL.');
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-[#0f1110] p-4 text-center">
         <h1 className="text-2xl font-bold text-green-600">

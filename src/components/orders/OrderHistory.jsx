@@ -21,7 +21,6 @@ export const OrderHistory = () => {
     try {
       const fetchedOrders = await getOrdersByUserId();
       setOrders(fetchedOrders);
-      console.log('Orders:', fetchedOrders);
     } catch (error) {
       console.error('Error fetching orders:', error);
     }
@@ -52,7 +51,6 @@ export const OrderHistory = () => {
   };
 
   useEffect(() => {
-    console.log('effect user:', user);
     if (user) {
       fetchOrders();
     }

@@ -13,7 +13,6 @@ const MenuItem = ({item}) => {
   const handleAddToCart = () => {
     if (addItemToCart) {
       addItemToCart(item);
-      console.log(`${item.name} added to cart! ID: ${item.id}`);
       toast.success(`${item.name} ${t('menuPage.add-to-cart-prompt')}`, {
         position: 'top-left',
         autoClose: 1000,

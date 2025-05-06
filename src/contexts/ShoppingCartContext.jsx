@@ -46,7 +46,6 @@ export const ShoppingCartProvider = ({children}) => {
 
   const clearCart = () => {
     setCartItems([]);
-    console.log('clearCart kutsuttu');
   };
 
   return (
