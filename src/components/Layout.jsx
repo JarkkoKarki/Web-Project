@@ -21,7 +21,7 @@ const Layout = () => {
       <header className="flex items-center justify-between border-b border-gray-800 bg-[#0d0f0e] px-8 py-4">
         <div className="flex items-center space-x-3">
           <img
-            src="src\assets\icons\kebula-favicon.svg"
+            src="/src/assets/icons/kebula-favicon.svg"
             alt="Logo"
             className="h-8 w-8 bg-white"
           />
