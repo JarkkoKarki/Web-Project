@@ -71,7 +71,7 @@ const ContactMessages = () => {
       </h2>
 
       {selectedMessage ? (
-        <div className="h-auto w-2xl rounded-md border border-gray-300 bg-[#1a1c1b] p-8 shadow-md">
+        <div className="h-auto w-full rounded-md border border-gray-300 bg-[#1a1c1b] p-8 shadow-md md:w-2xl">
           <h3 className="p-4 text-xl font-semibold">
             {t('contactMessages.title')}: {selectedMessage.title}
           </h3>
@@ -105,7 +105,7 @@ const ContactMessages = () => {
         displayedMessages.map((msg, index) => (
           <div
             key={msg.contact_id || index}
-            className="mb-4 h-auto w-1/4 cursor-pointer rounded-md bg-[#1a1c1b] p-8 shadow-md hover:bg-gray-700"
+            className="mb-4 h-auto w-full cursor-pointer rounded-md bg-[#1a1c1b] p-8 shadow-md hover:bg-gray-700 md:w-1/4"
             onClick={() => handleMessageClick(msg)}
           >
             <p className="p-1">{msg.title}</p>
