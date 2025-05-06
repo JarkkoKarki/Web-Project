@@ -10,7 +10,7 @@ const WorkHubLayout = () => {
   return (
     <div className="flex bg-[#0d0f0e] font-sans text-white">
       <aside className="flex min-h-screen w-64 flex-col items-center gap-4 border-r border-gray-800 bg-[#0d0f0e] text-white">
-        <h1 className="border border-yellow-500 p-2 px-10 text-xl font-bold text-white">
+        <h1 className="mt-6 border border-yellow-500 p-2 px-10 text-xl font-bold text-white">
           {t('workhubHeader.workhub')}
         </h1>
         <nav>
@@ -39,11 +39,11 @@ const WorkHubLayout = () => {
                 {t('workhubHeader.reservations')}
               </Link>
             </li>
-              <li>
-                <Link to="contact-messages" className="hover:text-yellow-500">
-                  {t('workhubHeader.contact')}
-                </Link>
-              </li>
+            <li>
+              <Link to="contact-messages" className="hover:text-yellow-500">
+                {t('workhubHeader.contact')}
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>
