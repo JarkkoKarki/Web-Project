@@ -54,7 +54,7 @@ const ContactMessages = () => {
       setMessages((prevMessages) =>
         prevMessages.filter((msg) => msg.id !== id),
       );
-      setSelectedMessage(null); // exit detail view after delete
+      setSelectedMessage(null);
     }
   };
 
