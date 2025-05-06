@@ -95,7 +95,7 @@ const Home = () => {
             </ul>
             <div className="flex w-full items-center justify-center">
               <a
-                href="/Web-Project-Frontend/menu"
+                href="/menu"
                 className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
               >
                 {t('homePage.view-more')}
