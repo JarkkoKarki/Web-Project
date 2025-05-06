@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 
-const BookTable = ({peopleCount, setPeopleCount}) => {
+const BookTable = ({peopleCount, setPeopleCount, maxPeople = 5}) => {
   const {t} = useTranslation();
   return (
     <>
@@ -25,12 +25,24 @@ const BookTable = ({peopleCount, setPeopleCount}) => {
           {peopleCount}
         </span>
         <button
-          className="transform rounded-r bg-green-500 px-4 py-2 text-white transition-transform hover:scale-105 hover:bg-green-600"
-          onClick={() => setPeopleCount((prev) => prev + 1)}
+          className={`transform rounded-r px-4 py-2 text-white transition-transform ${
+            peopleCount >= maxPeople
+              ? 'cursor-not-allowed bg-gray-500'
+              : 'bg-green-500 hover:scale-105 hover:bg-green-600'
+          }`}
+          onClick={() =>
+            setPeopleCount((prev) => Math.min(prev + 1, maxPeople))
+          }
+          disabled={peopleCount >= maxPeople}
         >
           +
         </button>
       </div>
+      {peopleCount >= maxPeople && (
+        <p className="text-text-sm text-center text-yellow-400">
+          {t('reservationPage.maxPeopleReached', {max: maxPeople})}
+        </p>
+      )}
     </>
   );
 };

@@ -118,6 +118,8 @@ i18n.use(initReactI18next).init({
           'comments-label': 'Is there anything we should know before you arrive?',
           'comments-placeholder': 'Write your comments here...',
           'details-sent-to-email': 'Your reservation request has been sent to your email.',
+          "maxPeopleReached": "Maximum of {{max}} people per table. For larger groups, please contact us directly.",
+          'please-select-day': 'Please choose a day.',
         },
         reservations: {
           "title": "Your Reservations",
@@ -444,6 +446,8 @@ i18n.use(initReactI18next).init({
           'comments-label': 'Onko jotain, mitä meidän pitäisi tietää ennen kuin tulet?',
           'comments-placeholder': 'Kirjoita kommenttisi tähän...',
           'details-sent-to-email': 'Varauspyyntö on lähetetty sähköpostiisi.',
+          "maxPeopleReached": "Enintään {{max}} henkilöä per pöytä. Suuremmille ryhmille, ota yhteyttä suoraan ravintolaan.",
+          'please-select-day': 'Ole hyvä ja valitse päivä.',
         },
         reservations: {
           "title": "Pöytävaraukset",

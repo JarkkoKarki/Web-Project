@@ -13,6 +13,7 @@ const Reservation = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [peopleCount, setPeopleCount] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [dateError, setDateError] = useState(false);
   const [selectedTime, setSelectedTime] = useState(() => {
     const initialTime = new Date();
     initialTime.setHours(12, 0, 0, 0);
@@ -35,6 +36,7 @@ const Reservation = () => {
           <PickDate
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
+            error={dateError}
           />
         )}
         {currentStep === 3 && (
@@ -58,6 +60,9 @@ const Reservation = () => {
             onClick={() => {
               if (currentStep > 1) {
                 setCurrentStep((prev) => prev - 1);
+                if (currentStep === 3) {
+                  setDateError(false);
+                }
               }
             }}
           >
@@ -67,15 +72,12 @@ const Reservation = () => {
             className="transform rounded bg-yellow-400 px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
             onClick={() => {
               if (currentStep === 2 && !selectedDate) {
-                alert(t('reservationPage.selectDateError'));
-                return;
-              }
-              if (peopleCount > 12) {
-                alert(t('reservationPage.maxPeopleWarning'));
+                setDateError(true);
                 return;
               }
               if (currentStep < 4) {
                 setCurrentStep((prev) => prev + 1);
+                setDateError(false);
               }
             }}
             hidden={currentStep === 4}

@@ -5,7 +5,7 @@ import 'react-day-picker/style.css';
 import {addMonths} from 'date-fns';
 import {fi, enUS} from 'date-fns/locale';
 
-const ReservationDate = ({selectedDate, setSelectedDate}) => {
+const ReservationDate = ({selectedDate, setSelectedDate, error}) => {
   const {t, i18n} = useTranslation();
 
   const today = new Date();
@@ -35,12 +35,16 @@ const ReservationDate = ({selectedDate, setSelectedDate}) => {
       <h2 className="mb-6 bg-yellow-400 bg-clip-text text-center text-4xl font-extrabold text-transparent">
         {t('reservationPage.reservation-date')}
       </h2>
-      <p className="mb-4 text-center text-lg text-gray-300">
-        {t('reservationPage.select-day')}
+      <p
+        className={`mb-4 text-center text-lg ${error ? 'font-bold text-red-500' : 'text-gray-300'}`}
+      >
+        {error
+          ? t('reservationPage.please-select-day')
+          : t('reservationPage.select-day')}
       </p>
       <div className="mb-4 flex justify-center">
         <DayPicker
-          className="space-y-4 rounded-lg border border-yellow-500 bg-[#101211] p-4 shadow-lg"
+          className={`space-y-4 rounded-lg border ${error ? 'border-red-500' : 'border-yellow-500'} bg-[#101211] p-4 shadow-lg`}
           animate
           showWeekNumber
           fixedWeeks
