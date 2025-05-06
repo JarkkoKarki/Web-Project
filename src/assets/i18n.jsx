@@ -359,7 +359,7 @@ i18n.use(initReactI18next).init({
           'menu': 'Ruokalista',
           'reservation': 'Varaaminen',
           'about': 'Meistä',
-          'sign-in': 'Kirjaudu Sisään',
+          'sign-in': 'Kirjaudu',
           'sign-out': 'Kirjaudu Ulos',
           'workhub': 'Työtila',
           'search': 'Haku',

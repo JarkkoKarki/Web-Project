@@ -25,7 +25,7 @@ const Profile = () => {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white">
       <h2 className="mb-12 text-3xl font-bold">{t('profilePage.profile')}</h2>
 
-      <section className="flex h-[500px] w-full flex-row items-center justify-center space-x-20 px-6">
+      <section className="flex h-auto w-full flex-col items-center justify-center space-y-6 px-6 md:flex-row md:space-y-0 md:space-x-6 lg:space-x-20">
         <ProfilePicture />
         <UserInformation />
       </section>
