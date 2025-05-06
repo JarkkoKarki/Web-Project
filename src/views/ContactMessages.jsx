@@ -25,11 +25,11 @@ const deleteContactMessage = async (id) => {
 
 const ContactMessages = () => {
   const [messages, setMessages] = useState([]);
-
   useEffect(() => {
     const loadMessages = async () => {
       try {
         const data = await fetchData('http://10.120.32.87/app/api/contact/');
+        console.log('Fetched data:', data);
         setMessages(data);
       } catch (error) {
         console.error('Error fetching contact messages:', error.message);
@@ -40,9 +40,13 @@ const ContactMessages = () => {
   }, []);
 
   const handleDelete = async (id) => {
+    if (!id) {
+      console.error('ID is undefined');
+      return;
+    }
     const success = await deleteContactMessage(id);
     if (success) {
-      setMessages(messages.filter((msg) => msg.contact_id !== id));
+      setMessages(messages.filter((msg) => msg.id !== id));
     }
   };
 
@@ -78,7 +82,10 @@ const ContactMessages = () => {
                   </td>
                   <td className="p-2">
                     <button
-                      onClick={() => handleDelete(msg.contact_id)}
+                      onClick={() => {
+                        console.log('Deleting message with id:', msg.id);
+                        handleDelete(msg.id);
+                      }}
                       className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700"
                     >
                       Delete
