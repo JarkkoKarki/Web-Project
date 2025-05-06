@@ -147,7 +147,7 @@ const Menu = () => {
                     </li>
                   ))}
               </ul>
-              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+              <h3 className="mt-4 mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
                 {t('menuPage.sides')}
               </h3>
               <ul className="space-y-6">
@@ -159,7 +159,7 @@ const Menu = () => {
                     </li>
                   ))}
               </ul>
-              <h3 className="mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
+              <h3 className="mt-4 mb-6 text-center text-2xl font-bold tracking-wider text-yellow-400">
                 {t('menuPage.drinks')}
               </h3>
               <ul className="space-y-6">
