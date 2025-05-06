@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {fetchData} from '../utils/fetchData';
+import {useTranslation} from 'react-i18next';
 
 const deleteContactMessage = async (id) => {
   try {
@@ -24,6 +25,7 @@ const deleteContactMessage = async (id) => {
 };
 
 const ContactMessages = () => {
+  const {t} = useTranslation();
   const [messages, setMessages] = useState([]);
   useEffect(() => {
     const loadMessages = async () => {
@@ -52,18 +54,20 @@ const ContactMessages = () => {
 
   return (
     <div className="p-6">
-      <h2 className="mb-4 text-2xl font-bold">Submitted Contact Messages</h2>
+      <h2 className="mb-4 text-2xl font-bold">
+        {t('contactMessages.submitted-messages')}
+      </h2>
       {messages.length === 0 ? (
-        <p>No messages found.</p>
+        <p>{t('contactMessages.no-messages-found')}</p>
       ) : (
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-gray-200 text-left">
-              <th className="p-2">Email</th>
-              <th className="p-2">Title</th>
-              <th className="p-2">Description</th>
-              <th className="p-2">Date</th>
-              <th className="p-2">Action</th>
+              <th className="p-2">{t('contactMessages.email')}</th>
+              <th className="p-2">{t('contactMessages.title')}</th>
+              <th className="p-2">{t('contactMessages.description')}</th>
+              <th className="p-2">{t('contactMessages.date')}</th>
+              <th className="p-2">{t('contactMessages.action')}</th>
             </tr>
           </thead>
           <tbody>
@@ -88,7 +92,7 @@ const ContactMessages = () => {
                       }}
                       className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700"
                     >
-                      Delete
+                      {t('contactMessages.delete')}
                     </button>
                   </td>
                 </tr>

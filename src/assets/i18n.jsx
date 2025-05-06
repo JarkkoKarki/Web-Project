@@ -296,7 +296,19 @@ i18n.use(initReactI18next).init({
           'session': 'Session:',
           'status': 'Status:',
           'items': 'Items:'
-        }
+        },
+        contactMessages: {
+          "submitted-messages": "Submitted Contact Messages",
+          "no-messages-found": "No messages found.",
+          "email": "Email",
+          "title": "Title",
+          "description": "Description",
+          "date": "Date",
+          "action": "Action",
+          "delete": "Delete",
+          "message-deleted": "Message deleted successfully",
+          "failed-to-delete": "Failed to delete message"
+        },
       }
     },
     fi: {
@@ -584,7 +596,19 @@ i18n.use(initReactI18next).init({
           'session': 'Tapahtuma:',
           'status': 'Tila:',
           'items': 'Tuotteet:'
-        }
+        },
+        contactMessages: {
+          "submitted-messages": "Lähetetyt Yhteydenotot",
+          "no-messages-found": "Viestejä ei löytynyt.",
+          "email": "Sähköposti",
+          "title": "Otsikko",
+          "description": "Viesti",
+          "date": "Aika",
+          "action": "Toiminta",
+          "delete": "Poista",
+          "message-deleted": "Viesti Poistettu Onnistuneesti.",
+          "failed-to-delete": "Virhe Viestin Poistossa."
+        },
       }
     }
   },
