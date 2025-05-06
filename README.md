@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/jarkkokarki/web-project-frontend/badge)](https://www.codefactor.io/repository/github/jarkkokarki/web-project-frontend)
+
 # Web Project
 
 This project is part of the Web-Project course. The goal is to create a functional restaurant web application that allows users to manage reservations, orders, and menus. The application aims to handle data inconsistencies and errors gracefully while providing a user-friendly interface.
