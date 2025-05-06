@@ -134,17 +134,14 @@ const useOrders = () => {
 };
 export const updateOrderStatus = async (orderId, newStatus, token) => {
   try {
-    const response = await fetch(
-      `http://10.120.32.87/app/api/orders/${orderId}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({status: newStatus}),
+    const response = await fetch(url + `/orders/${orderId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-    );
+      body: JSON.stringify({status: newStatus}),
+    });
 
     const data = await response.json();
 
@@ -169,7 +166,9 @@ const useReservations = () => {
       const reservations = data.map((item) => {
         return {
           ...item,
-          reservation_date: new Date(item.reservation_date).toLocaleDateString('fi-FI'),
+          reservation_date: new Date(item.reservation_date).toLocaleDateString(
+            'fi-FI',
+          ),
         };
       });
 

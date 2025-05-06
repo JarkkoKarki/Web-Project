@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {fetchData} from '../utils/fetchData';
 import {useTranslation} from 'react-i18next';
+import {url} from '../utils/variables';
 
 const deleteContactMessage = async (id) => {
   try {
-    const response = await fetch(`http://10.120.32.87/app/api/contact/${id}`, {
+    const response = await fetch(url + `/contact/${id}`, {
       method: 'DELETE',
     });
 
@@ -33,7 +34,7 @@ const ContactMessages = () => {
   useEffect(() => {
     const loadMessages = async () => {
       try {
-        const data = await fetchData('http://10.120.32.87/app/api/contact/');
+        const data = await fetchData(url + '/contact/');
         console.log('Fetched data:', data);
         setMessages(data);
       } catch (error) {

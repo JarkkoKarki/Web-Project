@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {fetchData} from '../../utils/fetchData';
 import {useTranslation} from 'react-i18next';
+import {url} from '../../utils/variables';
 
 const Contact = () => {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ const Contact = () => {
     const userId = localStorage.getItem('user_id');
 
     try {
-      await fetchData('http://10.120.32.87/app/api/contact/', {
+      await fetchData(url + '/contact/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

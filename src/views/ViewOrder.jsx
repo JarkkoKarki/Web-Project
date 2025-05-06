@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {fetchData} from '../utils/fetchData';
 import {OrderHistory} from '../components/orders/OrderHistory';
 import {useTranslation} from 'react-i18next';
+import {url} from '../utils/variables';
 
 const ViewOrder = () => {
   const {t} = useTranslation();
@@ -22,14 +23,11 @@ const ViewOrder = () => {
         const token = localStorage.getItem('token');
         console.log('Session ID from URL:', sessionId);
 
-        const res = await fetchData(
-          `http://10.120.32.87/app/api/orders/myorders/en`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const res = await fetchData(url + `/orders/myorders/en`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         console.log('API Response:', res);
         console.log(sessionId);
 

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {url} from '../utils/variables';
 
 function Modal({routeData, onClose}) {
   const formatTime = (time) => {
@@ -91,7 +92,7 @@ function MapInfo({position, destination}) {
   useEffect(() => {
     if (isModalOpen) {
       setLoading(true);
-      const baseUrl = 'http://10.120.32.87/app/api/route/';
+      const baseUrl = url + '/api/route/';
       const apiUrl = `${baseUrl}${position[0]}/${position[1]}/${destination[0]}/${destination[1]}`;
       console.log(apiUrl);
 
