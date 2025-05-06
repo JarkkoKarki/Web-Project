@@ -8,6 +8,7 @@ const Reservations = () => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showAll, setShowAll] = useState(false); // State to toggle showing all reservations
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -68,56 +69,70 @@ const Reservations = () => {
       </div>
     );
 
-  console.log('reservations:', reservations);
+  const visibleReservations = showAll ? reservations : reservations.slice(0, 3);
 
   return (
     <div className="flex w-full flex-wrap justify-center gap-4">
       {reservations.length === 0 ? (
         <p className="text-center text-gray-400">{t('reservations.none')}</p>
       ) : (
-        reservations.map((res, index) => (
-          <div
-            key={index}
-            className="flex w-[300px] flex-col rounded-lg border border-gray-700 bg-[#1a1c1b] p-4 shadow transition hover:shadow-lg"
-          >
-            <div className="flex w-full flex-col">
-              <h3 className="mb-2 text-lg font-bold text-yellow-400">
-                {res.name || 'Unnamed'}
-              </h3>
-              <p>
-                <span className="font-semibold text-gray-300">
-                  {t('reservations.date')}
-                </span>{' '}
-                {res.reservation_date
-                  ? new Date(res.reservation_date).toLocaleDateString('fi-FI')
-                  : 'Unknown'}
-              </p>
-              <p>
-                <span className="font-semibold text-gray-300">
-                  {t('reservations.time')}
-                </span>{' '}
-                {res.reservation_time || 'Unknown'}
-              </p>
-              <p>
-                <span className="font-semibold text-gray-300">
-                  {t('reservations.people')}
-                </span>{' '}
-                {res.people_count}
-              </p>
-              <p className="mt-2 text-sm text-gray-400 italic">
-                {res.comments || 'No comments'}
-              </p>
+        <>
+          {visibleReservations.map((res, index) => (
+            <div
+              key={index}
+              className="flex w-[300px] flex-col rounded-lg border border-gray-700 bg-[#1a1c1b] p-4 shadow transition hover:shadow-lg"
+            >
+              <div className="flex w-full flex-col">
+                <h3 className="mb-2 text-lg font-bold text-yellow-400">
+                  {res.name || 'Unnamed'}
+                </h3>
+                <p>
+                  <span className="font-semibold text-gray-300">
+                    {t('reservations.date')}
+                  </span>{' '}
+                  {res.reservation_date
+                    ? new Date(res.reservation_date).toLocaleDateString('fi-FI')
+                    : 'Unknown'}
+                </p>
+                <p>
+                  <span className="font-semibold text-gray-300">
+                    {t('reservations.time')}
+                  </span>{' '}
+                  {res.reservation_time || 'Unknown'}
+                </p>
+                <p>
+                  <span className="font-semibold text-gray-300">
+                    {t('reservations.people')}
+                  </span>{' '}
+                  {res.people_count}
+                </p>
+                <p className="mt-2 text-sm text-gray-400 italic">
+                  {res.comments || 'No comments'}
+                </p>
+              </div>
+              <div className="flex w-full justify-end">
+                <button
+                  className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+                  onClick={() => handleDeleteReservation(res.id)}
+                >
+                  {t('reservations.cancel')}
+                </button>
+              </div>
             </div>
-            <div className="flex w-full justify-end">
+          ))}
+          {reservations.length > 3 && (
+            <div className="flex w-full justify-center">
               <button
-                className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
-                onClick={() => handleDeleteReservation(res.id)}
+                className="mt-6 inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+                onClick={() => setShowAll(!showAll)}
               >
-                {t('reservations.cancel')}
+                {showAll
+                  ? t('reservations.show-less')
+                  : t('reservations.show-more')}
               </button>
             </div>
-          </div>
-        ))
+          )}
+        </>
       )}
     </div>
   );

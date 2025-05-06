@@ -136,6 +136,8 @@ i18n.use(initReactI18next).init({
           "comments": "Comments",
           'delete-confirm': 'Are you sure you want to cancel this reservation?',
           'cancel': 'Cancel',
+          'show-more': 'Show More',
+          'show-less': 'Show Less',
         },
         profilePage: {
           "profile": 'Profile',
@@ -473,6 +475,8 @@ i18n.use(initReactI18next).init({
           "comments": "Kommentit",
           'delete-confirm': 'Oletko varma, että haluat peruuttaa tämän varauksen?',
           'cancel': 'Peruuta',
+          'show-more': 'Näytä lisää',
+          'show-less': 'Näytä vähemmän',
         },
         profilePage: {
           "profile": 'Profiili',
