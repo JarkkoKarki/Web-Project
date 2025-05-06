@@ -9,7 +9,7 @@ const LanguageChange = () => {
     <div className="relative">
       <button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="flex items-center space-x-1 text-sm sm:hidden"
+        className="flex items-center space-x-1 text-sm md:hidden"
       >
         <span className="cursor-pointer text-yellow-500">
           {language === 'fi' ? 'Suomi' : 'English'}
@@ -34,7 +34,7 @@ const LanguageChange = () => {
 
       {/* Dropdown Menu for smaller screens*/}
       {isDropdownOpen && (
-        <div className="absolute left-0 mt-2 w-24 rounded-md bg-gray-800 shadow-lg sm:hidden">
+        <div className="absolute left-0 mt-2 w-24 rounded-md bg-gray-800 shadow-lg md:hidden">
           <button
             onClick={() => {
               changeLanguage('fi');
@@ -61,7 +61,7 @@ const LanguageChange = () => {
       )}
 
       {/* Horizontal Buttons for Larger Screens */}
-      <div className="hidden space-x-2 sm:flex">
+      <div className="hidden space-x-2 md:flex">
         <button
           onClick={() => changeLanguage('fi')}
           className={`cursor-pointer ${

@@ -19,18 +19,18 @@ const Layout = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#0d0f0e] text-white">
-      <header className="flex flex-col items-center justify-between space-y-4 border-b border-gray-800 bg-[#0d0f0e] px-4 py-2 sm:flex-row sm:space-y-0 sm:px-6 sm:py-4">
-        <div className="flex w-full flex-row items-center justify-between space-x-3 sm:w-auto">
-          <div className="flex space-x-2 sm:hidden">
+      <header className="flex flex-col items-center justify-between space-y-4 border-b border-gray-800 bg-[#0d0f0e] px-4 py-2 md:flex-row md:space-y-0 md:px-6 md:py-4">
+        <div className="flex w-full flex-row items-center justify-between space-x-3 md:w-auto">
+          <div className="flex space-x-2 md:hidden">
             <LanguageChange />
           </div>
-          <div className="flex justify-center sm:justify-start">
+          <div className="flex justify-center md:justify-start">
             <img src={kebulaLogo} alt="Logo" className="h-8 w-8 bg-white" />
-            <h1 className="hidden text-xl font-bold text-white sm:block">
+            <h1 className="hidden text-xl font-bold text-white md:block">
               KEBULA
             </h1>
           </div>
-          <div className="flex sm:hidden">
+          <div className="flex md:hidden">
             {!user ? (
               <div className="flex space-x-4">
                 <Link
@@ -101,7 +101,7 @@ const Layout = () => {
           </ul>
         </nav>
 
-        <div className="hidden items-center space-x-4 sm:flex">
+        <div className="hidden items-center space-x-4 md:flex">
           {/* KIELET */}
           <LanguageChange />
           {!user ? (
