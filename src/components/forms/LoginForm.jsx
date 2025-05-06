@@ -27,7 +27,9 @@ const LoginForm = () => {
   return (
     <>
       <div className="p-12">
-        <h2 className="mb-6 text-2xl font-bold">{t('loginPage.login')}</h2>
+        <h2 className="mb-6 text-center text-2xl font-bold">
+          {t('loginPage.login')}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div>
             <label

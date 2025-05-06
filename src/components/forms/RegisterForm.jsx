@@ -45,14 +45,14 @@ const RegisterForm = () => {
   );
 
   return (
-    <>
-      <div className="w-2xl p-6">
-        <h2 className="mb-3 text-2xl font-bold">
+    <div>
+      <div className="flex h-[600px] w-full flex-col overflow-y-auto p-6 md:h-auto md:w-2xl">
+        <h2 className="mb-3 text-center text-2xl font-bold">
           {t('registerPage.register')}
         </h2>
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 gap-4 md:grid-cols-2"
+          className="flex flex-col gap-4 md:grid md:grid-cols-2"
         >
           <div className="p-2">
             <label
@@ -208,7 +208,7 @@ const RegisterForm = () => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

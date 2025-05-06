@@ -67,7 +67,7 @@ const Layout = () => {
 
                 <Link
                   to="/logout"
-                  className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                  className="hidden rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black md:block"
                 >
                   {t('header.sign-out')}
                 </Link>
