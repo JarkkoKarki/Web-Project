@@ -24,7 +24,6 @@ const ManageReservations = () => {
     ? reservations.filter((item) => item.reservation_date === convertInputDate(filterDate))
     : reservations;
 
-  console.log(reservations)
   return (
     <>
       <style>
