@@ -147,7 +147,7 @@ const Layout = () => {
           )}
         </div>
       </header>
-      <main className="flex-grow p-4">
+      <main className="flex-grow">
         <Outlet />
       </main>
 

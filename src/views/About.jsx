@@ -20,20 +20,20 @@ const About = () => {
         <h3 className="mb-12 text-4xl font-bold tracking-wide text-white">
           {t('aboutPage.about-us')}
         </h3>
-        <div className="mx-auto flex max-w-6xl items-center justify-center space-x-6 px-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center space-y-6 space-x-0 md:flex-row md:space-y-0 md:space-x-6 md:px-6">
           <img
             src={finedining}
             className="h-[250px] w-[370px] rounded-lg object-cover shadow-lg"
             alt="About Us"
           />
-          <div className="w-1/3 text-left">
+          <div className="w-full text-center md:w-1/3 md:text-left">
             <p className="text-yellow-500 italic">
               {t('aboutPage.taste-perception')}
             </p>
             <h4 className="mb-4 text-2xl font-bold text-white">
               {t('aboutPage.trad-modern')}
             </h4>
-            <p className="mb-4 text-sm text-gray-400">
+            <p className="mb-4 px-4 text-sm text-gray-400 md:px-0">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum,
               dolorem. Aliquid numquam totam temporibus odit doloremque, ex nam
               rerum. Minus itaque recusandae voluptatum repellat repudiandae
@@ -50,8 +50,10 @@ const About = () => {
           />
         </div>
       </section>
-      {!onHomePage && <Map />}
-      {!onHomePage && <Contact />}
+      <div className="flex w-full flex-col">
+        {!onHomePage && <Map />}
+        {!onHomePage && <Contact />}
+      </div>
     </>
   );
 };

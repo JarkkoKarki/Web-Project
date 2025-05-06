@@ -141,7 +141,7 @@ export function Map() {
     <>
       <div className="flex flex-row justify-center align-middle">
         <MapContainer
-          className="m-4.5 rounded-2xl border-2 border-amber-300 shadow-2xs shadow-amber-500"
+          className="m-4.5 w-full rounded-2xl border-2 border-amber-300 shadow-2xs shadow-amber-500 md:w-4/5"
           center={position}
           zoom={12}
           scrollWheelZoom={false}
@@ -151,7 +151,7 @@ export function Map() {
           zoomControl={false}
           style={{
             height: '400px',
-            width: '70%',
+            // width: '100%',
             zIndex: '1',
             opacity: 0.75,
             pointerEvents: 'none',

@@ -29,59 +29,61 @@ const Contact = () => {
     }
   };
   return (
-    <div className="mx-auto mt-20 max-w-md rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md">
-      <h2 className="mb-6 text-center text-2xl font-bold text-white">
-        {t('contact.contact')}
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="mb-1 block font-semibold text-white">
-            {t('contact.your-e')}
-          </label>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={t('contact.your-e')}
-            type="email"
-            className="w-full rounded-lg border border-gray-300 p-3 text-white"
-            required
-          />
-        </div>
+    <div className="mb-10 flex items-center justify-center">
+      <div className="mt-20 flex w-2/3 flex-col items-center justify-center rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md md:w-1/3">
+        <h2 className="mb-6 text-center text-2xl font-bold text-white">
+          {t('contact.contact')}
+        </h2>
+        <form onSubmit={handleSubmit} className="w-full space-y-4 px-6">
+          <div>
+            <label className="mb-1 block font-semibold text-white">
+              {t('contact.your-e')}
+            </label>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={t('contact.your-e')}
+              type="email"
+              className="w-full rounded-lg border border-gray-300 p-3 text-white"
+              required
+            />
+          </div>
 
-        <div>
-          <label className="mb-1 block font-semibold text-white">
-            {t('contact.title')}
-          </label>
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder={t('contact.subject')}
-            className="w-full rounded-lg border border-gray-300 p-3 text-white"
-            required
-          />
-        </div>
+          <div>
+            <label className="mb-1 block font-semibold text-white">
+              {t('contact.title')}
+            </label>
+            <input
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder={t('contact.subject')}
+              className="w-full rounded-lg border border-gray-300 p-3 text-white"
+              required
+            />
+          </div>
 
-        <div>
-          <label className="mb-1 block font-semibold text-white">
-            {t('contact.desc')}
-          </label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder={t('contact.message')}
-            rows="5"
-            className="w-full rounded-lg border border-gray-300 p-3 text-white"
-            required
-          />
-        </div>
+          <div>
+            <label className="mb-1 block font-semibold text-white">
+              {t('contact.desc')}
+            </label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder={t('contact.message')}
+              rows="5"
+              className="w-full rounded-lg border border-gray-300 p-3 text-white"
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="w-full rounded-lg bg-yellow-500 p-3 font-bold text-white hover:bg-yellow-600"
-        >
-          {t('contact.send')}
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full rounded-lg bg-yellow-500 p-3 font-bold text-white hover:bg-yellow-600"
+          >
+            {t('contact.send')}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
