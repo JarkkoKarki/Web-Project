@@ -312,6 +312,15 @@ i18n.use(initReactI18next).init({
           "failed-to-delete": "Failed to delete message",
           "cancel": "Cancel",
         },
+        contact: {
+          "contact": "Contact Us",
+          "title": "Title",
+          "desc": "Description",
+          "send": "Send",
+          "your-e": "Your Email",
+          "subject": "Subject",
+          "message": "Message",
+        }
       }
     },
     fi: {
@@ -615,6 +624,15 @@ i18n.use(initReactI18next).init({
           "failed-to-delete": "Virhe Viestin Poistossa.",
           "cancel": "Keskeytä",
         },
+        contact: {
+          "contact": "Ota Yhteyttä",
+          "title": "Otsikko",
+          "desc": "Viesti",
+          "send": "Lähetä",
+          "your-e": "Sähköposti",
+          "subject": "Aihe",
+          "message": "Viesti",
+        }
       }
     }
   },

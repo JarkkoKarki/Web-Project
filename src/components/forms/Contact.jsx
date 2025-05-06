@@ -1,10 +1,12 @@
 import {useState} from 'react';
 import {fetchData} from '../../utils/fetchData';
+import {useTranslation} from 'react-i18next';
 
 const Contact = () => {
   const [email, setEmail] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const {t} = useTranslation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,15 +31,17 @@ const Contact = () => {
   return (
     <div className="mx-auto mt-20 max-w-md rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md">
       <h2 className="mb-6 text-center text-2xl font-bold text-white">
-        Contact Us
+        {t('contact.contact')}
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="mb-1 block font-semibold text-white">Email</label>
+          <label className="mb-1 block font-semibold text-white">
+            {t('contact.your-e')}
+          </label>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Your email"
+            placeholder={t('contact.your-e')}
             type="email"
             className="w-full rounded-lg border border-gray-300 p-3 text-white"
             required
@@ -45,11 +49,13 @@ const Contact = () => {
         </div>
 
         <div>
-          <label className="mb-1 block font-semibold text-white">Title</label>
+          <label className="mb-1 block font-semibold text-white">
+            {t('contact.title')}
+          </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Subject"
+            placeholder={t('contact.subject')}
             className="w-full rounded-lg border border-gray-300 p-3 text-white"
             required
           />
@@ -57,12 +63,12 @@ const Contact = () => {
 
         <div>
           <label className="mb-1 block font-semibold text-white">
-            Description
+            {t('contact.desc')}
           </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Message"
+            placeholder={t('contact.message')}
             rows="5"
             className="w-full rounded-lg border border-gray-300 p-3 text-white"
             required
@@ -73,7 +79,7 @@ const Contact = () => {
           type="submit"
           className="w-full rounded-lg bg-yellow-500 p-3 font-bold text-white hover:bg-yellow-600"
         >
-          Send
+          {t('contact.send')}
         </button>
       </form>
     </div>
