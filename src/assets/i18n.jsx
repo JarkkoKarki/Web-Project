@@ -218,7 +218,9 @@ i18n.use(initReactI18next).init({
           'delete': 'Delete',
           'deleting': 'Deleting...',
           'confirmDelete': 'Are you sure you want to delete this user? This action cannot be undone.',
-          'deleteError': 'Failed to delete user. Please try again.'
+          'deleteError': 'Failed to delete user. Please try again.',
+          'confirmRoleChange': 'Are you sure you want to change the role of this user?',
+          'roleUpdateError': 'Failed to update user role. Please try again.',
         },
 
         dietOptions: {
@@ -561,7 +563,9 @@ i18n.use(initReactI18next).init({
           'delete': 'Poista',
           'deleting': 'Poistetaan...',
           'confirmDelete': 'Haluatko varmasti poistaa tämän käyttäjän? Tätä toimintoa ei voi kumota.',
-          'deleteError': 'Käyttäjän poistaminen epäonnistui. Yritä uudelleen.'
+          'deleteError': 'Käyttäjän poistaminen epäonnistui. Yritä uudelleen.',
+          'confirmRoleChange': 'Haluatko varmasti vaihtaa tämän käyttäjän roolia?',
+          'roleUpdateError': 'Käyttäjän roolin päivittäminen epäonnistui. Yritä uudelleen.',
         },
 
         dietOptions: {

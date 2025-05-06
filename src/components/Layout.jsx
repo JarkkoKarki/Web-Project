@@ -54,7 +54,7 @@ const Layout = () => {
                   />
                 </Link>
 
-                {user &&
+                {/* {user &&
                   (user.role === 'employee' || user.role === 'admin') && (
                     <Link
                       to="/workhub"
@@ -62,7 +62,7 @@ const Layout = () => {
                     >
                       {t('header.workhub')}
                     </Link>
-                  )}
+                  )} */}
 
                 <Link
                   to="/logout"
@@ -97,6 +97,16 @@ const Layout = () => {
                 {t('header.about')}
               </Link>
             </li>
+            <li>
+              {user && (user.role === 'employee' || user.role === 'admin') && (
+                <Link
+                  to="/workhub"
+                  className="text-yellow-500 underline decoration-yellow-500 hover:text-yellow-600"
+                >
+                  {t('header.workhub')}
+                </Link>
+              )}
+            </li>
           </ul>
         </nav>
 
@@ -126,15 +136,6 @@ const Layout = () => {
                   className="h-10 w-10 rounded-full"
                 />
               </Link>
-
-              {user && (user.role === 'employee' || user.role === 'admin') && (
-                <Link
-                  to="/workhub"
-                  className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
-                >
-                  {t('header.workhub')}
-                </Link>
-              )}
 
               <Link
                 to="/logout"
