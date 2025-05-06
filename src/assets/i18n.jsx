@@ -167,6 +167,7 @@ i18n.use(initReactI18next).init({
           'orders': 'Orders',
           "users": "Users",
           "reservations": "Reservations",
+          "contact": "Contact Messages",
         },
         manageMenu: {
           'add-menu-name-fi': 'Name in finnish',
@@ -469,6 +470,7 @@ i18n.use(initReactI18next).init({
           'orders': 'Tilaukset',
           "users": "Käyttäjät",
           "reservations": "Varaukset",
+          "contact": "Viestit",
         },
         manageMenu: {
           'add-menu-name-fi': 'Nimi Suomeksi',

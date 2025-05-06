@@ -35,7 +35,7 @@ const WorkHubLayout = () => {
             </li>
             <li>
               <Link to="contact-messages" className="hover:text-yellow-500">
-                Contact Messages
+                {t('workhubHeader.contact')}
               </Link>
             </li>
           </ul>
