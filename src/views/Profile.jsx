@@ -16,7 +16,6 @@ const Profile = () => {
 
   useEffect(() => {
     if (location.state?.activeTab) {
-      console.log('location:', location.state);
       setActiveTab(location.state.activeTab);
     }
   }, [location.state]);

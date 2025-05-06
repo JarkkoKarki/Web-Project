@@ -13,7 +13,6 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   const {updateMenuItem, deleteMenuItem} = useMenu();
   const {validateManageMenuInputs} = useValidator();
 
-
   const dietOptions = [
     {id: 1, labelKey: 'dietOptions.animal_based'},
     {id: 2, labelKey: 'dietOptions.gluten_free'},
@@ -41,8 +40,8 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
     desc_fi: item.desc_fi,
     desc_en: item.desc_en,
     price: item.price,
-    categories: item.categories.map(category => category.id),
-    diets: item.diets.map(diet => diet.id),
+    categories: item.categories.map((category) => category.id),
+    diets: item.diets.map((diet) => diet.id),
   });
 
   const handleBack = () => {
@@ -65,7 +64,10 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
 
   const doModifyMenuItem = async () => {
     try {
-      const { isValid, values: validatedInputs, errorMessage
+      const {
+        isValid,
+        values: validatedInputs,
+        errorMessage,
       } = validateManageMenuInputs(inputs);
 
       if (!isValid) {
@@ -78,7 +80,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
       setSelectedItem(null);
       onSuccess();
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
   };
 
@@ -90,7 +92,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
       alert('Item Deleted successfully');
       onSuccess();
     } catch (e) {
-      console.log(e.message);
+      console.error(e.message);
     }
   };
 
@@ -104,11 +106,8 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
 
   const handleFileChange = (evt) => {
     if (evt.target.files[0]) {
-      console.log("new file", evt.target.files[0]);
       setFile(evt.target.files[0]);
-    }else {
-        console.log("No file selected");
-      }
+    }
   };
 
   return (
@@ -119,7 +118,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
       >
         <button
           onClick={handleBack}
-          className="mb-4 cursor-pointer rounded border border-yellow-500 px-4 py-2 font-semibold transition hover:bg-yellow-500 hover:text-black self-start"
+          className="mb-4 cursor-pointer self-start rounded border border-yellow-500 px-4 py-2 font-semibold transition hover:bg-yellow-500 hover:text-black"
         >
           X
         </button>
@@ -133,7 +132,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
             label={t('manageMenu.menu-item-button')}
           />
 
-          <div className="flex flex-grow flex-col gap-4 ">
+          <div className="flex flex-grow flex-col gap-4">
             <MenuInputGroup
               inputs={inputs}
               handleInputChange={handleInputChange}
@@ -144,9 +143,9 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
         <MenuCheckbox
           title={t('manageMenu.menu-item-categories')}
           name="categories"
-          options={categoryOptions.map(option => ({
+          options={categoryOptions.map((option) => ({
             ...option,
-            label: t(option.labelKey)
+            label: t(option.labelKey),
           }))}
           selectedValues={inputs.categories}
           onChange={handleCheckboxChange}
@@ -155,9 +154,9 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
         <MenuCheckbox
           title={t('manageMenu.menu-item-diets')}
           name="diets"
-          options={dietOptions.map(option => ({
+          options={dietOptions.map((option) => ({
             ...option,
-            label: t(option.labelKey)
+            label: t(option.labelKey),
           }))}
           selectedValues={inputs.diets}
           onChange={handleCheckboxChange}

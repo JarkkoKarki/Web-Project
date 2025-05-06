@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useUserContext} from '../hooks/contextHooks';
 import {useTranslation} from 'react-i18next';
+import {url} from '../../utils/variables';
 
 const Reservations = () => {
   const {user} = useUserContext();
@@ -13,9 +14,7 @@ const Reservations = () => {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const response = await fetch(
-          `http://10.120.32.87/app/api/reservations/${user?.id}`,
-        );
+        const response = await fetch(url + `/reservations/${user?.id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch reservations');
         }
@@ -38,16 +37,13 @@ const Reservations = () => {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(
-        `http://10.120.32.87/app/api/reservations/${reservationId}`,
-        {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${window.localStorage.getItem('token')}`,
-          },
+      const response = await fetch(url + `/reservations/${reservationId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${window.localStorage.getItem('token')}`,
         },
-      );
+      });
       if (!response.ok) {
         throw new Error('Failed to delete reservation');
       }
@@ -57,7 +53,6 @@ const Reservations = () => {
       );
     } catch (err) {
       console.error(err);
-      console.log('Reservation deletion failed:', err);
     }
   };
 

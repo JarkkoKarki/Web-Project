@@ -9,7 +9,7 @@ import {initReactI18next} from 'react-i18next';
 // with key-value pair 'welcome-message': 'translation string' for each language
 
 i18n.use(initReactI18next).init({
-  debug: true,
+  debug: false,
   fallbackLng: 'en',
   defaultNS: 'translations',
   // TODO: Translate components (& Add more languages)

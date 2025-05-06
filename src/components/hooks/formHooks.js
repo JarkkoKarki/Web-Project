@@ -12,7 +12,6 @@ const useForm = (callback, initState) => {
 
   const handleInputChange = (event) => {
     event.persist();
-    console.log('handleInputChange', event.target.name, event.target.value);
     setInputs((inputs) => ({
       ...inputs,
       [event.target.name]: event.target.value,
@@ -20,7 +19,7 @@ const useForm = (callback, initState) => {
   };
 
   const handleCheckboxChange = (event) => {
-    const { name, value, checked } = event.target;
+    const {name, value, checked} = event.target;
     const dietId = parseInt(value); // real DB id, not index
 
     setInputs((prev) => {
@@ -44,7 +43,7 @@ const useForm = (callback, initState) => {
     handleInputChange,
     handleCheckboxChange,
     inputs,
-    resetForm
+    resetForm,
   };
 };
 

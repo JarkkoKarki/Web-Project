@@ -10,7 +10,6 @@ export const calculateTotalPrice = (cartItems) => {
 
 export const mapCartItemsToPayload = (cartItems) => {
   const products = cartItems.map((item) => {
-    console.log(item);
     return {
       id: item.id,
       quantity: toNumber(item.quantity),

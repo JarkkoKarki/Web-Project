@@ -49,7 +49,6 @@ const useUser = () => {
   }, []);
 
   const deleteUser = useCallback(async (userId) => {
-    console.log(window.localStorage.getItem('token'));
     const fetchOptions = {
       method: 'DELETE',
       headers: {
@@ -134,17 +133,14 @@ const useOrders = () => {
 };
 export const updateOrderStatus = async (orderId, newStatus, token) => {
   try {
-    const response = await fetch(
-      `http://10.120.32.87/app/api/orders/${orderId}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({status: newStatus}),
+    const response = await fetch(url + `/orders/${orderId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
-    );
+      body: JSON.stringify({status: newStatus}),
+    });
 
     const data = await response.json();
 
@@ -152,7 +148,6 @@ export const updateOrderStatus = async (orderId, newStatus, token) => {
       throw new Error(data.message || 'Failed to update order status');
     }
 
-    console.log('Order updated:', data);
     return data;
   } catch (error) {
     console.error('Error updating order status:', error);
@@ -169,7 +164,9 @@ const useReservations = () => {
       const reservations = data.map((item) => {
         return {
           ...item,
-          reservation_date: new Date(item.reservation_date).toLocaleDateString('fi-FI'),
+          reservation_date: new Date(item.reservation_date).toLocaleDateString(
+            'fi-FI',
+          ),
         };
       });
 

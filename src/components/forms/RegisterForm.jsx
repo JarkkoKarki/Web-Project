@@ -31,7 +31,6 @@ const RegisterForm = () => {
         last_name: inputs.last_name,
         phone: inputs.phone,
       };
-      console.log('regData', registrationData);
       await handleRegister(registrationData);
       navigate('/login');
     } catch (e) {

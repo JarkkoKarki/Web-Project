@@ -37,7 +37,6 @@ export const ProfilePicture = () => {
     try {
       // Pass the full user object to the updateProfilePicture function
       const response = await updateProfilePicture(uploadedFile, user.id, user);
-      console.log('Response from updateProfilePicture:', response);
 
       if (response && response.user) {
         // Update only the filename in the user context
@@ -47,11 +46,10 @@ export const ProfilePicture = () => {
         setAvatar(rootUrl + response.user.filename); // Ensure avatar state is updated immediately
         fileUploadRef.current.value = null;
         setShowButtons(false);
-        
+
         // Update token if provided
         if (response.token) {
           localStorage.setItem('token', response.token);
-          console.log('JWT token updated in localStorage after profile picture update');
         }
       }
     } catch (error) {

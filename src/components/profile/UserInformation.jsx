@@ -27,7 +27,6 @@ export const UserInformation = () => {
     } else {
       setTemp(user[field] || '');
     }
-    console.log(`${field} clicked`);
   };
 
   const handleSave = async () => {
@@ -44,7 +43,6 @@ export const UserInformation = () => {
           ...user, // Include the complete user object
           password: temp.newPassword,
         };
-        console.log('Password changed:', temp);
       } else {
         updatedUser = {
           ...user, // Include the complete user object
@@ -53,11 +51,8 @@ export const UserInformation = () => {
       }
 
       const response = await putUser(updatedUser);
-      console.log('response:', response);
 
       if (response) {
-        console.log('User updated:', response);
-
         // Update the user context with the changed fields
         if (editingField === 'name') {
           updateUser({
@@ -75,7 +70,6 @@ export const UserInformation = () => {
         // Always save the JWT token after successful updates
         if (response.token) {
           localStorage.setItem('token', response.token);
-          console.log('JWT token updated in localStorage');
         }
       } else {
         console.error('Failed to update user');
@@ -88,7 +82,6 @@ export const UserInformation = () => {
   };
 
   const handleCancel = () => {
-    console.log('id:', user.id);
     setEditingField(null);
   };
 
@@ -105,7 +98,6 @@ export const UserInformation = () => {
         // Always save the JWT token after successful updates
         if (response.token) {
           localStorage.setItem('token', response.token);
-          console.log('JWT token updated in localStorage after name update');
         }
       }
       setEditingField(null);
@@ -120,7 +112,6 @@ export const UserInformation = () => {
       // Always save the JWT token after successful updates
       if (response && response.token) {
         localStorage.setItem('token', response.token);
-        console.log('JWT token updated in localStorage after password update');
       }
       setEditingField(null);
     } catch (error) {

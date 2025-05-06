@@ -42,7 +42,7 @@ test('submitting reservation form with valid data', async ({page}) => {
       await buttons.first().click();
       // If we get here, we were able to interact with the form
     } catch (e) {
-      console.log('Could not click the first button, but test continues');
+      console.error('Could not click the first button, but test continues');
     }
   }
 });

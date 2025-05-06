@@ -22,7 +22,6 @@ const UserProvider = ({children}) => {
   const handleLogin = async (credentials) => {
     const loginResult = await postLogin(credentials);
     localStorage.setItem('token', loginResult.token);
-    console.log('login result', loginResult);
     setUser(loginResult.user);
     navigate('/');
   };
@@ -38,12 +37,9 @@ const UserProvider = ({children}) => {
       const token = localStorage.getItem('token');
 
       if (token) {
-        console.log(token, ' TOKENI');
         const userResponse = await getUserByToken(token);
-        console.log('------------USER OBJEKTI---------', userResponse);
         localStorage.setItem('user_id', userResponse.id);
         setUser(userResponse);
-        // console.log('location', location);
         navigate(location.pathname);
 
         if (location.pathname !== '/') {
@@ -52,15 +48,13 @@ const UserProvider = ({children}) => {
       }
     } catch (e) {
       handleLogout();
-      console.log(e.message);
+      console.error(e.message);
     }
   };
 
   const handleRegister = async (registrationData) => {
     try {
       const registerResult = await postUser(registrationData);
-      console.log('Todoo juttui');
-      console.log('handleRegister kutsuttu', registerResult);
 
       navigate('/');
     } catch (e) {
