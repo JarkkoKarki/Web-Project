@@ -6,12 +6,14 @@ import MenuInput from './MenuInput.jsx';
 import MenuCheckbox from './MenuCheckbox.jsx';
 import FileUpload from './FileUpload.jsx';
 import MenuInputGroup from './MenuInputGroup.jsx';
+import useValidator from '../hooks/validatorHooks.js';
 
 
 const AddMenuForm = ({onSuccess}) => {
   const {t} = useTranslation();
   const [file, setFile] = useState(null);
   const {postMenuItem} = useMenu();
+  const {validateManageMenuInputs} = useValidator()
 
   const dietOptions = [
     {id: 1, labelKey: 'dietOptions.animal_based'},
@@ -47,25 +49,19 @@ const AddMenuForm = ({onSuccess}) => {
   };
 
   const doAddMenuForm = async () => {
-    console.log(inputs);
     try {
-      if (
-        !inputs.name_fi.trim() ||
-        !inputs.name_en.trim() ||
-        !inputs.desc_fi.trim() ||
-        !inputs.desc_en.trim() ||
-        !inputs.price.trim()
-      ) {
-        alert(t('manageMenu.all-fields-required'));
+      const { isValid, values: validatedInputs, errorMessage
+      } = validateManageMenuInputs(inputs);
+      if (!isValid) {
+        alert(errorMessage);
         return;
       }
-
       if (!file) {
         alert(t('manageMenu.file-field-required'));
         return;
       }
       const token = localStorage.getItem('token');
-      const menuResult = await postMenuItem(file, inputs, token);
+      const menuResult = await postMenuItem(file, validatedInputs, token);
       console.log('menuresult', menuResult);
       alert('Menu item added successfully');
       onSuccess();

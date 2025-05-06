@@ -5,17 +5,14 @@ import {rootUrl} from '../../utils/variables.js';
 import MenuCheckbox from './MenuCheckbox.jsx';
 import FileUpload from './FileUpload.jsx';
 import MenuInputGroup from './MenuInputGroup.jsx';
+import useValidator from '../hooks/validatorHooks.js';
 
 const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   const {t} = useTranslation();
   const [file, setFile] = useState(null);
   const {updateMenuItem, deleteMenuItem} = useMenu();
+  const {validateManageMenuInputs} = useValidator();
 
-  const mapLabelsToIds = (labels, options) => {
-    return options
-      .filter((option) => labels.includes(option.label))
-      .map((option) => option.id);
-  };
 
   const dietOptions = [
     {id: 1, labelKey: 'dietOptions.animal_based'},
@@ -44,8 +41,8 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
     desc_fi: item.desc_fi,
     desc_en: item.desc_en,
     price: item.price,
-    categories: mapLabelsToIds(item.categories, categoryOptions),
-    diets: mapLabelsToIds(item.diets, dietOptions),
+    categories: item.categories.map(category => category.id),
+    diets: item.diets.map(diet => diet.id),
   });
 
   const handleBack = () => {
@@ -68,18 +65,15 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
 
   const doModifyMenuItem = async () => {
     try {
-      if (!inputs.name_fi.trim() ||
-        !inputs.name_en.trim() ||
-        !inputs.desc_fi.trim() ||
-        !inputs.desc_en.trim() ||
-        !inputs.price.trim()) {
-        alert(t('manageMenu.all-fields-required'));
+      const { isValid, values: validatedInputs, errorMessage
+      } = validateManageMenuInputs(inputs);
+
+      if (!isValid) {
+        alert(errorMessage);
         return;
       }
-      console.log(file);
       const token = localStorage.getItem('token');
-      const menuResult = await updateMenuItem(file, inputs, item.id, token);
-      console.log('menuresult', menuResult);
+      await updateMenuItem(file, validatedInputs, item.id, token);
       alert('Item Modified successfully');
       setSelectedItem(null);
       onSuccess();
@@ -91,8 +85,7 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
   const doDeleteMenuItem = async () => {
     try {
       const token = localStorage.getItem('token');
-      const menuResult = await deleteMenuItem(item.id, token);
-      console.log('Menuresult', menuResult);
+      await deleteMenuItem(item.id, token);
       setSelectedItem(null);
       alert('Item Deleted successfully');
       onSuccess();
@@ -152,7 +145,8 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
           title={t('manageMenu.menu-item-categories')}
           name="categories"
           options={categoryOptions.map(option => ({
-            ...option, label: t(option.labelKey)
+            ...option,
+            label: t(option.labelKey)
           }))}
           selectedValues={inputs.categories}
           onChange={handleCheckboxChange}
@@ -162,7 +156,8 @@ const ModifyMenuForm = ({item, setSelectedItem, onSuccess}) => {
           title={t('manageMenu.menu-item-diets')}
           name="diets"
           options={dietOptions.map(option => ({
-            ...option, label: t(option.labelKey)
+            ...option,
+            label: t(option.labelKey)
           }))}
           selectedValues={inputs.diets}
           onChange={handleCheckboxChange}
