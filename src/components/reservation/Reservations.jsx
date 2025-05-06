@@ -32,6 +32,35 @@ const Reservations = () => {
     }
   }, [user?.id]);
 
+  const handleDeleteReservation = async (reservationId) => {
+    try {
+      console.log('reservationId:', reservationId);
+      console.log('token:', window.localStorage.getItem('token'));
+      console.log('userId:', user?.id);
+      const response = await fetch(
+        `http://10.120.32.87/app/api/reservations/${reservationId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${window.localStorage.getItem('token')}`,
+          },
+        },
+      );
+      if (!response.ok) {
+        throw new Error('Failed to delete reservation');
+      }
+
+      setReservations((prev) =>
+        prev.filter((reservation) => reservation.id !== reservationId),
+      );
+      alert(t('reservations.deleted-success'));
+    } catch (err) {
+      console.error(err);
+      alert(t('reservations.delete-failed'));
+    }
+  };
+
   if (loading) return <div className="text-white">{t('loading')}</div>;
   if (error)
     return (
@@ -39,6 +68,8 @@ const Reservations = () => {
         {t('error')}: {error}
       </div>
     );
+
+  console.log('reservations:', reservations);
 
   return (
     <div className="flex w-full flex-wrap justify-center gap-4">
@@ -48,34 +79,44 @@ const Reservations = () => {
         reservations.map((res, index) => (
           <div
             key={index}
-            className="w-[300px] rounded-lg border border-gray-700 bg-[#1a1c1b] p-4 shadow transition hover:shadow-lg"
+            className="flex w-[300px] flex-col rounded-lg border border-gray-700 bg-[#1a1c1b] p-4 shadow transition hover:shadow-lg"
           >
-            <h3 className="mb-2 text-lg font-bold text-yellow-400">
-              {res.name || 'Unnamed'}
-            </h3>
-            <p>
-              <span className="font-semibold text-gray-300">
-                {t('reservations.date')}
-              </span>{' '}
-              {res.reservation_date
-                ? new Date(res.reservation_date).toLocaleDateString('fi-FI')
-                : 'Unknown'}
-            </p>
-            <p>
-              <span className="font-semibold text-gray-300">
-                {t('reservations.time')}
-              </span>{' '}
-              {res.reservation_time || 'Unknown'}
-            </p>
-            <p>
-              <span className="font-semibold text-gray-300">
-                {t('reservations.people')}
-              </span>{' '}
-              {res.people_count}
-            </p>
-            <p className="mt-2 text-sm text-gray-400 italic">
-              {res.comments || 'No comments'}
-            </p>
+            <div className="flex w-full flex-col">
+              <h3 className="mb-2 text-lg font-bold text-yellow-400">
+                {res.name || 'Unnamed'}
+              </h3>
+              <p>
+                <span className="font-semibold text-gray-300">
+                  {t('reservations.date')}
+                </span>{' '}
+                {res.reservation_date
+                  ? new Date(res.reservation_date).toLocaleDateString('fi-FI')
+                  : 'Unknown'}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-300">
+                  {t('reservations.time')}
+                </span>{' '}
+                {res.reservation_time || 'Unknown'}
+              </p>
+              <p>
+                <span className="font-semibold text-gray-300">
+                  {t('reservations.people')}
+                </span>{' '}
+                {res.people_count}
+              </p>
+              <p className="mt-2 text-sm text-gray-400 italic">
+                {res.comments || 'No comments'}
+              </p>
+            </div>
+            <div className="flex w-full justify-end">
+              <button
+                className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
+                onClick={() => handleDeleteReservation(res.id)}
+              >
+                {t('reservations.cancel')}
+              </button>
+            </div>
           </div>
         ))
       )}
