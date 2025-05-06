@@ -60,11 +60,11 @@ const Home = () => {
       <About />
       {/* Menu Section */}
       <section id="menu" className="bg-[#101211] py-20">
-        <h3 className="mb-12 text-center text-3xl font-bold text-white">
+        <h3 className="mb-12 flex-wrap text-center text-3xl font-bold text-white">
           {t('homePage.trending-meals')}
         </h3>
-        <div className="mx-auto flex max-w-6xl items-start justify-center gap-10 px-6">
-          <div className="w-1/2 space-y-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-start justify-center gap-10 px-6 md:flex-row">
+          <div className="w-full items-center justify-center space-y-6 px-8 md:w-1/2 md:px-0">
             <ul className="space-y-6">
               <li>
                 {favoritesMenuArray.slice(0, 3).map((item) => (
@@ -72,21 +72,28 @@ const Home = () => {
                 ))}
               </li>
             </ul>
-            <a
-              href="/menu"
-              className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
-            >
-              {t('homePage.view-more')}
-            </a>
+            <div className="flex w-full items-center justify-center">
+              <a
+                href="/menu"
+                className="mt-8 inline-block border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+              >
+                {t('homePage.view-more')}
+              </a>
+            </div>
           </div>
-          <img
-            src={
-              favoritesMenuArray[currentImageIndex]?.src ||
-              'https://placehold.co/560x370'
-            }
-            alt={favoritesMenuArray[currentImageIndex]?.name || 'Placeholder'}
-            className="h-[370px] w-[560px] rounded-lg object-cover shadow-lg"
-          />
+          <div className="flex flex-col">
+            <h3 className="mb-4 text-center font-bold">
+              {favoritesMenuArray[currentImageIndex]?.name}
+            </h3>
+            <img
+              src={
+                favoritesMenuArray[currentImageIndex]?.src ||
+                'https://placehold.co/560x370'
+              }
+              alt={favoritesMenuArray[currentImageIndex]?.name || 'Placeholder'}
+              className="h-[370px] w-[560px] rounded-lg object-cover shadow-lg"
+            />
+          </div>
         </div>
       </section>
     </>
