@@ -166,6 +166,7 @@ i18n.use(initReactI18next).init({
           'manage-menu': 'Manage Menu',
           'orders': 'Orders',
           "users": "Users",
+          "reservations": "Reservations",
         },
         manageMenu: {
           'add-menu-name-fi': 'Name in finnish',
@@ -454,6 +455,7 @@ i18n.use(initReactI18next).init({
           'manage-menu': 'Muokkaa menua',
           'orders': 'Tilaukset',
           "users": "Käyttäjät",
+          "reservations": "Varaukset",
         },
         manageMenu: {
           'add-menu-name-fi': 'Nimi Suomeksi',
