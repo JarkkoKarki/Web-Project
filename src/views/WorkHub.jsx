@@ -5,6 +5,7 @@ import Orders from './Orders';
 import ManageMenu from './ManageMenu';
 import ManageUsers from './ManageUsers';
 import ContactMessages from './ContactMessages';
+import ManageReservations from './ManageReservations.jsx';
 
 const WorkHub = () => {
   return (
@@ -13,6 +14,7 @@ const WorkHub = () => {
         <Route path="manage-menu" element={<ManageMenu />} />
         <Route path="orders" element={<Orders />} />
         <Route path="users" element={<ManageUsers />} />
+        <Route path="reservations" element={<ManageReservations />} />
         <Route path="contact-messages" element={<ContactMessages />} />
       </Route>
     </Routes>
