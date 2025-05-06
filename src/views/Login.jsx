@@ -3,6 +3,7 @@ import LoginForm from '../components/forms/LoginForm';
 import RegisterForm from '../components/forms/RegisterForm';
 import {useNavigate} from 'react-router';
 import {useTranslation} from 'react-i18next';
+import backgroundImage from '../assets/images/2147772080.jpg';
 
 const Login = () => {
   const [formToggle, setFormToggle] = useState(true);
@@ -21,7 +22,7 @@ const Login = () => {
   return (
     <div
       className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{backgroundImage: "url('src/assets/images/2147772080.jpg')"}}
+      style={{backgroundImage: `url(${backgroundImage})`}}
     >
       <div className="w-full max-w-sm rounded-lg bg-gray-100 p-6 text-center text-black shadow-md">
         {formToggle ? <LoginForm /> : <RegisterForm />}

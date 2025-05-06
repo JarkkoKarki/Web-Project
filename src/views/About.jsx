@@ -2,6 +2,8 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Map} from './Map.jsx';
 import Contact from '../components/forms/Contact.jsx';
+import finedining from '../assets/images/finedining.png';
+import finedining2 from '../assets/images/finedining2.png';
 
 const About = () => {
   const {t} = useTranslation();
@@ -17,7 +19,7 @@ const About = () => {
         </h3>
         <div className="mx-auto flex max-w-6xl items-center justify-center space-x-6 px-6">
           <img
-            src="src\assets\images\finedining.png"
+            src={finedining}
             className="h-[250px] w-[370px] rounded-lg object-cover shadow-lg"
             alt="About Us"
           />
@@ -39,7 +41,7 @@ const About = () => {
             </button>
           </div>
           <img
-            src="src\assets\images\finedining2.png"
+            src={finedining2}
             className="h-[250px] w-[370px] rounded-lg object-cover shadow-lg"
             alt="About Us"
           />

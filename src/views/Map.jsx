@@ -8,6 +8,7 @@ import locationIconUrl from '../assets/icons/location.svg';
 import destinationIconUrl from '../assets/icons/destination.svg';
 import carIconUrl from '../assets/icons/car.svg';
 import MapInfo from '../components/MapInfo';
+import {url} from '../utils/variables';
 
 const locationIcon = new L.Icon({
   iconUrl: locationIconUrl,
@@ -59,7 +60,7 @@ export function Map() {
       (pos) => {
         const origin = [pos.coords.latitude, pos.coords.longitude];
         setPosition(origin);
-        const base = 'http://10.120.32.87/app/api/route/legs/';
+        const base = url + '/route/legs/';
         const fullUrl = `${base}${origin[0]}/${origin[1]}/${destination[0]}/${destination[1]}`;
         setApiUrl(fullUrl);
       },

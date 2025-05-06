@@ -6,6 +6,7 @@ import MenuItem from '../components/MenuRowItem';
 import facebookIcon from '../assets/images/facebook.svg';
 import instagramIcon from '../assets/images/instagram.svg';
 import tiktokIcon from '../assets/images/tiktok.svg';
+import backgroundImage from '../assets/images/top-view-lula-kebab-with-onion-herbs-grilled-vegetables-wooden-board.jpg';
 
 const Home = () => {
   const {t} = useTranslation();
@@ -27,8 +28,7 @@ const Home = () => {
       <section
         className="relative flex h-[90vh] items-center justify-center bg-cover bg-center text-center"
         style={{
-          backgroundImage:
-            "url('src/assets/images/top-view-lula-kebab-with-onion-herbs-grilled-vegetables-wooden-board.jpg')",
+          backgroundImage: `url(${backgroundImage})`,
         }}
       >
         <div className="absolute bottom-10 left-10 z-10 flex space-x-2">

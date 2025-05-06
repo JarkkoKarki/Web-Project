@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
-import {useTranslation} from 'react-i18next';
 import BookTable from '../components/reservation/BookTable';
 import PickDate from '../components/reservation/PickDate';
 import PickTime from '../components/reservation/PickTime';
 import FinalForm from '../components/reservation/FinalForm';
+import {useTranslation} from 'react-i18next';
 import {useUserContext} from '../components/hooks/contextHooks';
+import backgroundImage from '../assets/images/2147772080.jpg';
 
 const Reservation = () => {
   const {t} = useTranslation();
   const {user} = useUserContext();
-  const [peopleCount, setPeopleCount] = useState(1);
   const [currentStep, setCurrentStep] = useState(1);
+  const [peopleCount, setPeopleCount] = useState(1);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(() => {
     const initialTime = new Date();
@@ -21,7 +22,7 @@ const Reservation = () => {
   return (
     <div
       className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{backgroundImage: "url('src/assets/images/2147772080.jpg')"}}
+      style={{backgroundImage: `url(${backgroundImage})`}}
     >
       <div className="relative w-10/12 max-w-lg rounded-xl border border-gray-700 bg-gray-800 p-10 shadow-xl">
         {currentStep === 1 && (
