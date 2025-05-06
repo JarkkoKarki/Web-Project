@@ -61,7 +61,10 @@ i18n.use(initReactI18next).init({
           'special-offers': 'SPECIAL OFFERS',
           'add-to-cart-prompt': 'added to cart!',
           'add-to-cart': 'Add to Cart',
-          'diets': 'Diets: '
+          'diets': 'Diets: ',
+          "chefs-special-of-the-day": "Chef's Special of the Day",
+          "no-special-today": "No special available today.",
+          "discounted": "Discounted price only at the restaurant",
         },
         loginPage: {
           'login': 'Login',
@@ -394,7 +397,10 @@ i18n.use(initReactI18next).init({
           'special-offers': 'AlENNUKSET',
           'add-to-cart-prompt': 'lisätty ostoskoriin!',
           'add-to-cart': 'Lisää ostoskoriin',
-          'diets': 'Allergeenit: '
+          'diets': 'Allergeenit: ',
+          "chefs-special-of-the-day": "Kokin päivän erikoinen",
+          "no-special-today": "Ei Päivän ruokaa saatavilla päivälle.",
+          "discounted": "Alennushinta ainoastaan ravintolassa",
         },
         loginPage: {
             'login': 'Kirjaudu',
@@ -535,8 +541,7 @@ i18n.use(initReactI18next).init({
           'menu-item-modify': 'Muuta',
           'menu-name-fi': 'Suomeksi',
           'menu-name-en': 'Englanniksi',
-          'menu-price': 'Hinta'
-
+          'menu-price': 'Hinta',
         },
 
         manageUsers: {

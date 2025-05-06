@@ -11,6 +11,9 @@ const ManageUsers = () => {
   const [users, setUsers] = useState([]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState('');
+  const [roleUpdateLoading, setRoleUpdateLoading] = useState(false);
+  const [roleUpdateError, setRoleUpdateError] = useState('');
+  const [availableRoles] = useState(['user', 'employee', 'admin']);
 
   useEffect(() => {
     if (user?.role === 'admin') {
@@ -29,6 +32,44 @@ const ManageUsers = () => {
       setUsers(fetchedUsers);
     } catch (error) {
       console.error('Error fetching users:', error);
+    }
+  };
+
+  const updateUserRole = async (userId, newRole, userData) => {
+    if (!confirm(t('manageUsers.confirmRoleChange'))) {
+      return;
+    }
+
+    setRoleUpdateLoading(true);
+    setRoleUpdateError('');
+
+    try {
+      const updatedUserData = {
+        ...userData,
+        role: newRole,
+      };
+
+      const fetchOptions = {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + window.localStorage.getItem('token'),
+        },
+        body: JSON.stringify(updatedUserData),
+      };
+
+      // eslint-disable-next-line no-unused-vars
+      const updatedUser = await fetchData(
+        `${url}/users/${userId}`,
+        fetchOptions,
+      );
+
+      setUsers(users.map((u) => (u.id === userId ? {...u, role: newRole} : u)));
+    } catch (error) {
+      console.error('Error updating user role:', error);
+      setRoleUpdateError(t('manageUsers.roleUpdateError'));
+    } finally {
+      setRoleUpdateLoading(false);
     }
   };
 
@@ -72,6 +113,12 @@ const ManageUsers = () => {
       {deleteError && (
         <div className="mb-4 rounded bg-red-700 p-3 text-white">
           {deleteError}
+        </div>
+      )}
+
+      {roleUpdateError && (
+        <div className="mb-4 rounded bg-red-700 p-3 text-white">
+          {roleUpdateError}
         </div>
       )}
 
@@ -130,6 +177,22 @@ const ManageUsers = () => {
                           : t('manageUsers.delete')}
                       </button>
                     )}
+                  {user?.role === 'admin' && (
+                    <select
+                      value={userData.role || 'user'}
+                      onChange={(e) =>
+                        updateUserRole(userData.id, e.target.value, userData)
+                      }
+                      disabled={roleUpdateLoading}
+                      className="ml-4 rounded border border-gray-700 bg-gray-800 px-2 py-1 text-white"
+                    >
+                      {availableRoles.map((role) => (
+                        <option key={role} value={role}>
+                          {role}
+                        </option>
+                      ))}
+                    </select>
+                  )}
                 </td>
               </tr>
             ))}

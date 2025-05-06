@@ -2,7 +2,6 @@ import {useCallback, useEffect, useState} from 'react';
 import {fetchData} from '../../utils/fetchData';
 import {url} from '../../utils/variables';
 import {useLanguageContext} from '../../contexts/LanguageContext.jsx';
-import i18n from 'i18next';
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
@@ -165,8 +164,16 @@ const useReservations = () => {
   const [reservations, setReservations] = useState([]);
   const getReservations = async () => {
     try {
-      const reservationData = await fetchData(url + '/reservations/');
-      setReservations(reservationData);
+      const data = await fetchData(url + '/reservations/');
+
+      const reservations = data.map((item) => {
+        return {
+          ...item,
+          reservation_date: new Date(item.reservation_date).toLocaleDateString('fi-FI'),
+        };
+      });
+
+      setReservations(reservations);
     } catch (error) {
       console.error('Error getting reservations:', error);
       throw error;

@@ -9,6 +9,13 @@ import {useTranslation} from 'react-i18next';
 const Menu = () => {
   const {t} = useTranslation();
   const {favoritesMenuArray, fullMenuArray} = useMenu();
+
+  const currentDayIndex = new Date().getDay();
+  const chefsSpecial =
+    favoritesMenuArray.length > 0
+      ? favoritesMenuArray[currentDayIndex % favoritesMenuArray.length]
+      : null;
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {loop: true, containScroll: 'keepSnaps'},
     [Autoplay({delay: 3000, stopOnInteraction: false})],
@@ -22,6 +29,36 @@ const Menu = () => {
 
   return (
     <>
+      <section className="mx-auto mb-8 max-w-4xl rounded-lg bg-[#181a19] px-6 py-8 shadow-md">
+        <h2 className="mb-6 text-center text-3xl font-bold text-yellow-500">
+          {t('menuPage.chefs-special-of-the-day')}
+        </h2>
+        {chefsSpecial ? (
+          <div>
+            {/* Display discounted price only for Chef's Special */}
+            <MenuCarouselItem
+              item={{
+                ...chefsSpecial,
+                price: (parseFloat(chefsSpecial.price) * 0.9).toFixed(2), // Apply 10% discount here
+              }}
+            />
+            <div className="text-center text-xl text-yellow-300">
+              <span className="text-red-500 line-through">
+                {chefsSpecial.price}€
+              </span>{' '}
+              <span>
+                {parseFloat(chefsSpecial.price) * 0.9}€ (
+                {t('menuPage.discounted')})
+              </span>
+            </div>
+          </div>
+        ) : (
+          <p className="text-center text-gray-400">
+            {t('menuPage.no-special-today')}
+          </p>
+        )}
+      </section>
+
       <section
         id="chefs-favourites"
         className="mx-auto max-w-6xl bg-[#101211] py-12"
@@ -48,8 +85,6 @@ const Menu = () => {
           {t('menuPage.menu')}
         </h2>
         <div className="flex flex-col gap-10 md:flex-row">
-
-
           {/* First Grid */}
           <div className="grid flex-1 auto-rows-auto gap-10">
             <div>
@@ -94,8 +129,6 @@ const Menu = () => {
               </ul>
             </div>
           </div>
-
-
 
           {/* Second Grid */}
           <div className="grid flex-1 auto-rows-auto gap-10">
@@ -149,8 +182,7 @@ const Menu = () => {
                   ))}
               </ul>
             </div>
-            <div>
-            </div>
+            <div></div>
           </div>
         </div>
       </section>
