@@ -4,15 +4,23 @@ import UserInformation from '../components/profile/UserInformation';
 import DeleteUserButton from '../components/profile/DeleteUserButton';
 import {OrderHistory} from '../components/orders/OrderHistory';
 import {useUserContext} from '../components/hooks/contextHooks';
-import {Link} from 'react-router';
+import {Link, useLocation} from 'react-router';
 import Reservations from '../components/reservation/Reservations';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const Profile = () => {
   const {t} = useTranslation();
   const {user} = useUserContext();
-  console.log(user, ' PROFILE');
+  const location = useLocation();
   const [activeTab, setActiveTab] = useState('orders');
+
+  useEffect(() => {
+    if (location.state?.activeTab) {
+      console.log('location:', location.state);
+      setActiveTab(location.state.activeTab);
+    }
+  }, [location.state]);
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white">
       <h2 className="mb-12 text-3xl font-bold">{t('profilePage.profile')}</h2>

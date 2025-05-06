@@ -113,7 +113,8 @@ i18n.use(initReactI18next).init({
           'email-label': 'Email*',
           'email-placeholder': 'Email',
           'comments-label': 'Is there anything we should know before you arrive?',
-          'comments-placeholder': 'Write your comments here...'
+          'comments-placeholder': 'Write your comments here...',
+          'details-sent-to-email': 'Your reservation request has been sent to your email.',
         },
         reservations: {
           "title": "Your Reservations",
@@ -385,7 +386,8 @@ i18n.use(initReactI18next).init({
           'email-label': 'Sähköposti*',
           'email-placeholder': 'Sähköposti',
           'comments-label': 'Onko jotain, mitä meidän pitäisi tietää ennen kuin tulet?',
-          'comments-placeholder': 'Kirjoita kommenttisi tähän...'
+          'comments-placeholder': 'Kirjoita kommenttisi tähän...',
+          'details-sent-to-email': 'Varauspyyntö on lähetetty sähköpostiisi.',
         },
         reservations: {
           "title": "Pöytävaraukset",
