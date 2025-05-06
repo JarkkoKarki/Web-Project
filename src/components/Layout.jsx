@@ -19,11 +19,63 @@ const Layout = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-[#0d0f0e] text-white">
-      <header className="flex items-center justify-between border-b border-gray-800 bg-[#0d0f0e] px-8 py-4">
-        <div className="flex items-center space-x-3">
-          <img src={kebulaLogo} alt="Logo" className="h-8 w-8 bg-white" />
-          <h1 className="text-xl font-bold text-white">KEBULA</h1>
+      <header className="flex flex-col items-center justify-between space-y-4 border-b border-gray-800 bg-[#0d0f0e] px-4 py-2 md:flex-row md:space-y-0 md:px-6 md:py-4">
+        <div className="flex w-full flex-row items-center justify-between space-x-3 md:w-auto">
+          <div className="flex space-x-2 md:hidden">
+            <LanguageChange />
+          </div>
+          <div className="flex justify-center md:justify-start">
+            <img src={kebulaLogo} alt="Logo" className="h-8 w-8 bg-white" />
+            <h1 className="hidden text-xl font-bold text-white md:block">
+              KEBULA
+            </h1>
+          </div>
+          <div className="flex md:hidden">
+            {!user ? (
+              <div className="flex space-x-4">
+                <Link
+                  to="/login"
+                  className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                >
+                  {t('header.sign-in')}
+                </Link>
+              </div>
+            ) : (
+              <>
+                <Link
+                  to="/profile"
+                  title={t('header.profile')}
+                  // className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                >
+                  {/* {t('header.profile')} */}
+                  <img
+                    src={rootUrl + user.filename}
+                    alt="Profile"
+                    className="h-10 w-10 rounded-full"
+                  />
+                </Link>
+
+                {user &&
+                  (user.role === 'employee' || user.role === 'admin') && (
+                    <Link
+                      to="/workhub"
+                      className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                    >
+                      {t('header.workhub')}
+                    </Link>
+                  )}
+
+                <Link
+                  to="/logout"
+                  className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+                >
+                  {t('header.sign-out')}
+                </Link>
+              </>
+            )}
+          </div>
         </div>
+
         <nav>
           <ul className="flex space-x-8 text-sm tracking-wider text-white underline underline-offset-4">
             <li>
@@ -49,17 +101,18 @@ const Layout = () => {
           </ul>
         </nav>
 
-        <div className="flex items-center space-x-4">
+        <div className="hidden items-center space-x-4 md:flex">
           {/* KIELET */}
           <LanguageChange />
-
           {!user ? (
-            <Link
-              to="/login"
-              className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
-            >
-              {t('header.sign-in')}
-            </Link>
+            <div className="flex space-x-4">
+              <Link
+                to="/login"
+                className="rounded-sm border border-yellow-500 px-4 py-1 text-sm transition hover:bg-yellow-500 hover:text-black"
+              >
+                {t('header.sign-in')}
+              </Link>
+            </div>
           ) : (
             <>
               <Link

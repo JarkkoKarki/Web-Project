@@ -34,7 +34,24 @@ const Menu = () => {
           {t('menuPage.chefs-special-of-the-day')}
         </h2>
         {chefsSpecial ? (
-          <MenuCarouselItem item={chefsSpecial} />
+          <div>
+            {/* Display discounted price only for Chef's Special */}
+            <MenuCarouselItem
+              item={{
+                ...chefsSpecial,
+                price: (parseFloat(chefsSpecial.price) * 0.9).toFixed(2), // Apply 10% discount here
+              }}
+            />
+            <div className="text-center text-xl text-yellow-300">
+              <span className="text-red-500 line-through">
+                {chefsSpecial.price}€
+              </span>{' '}
+              <span>
+                {parseFloat(chefsSpecial.price) * 0.9}€ (
+                {t('menuPage.discounted')})
+              </span>
+            </div>
+          </div>
         ) : (
           <p className="text-center text-gray-400">
             {t('menuPage.no-special-today')}

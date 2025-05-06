@@ -64,6 +64,7 @@ i18n.use(initReactI18next).init({
           'diets': 'Diets: ',
           "chefs-special-of-the-day": "Chef's Special of the Day",
           "no-special-today": "No special available today.",
+          "discounted": "Discounted price only at the restaurant",
         },
         loginPage: {
           'login': 'Login',
@@ -358,7 +359,7 @@ i18n.use(initReactI18next).init({
           'menu': 'Ruokalista',
           'reservation': 'Varaaminen',
           'about': 'Meistä',
-          'sign-in': 'Kirjaudu Sisään',
+          'sign-in': 'Kirjaudu',
           'sign-out': 'Kirjaudu Ulos',
           'workhub': 'Työtila',
           'search': 'Haku',
@@ -399,6 +400,7 @@ i18n.use(initReactI18next).init({
           'diets': 'Allergeenit: ',
           "chefs-special-of-the-day": "Kokin päivän erikoinen",
           "no-special-today": "Ei Päivän ruokaa saatavilla päivälle.",
+          "discounted": "Alennushinta ainoastaan ravintolassa",
         },
         loginPage: {
             'login': 'Kirjaudu',
