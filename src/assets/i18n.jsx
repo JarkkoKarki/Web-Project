@@ -125,8 +125,7 @@ i18n.use(initReactI18next).init({
           "people": "People",
           "phone": "Phone",
           "comments": "Comments",
-          'deleted-success': 'Reservation deleted successfully',
-          'delete-failed': 'Failed to delete reservation',
+          'delete-confirm': 'Are you sure you want to cancel this reservation?',
           'cancel': 'Cancel',
         },
         profilePage: {
@@ -224,6 +223,14 @@ i18n.use(initReactI18next).init({
           'fields_of_vegan': 'fields of vegan',
           'special_offer': 'special offer',
           'drinks': 'drinks'
+        },
+
+        manageReservations: {
+          "reservations": "Customers Table Reservations",
+          'people-amount': "Customer Amount",
+          'table-id': "Table Id",
+          'reservation-date': 'Date',
+          'reservation-time': 'Time',
         },
 
         orders: {
@@ -436,8 +443,7 @@ i18n.use(initReactI18next).init({
           "people": "Henkilöt",
           "phone": "Puhelinnumero",
           "comments": "Kommentit",
-          'deleted-success': 'Pöytävaraus poistettu onnistuneesti',
-          'delete-failed': 'Pöytävarauksen poisto epäonnistui',
+          'delete-confirm': 'Oletko varma, että haluat peruuttaa tämän varauksen?',
           'cancel': 'Peruuta',
         },
         profilePage: {
@@ -540,8 +546,16 @@ i18n.use(initReactI18next).init({
           'fields_of_vegan': 'vegaanin alueet',
           'special_offer': 'erikoistarjous',
           'drinks': 'juomat'
-
         },
+
+        manageReservations: {
+          "reservations": "Asiakkaiden Pöytä Varaukset",
+          'people-amount': "Asiakkaiden määrä",
+          'table-id': "Pöytä Id",
+          'reservation-date': 'Päivämäärä',
+          'reservation-time': 'Aika',
+        },
+
         orders: {
           'title': 'Tilaukset',
           'id': 'ID:',
@@ -571,6 +585,7 @@ i18n.use(initReactI18next).init({
           'cancel': 'Keskeytä',
           'save': 'Tallenna'
         },
+
         ordersForm: {
           'your-order': 'Tilauksesi',
           'information': 'Kuljetus tiedot',

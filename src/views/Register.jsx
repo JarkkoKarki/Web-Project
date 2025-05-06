@@ -24,7 +24,7 @@ const Register = () => {
       className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{backgroundImage: `url(${backgroundImage})`}}
     >
-      <div className="w-full max-w-sm rounded-lg bg-gray-100 p-6 text-center text-black shadow-md">
+      <div className="m-3 mx-auto mt-20 max-w-3xl rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md">
         {formToggle ? <LoginForm /> : <RegisterForm />}
         <button
           className="mt-4 block text-lg font-bold text-blue-500 hover:underline"
