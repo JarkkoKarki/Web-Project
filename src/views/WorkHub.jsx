@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router';
 import WorkHubLayout from '../components/WorkHubLayout';
 import Orders from './Orders';
 import ManageMenu from './ManageMenu';
+import ManageUsers from './ManageUsers';
 
 const WorkHub = () => {
   return (
@@ -10,6 +11,7 @@ const WorkHub = () => {
       <Route path="/" element={<WorkHubLayout />}>
         <Route path="manage-menu" element={<ManageMenu />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="users" element={<ManageUsers />} />
       </Route>
     </Routes>
   );

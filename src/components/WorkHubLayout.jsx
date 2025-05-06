@@ -23,6 +23,11 @@ const WorkHubLayout = () => {
                 {t('workhubHeader.orders')}
               </Link>
             </li>
+            <li>
+              <Link to="users" className="hover:text-yellow-500">
+                {t('workhubHeader.users')}
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>

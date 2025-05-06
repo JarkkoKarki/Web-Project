@@ -164,7 +164,8 @@ i18n.use(initReactI18next).init({
         workhubHeader: {
           'workhub': 'Workhub',
           'manage-menu': 'Manage Menu',
-          'orders': 'Orders'
+          'orders': 'Orders',
+          "users": "Users",
         },
         manageMenu: {
           'add-menu-name-fi': 'Name in finnish',
@@ -188,6 +189,15 @@ i18n.use(initReactI18next).init({
           'menu-name-fi': 'In Finnish',
           'menu-name-en': 'In English',
           'menu-price': 'Price'
+        },
+
+        manageUsers: {
+          'title': 'User Management',
+          'username': 'Username',
+          'email': 'Email',
+          'role': 'Role',
+          'date': 'Date',
+          'time': 'Time',
         },
 
         dietOptions: {
@@ -441,7 +451,8 @@ i18n.use(initReactI18next).init({
         workhubHeader: {
           'workhub': 'Työtila',
           'manage-menu': 'Muokkaa menua',
-          'orders': 'Tilaukset'
+          'orders': 'Tilaukset',
+          "users": "Käyttäjät",
         },
         manageMenu: {
           'add-menu-name-fi': 'Nimi Suomeksi',
@@ -468,6 +479,14 @@ i18n.use(initReactI18next).init({
 
         },
 
+        manageUsers: {
+          'title': 'Käyttäjien hallinta',
+          'username': 'Käyttäjätunnus',
+          'email': 'Sähköposti',
+          'role': 'Rooli',
+          'date': 'Päivämäärä',
+          'time': 'Aika',
+        },
 
         dietOptions: {
           'animal_based': 'A - Eläinperäinen',
