@@ -308,7 +308,8 @@ i18n.use(initReactI18next).init({
           "action": "Action",
           "delete": "Delete",
           "message-deleted": "Message deleted successfully",
-          "failed-to-delete": "Failed to delete message"
+          "failed-to-delete": "Failed to delete message",
+          "cancel": "Cancel",
         },
       }
     },
@@ -609,7 +610,8 @@ i18n.use(initReactI18next).init({
           "action": "Toiminta",
           "delete": "Poista",
           "message-deleted": "Viesti Poistettu Onnistuneesti.",
-          "failed-to-delete": "Virhe Viestin Poistossa."
+          "failed-to-delete": "Virhe Viestin Poistossa.",
+          "cancel": "Keskeytä",
         },
       }
     }

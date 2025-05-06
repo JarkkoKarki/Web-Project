@@ -27,6 +27,9 @@ const deleteContactMessage = async (id) => {
 const ContactMessages = () => {
   const {t} = useTranslation();
   const [messages, setMessages] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState(null);
+
   useEffect(() => {
     const loadMessages = async () => {
       try {
@@ -48,58 +51,79 @@ const ContactMessages = () => {
     }
     const success = await deleteContactMessage(id);
     if (success) {
-      setMessages(messages.filter((msg) => msg.id !== id));
+      setMessages((prevMessages) =>
+        prevMessages.filter((msg) => msg.id !== id),
+      );
+      setSelectedMessage(null); // exit detail view after delete
     }
   };
 
+  const handleMessageClick = (message) => {
+    setSelectedMessage(message);
+  };
+
+  const displayedMessages = showAll ? messages : messages.slice(0, 5);
+
   return (
-    <div className="p-6">
+    <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
       <h2 className="mb-4 text-2xl font-bold">
         {t('contactMessages.submitted-messages')}
       </h2>
-      {messages.length === 0 ? (
-        <p>{t('contactMessages.no-messages-found')}</p>
+
+      {selectedMessage ? (
+        <div className="rounded-md bg-[#1a1c1b] p-4 shadow-md">
+          <h3 className="text-xl font-semibold">
+            {t('contactMessages.title')}: {selectedMessage.title}
+          </h3>
+          <p>
+            {t('contactMessages.email')}: {selectedMessage.email}
+          </p>
+          <p>
+            {t('contactMessages.description')}: {selectedMessage.description}
+          </p>
+          <p>
+            {t('contactMessages.date')}:{' '}
+            {new Date(selectedMessage.created_at).toLocaleString()}
+          </p>
+
+          <div className="mt-4 flex justify-end space-x-2">
+            <button
+              className="bg-yellow-500 px-4 py-2 font-bold text-black"
+              onClick={() => handleDelete(selectedMessage.id)}
+            >
+              {t('contactMessages.delete')}
+            </button>
+            <button
+              className="bg-[#2b2e2c81] px-4 py-2 text-black"
+              onClick={() => setSelectedMessage(null)}
+            >
+              {t('contactMessages.cancel')}
+            </button>
+          </div>
+        </div>
       ) : (
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="p-2">{t('contactMessages.email')}</th>
-              <th className="p-2">{t('contactMessages.title')}</th>
-              <th className="p-2">{t('contactMessages.description')}</th>
-              <th className="p-2">{t('contactMessages.date')}</th>
-              <th className="p-2">{t('contactMessages.action')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {messages.map((msg, index) => {
-              console.log(msg);
-              return (
-                <tr
-                  key={msg.contact_id || index}
-                  className="border-b hover:bg-gray-100"
-                >
-                  <td className="p-2">{msg.email}</td>
-                  <td className="p-2">{msg.title}</td>
-                  <td className="p-2">{msg.description}</td>
-                  <td className="p-2">
-                    {new Date(msg.created_at).toLocaleString()}
-                  </td>
-                  <td className="p-2">
-                    <button
-                      onClick={() => {
-                        console.log('Deleting message with id:', msg.id);
-                        handleDelete(msg.id);
-                      }}
-                      className="rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700"
-                    >
-                      {t('contactMessages.delete')}
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        displayedMessages.map((msg, index) => (
+          <div
+            key={msg.contact_id || index}
+            className="mb-4 cursor-pointer rounded-md bg-[#1a1c1b] p-4 shadow-md hover:bg-gray-700"
+            onClick={() => handleMessageClick(msg)}
+          >
+            <p>{msg.title}</p>
+            <p>{msg.email}</p>
+            <p>{new Date(msg.created_at).toLocaleString()}</p>
+          </div>
+        ))
+      )}
+
+      {!selectedMessage && messages.length > 5 && (
+        <button
+          className="mt-6 inline-block cursor-pointer border border-yellow-500 px-6 py-2 text-yellow-500 transition hover:bg-yellow-500 hover:text-black"
+          onClick={() => setShowAll(!showAll)}
+        >
+          {showAll
+            ? t('contactMessages.view-less')
+            : t('contactMessages.view-more')}
+        </button>
       )}
     </div>
   );
