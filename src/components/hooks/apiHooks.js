@@ -1,7 +1,8 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {fetchData} from '../../utils/fetchData';
 import {url} from '../../utils/variables';
 import {useLanguageContext} from '../../contexts/LanguageContext.jsx';
+import i18n from 'i18next';
 
 const useAuthentication = () => {
   const postLogin = async (inputs) => {
@@ -160,4 +161,23 @@ export const updateOrderStatus = async (orderId, newStatus, token) => {
   }
 };
 
-export {useAuthentication, useUser, useUpdateUser, useOrders};
+const useReservations = () => {
+  const [reservations, setReservations] = useState([]);
+  const getReservations = async () => {
+    try {
+      const reservationData = await fetchData(url + '/reservations/');
+      setReservations(reservationData)
+    } catch (error) {
+      console.error('Error getting reservations:', error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    getReservations();
+  }, []);
+
+  return {reservations};
+};
+
+export {useAuthentication, useUser, useUpdateUser, useOrders, useReservations};
