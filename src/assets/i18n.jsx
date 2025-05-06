@@ -574,7 +574,7 @@ i18n.use(initReactI18next).init({
         },
 
         manageReservations: {
-          "reservations": "Asiakkaiden Pöytä Varaukset",
+          "reservations": "Asiakkaiden Pöytävaraukset",
           'people-amount': "Asiakkaiden määrä",
           'table-id': "Pöytä Id",
           'reservation-date': 'Päivämäärä',
