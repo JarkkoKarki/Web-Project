@@ -26,19 +26,19 @@ export const OrderRow = ({item, index, onClick}) => {
 
   return (
     <div
-      className="mb-6 flex w-[800px] flex-col items-center justify-center space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-white hover:bg-[#1c1e24]"
+      className="mb-6 flex w-full flex-col flex-wrap items-center justify-center space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-wrap text-white hover:bg-[#1c1e24] md:w-[800px]"
       onClick={onClick}
       title={t('orders.show-more')}
     >
-      <div className="flex w-full cursor-pointer flex-row items-center">
+      <div className="flex w-full cursor-pointer flex-row items-center text-sm md:text-[18px]">
         <section className="w-[60px] border-r-2 border-black p-4 text-center">
           <h2>{index + 1 + '.'}</h2>
         </section>
         <section className="flex w-[100px] flex-row items-start justify-start">
           <h3 className="px-4">{isToday ? formattedTime : formattedDate}</h3>
         </section>
-        <section className="flex flex-col items-center px-8">
-          <ul>
+        <section className="flex flex-col items-center md:px-8">
+          <ul className="w-full text-wrap">
             {totalQuantity > 1 ? (
               <li>{`${mostExpensiveProduct.name}...`}</li>
             ) : (

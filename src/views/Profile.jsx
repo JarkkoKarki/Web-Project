@@ -22,7 +22,7 @@ const Profile = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#0d0f0e] font-sans text-white">
-      <h2 className="mt-10 mb-12 text-3xl font-bold md:mt-0">
+      <h2 className="mt-10 mb-12 text-3xl font-bold">
         {t('profilePage.profile')}
       </h2>
 
@@ -30,7 +30,7 @@ const Profile = () => {
         <ProfilePicture />
         <UserInformation />
       </section>
-      <section className="my-6 flex w-full items-center justify-center space-x-4">
+      <section className="mt-30 mb-10 flex w-full items-center justify-center space-x-4">
         <button
           onClick={() => setActiveTab('orders')}
           className={`rounded px-6 py-2 ${
@@ -52,11 +52,13 @@ const Profile = () => {
           {t('profilePage.reservations') || 'Reservations'}
         </button>
       </section>
-      <section className="flex w-full flex-row items-center justify-center px-6">
-        {activeTab === 'orders' ? <OrderHistory /> : <Reservations />}
+      <section className="flex w-full items-center justify-center px-6">
+        <div className="flex flex-col">
+          {activeTab === 'orders' ? <OrderHistory /> : <Reservations />}
+        </div>
       </section>
 
-      <section className="mt-10 flex h-auto w-full flex-row items-end justify-end space-x-10 px-20 py-10">
+      <section className="mt-10 flex h-auto w-full flex-row items-center justify-center space-x-5 px-20 py-10 md:items-end md:justify-end">
         <Link
           to="/logout"
           className="mt-6 inline-block cursor-pointer border border-red-400 px-6 py-2 text-red-400 transition hover:bg-red-400 hover:text-black"

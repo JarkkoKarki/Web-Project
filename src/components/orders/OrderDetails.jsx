@@ -24,7 +24,7 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
 
   return (
     <>
-      <div className="flex w-[800px] flex-col space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-white">
+      <div className="flex w-full flex-col space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-white md:w-[800px]">
         <section className="m-0 flex w-full flex-row items-center space-x-8 border-b border-gray-700 px-6 py-4">
           <h2>
             {t('orders.id')} {orderId}
@@ -61,8 +61,8 @@ export const OrderDetails = ({order, user, orderAgain, onClose}) => {
           </div>
         </section>
 
-        <div className="flex w-full flex-row space-x-4">
-          <section className="flex w-1/3 flex-col space-y-4 border-r border-gray-700 px-6 py-4">
+        <div className="flex w-full flex-row flex-wrap space-x-4">
+          <section className="flex w-1/3 flex-col space-y-4 border-r border-gray-700 px-2 py-4 text-wrap break-words md:px-6">
             <h3 className="font-bold underline underline-offset-4">
               {t('orders.personal-info')}
             </h3>

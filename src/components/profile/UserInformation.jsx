@@ -133,8 +133,8 @@ export const UserInformation = () => {
   ];
 
   return (
-    <div className="flex h-full w-1/3 flex-col items-start space-y-4">
-      <h3 className="mb-8 self-start text-2xl font-bold">
+    <div className="flex h-full w-4/5 flex-col items-start space-y-4 md:w-1/3">
+      <h3 className="mb-8 self-center text-xl font-bold text-wrap md:self-start md:text-2xl">
         {t('profilePage.user-information')}
       </h3>
       {profileInfo.map((info, index) => (
@@ -177,12 +177,12 @@ export const UserInformation = () => {
             )
           ) : editingField === null ? (
             <div
-              className="flex w-full cursor-pointer justify-between rounded border-1 border-[#000000] bg-[#101211] p-2 text-xl hover:border-[#000000] hover:bg-[#1c1e24]"
+              className="flex w-full cursor-pointer items-center justify-between rounded border-1 border-[#000000] bg-[#101211] p-2 text-center text-xl hover:border-[#000000] hover:bg-[#1c1e24]"
               onClick={() => clickHandler(info.field)}
             >
-              <span>{info.label}</span>
+              <span className="text-sm md:text-xl">{info.label}</span>
               <span className="flex items-center space-x-2">
-                <span>{info.value}</span>
+                <span className="text-sm md:text-xl">{info.value}</span>
                 <span className="font-bold">{'>'}</span>
               </span>
             </div>
