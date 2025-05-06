@@ -64,12 +64,14 @@ const LoginForm = () => {
               className="mb-3 w-full rounded-lg border border-gray-300 p-3 text-lg"
             />
           </div>
-          <button
-            type="submit"
-            className="mt-3 w-full rounded-lg bg-gray-400 p-3 text-lg font-bold text-white hover:bg-gray-500"
-          >
-            {t('loginPage.login')}
-          </button>
+          <div className="mt-4 flex justify-center">
+            <button
+              type="submit"
+              className="transform rounded bg-yellow-400 px-6 py-3 align-middle text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
+            >
+              {t('loginPage.login')}
+            </button>
+          </div>
         </form>
       </div>
     </>

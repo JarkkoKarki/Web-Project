@@ -198,10 +198,10 @@ const RegisterForm = () => {
             />
           </div>
 
-          <div className="col-span-1 md:col-span-2">
+          <div className="col-span-1 flex justify-center md:col-span-2">
             <button
               type="submit"
-              className="w-full rounded-lg bg-gray-400 p-3 text-lg font-bold text-white hover:bg-gray-500"
+              className="transform rounded bg-yellow-400 px-6 py-3 align-middle text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
             >
               {t('registerPage.register')}
             </button>
