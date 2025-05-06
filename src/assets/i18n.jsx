@@ -40,7 +40,8 @@ i18n.use(initReactI18next).init({
           'slogan': 'Best Famous Dishes',
           'learn-more': 'Learn More',
           'trending-meals': 'Trending Meals & Week\'s Showcase ',
-          'view-more': 'View More'
+          'view-more': 'View More',
+          'follow-us': 'Follow Us',
         },
         aboutPage: {
           'special-moments': 'special Moments',
@@ -376,7 +377,8 @@ i18n.use(initReactI18next).init({
           'slogan': 'Parhaat Kuuluisat Ruoat',
           'learn-more': 'Lisätietoja',
           'trending-meals': 'Suositut Ateriat & Viikon Esittely',
-          'view-more': 'Näytä Lisää'
+          'view-more': 'Näytä Lisää',
+          'follow-us': 'Seuraa Meitä',
         },
         aboutPage: {
           'special-moments': 'Erityiset Hetket',
