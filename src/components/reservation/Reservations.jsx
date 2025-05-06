@@ -33,10 +33,10 @@ const Reservations = () => {
   }, [user?.id]);
 
   const handleDeleteReservation = async (reservationId) => {
+    const confirmDelete = window.confirm(t('reservations.confirm-cancel'));
+    if (!confirmDelete) return;
+
     try {
-      console.log('reservationId:', reservationId);
-      console.log('token:', window.localStorage.getItem('token'));
-      console.log('userId:', user?.id);
       const response = await fetch(
         `http://10.120.32.87/app/api/reservations/${reservationId}`,
         {
@@ -54,10 +54,9 @@ const Reservations = () => {
       setReservations((prev) =>
         prev.filter((reservation) => reservation.id !== reservationId),
       );
-      alert(t('reservations.deleted-success'));
     } catch (err) {
       console.error(err);
-      alert(t('reservations.delete-failed'));
+      console.log('Reservation deletion failed:', err);
     }
   };
 

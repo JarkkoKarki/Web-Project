@@ -125,8 +125,7 @@ i18n.use(initReactI18next).init({
           "people": "People",
           "phone": "Phone",
           "comments": "Comments",
-          'deleted-success': 'Reservation deleted successfully',
-          'delete-failed': 'Failed to delete reservation',
+          'delete-confirm': 'Are you sure you want to cancel this reservation?',
           'cancel': 'Cancel',
         },
         profilePage: {
@@ -436,8 +435,7 @@ i18n.use(initReactI18next).init({
           "people": "Henkilöt",
           "phone": "Puhelinnumero",
           "comments": "Kommentit",
-          'deleted-success': 'Pöytävaraus poistettu onnistuneesti',
-          'delete-failed': 'Pöytävarauksen poisto epäonnistui',
+          'delete-confirm': 'Oletko varma, että haluat peruuttaa tämän varauksen?',
           'cancel': 'Peruuta',
         },
         profilePage: {
