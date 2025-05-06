@@ -28,6 +28,11 @@ const WorkHubLayout = () => {
                 {t('workhubHeader.users')}
               </Link>
             </li>
+            <li>
+              <Link to="contact-messages" className="hover:text-yellow-500">
+                Contact Messages
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>
