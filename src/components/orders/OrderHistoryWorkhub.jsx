@@ -21,7 +21,7 @@ export const OrderHistoryWorkhub = () => {
   const fetchOrders = async () => {
     try {
       let fetchedOrders;
-      if (user?.role === 'worker' || user?.role === 'admin') {
+      if (user?.role === 'employee' || user?.role === 'admin') {
         fetchedOrders = await getAllOrders(); // Fetch all orders for worker/admin
       } else {
         fetchedOrders = await getOrdersByUserId();
