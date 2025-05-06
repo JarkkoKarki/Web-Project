@@ -10,7 +10,7 @@ const FinalForm = ({peopleCount, selectedDate, selectedTime, user}) => {
       <h2 className="mb-6 bg-yellow-400 bg-clip-text text-center text-4xl font-extrabold text-transparent">
         {t('reservationPage.reservation-request')}
       </h2>
-      <p className="mb-4 text-left text-lg text-gray-300">
+      <p className="mb-4 pl-3 text-left text-lg text-gray-300">
         {t('reservationPage.confirm-details')}
       </p>
       <div className="mb-6 ml-3 flex flex-col space-y-4">

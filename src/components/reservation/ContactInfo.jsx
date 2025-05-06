@@ -66,7 +66,7 @@ const ContactInfo = ({
   };
 
   return (
-    <div className="rounded-lg bg-gray-800 p-6">
+    <div className="rounded-lg bg-[#1c1e24] md:p-6">
       <h3 className="mb-4 text-2xl font-bold text-yellow-400">
         {t('reservationPage.contact-info-title')}
       </h3>
@@ -139,13 +139,15 @@ const ContactInfo = ({
           ></textarea>
         </div>
       </form>
-      <button
-        className="transform rounded bg-yellow-400 px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
-        onClick={handleSubmit}
-        type="button"
-      >
-        {t('reservationPage.confirm')}
-      </button>
+      <div className="my-5 flex justify-center">
+        <button
+          className="transform rounded bg-yellow-400 px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-green-500"
+          onClick={handleSubmit}
+          type="button"
+        >
+          {t('reservationPage.confirm')}
+        </button>
+      </div>
     </div>
   );
 };

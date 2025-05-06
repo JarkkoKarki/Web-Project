@@ -22,10 +22,10 @@ const Reservation = () => {
 
   return (
     <div
-      className="flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="flex h-full items-center justify-center bg-cover bg-center bg-no-repeat py-4"
       style={{backgroundImage: `url(${backgroundImage})`}}
     >
-      <div className="relative w-10/12 max-w-lg rounded-xl border border-gray-700 bg-gray-800 p-10 shadow-xl">
+      <div className="relative w-10/12 max-w-lg rounded-xl border border-gray-700 bg-[#1c1e24] p-10 shadow-xl">
         {currentStep === 1 && (
           <BookTable
             peopleCount={peopleCount}
@@ -53,7 +53,9 @@ const Reservation = () => {
             user={user}
           />
         )}
-        <div className="flex justify-center space-x-4">
+        <div
+          className={`flex justify-center ${currentStep !== 4 ? 'space-x-4' : ''}`}
+        >
           <button
             className="transform rounded bg-gray-400 px-6 py-3 text-lg font-semibold text-black transition-transform hover:scale-105 hover:bg-red-500"
             hidden={currentStep === 1}
