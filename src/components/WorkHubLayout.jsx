@@ -61,12 +61,12 @@ const WorkHubLayout = () => {
         )}
       </aside>
       <main
-        className={`flex-grow transition-all duration-300 ${isMenuOpen ? 'ml-10' : 'ml-2'}`}
+        className={`flex-grow transition-all duration-300 ${isMenuOpen ? 'ml-10' : 'ml-0'}`}
       >
         <button
           onClick={toggleMenu}
           title={t('workhubHeader.toggle-menu')}
-          className="z-10 mt-2 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500 text-black hover:bg-yellow-600"
+          className="z-10 mx-2 mt-2 flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500 text-black hover:bg-yellow-600"
         >
           {isMenuOpen ? '←' : '→'}
         </button>
