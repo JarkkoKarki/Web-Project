@@ -36,10 +36,13 @@ The project simplifies restaurant operations by digitizing key processes such as
 To view a local/internal demo (VPN required):
 
 1. Connect to the school's VPN.
-2. Open your browser and goto [https://10.120.32.87/](https://10.120.32.87/) and write ```thisisunsafe```
+2. Open your browser and goto [https://10.120.32.87/](https://10.120.32.87/) and write `thisisunsafe`
 3. Next switch to :
    [http://10.120.32.87/](http://10.120.32.87/) for the site to work completely. (because we dont have ssl-authentication, and also for the data fething from the backend to work.)
 4. Enjoy :)
+5. Also if you want to test making orders be sure to use card number: `4242 4242 4242 4242` on checkout:
+
+![checkout](images/sprite-checkout-card.png)
 
 ## 🚀 How to Get Started
 
@@ -64,4 +67,4 @@ To view a local/internal demo (VPN required):
 
 ### ⚙️ Backend Repository
 
- [Backend](https://github.com/JarkkoKarki/Web-Project-Backend)
+[Backend](https://github.com/JarkkoKarki/Web-Project-Backend)
