@@ -65,7 +65,7 @@ const ContactMessages = () => {
   const displayedMessages = showAll ? messages : messages.slice(0, 5);
 
   return (
-    <div className="flex flex-col items-center justify-center bg-[#0d0f0e] p-4 text-white">
+    <div className="flex flex-col items-center justify-center bg-[#0d0f0e] px-6 text-white">
       <h2 className="mb-4 text-2xl font-bold">
         {t('contactMessages.submitted-messages')}
       </h2>
@@ -105,12 +105,14 @@ const ContactMessages = () => {
         displayedMessages.map((msg, index) => (
           <div
             key={msg.contact_id || index}
-            className="mb-4 h-auto w-full cursor-pointer rounded-md bg-[#1a1c1b] p-8 shadow-md hover:bg-gray-700 md:w-1/4"
+            className="mb-4 h-auto w-full cursor-pointer rounded-md bg-[#1a1c1b] p-8 text-wrap shadow-md hover:bg-gray-700 md:w-2/4"
             onClick={() => handleMessageClick(msg)}
           >
-            <p className="p-1">{msg.title}</p>
-            <p className="p-1">{msg.email}</p>
-            <p className="p-1">{new Date(msg.created_at).toLocaleString()}</p>
+            <p className="p-1 break-words">{msg.title}</p>
+            <p className="p-1 break-words">{msg.email}</p>
+            <p className="p-1 break-words">
+              {new Date(msg.created_at).toLocaleString()}
+            </p>
           </div>
         ))
       )}
