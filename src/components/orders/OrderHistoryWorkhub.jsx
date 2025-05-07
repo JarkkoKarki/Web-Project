@@ -158,7 +158,7 @@ export const OrderHistoryWorkhub = () => {
               {t('orders.save')}
             </button>
             <button
-              className="border bg-[#2b2e2c81] px-4 py-2 text-black"
+              className="border bg-red-800 px-4 py-2 text-black"
               onClick={closeManageModal}
             >
               {t('orders.cancel')}

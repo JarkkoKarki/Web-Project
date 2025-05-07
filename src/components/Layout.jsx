@@ -65,7 +65,7 @@ const Layout = () => {
         </div>
 
         <nav>
-          <ul className="flex space-x-8 text-sm tracking-wider text-white underline underline-offset-4">
+          <ul className="flex space-x-4 text-xs tracking-wider text-white underline underline-offset-4 md:space-x-8 md:text-[14px]">
             <li>
               <Link to="/" className="hover:text-yellow-500">
                 {t('header.home')}

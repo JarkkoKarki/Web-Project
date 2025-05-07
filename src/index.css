@@ -1,1 +1,5 @@
 @import 'tailwindcss';
+
+#root {
+  min-width: 320px;
+}
