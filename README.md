@@ -1,5 +1,5 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/jarkkokarki/web-project-frontend/badge)](https://www.codefactor.io/repository/github/jarkkokarki/web-project-frontend)
-[![Page](https://img.shields.io/badge/View-Page-blue)](https://jarkkokarki.github.io/Web-Project-Frontend/)
+[![Page](https://img.shields.io/badge/View-Page-blue)](http://10.120.32.87/)
 
 # 🍽️ Web Project
 
