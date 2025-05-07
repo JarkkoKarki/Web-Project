@@ -35,8 +35,8 @@ const ManageReservations = () => {
           }
         `}
       </style>
-      <div>
-        <h1 className="mb-4 w-full text-center text-xl font-semibold text-yellow-500 md:text-3xl">
+      <div className="mx-auto max-w-screen-md">
+        <h1 className="mb-4 text-center text-xl font-semibold text-yellow-500 md:text-3xl">
           {t('manageReservations.reservations')}
         </h1>
         {selectedItem ? (
@@ -45,9 +45,9 @@ const ManageReservations = () => {
             setSelectedItem={setSelectedItem}
           />
         ) : (
-          <div className="p-0 md:p-8">
-            <div className="mb-4">
-              <label className="mr-2 font-semibold text-yellow-500">
+          <div className="p-4 md:p-8">
+            <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-center">
+              <label className="font-semibold text-yellow-500">
                 {t('manageReservations.filter-date')}:
               </label>
               <input
@@ -56,40 +56,44 @@ const ManageReservations = () => {
                 onChange={(e) => setFilterDate(e.target.value)}
                 className="rounded border border-yellow-500 px-2 py-1"
               />
-              <button
-                onClick={() => setFilterDate('')}
-                className="ml-4 rounded border border-yellow-500 px-3 py-1 font-semibold text-yellow-500 hover:bg-yellow-500 hover:text-black"
-              >
-                {t('manageReservations.filter-reset')}
-              </button>
+              <div className="flex">
+                <button
+                  onClick={() => setFilterDate('')}
+                  className="ml-auto rounded border border-yellow-500 px-3 py-1 font-semibold text-yellow-500 hover:bg-yellow-500 hover:text-black md:ml-4"
+                >
+                  {t('manageReservations.filter-reset')}
+                </button>
+              </div>
             </div>
-            <table className="min-w-full table-auto border border-[#2a2c2b] p-8">
-              <thead>
-                <tr>
-                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                    {t('manageReservations.table-id')}
-                  </th>
-                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                    {t('manageReservations.people-amount')}
-                  </th>
-                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                    {t('manageReservations.reservation-date')}
-                  </th>
-                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                    {t('manageReservations.reservation-time')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredReservations.map((item) => (
-                  <ReservationRow
-                    key={item.id}
-                    item={item}
-                    onClick={handleClick}
-                  />
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="min-w-full table-auto border border-[#2a2c2b]">
+                <thead>
+                  <tr>
+                    <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm md:px-6 md:text-lg">
+                      {t('manageReservations.table-id')}
+                    </th>
+                    <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm md:px-6 md:text-lg">
+                      {t('manageReservations.people-amount')}
+                    </th>
+                    <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm md:px-6 md:text-lg">
+                      {t('manageReservations.reservation-date')}
+                    </th>
+                    <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm md:px-6 md:text-lg">
+                      {t('manageReservations.reservation-time')}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredReservations.map((item) => (
+                    <ReservationRow
+                      key={item.id}
+                      item={item}
+                      onClick={handleClick}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
