@@ -35,11 +35,6 @@ export const OrderHistoryWorkhub = () => {
     setSelectedOrder(order);
   };
 
-  // Taken from ShoppingCartElement
-  // We shall see if this is the best place for this function
-  // could probably made into a hook
-  // or moved to the apiHooks
-
   const handleClose = () => {
     setSelectedOrder(null);
   };
