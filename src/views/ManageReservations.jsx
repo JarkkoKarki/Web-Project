@@ -21,7 +21,9 @@ const ManageReservations = () => {
   };
 
   const filteredReservations = filterDate
-    ? reservations.filter((item) => item.reservation_date === convertInputDate(filterDate))
+    ? reservations.filter(
+        (item) => item.reservation_date === convertInputDate(filterDate),
+      )
     : reservations;
 
   return (
@@ -34,7 +36,7 @@ const ManageReservations = () => {
         `}
       </style>
       <div>
-        <h1 className="mb-4 text-center text-3xl font-semibold text-yellow-500">
+        <h1 className="mb-4 w-full text-center text-xl font-semibold text-yellow-500 md:text-3xl">
           {t('manageReservations.reservations')}
         </h1>
         {selectedItem ? (
@@ -43,7 +45,7 @@ const ManageReservations = () => {
             setSelectedItem={setSelectedItem}
           />
         ) : (
-          <div className="p-8">
+          <div className="p-0 md:p-8">
             <div className="mb-4">
               <label className="mr-2 font-semibold text-yellow-500">
                 {t('manageReservations.filter-date')}:
@@ -52,7 +54,7 @@ const ManageReservations = () => {
                 type="date"
                 value={filterDate}
                 onChange={(e) => setFilterDate(e.target.value)}
-                className="rounded border border-yellow-500 px-2 py-1 "
+                className="rounded border border-yellow-500 px-2 py-1"
               />
               <button
                 onClick={() => setFilterDate('')}
@@ -63,29 +65,29 @@ const ManageReservations = () => {
             </div>
             <table className="min-w-full table-auto border border-[#2a2c2b] p-8">
               <thead>
-              <tr>
-                <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                  {t('manageReservations.table-id')}
-                </th>
-                <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                  {t('manageReservations.people-amount')}
-                </th>
-                <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                  {t('manageReservations.reservation-date')}
-                </th>
-                <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
-                  {t('manageReservations.reservation-time')}
-                </th>
-              </tr>
+                <tr>
+                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+                    {t('manageReservations.table-id')}
+                  </th>
+                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+                    {t('manageReservations.people-amount')}
+                  </th>
+                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+                    {t('manageReservations.reservation-date')}
+                  </th>
+                  <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+                    {t('manageReservations.reservation-time')}
+                  </th>
+                </tr>
               </thead>
               <tbody>
-              {filteredReservations.map((item) => (
-                <ReservationRow
-                  key={item.id}
-                  item={item}
-                  onClick={handleClick}
-                />
-              ))}
+                {filteredReservations.map((item) => (
+                  <ReservationRow
+                    key={item.id}
+                    item={item}
+                    onClick={handleClick}
+                  />
+                ))}
               </tbody>
             </table>
           </div>

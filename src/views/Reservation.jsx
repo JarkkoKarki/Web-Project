@@ -23,7 +23,7 @@ const Reservation = () => {
   return (
     <div
       className="flex h-full items-center justify-center bg-cover bg-center bg-no-repeat py-4"
-      style={{backgroundImage: `url(${backgroundImage})`}}
+      style={{backgroundImage: `url(${backgroundImage})`, minHeight: '100vh'}}
     >
       <div className="relative w-10/12 max-w-lg rounded-xl border border-gray-700 bg-[#1c1e24] p-10 shadow-xl">
         {currentStep === 1 && (
