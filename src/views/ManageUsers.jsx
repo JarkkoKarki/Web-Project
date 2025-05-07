@@ -105,8 +105,8 @@ const ManageUsers = () => {
   };
 
   return (
-    <div>
-      <h1 className="mb-4 text-center text-3xl font-semibold text-yellow-500">
+    <div className="mx-auto max-w-screen p-4">
+      <h1 className="mb-4 text-center text-xl font-semibold text-yellow-500 lg:text-3xl">
         {t('manageUsers.title')}
       </h1>
 
@@ -122,26 +122,26 @@ const ManageUsers = () => {
         </div>
       )}
 
-      <div className="p-8">
-        <table className="min-w-full table-auto border border-[#2a2c2b] p-8">
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto border border-[#2a2c2b]">
           <thead>
             <tr>
-              <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+              <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm lg:px-6 lg:text-lg">
                 {t('manageUsers.username')}
               </th>
-              <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+              <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm lg:px-6 lg:text-lg">
                 {t('manageUsers.email')}
               </th>
-              <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+              <th className="hidden border-b-2 border-yellow-500 px-2 py-3 text-left text-sm lg:table-cell lg:px-6 lg:text-lg">
                 {t('manageUsers.role')}
               </th>
-              <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+              <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm lg:px-6 lg:text-lg">
                 {t('manageUsers.date')}
               </th>
-              <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+              <th className="hidden border-b-2 border-yellow-500 px-2 py-3 text-left text-sm lg:table-cell lg:px-6 lg:text-lg">
                 {t('manageUsers.time')}
               </th>
-              <th className="border-b-2 border-yellow-500 px-6 py-3 text-left text-lg">
+              <th className="border-b-2 border-yellow-500 px-2 py-3 text-left text-sm lg:px-6 lg:text-lg">
                 {t('manageUsers.actions')}
               </th>
             </tr>
@@ -149,34 +149,22 @@ const ManageUsers = () => {
           <tbody>
             {users.map((userData) => (
               <tr key={userData.id} className="hover:bg-gray-800">
-                <td className="border-b border-gray-700 px-6 py-4">
+                <td className="border-b border-gray-700 px-2 py-4 text-sm lg:px-6 lg:text-base">
                   {userData.username || '-'}
                 </td>
-                <td className="border-b border-gray-700 px-6 py-4">
+                <td className="border-b border-gray-700 px-2 py-4 text-sm lg:px-6 lg:text-base">
                   {userData.email || '-'}
                 </td>
-                <td className="border-b border-gray-700 px-6 py-4">
+                <td className="hidden border-b border-gray-700 px-2 py-4 text-sm lg:table-cell lg:px-6 lg:text-base">
                   {userData.role || 'user'}
                 </td>
-                <td className="border-b border-gray-700 px-6 py-4">
+                <td className="border-b border-gray-700 px-2 py-4 text-sm lg:px-6 lg:text-base">
                   {formatDate(getDateObject(userData.created_at)) || '-'}
                 </td>
-                <td className="border-b border-gray-700 px-6 py-4">
+                <td className="hidden border-b border-gray-700 px-2 py-4 text-sm lg:table-cell lg:px-6 lg:text-base">
                   {formatTime(getDateObject(userData.created_at)) || '-'}
                 </td>
-                <td className="border-b border-gray-700 px-6 py-4">
-                  {userData.role !== 'admin' &&
-                    userData.role !== 'employee' && (
-                      <button
-                        onClick={() => deleteUser(userData.id)}
-                        disabled={isDeleting}
-                        className="rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700 disabled:bg-red-800 disabled:opacity-70"
-                      >
-                        {isDeleting
-                          ? t('manageUsers.deleting')
-                          : t('manageUsers.delete')}
-                      </button>
-                    )}
+                <td className="border-b border-gray-700 px-2 py-4 text-sm lg:px-6 lg:text-base">
                   {user?.role === 'admin' && (
                     <select
                       value={userData.role || 'user'}
@@ -184,7 +172,7 @@ const ManageUsers = () => {
                         updateUserRole(userData.id, e.target.value, userData)
                       }
                       disabled={roleUpdateLoading}
-                      className="ml-4 rounded border border-gray-700 bg-gray-800 px-2 py-1 text-white"
+                      className="mb-4 rounded border border-gray-700 bg-gray-800 px-2 py-1 text-white"
                     >
                       {availableRoles.map((role) => (
                         <option key={role} value={role}>
@@ -193,6 +181,18 @@ const ManageUsers = () => {
                       ))}
                     </select>
                   )}
+                  {userData.role !== 'admin' &&
+                    userData.role !== 'employee' && (
+                      <button
+                        onClick={() => deleteUser(userData.id)}
+                        disabled={isDeleting}
+                        className="ml-4 rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700 disabled:bg-red-800 disabled:opacity-70"
+                      >
+                        {isDeleting
+                          ? t('manageUsers.deleting')
+                          : t('manageUsers.delete')}
+                      </button>
+                    )}
                 </td>
               </tr>
             ))}
