@@ -6,7 +6,7 @@ export const OrderDetailsWorkhub = ({order, onClose, onManageOrder}) => {
 
   return (
     <>
-      <div className="flex w-[800px] flex-col space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-white">
+      <div className="flex w-full flex-col space-y-4 rounded border-1 border-[#000000] bg-[#101211] text-white md:w-[800px]">
         <section className="m-0 flex w-full flex-row items-center space-x-8 border-b border-gray-700 px-6 py-4">
           <h2>
             {t('orders.id')} {orderId}
