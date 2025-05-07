@@ -55,7 +55,11 @@ const About = () => {
       </section>
       <div className="flex w-full flex-col">
         {!onHomePage && <Map />}
-        {!onHomePage && <Contact />}
+        {!onHomePage && (
+          <div className="flex justify-center">
+            <Contact />
+          </div>
+        )}
       </div>
     </>
   );

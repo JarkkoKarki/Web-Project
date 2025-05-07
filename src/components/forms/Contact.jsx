@@ -30,8 +30,8 @@ const Contact = () => {
     }
   };
   return (
-    <div className="mb-10 flex items-center justify-center">
-      <div className="mt-20 flex w-2/3 flex-col items-center justify-center rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md md:w-1/3">
+    <div className="mb-10 flex w-4/5 items-center justify-center">
+      <div className="mt-20 flex w-full flex-col items-center justify-center rounded-md border border-gray-300 bg-[#0d0f0e] p-4 shadow-md md:w-1/3">
         <h2 className="mb-6 text-center text-2xl font-bold text-white">
           {t('contact.contact')}
         </h2>
